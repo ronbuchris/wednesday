@@ -4,12 +4,17 @@ import { BoardList } from './board/BoardList';
 import { loadWorkspaces } from '../store/actions/workspace.actions';
 
 class _WorkspaceNav extends Component {
+  state = {
+    workspace: this.props.workspaces[0]
+  }
   componentDidMount() {
     this.props.loadWorkspaces();
   }
 
   render() {
     const { workspaces } = this.props;
+    const { workspace } = this.state;
+    console.log(workspace);
     console.log(`workspaces`, workspaces);
     if (!workspaces) return <div className="loading">loading</div>;
     return (
@@ -29,7 +34,7 @@ class _WorkspaceNav extends Component {
         <button>Search</button>
 
         <div className="">
-          {workspaces && <BoardList workspace={workspaces[0]} />}
+          {workspace && <BoardList workspace={workspace} />}
         </div>
       </div>
     );
