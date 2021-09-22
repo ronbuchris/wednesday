@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 
 import { workspaceReducer } from './reducers/workspace.reducer.js'
 import { userReducer } from './reducers/user.reducer.js'
+import { boardReducer } from './reducers/board.reducer.js'
 
 const rootReducer = combineReducers({
     workspaceModule: workspaceReducer,
-    userModule: userReducer
+    userModule: userReducer,
+    boardModule: boardReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
