@@ -1,17 +1,21 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { BoardList } from './board/BoardList';
-import { loadWorkspaces } from '../store/actions/workspace.actions';
+import { loadWorkspaces,loadWorkspace } from '../store/actions/workspace.actions';
 
 class _WorkspaceNav extends Component {
+state={
+}
+
   componentDidMount() {
-    this.props.loadWorkspaces();
+    this.props.loadWorkspaces()
+    this.props.loadWorkspace(this.props.workspaces[0]);
   }
 
   render() {
-    const { workspaces } = this.props;
-    console.log(`workspaces`, workspaces);
-    if (!workspaces) return <div className="loading">loading</div>;
+    const { workspaces,workspace } = this.props;
+    // console.log(`workspace`, workspace)
+    if(!workspaces.length || !workspace ) return <div>loading</div>
     return (
       <div className="workspace-nav">
         <select name="" id="">
@@ -20,6 +24,7 @@ class _WorkspaceNav extends Component {
               <option key={workspace._id} value={workspace.name}>
                 {workspace.name}
               </option>
+              
             );
           })}
         </select>
@@ -29,7 +34,7 @@ class _WorkspaceNav extends Component {
         <button>Search</button>
 
         <div className="">
-          {workspaces && <BoardList workspace={workspaces[0]} />}
+          <BoardList workspace={workspace}/>
         </div>
       </div>
     );
@@ -45,6 +50,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadWorkspaces,
+  loadWorkspace
 };
 export const WorkspaceNav = connect(
   mapStateToProps,
