@@ -121,6 +121,7 @@ const gWorkspaces = [
 
 _save('workspaceDB', gWorkspaces)
 
+
 function query(entityType, delay = 1200) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
 
