@@ -14,12 +14,11 @@ export function loadWorkspaces() {
     }
 }
 
-export function loadWorkspace() {
+export function loadWorkspace(workspace) {
     return async dispatch => {
         try {
-            const workspace = await workspaceService.query()
             dispatch({
-                type: 'SET_WORKSPACES',
+                type: 'SET_WORKSPACE',
                 workspace
             })
         } catch (err) {
