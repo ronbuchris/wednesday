@@ -99,8 +99,8 @@ const gWorkspaces = [
                                 "person": [],
                                 "status": {
                                     "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
+                                    "title": "warning",
+                                    "bgcolor": "red",
                                 },
                                 "date": 1589983468418,
 

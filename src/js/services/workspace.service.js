@@ -27,7 +27,7 @@ function save(workspace) {
     if (workspace._id) {
         return storageService.put(STORAGE_KEY, workspace)
     } else {
-        workspace.owner = userService.getLoggedinUser()
+        // workspace.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, workspace)
     }
 }
