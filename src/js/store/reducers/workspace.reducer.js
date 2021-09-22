@@ -2,7 +2,6 @@ const initialState = {
     workspace: null,
     workspaces: [],
     labels: [],
-    lastRemovedWorkspace: null
 }
 
 export function workspaceReducer(state = initialState, action) {
@@ -11,9 +10,6 @@ export function workspaceReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_WORKSPACES':
             newState = { ...state, workspaces: action.workspaces }
-            break
-        case 'SET_LABELS':
-            newState = { ...state, labels: action.labels }
             break
         case 'SET_WORKSPACE':
             newState = { ...state, workspace: action.workspace }
