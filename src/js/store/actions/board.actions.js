@@ -26,3 +26,16 @@ export function setBoard() {
         }
     }
 }
+export function addBoard(workspace,user) {
+    return async dispatch => {
+        try {
+            const board = boardService.addBoard(workspace, user)
+            dispatch({
+                type: 'ADD_BOARD',
+                board
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
+    }
+}

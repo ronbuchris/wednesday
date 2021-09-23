@@ -10,7 +10,7 @@ import {
   loadWorkspaces,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
-import { boardService } from '../services/board.service';
+import { addBoard} from '../store/actions/board.actions';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -29,7 +29,7 @@ class _WorkspaceNav extends Component {
 
   onAddBoard = () => {
     const {workspace, user } = this.props;
-    boardService.addBoard(workspace, user)
+    this.props.addBoard(workspace, user)
   }
 
   render() {
@@ -80,6 +80,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
+  addBoard
 };
 export const WorkspaceNav = connect(
   mapStateToProps,
