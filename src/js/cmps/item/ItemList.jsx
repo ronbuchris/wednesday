@@ -1,12 +1,16 @@
 import React from 'react'
 
 
-export function ItemList({item}) {
-    console.log(`item111`, item)
+export function ItemList({item,onBlur}) {
     return (
         <div className="item-card">
-            <p>{item.title}</p>
-            <p style={{backgroundColor:item.status.bgcolor}}>{item.status.title}</p>
+            <div contentEditable="true"
+           suppressContentEditableWarning={true}
+           onBlur={(ev)=>{
+            onBlur(ev.target.innerText,item.title,item,'item');
+          }}
+           >{item.title}</div>
+            <div style={{backgroundColor:item.status.bgcolor}}>{item.status.title}</div>
         </div>
     )
 }

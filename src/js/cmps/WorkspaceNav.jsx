@@ -10,6 +10,7 @@ import {
   loadWorkspaces,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
+import { addBoard} from '../store/actions/board.actions';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -18,13 +19,21 @@ class _WorkspaceNav extends Component {
 
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
-    console.log(`this.props.user`, this.props.user);
+  }
+
+  componentDidUpdate(){
+    this.props.loadWorkspaces(this.props.user);
   }
 
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);
   };
+
+  onAddBoard = () => {
+    const {workspace, user } = this.props;
+    this.props.addBoard(workspace, user)
+  }
 
   render() {
     const { workspaces, workspace, user } = this.props;
@@ -42,7 +51,7 @@ class _WorkspaceNav extends Component {
           })}
         </select>
 
-        <button className="flex">
+        <button className="flex" onClick={this.onAddBoard}>
           <Add />
           <span>Add</span>
         </button>
@@ -74,6 +83,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
+  addBoard
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

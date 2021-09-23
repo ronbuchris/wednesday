@@ -16,7 +16,6 @@ import { HomePage } from '../pages/HomePage';
 export class _SidebarHeader extends Component {
   state = {
     isWorkspaceNav: true,
-    isClicked: false,
   };
 
   toggleWorkspaceNav = () => {

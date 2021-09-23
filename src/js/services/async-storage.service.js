@@ -432,11 +432,11 @@ const gUsers = [
         workspaces: ['w102']
     },
 ]
-_save('workspaceDB', gWorkspaces)
-_save('userDB', gUsers)
+// _save('workspaceDB', gWorkspaces)
+// _save('userDB', gUsers)
 
 
-function query(entityType, delay = 1200) {
+function query(entityType, delay = 400) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     return new Promise((resolve, reject) => {
