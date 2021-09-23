@@ -23,18 +23,18 @@ function query() {
 
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
+    const user = await storageService.get(STORAGE_KEY, userId)
     // const user = await httpService.get(`user/${userId}`)
     // gWatchedUser = user;
     return user;
 }
 function remove(userId) {
-    return storageService.remove('user', userId)
+    return storageService.remove(STORAGE_KEY, userId)
     // return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
-    await storageService.put('user', user)
+    await storageService.put(STORAGE_KEY, user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
@@ -51,7 +51,7 @@ async function login(userCred) {
     if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
-    const user = await storageService.post('user', userCred)
+    const user = await storageService.post(STORAGE_KEY, userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.emit('set-user-socket', user._id);
     return _saveLocalUser(user)
