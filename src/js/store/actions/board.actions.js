@@ -14,3 +14,16 @@ export function loadBoard(workspace,boardId) {
         }
     }
 }
+export function setBoard() {
+    return async dispatch => {
+        try {
+            const board = null
+            dispatch({
+                type: 'SET_BOARD',
+                board
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
+    }
+}

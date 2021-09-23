@@ -8,7 +8,7 @@ const routes = [
         label: 'logo'
     },
     {
-        path: '/board/:boardId',
+        path: '/board/:boardId?',
         component: MainApp,
         label: 'main app'
     },

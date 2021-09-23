@@ -2,12 +2,7 @@ import { storageService } from './async-storage.service';
 
 const STORAGE_KEY = 'workspaceDB'
 
-// createWorkspaces()
-
-// let workspaces;
 export const workspaceService = { query, getById, remove, save }
-
-
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
@@ -19,7 +14,6 @@ async function query(user) {
             }
         })
     });
-    console.log(`userWorkspaces`, userWorkspaces)
     return Promise.resolve(userWorkspaces)
 }
 

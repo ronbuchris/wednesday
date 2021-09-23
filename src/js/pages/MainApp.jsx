@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BoardDetails } from '../cmps/board/BoardDetails';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { loadBoard } from '../../js/store/actions/board.actions';
+import { UserDetails } from '../cmps/UserDetails';
 
 class _MainApp extends Component {
   componentDidMount() {
@@ -16,11 +17,11 @@ class _MainApp extends Component {
   render() {
     const { board, user } = this.props;
     console.log('board222', board);
-    if (!board) return <div>loading</div>;
     return (
       <div className="main-app">
-        {user && <BoardHeader board={board} />}
-        {user && <BoardDetails board={board} />}
+        {!board &&user &&  <UserDetails user={user}/>}
+        {board && <BoardHeader board={board} />}
+        {board && <BoardDetails board={board} />}
       </div>
     );
   }

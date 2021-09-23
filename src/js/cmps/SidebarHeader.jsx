@@ -10,10 +10,12 @@ import { connect } from 'react-redux';
 import { onLogout } from '../store/actions/user.actions';
 import { Route } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
-
+import { UserDetails } from './UserDetails';
+import { setBoard } from '../store/actions/board.actions';
 export class _SidebarHeader extends Component {
   state = {
-    isWorkspaceNav: false,
+    isWorkspaceNav: true,
+    isClicked: false
   };
 
   toggleWorkspaceNav = () => {
@@ -21,13 +23,14 @@ export class _SidebarHeader extends Component {
     this.setState({ isWorkspaceNav: !isWorkspaceNav });
   };
 
+
   onLogout = () => {
     this.props.onLogout();
     <Route path="/" component={HomePage} />;
   };
 
   render() {
-    const { isWorkspaceNav } = this.state;
+    const { isWorkspaceNav} = this.state;
     const { user } = this.props;
     return (
       <div className="sidebar-container">
