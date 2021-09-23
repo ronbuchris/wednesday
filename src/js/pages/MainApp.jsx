@@ -15,10 +15,10 @@ class _MainApp extends Component {
   }
   render() {
     const { board } = this.props;
-    console.log('board222',board);
+    console.log('board222', board);
     if (!board) return <div>loading</div>;
     return (
-      <div className="app">
+      <div className="main-app">
         <BoardHeader board={board} />
         <BoardDetails board={board} />
       </div>

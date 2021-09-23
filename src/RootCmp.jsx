@@ -6,7 +6,7 @@ import routes from './routes';
 class RootCmp extends React.Component {
   render() {
     return (
-      <div className="app-container">
+      <div className="app-container flex">
         <AppHeader />
         <main>
           <Switch>

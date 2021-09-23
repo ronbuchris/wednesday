@@ -6,14 +6,14 @@ import Inbox from 'monday-ui-react-core/dist/icons/Inbox';
 import MyWeek from 'monday-ui-react-core/dist/icons/MyWeek';
 import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Help from 'monday-ui-react-core/dist/icons/Help';
-// import { Button } from 'monday-ui-react-core';
+import { connect } from 'react-redux';
 
-export class SidebarHeader extends Component {
+export class _SidebarHeader extends Component {
   state = {
     isWorkspaceNav: false,
   };
 
-  openBoard = () => {
+  toggleWorkspaceNav = () => {
     const { isWorkspaceNav } = this.state;
     this.setState({ isWorkspaceNav: !isWorkspaceNav });
   };
@@ -21,17 +21,33 @@ export class SidebarHeader extends Component {
     const { isWorkspaceNav } = this.state;
     return (
       <div className="sidebar-container">
-        <nav className="sidebar-icons">
-          <p>logo</p>
-          <Workspace className="nav-icon workspace" onClick={this.openBoard} />
-          <Notifications className="nav-icon Notifications" />
-          <Inbox className="nav-icon Inbox" />
-          <MyWeek className="nav-icon MyWeek" />
-          <Invite className="nav-icon Invite" />
-          <Help className="nav-icon Help" />
+        <nav className="sidebar-icons flex space-between column">
+          <div className="flex column">
+            <p>logo</p>
+            <Workspace
+              className="nav-icon workspace"
+              onClick={this.toggleWorkspaceNav}
+            />
+            <Notifications className="nav-icon Notifications" />
+            <Inbox className="nav-icon Inbox" />
+            <MyWeek className="nav-icon MyWeek" />
+          </div>
+          <div className="flex column">
+            <Invite className="nav-icon Invite" />
+            <Help className="nav-icon Help" />
+            <img src="" alt="" />
+          </div>
         </nav>
         {isWorkspaceNav && <WorkspaceNav />}
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.userModule.user,
+  };
+}
+
+export const SidebarHeader = connect(mapStateToProps, null)(_SidebarHeader);

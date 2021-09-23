@@ -432,7 +432,6 @@ function get(entityType, entityId) {
 
 function post(entityType, newEntity) {
     newEntity._id = _makeId()
-    newEntity.inStock = true;
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)

@@ -71,10 +71,10 @@ function getLoggedinUser() {
 }
 
 
-(async ()=>{
-    await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-    await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-    await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+(async () => {
+    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123' })
+    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
+    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123' })
 })();
 
 
