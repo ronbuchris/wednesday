@@ -14,13 +14,13 @@ class _MainApp extends Component {
     this.props.loadBoard(this.props.workspace, boardId);
   }
   render() {
-    const { board } = this.props;
+    const { board, user } = this.props;
     console.log('board222', board);
     if (!board) return <div>loading</div>;
     return (
       <div className="main-app">
-        <BoardHeader board={board} />
-        <BoardDetails board={board} />
+        {user && <BoardHeader board={board} />}
+        {user && <BoardDetails board={board} />}
       </div>
     );
   }
@@ -30,6 +30,7 @@ function mapStateToProps(state) {
   return {
     workspace: state.workspaceModule.workspace,
     board: state.boardModule.board,
+    user: state.userModule.user,
   };
 }
 const mapDispatchToProps = {

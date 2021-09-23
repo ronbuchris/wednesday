@@ -7,6 +7,9 @@ import MyWeek from 'monday-ui-react-core/dist/icons/MyWeek';
 import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Help from 'monday-ui-react-core/dist/icons/Help';
 import { connect } from 'react-redux';
+import { onLogout } from '../store/actions/user.actions';
+import { Route } from 'react-router-dom';
+import { HomePage } from '../pages/HomePage';
 
 export class _SidebarHeader extends Component {
   state = {
@@ -17,8 +20,15 @@ export class _SidebarHeader extends Component {
     const { isWorkspaceNav } = this.state;
     this.setState({ isWorkspaceNav: !isWorkspaceNav });
   };
+
+  onLogout = () => {
+    this.props.onLogout();
+    <Route path="/" component={HomePage} />;
+  };
+
   render() {
     const { isWorkspaceNav } = this.state;
+    const { user } = this.props;
     return (
       <div className="sidebar-container">
         <nav className="sidebar-icons flex space-between column">
@@ -35,7 +45,8 @@ export class _SidebarHeader extends Component {
           <div className="flex column">
             <Invite className="nav-icon Invite" />
             <Help className="nav-icon Help" />
-            <img src="" alt="" />
+            <button onClick={this.onLogout}>Log out</button>
+            <img className="user-profile" src={user.img} alt="" />
           </div>
         </nav>
         {isWorkspaceNav && <WorkspaceNav />}
@@ -50,4 +61,11 @@ function mapStateToProps(state) {
   };
 }
 
-export const SidebarHeader = connect(mapStateToProps, null)(_SidebarHeader);
+const mapDispatchToProps = {
+  onLogout,
+};
+
+export const SidebarHeader = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_SidebarHeader);

@@ -25,7 +25,7 @@ const gWorkspaces = [
         "boards": [
             {
                 "_id": "b101",
-                "title": "proj-1",
+                "title": "board-1",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
                 "createdBy": {
@@ -116,7 +116,7 @@ const gWorkspaces = [
             },
             {
                 "_id": "b102",
-                "title": "proj-2",
+                "title": "board-2",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
                 "createdBy": {
@@ -223,7 +223,7 @@ const gWorkspaces = [
         "boards": [
             {
                 "_id": "b201",
-                "title": "proj-3",
+                "title": "board-3",
                 "createdAt": 1589983468418,
                 "description": "desc-board-2",
                 "createdBy": {
@@ -314,7 +314,7 @@ const gWorkspaces = [
             },
             {
                 "_id": "b202",
-                "title": "proj-4",
+                "title": "board-4",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
                 "createdBy": {
@@ -410,7 +410,7 @@ const gUsers = [
         _id: 'u101',
         fullname: 'Adir Cohen',
         username: 'KaDaWa',
-        password: '123', 
+        password: '123',
         img: `https://robohash.org/adir`,
         workspaces: ['w101', 'w102']
 
@@ -419,7 +419,7 @@ const gUsers = [
         _id: 'u102',
         fullname: 'On Chetrit',
         username: 'on',
-        password: '123', 
+        password: '123',
         img: `https://robohash.org/on`,
         workspaces: ['w101']
     },
@@ -427,7 +427,7 @@ const gUsers = [
         _id: 'u103',
         fullname: 'Ron Buchris',
         username: 'ron',
-        password: '123', 
+        password: '123',
         img: `https://robohash.org/ron`,
         workspaces: ['w102']
     },

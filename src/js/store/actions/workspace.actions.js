@@ -4,6 +4,7 @@ export function loadWorkspaces(user) {
     return async dispatch => {
         try {
             const workspaces = await workspaceService.query(user)
+            console.log(`workspaces`, workspaces)
             dispatch({
                 type: 'SET_WORKSPACES',
                 workspaces

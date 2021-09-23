@@ -9,18 +9,18 @@ export const workspaceService = { query, getById, remove, save }
 
 
 
-function query(user) {
-    const workspaces = storageService.query(STORAGE_KEY)
+async function query(user) {
+    const workspaces = await storageService.query(STORAGE_KEY)
     const userWorkspaces = workspaces.filter(workspace => workspace.createdBy._id === user._id)
     workspaces.forEach(workspace => {
         workspace.members.forEach(member => {
-            if(member._id === user._id) {
+            if (member._id === user._id) {
                 userWorkspaces.push(workspace)
             }
         })
     });
-
-    return userWorkspaces
+    console.log(`userWorkspaces`, userWorkspaces)
+    return Promise.resolve(userWorkspaces)
 }
 
 function getById(workspaceId) {

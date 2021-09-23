@@ -39,6 +39,7 @@ class _Login extends React.Component {
     const { username, password } = this.state.credentials;
     if (!username || !password) return;
     this.props.onLogin({ username, password });
+    this.props.history.push('/board');
   };
 
   onSignup = (ev) => {

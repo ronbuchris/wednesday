@@ -13,12 +13,13 @@ class _WorkspaceNav extends Component {
 
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
+    console.log(`this.props.user`, this.props.user);
   }
 
-  handleChange=({target})=>{
-    const value=target.value;
+  handleChange = ({ target }) => {
+    const value = target.value;
     this.props.loadWorkspace(value);
-  }
+  };
 
   render() {
     const { workspaces, workspace } = this.props;
