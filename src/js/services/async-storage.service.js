@@ -27,7 +27,7 @@ const gWorkspaces = [
         "boards": [
             {
                 "_id": "b101",
-                "title": "Robot dev proj",
+                "title": "proj-1",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
                 "createdBy": {
@@ -118,7 +118,7 @@ const gWorkspaces = [
             },
             {
                 "_id": "b102",
-                "title": "Robot dev",
+                "title": "proj-2",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
                 "createdBy": {
@@ -207,7 +207,208 @@ const gWorkspaces = [
                 // for monday
                 "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
             }]
-    }
+    },
+    {
+        "_id": "w102",
+        "name": "Workspace-2",
+        "description": "desc-workspace-2",
+        "createdAt": 1489983468418,
+        "createdBy": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "https://www.google.com"
+            }
+        ],
+        "boards": [
+            {
+                "_id": "b201",
+                "title": "proj-3",
+                "createdAt": 1589983468418,
+                "description": "desc-board-2",
+                "createdBy": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "style": {},
+                // "columns":{
+                //     "status":{
+                //         "type":"status",
+                //         "labels":[
+                //             {
+                //                 "title":"done",
+                //                 "bgcolor":"green"
+                //             },
+                //             {
+                //                 "title":"working on",
+                //                 "bgcolor":"yellow"
+                //             },
+                //             {
+                //                 "title":"stuck",
+                //                 "bgcolor":"red"
+                //             },
+                //         ]
+                //     },
+                //     "owner":{
+                //         "type":"people",
+                //         "members":[
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"On Chetrit",
+                //                 "img":"http://some-img",
+                //             },
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"Adir Cohen",
+                //                 "img":"http://some-img",
+                //             },
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"Ron Buchris",
+                //                 "img":"http://some-img",
+                //             },
+                //         ]
+                //     },
+                // },
+                "groups": [
+                    {
+
+                        "id": "g201",
+                        "title": "Group 3",
+                        "items": [
+                            {
+                                "id": "c201",
+                                "title": "Replace logo",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "done",
+                                    "bgcolor": "green",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                            {
+                                "id": "c202",
+                                "title": "Replace logo",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "warning",
+                                    "bgcolor": "red",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                        ],
+                        "style": {
+                            "color": "blue",
+                        }
+                    },
+
+                ],
+                "activities": [],
+                // for monday
+                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+            },
+            {
+                "_id": "b202",
+                "title": "proj-4",
+                "createdAt": 1589983468418,
+                "description": "desc-board",
+                "createdBy": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "style": {},
+                // "columns":{
+                //     "status":{
+                //         "type":"status",
+                //         "labels":[
+                //             {
+                //                 "title":"done",
+                //                 "bgcolor":"green"
+                //             },
+                //             {
+                //                 "title":"working on",
+                //                 "bgcolor":"yellow"
+                //             },
+                //             {
+                //                 "title":"stuck",
+                //                 "bgcolor":"red"
+                //             },
+                //         ]
+                //     },
+                //     "owner":{
+                //         "type":"people",
+                //         "members":[
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"On Chetrit",
+                //                 "img":"http://some-img",
+                //             },
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"Adir Cohen",
+                //                 "img":"http://some-img",
+                //             },
+                //             {
+                //                 "id":"f101",
+                //                 "fullname":"Ron Buchris",
+                //                 "img":"http://some-img",
+                //             },
+                //         ]
+                //     },
+                // },
+                "groups": [
+                    {
+
+                        "id": "g302",
+                        "title": "Group 4",
+                        "items": [
+                            {
+                                "id": "c303",
+                                "title": "Replace",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "done",
+                                    "bgcolor": "green",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                            {
+                                "id": "c304",
+                                "title": "Replace",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "done",
+                                    "bgcolor": "green",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                        ],
+                        "style": {
+                            "color": "blue",
+                        }
+                    },
+
+                ],
+                "activities": [],
+                // for monday
+                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+            }]
+    },
 ];
 
 _save('workspaceDB', gWorkspaces)

@@ -7,22 +7,28 @@ import {
 } from '../store/actions/workspace.actions';
 
 class _WorkspaceNav extends Component {
-  state = {};
+  state = {
+    workspaceId: null,
+  };
 
   componentDidMount() {
     this.props.loadWorkspaces();
   }
 
+  handleChange=({target})=>{
+    const value=target.value;
+    this.props.loadWorkspace(value);
+  }
+
   render() {
     const { workspaces, workspace } = this.props;
-    console.log(`workspace`, workspace);
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div className="workspace-nav">
-        <select name="" id="">
+        <select name="" id="" onChange={this.handleChange}>
           {workspaces.map((workspace) => {
             return (
-              <option key={workspace._id} value={workspace.name}>
+              <option key={workspace._id} value={workspace._id}>
                 {workspace.name}
               </option>
             );
