@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { loadBoard } from '../../store/actions/board.actions';
 import { WorkspaceNav } from '../WorkspaceNav';
-import { GroupPreview } from './GroupPreview';
+import { GroupPreview } from '../group/GroupPreview';
 
 class _BoardDetails extends Component {
   componentDidMount() {

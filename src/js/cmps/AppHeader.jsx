@@ -2,16 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { NavLink, Link } from 'react-router-dom';
 import { MainHeader } from './MainHeader.jsx';
-// import { SideNav } from './SideNav';
-import { WorkspaceNav } from './WorkspaceNav';
-// import logo from '../../assets/img/toy-logo.png';
+import { SidebarHeader } from './SidebarHeader.jsx';
 
 class _AppHeader extends React.Component {
   render() {
     const { user } = this.props;
-    console.log(`user`, user)
+    console.log(`user`, user);
     // const user= 'adiron';
-    const header = user ? <WorkspaceNav /> : <MainHeader />;
+    const header = user ? <SidebarHeader /> : <MainHeader />;
     return header;
   }
 }

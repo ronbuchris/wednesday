@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router';
 import { AppHeader } from './js/cmps/AppHeader';
 import routes from './routes';
 
-
 class RootCmp extends React.Component {
   render() {
     return (

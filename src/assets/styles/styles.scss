@@ -1,16 +1,33 @@
 // Setup
-@import "setup/variables.scss";
-@import "setup/functions.scss";
-@import "setup/mixins.scss";
-@import "setup/typography.scss";
+@import 'setup/variables.scss';
+@import 'setup/functions.scss';
+@import 'setup/mixins.scss';
+@import 'setup/typography.scss';
 
 // Basics
-@import "basics/helpers.scss";
-@import "basics/layout.scss";
-@import "basics/base.scss";
-@import "basics/buttons.scss";
+@import 'basics/helpers.scss';
+@import 'basics/layout.scss';
+@import 'basics/base.scss';
+@import 'basics/buttons.scss';
 
 // Components
-@import "components/main-header.scss";
-@import "components/cat-card.scss";
-@import "components/sidenav.scss"
+@import 'components/main-header.scss';
+@import 'components/sidebar-nav.scss';
+@import 'components/workspace-nav.scss';
+
+// Components/Board
+@import 'components/board/board-details.scss';
+@import 'components/board/board-list.scss';
+@import 'components/board/board-preview.scss';
+
+// Components/Group
+@import 'components/group/group-preview.scss';
+
+// Components/Item
+@import 'components/item/item-list.scss';
+@import 'components/item/item-preview.scss';
+
+//Views
+@import 'views/home-page.scss';
+@import 'views/login.scss';
+@import 'views/main-app.scss';
