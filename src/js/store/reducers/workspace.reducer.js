@@ -9,7 +9,7 @@ export function workspaceReducer(state = initialState, action) {
     var workspaces
     switch (action.type) {
         case 'SET_WORKSPACES':
-            newState = { ...state, workspaces: action.workspaces }
+            newState = { ...state, workspaces: action.workspaces,workspace:action.workspaces[0] }
             break
         case 'SET_WORKSPACE':
             newState = { ...state, workspace: action.workspace }

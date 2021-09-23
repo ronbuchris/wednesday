@@ -21,7 +21,7 @@ class _BoardDetails extends Component {
     if (!board) return <div className="">loading</div>;
     return (
       <div className="groups-container">
-        <WorkspaceNav />
+        {/* <WorkspaceNav /> */}
         {board.groups.map((group) => {
           return <GroupPreview key={group.id} group={group} />;
         })}

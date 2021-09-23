@@ -9,6 +9,7 @@ class _MainApp extends Component {
       <div className="app">
         {/* <SidebarNav /> */}
         <WorkspaceNav />
+
       </div>
     );
   }
