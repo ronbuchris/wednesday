@@ -1,5 +1,10 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+
+import Add from 'monday-ui-react-core/dist/icons/Add';
+import Filter from 'monday-ui-react-core/dist/icons/Filter';
+import Search from 'monday-ui-react-core/dist/icons/Search';
+
 import { BoardList } from './board/BoardList';
 import {
   loadWorkspaces,
@@ -37,9 +42,18 @@ class _WorkspaceNav extends Component {
           })}
         </select>
 
-        <button>Add</button>
-        <button>Filters</button>
-        <button>Search</button>
+        <button className="flex">
+          <Add />
+          <span>Add</span>
+        </button>
+        <button className="flex">
+          <Filter />
+          <span>Filter</span>
+        </button>
+        <button className="flex">
+          <Search />
+          <span>Search</span>
+        </button>
 
         <div className="">
           <BoardList workspace={workspace} />

@@ -1,19 +1,22 @@
 import { Component } from 'react';
 import { WorkspaceNav } from './WorkspaceNav';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import Workspace from 'monday-ui-react-core/dist/icons/Workspace';
 import Notifications from 'monday-ui-react-core/dist/icons/Notifications';
 import Inbox from 'monday-ui-react-core/dist/icons/Inbox';
 import MyWeek from 'monday-ui-react-core/dist/icons/MyWeek';
 import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Help from 'monday-ui-react-core/dist/icons/Help';
-import { connect } from 'react-redux';
+
 import { onLogout } from '../store/actions/user.actions';
-import { Route } from 'react-router-dom';
+
 import { HomePage } from '../pages/HomePage';
 export class _SidebarHeader extends Component {
   state = {
     isWorkspaceNav: true,
-    isClicked: false
+    isClicked: false,
   };
 
   toggleWorkspaceNav = () => {
@@ -21,14 +24,14 @@ export class _SidebarHeader extends Component {
     this.setState({ isWorkspaceNav: !isWorkspaceNav });
   };
 
-
   onLogout = () => {
     this.props.onLogout();
-    <Route path="/" component={HomePage} />;
+    console.log(`this.props.history`, this.props.history);
+    this.props.history.push('/');
   };
 
   render() {
-    const { isWorkspaceNav} = this.state;
+    const { isWorkspaceNav } = this.state;
     const { user } = this.props;
     return (
       <div className="sidebar-container">
@@ -66,7 +69,9 @@ const mapDispatchToProps = {
   onLogout,
 };
 
-export const SidebarHeader = connect(
+const __SidebarHeader = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_SidebarHeader);
+
+export const SidebarHeader = withRouter(__SidebarHeader);
