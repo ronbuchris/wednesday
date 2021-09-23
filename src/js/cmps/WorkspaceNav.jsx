@@ -21,6 +21,10 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspaces(this.props.user);
   }
 
+  componentDidUpdate(){
+    this.props.loadWorkspaces(this.props.user);
+  }
+
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);

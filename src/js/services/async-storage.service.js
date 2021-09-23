@@ -436,7 +436,7 @@ const gUsers = [
 // _save('userDB', gUsers)
 
 
-function query(entityType, delay = 1200) {
+function query(entityType, delay = 400) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     return new Promise((resolve, reject) => {

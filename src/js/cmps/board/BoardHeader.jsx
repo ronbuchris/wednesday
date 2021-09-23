@@ -1,10 +1,18 @@
 import { BoardActions } from './BoardActions';
 
-export function BoardHeader({ board }) {
+export function BoardHeader({ board,onBlur }) {
   return (
     <div className="board-header">
-      <p>header:{board.title}</p>
-      <p>description:{board.description}</p>
+      <div contentEditable="true"
+           suppressContentEditableWarning={true}
+           onBlur={(ev)=>{
+             onBlur(ev.target.innerText,board.title,board,'board');
+           }}>{board.title}</div>
+      <div contentEditable="true"
+           suppressContentEditableWarning={true}
+           onBlur={(ev)=>{
+             onBlur(ev.target.innerText,board.description,board,'boardDesc');
+           }}>{board.description}</div>
       <BoardActions />
     </div>
   );

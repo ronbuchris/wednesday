@@ -29,7 +29,7 @@ export function setBoard() {
 export function addBoard(workspace,user) {
     return async dispatch => {
         try {
-            const board = boardService.addBoard(workspace, user)
+            const board = await boardService.addBoard(workspace, user)
             dispatch({
                 type: 'ADD_BOARD',
                 board
@@ -37,5 +37,24 @@ export function addBoard(workspace,user) {
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }
+    }
+}
+
+export function onEditBoard(boardToSave) {
+    console.log(`boardToSave`, boardToSave)
+    return (dispatch) => {
+        boardService.save(boardToSave)
+            .then(savedboard => {
+                console.log('Updated board:', savedboard);
+                dispatch({
+                    type: 'UPDATE_BOARD',
+                    board: savedboard
+                })
+                console.log('board updated')
+            })
+            .catch(err => {
+                console.log('Cannot update board')
+                console.log('Cannot save board', err)
+            })
     }
 }

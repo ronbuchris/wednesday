@@ -14,7 +14,7 @@ export class BoardDetails extends Component {
           <div contentEditable="true"
            suppressContentEditableWarning={true}
            onBlur={(ev)=>{
-             onBlur(ev.target.innerText,group.title,group);
+             onBlur(ev.target.innerText,group.title,group,'group');
            }}
             >{group.title}</div>
           <div>
@@ -23,7 +23,7 @@ export class BoardDetails extends Component {
           })}
           </div>
         </div>
-          <GroupPreview key={group.id} group={group} />
+          <GroupPreview onBlur={onBlur} key={group.id} group={group} />
           </div>
         })}
       </div>
