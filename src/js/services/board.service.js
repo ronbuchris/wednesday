@@ -1,6 +1,3 @@
-import { storageService } from "./async-storage.service"
-
-
 export const boardService = { getById }
 
 function getById(workspace, boardId) {

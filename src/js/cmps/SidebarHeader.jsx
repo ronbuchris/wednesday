@@ -10,7 +10,7 @@ import Help from 'monday-ui-react-core/dist/icons/Help';
 export function SidebarHeader() {
   return (
     <div className="sidebar-container">
-      <nav>
+      <nav className="sidebar-icons">
         <Workspace />
         <Notifications />
         <Inbox />
@@ -18,7 +18,6 @@ export function SidebarHeader() {
         <Invite />
         <Help />
       </nav>
-      <p>hello from main sidenav</p>
       <WorkspaceNav />
     </div>
   );

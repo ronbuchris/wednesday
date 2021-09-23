@@ -1,5 +1,6 @@
 .app-container{
     display: flex;
+    width: 100vw;
     gap: 20px;
     .sidebar-container{
     display: flex;
@@ -8,5 +9,9 @@
     flex-direction: column;
     }
     gap: 20px;
+}
+.app {
+    background-color: rgb(131, 130, 130);
+    width: 500px;
 }
 }
