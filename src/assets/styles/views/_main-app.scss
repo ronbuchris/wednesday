@@ -1,0 +1,12 @@
+.app-container{
+    display: flex;
+    gap: 20px;
+    .sidebar-container{
+    display: flex;
+    .workspace-nav{
+        display: flex;
+    flex-direction: column;
+    }
+    gap: 20px;
+}
+}
