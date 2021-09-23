@@ -22,7 +22,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace } = this.props;
+    const { workspaces, workspace, user } = this.props;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div className="workspace-nav">
