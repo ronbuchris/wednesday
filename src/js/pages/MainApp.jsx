@@ -5,10 +5,11 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 
 class _MainApp extends Component {
   render() {
+    const { board } = this.props;
     return (
       <div className="app">
-        <BoardHeader />
-        <BoardDetails />
+        <BoardHeader board={board} />
+        <BoardDetails board={board} />
       </div>
     );
   }
@@ -16,7 +17,7 @@ class _MainApp extends Component {
 
 function mapStateToProps(state) {
   return {
-    workspace: state.workspaceModule.workspace,
+    board: state.boardModule.board,
   };
 }
 
