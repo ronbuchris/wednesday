@@ -9,7 +9,6 @@ state={
 
   componentDidMount() {
     this.props.loadWorkspaces()
-    this.props.loadWorkspace(this.props.workspaces[0]);
   }
 
   render() {
