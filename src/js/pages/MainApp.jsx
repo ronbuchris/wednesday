@@ -7,18 +7,20 @@ import { UserDetails } from '../cmps/UserDetails';
 
 class _MainApp extends Component {
   componentDidMount() {
-    const { boardId } = this.props.match.params;
-    this.props.loadBoard(this.props.workspace, boardId);
+    this.loadBoard();
   }
   componentDidUpdate() {
+    this.loadBoard();
+  }
+  loadBoard = () => {
     const { boardId } = this.props.match.params;
     this.props.loadBoard(this.props.workspace, boardId);
-  }
+  };
   render() {
     const { board, user } = this.props;
     return (
       <div className="main-app">
-        {!board &&user &&  <UserDetails user={user}/>}
+        {!board && user && <UserDetails user={user} />}
         {board && <BoardHeader board={board} />}
         {board && <BoardDetails board={board} />}
       </div>
