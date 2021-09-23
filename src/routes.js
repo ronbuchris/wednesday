@@ -1,6 +1,7 @@
 import { HomePage } from './js/pages/HomePage'
 import { Login } from './js/pages/Login'
 import { MainApp } from './js/pages/MainApp';
+
 const routes = [
     {
         path: '/',
@@ -8,7 +9,7 @@ const routes = [
         label: 'logo'
     },
     {
-        path: '/board/:boardId',
+        path: '/board/:boardId?',
         component: MainApp,
         label: 'main app'
     },

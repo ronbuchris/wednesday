@@ -5,6 +5,7 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { loadBoard } from '../../js/store/actions/board.actions';
 import { onEditGroup } from '../../js/store/actions/group.actions';
 
+import { UserDetails } from '../cmps/UserDetails';
 
 class _MainApp extends Component {
   componentDidMount() {
@@ -27,9 +28,10 @@ this.props.onEditGroup(newGroup)
     if (!board) return <div>loading</div>;
     return (
       <div className="main-app">
-        {user && <BoardHeader board={board} />}
-        {user && <BoardDetails onBlur={this.onBlur} board={board} />}
-      </div>
+        {!board &&user &&  <UserDetails user={user}/>}
+        {board && <BoardHeader board={board} />}
+        {board && <BoardDetails onBlur={this.onBlur} board={board} />}
+</div>
     );
   }
 }
