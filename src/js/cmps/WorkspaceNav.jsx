@@ -10,7 +10,7 @@ class _WorkspaceNav extends Component {
   state = {};
 
   componentDidMount() {
-    this.props.loadWorkspaces();
+    this.props.loadWorkspaces(this.props.user);
   }
 
   render() {
@@ -45,6 +45,7 @@ function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
+    user: state.userModule.user,
   };
 }
 

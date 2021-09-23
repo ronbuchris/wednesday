@@ -9,7 +9,9 @@ export const workspaceService = { query, getById, remove, save }
 
 
 
-function query() {
+function query(user) {
+    const workspaces = storageService.query(STORAGE_KEY)
+    userWorkspaces = workspaces.filter(workspace => workspace.createdBy._id === user._id)
     return storageService.query(STORAGE_KEY)
 }
 

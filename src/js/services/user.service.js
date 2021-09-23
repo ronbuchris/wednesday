@@ -1,13 +1,13 @@
 import { storageService } from './async-storage.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 // var gWatchedUser = null;
-
+const STORAGE_KEY = 'userDB'
 export const userService = {
     login,
     logout,
     signup,
     getLoggedinUser,
-    getUsers,
+    query,
     getById,
     remove,
     update,
@@ -16,10 +16,11 @@ export const userService = {
 window.userService = userService
 
 
-function getUsers() {
-    // return storageService.query('user')
+function query() {
     // return httpService.get(`user`)
+    return storageService.query(STORAGE_KEY)
 }
+
 
 async function getById(userId) {
     const user = await storageService.get('user', userId)
