@@ -1,15 +1,14 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { WorkspaceNav } from '../cmps/WorkspaceNav';
-// import { SidebarNav } from '../cmps/SidebarNav';
+
 
 class _MainApp extends Component {
   render() {
+    const {board } = this.props
     return (
       <div className="app">
-        {/* <SidebarNav /> */}
-        <WorkspaceNav />
-
+        <BoardHeader board={board}/>
+        <BoardDetails board={board}/>
       </div>
     );
   }
@@ -17,7 +16,7 @@ class _MainApp extends Component {
 
 function mapStateToProps(state) {
   return {
-    workspace: state.workspaceModule.workspace,
+    board: state.boardModule.board,
   };
 }
 
