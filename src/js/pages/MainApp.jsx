@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { BoardDetails } from '../cmps/board/BoardDetails';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { loadBoard } from '../../js/store/actions/board.actions';
-import { BoardFilter } from '../cmps/board/BoardFilter';
 
 class _MainApp extends Component {
   componentDidMount() {
@@ -21,7 +20,6 @@ class _MainApp extends Component {
     return (
       <div className="app">
         <BoardHeader board={board} />
-        <BoardFilter />
         <BoardDetails board={board} />
       </div>
     );
