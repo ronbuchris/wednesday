@@ -1,5 +1,8 @@
 export function BoardHeader({board}) {
     return (
-        <div>header:{board.title}</div>
+        <div>
+            <p>header:{board.title}</p>
+            <p>description:{board.description}</p>
+        </div>
     )
 }
