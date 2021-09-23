@@ -42,7 +42,7 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === userCred.username)
     // return _saveLocalUser(user)
 
@@ -72,11 +72,11 @@ function getLoggedinUser() {
 }
 
 
-(async ()=>{
-    await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-    await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-    await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-})();
+// (async ()=>{
+//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
+//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+// })();
 
 
 
