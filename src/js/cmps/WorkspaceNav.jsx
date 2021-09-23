@@ -10,6 +10,7 @@ import {
   loadWorkspaces,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
+import { boardService } from '../services/board.service';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -25,6 +26,11 @@ class _WorkspaceNav extends Component {
     const value = target.value;
     this.props.loadWorkspace(value);
   };
+
+  onAddBoard = () => {
+    const {workspace, user } = this.props;
+    boardService.addBoard(workspace, user)
+  }
 
   render() {
     const { workspaces, workspace, user } = this.props;
@@ -42,7 +48,7 @@ class _WorkspaceNav extends Component {
           })}
         </select>
 
-        <button className="flex">
+        <button className="flex" onClick={this.onAddBoard}>
           <Add />
           <span>Add</span>
         </button>

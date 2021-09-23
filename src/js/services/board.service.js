@@ -1,11 +1,27 @@
-export const boardService = { getById }
+import { storageService } from "./async-storage.service"
 
+export const boardService = { getById, addBoard }
+const STORAGE_KEY = 'workspaceDB'
 function getById(workspace, boardId) {
     return workspace.boards.find(board => board._id === boardId)
     
 }
 
+function save(workspace) {
+    console.log(workspace);
+    if (workspace._id) {
+        return storageService.put(STORAGE_KEY, workspace)
+    } else {
+        // workspace.owner = userService.getLoggedinUser()
+        return storageService.post(STORAGE_KEY, workspace)
+    }
+}
 
+function addBoard(workspace, user) {
+    const board = _createBoard(user)
+    workspace.boards.push(board)
+    save(workspace)
+}
 
 function _createBoard(user) {
     return {
