@@ -26,6 +26,7 @@ class _WorkspaceNav extends Component {
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div className="workspace-nav">
+        <h5>Workspace</h5>
         <select name="" id="" onChange={this.handleChange}>
           {workspaces.map((workspace) => {
             return (

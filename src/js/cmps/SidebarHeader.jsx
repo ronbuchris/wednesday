@@ -10,8 +10,6 @@ import { connect } from 'react-redux';
 import { onLogout } from '../store/actions/user.actions';
 import { Route } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
-import { UserDetails } from './UserDetails';
-import { setBoard } from '../store/actions/board.actions';
 export class _SidebarHeader extends Component {
   state = {
     isWorkspaceNav: true,

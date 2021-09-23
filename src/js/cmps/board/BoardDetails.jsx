@@ -5,7 +5,6 @@ export class BoardDetails extends Component {
 
   render() {
     const { board } = this.props;
-    console.log(board);
     if (!board) return <div className="">loading</div>;
     return (
       <div className="groups-container">

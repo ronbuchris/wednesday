@@ -16,7 +16,6 @@ class _MainApp extends Component {
   }
   render() {
     const { board, user } = this.props;
-    console.log('board222', board);
     return (
       <div className="main-app">
         {!board &&user &&  <UserDetails user={user}/>}
