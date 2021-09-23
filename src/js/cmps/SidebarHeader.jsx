@@ -11,12 +11,12 @@ export function SidebarHeader() {
   return (
     <div className="sidebar-container">
       <nav className="sidebar-icons">
-        <Workspace />
-        <Notifications />
-        <Inbox />
-        <MyWeek />
-        <Invite />
-        <Help />
+        <Workspace iconSize={30} />
+        <Notifications iconSize="20" />
+        <Inbox iconSize="20" />
+        <MyWeek iconSize="20" />
+        <Invite iconSize="20" />
+        <Help iconSize="20" />
       </nav>
       <WorkspaceNav />
     </div>
