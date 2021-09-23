@@ -1,9 +1,9 @@
 import { workspaceService } from "../../services/workspace.service"
 
-export function loadWorkspaces() {
+export function loadWorkspaces(user) {
     return async dispatch => {
         try {
-            const workspaces = await workspaceService.query()
+            const workspaces = await workspaceService.query(user)
             dispatch({
                 type: 'SET_WORKSPACES',
                 workspaces

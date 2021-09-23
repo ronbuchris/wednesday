@@ -1,13 +1,13 @@
 import { storageService } from './async-storage.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 // var gWatchedUser = null;
-
+const STORAGE_KEY = 'userDB'
 export const userService = {
     login,
     logout,
     signup,
     getLoggedinUser,
-    getUsers,
+    query,
     getById,
     remove,
     update,
@@ -16,10 +16,11 @@ export const userService = {
 window.userService = userService
 
 
-function getUsers() {
-    // return storageService.query('user')
+function query() {
     // return httpService.get(`user`)
+    return storageService.query(STORAGE_KEY)
 }
+
 
 async function getById(userId) {
     const user = await storageService.get('user', userId)
@@ -41,7 +42,7 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === userCred.username)
     // return _saveLocalUser(user)
 
@@ -71,11 +72,11 @@ function getLoggedinUser() {
 }
 
 
-(async () => {
-    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123' })
-    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123' })
-    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123' })
-})();
+// (async ()=>{
+//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
+//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+// })();
 
 
 

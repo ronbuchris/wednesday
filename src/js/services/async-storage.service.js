@@ -14,14 +14,12 @@ const gWorkspaces = [
         "createdAt": 1489983468418,
         "createdBy": {
             "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
+            "fullname": "Adir Cohen",
         },
         "members": [
             {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
+                "_id": "u102",
+                "fullname": "On Chetrit",
             }
         ],
         "boards": [
@@ -123,8 +121,7 @@ const gWorkspaces = [
                 "description": "desc-board",
                 "createdBy": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "fullname": "Adir Cohen",
                 },
                 "style": {},
                 // "columns":{
@@ -215,14 +212,12 @@ const gWorkspaces = [
         "createdAt": 1489983468418,
         "createdBy": {
             "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
+            "fullname": "Adir Cohen",
         },
         "members": [
             {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
+                "_id": "u103",
+                "fullname": "Ron Buchris",
             }
         ],
         "boards": [
@@ -410,8 +405,35 @@ const gWorkspaces = [
             }]
     },
 ];
+const gUsers = [
+    {
+        _id: 'u101',
+        fullname: 'Adir Cohen',
+        username: 'KaDaWa',
+        password: '123', 
+        img: `https://robohash.org/adir`,
+        workspaces: ['w101', 'w102']
 
+    },
+    {
+        _id: 'u102',
+        fullname: 'On Chetrit',
+        username: 'on',
+        password: '123', 
+        img: `https://robohash.org/on`,
+        workspaces: ['w101']
+    },
+    {
+        _id: 'u103',
+        fullname: 'Ron Buchris',
+        username: 'ron',
+        password: '123', 
+        img: `https://robohash.org/ron`,
+        workspaces: ['w102']
+    },
+]
 _save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 1200) {
