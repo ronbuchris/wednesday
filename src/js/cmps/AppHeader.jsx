@@ -7,7 +7,6 @@ import { SidebarHeader } from './SidebarHeader.jsx';
 class _AppHeader extends React.Component {
   render() {
     const { user } = this.props;
-    console.log(`user`, user);
     // const user= 'adiron';
     const header = user ? <SidebarHeader /> : <MainHeader />;
     return header;

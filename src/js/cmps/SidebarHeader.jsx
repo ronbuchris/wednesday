@@ -13,7 +13,7 @@ import { HomePage } from '../pages/HomePage';
 
 export class _SidebarHeader extends Component {
   state = {
-    isWorkspaceNav: false,
+    isWorkspaceNav: true,
   };
 
   toggleWorkspaceNav = () => {
