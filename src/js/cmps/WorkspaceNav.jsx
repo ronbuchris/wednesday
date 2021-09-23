@@ -9,12 +9,11 @@ state={
 
   componentDidMount() {
     this.props.loadWorkspaces()
-    this.props.loadWorkspace(this.props.workspaces[0]);
   }
 
   render() {
     const { workspaces,workspace } = this.props;
-    // console.log(`workspace`, workspace)
+    console.log(`workspace`, workspace)
     if(!workspaces.length || !workspace ) return <div>loading</div>
     return (
       <div className="workspace-nav">
