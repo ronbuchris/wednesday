@@ -1,19 +1,7 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { loadBoard } from '../../store/actions/board.actions';
-import { WorkspaceNav } from '../WorkspaceNav';
 import { GroupPreview } from '../group/GroupPreview';
 
-class _BoardDetails extends Component {
-  componentDidMount() {
-    const { boardId } = this.props.match.params;
-    this.props.loadBoard(this.props.workspace, boardId);
-  }
-  componentDidUpdate() {
-    const { boardId } = this.props.match.params;
-    this.props.loadBoard(this.props.workspace, boardId);
-  }
+export class BoardDetails extends Component {
 
   render() {
     const { board } = this.props;
@@ -21,7 +9,6 @@ class _BoardDetails extends Component {
     if (!board) return <div className="">loading</div>;
     return (
       <div className="groups-container">
-        {/* <WorkspaceNav /> */}
         {board.groups.map((group) => {
           return <GroupPreview key={group.id} group={group} />;
         })}
@@ -30,17 +17,3 @@ class _BoardDetails extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    board: state.boardModule.board,
-    workspace: state.workspaceModule.workspace,
-  };
-}
-
-const mapDispatchToProps = {
-  loadBoard,
-};
-export const BoardDetails = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_BoardDetails);

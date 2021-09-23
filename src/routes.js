@@ -1,7 +1,6 @@
 import { HomePage } from './js/pages/HomePage'
 import { Login } from './js/pages/Login'
 import { MainApp } from './js/pages/MainApp';
-import { BoardDetails} from './js/cmps/board/BoardDetails'
 const routes = [
     {
         path: '/',
@@ -10,13 +9,8 @@ const routes = [
     },
     {
         path: '/board/:boardId',
-        component: BoardDetails,
-        label: 'BoardDetails'
-    },
-    {
-        path: '/board',
         component: MainApp,
-        label: 'App'
+        label: 'main app'
     },
     {
         path: '/login',
