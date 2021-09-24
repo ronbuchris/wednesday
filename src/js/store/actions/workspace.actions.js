@@ -8,6 +8,7 @@ export function loadWorkspaces(user) {
                 type: 'SET_WORKSPACES',
                 workspaces
             })
+            return workspaces
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }

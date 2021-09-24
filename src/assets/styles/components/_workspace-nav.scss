@@ -1,6 +1,21 @@
-.workspace-nav{
-    width: 254px;
-    & h5 {
-        margin-bottom:0;
+.workspace-nav {
+  width: 254px;
+  select {
+    padding: 6px;
+  }
+
+  .workspace-dropdown-button {
+    border: 1px solid $clr1;
+    padding: 6px;
+    h2 {
+      font-size: rem(16px);
+      font-family: roboto-bold;
     }
+  }
+  .workspace-menu {
+    width: 280px;
+  }
+  .menu-button-wrapper {
+    height: 32px;
+  }
 }

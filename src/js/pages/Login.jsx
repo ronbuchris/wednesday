@@ -34,12 +34,13 @@ class _Login extends React.Component {
     }));
   };
 
-  onLogin = (ev) => {
+  onLogin = async (ev) => {
     ev.preventDefault();
     const { username, password } = this.state.credentials;
     if (!username || !password) return;
-    this.props.onLogin({ username, password });
-    this.props.history.push('/board');
+    await this.props.onLogin({ username, password });
+    console.log(`this.props.user`, this.props.user);
+    this.props.history.push(`/user/${this.props.user._id}`);
   };
 
   onSignup = (ev) => {

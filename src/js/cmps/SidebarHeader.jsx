@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import { Component, useState } from 'react';
 import { WorkspaceNav } from './WorkspaceNav';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useRouteMatch, Link } from 'react-router-dom';
 
 import Workspace from 'monday-ui-react-core/dist/icons/Workspace';
 import Notifications from 'monday-ui-react-core/dist/icons/Notifications';
@@ -12,55 +12,40 @@ import Help from 'monday-ui-react-core/dist/icons/Help';
 
 import { onLogout } from '../store/actions/user.actions';
 
-import { HomePage } from '../pages/HomePage';
-export class _SidebarHeader extends Component {
-  state = {
-    isWorkspaceNav: true,
+export function _SidebarHeader({ user, onLogout, board }) {
+  const logout = () => {
+    onLogout();
   };
 
-  toggleWorkspaceNav = () => {
-    const { isWorkspaceNav } = this.state;
-    this.setState({ isWorkspaceNav: !isWorkspaceNav });
-  };
-
-  onLogout = () => {
-    this.props.onLogout();
-    console.log(`this.props.history`, this.props.history);
-    this.props.history.push('/');
-  };
-
-  render() {
-    const { isWorkspaceNav } = this.state;
-    const { user } = this.props;
-    return (
-      <div className="sidebar-container">
-        <nav className="sidebar-icons flex space-between column">
-          <div className="flex column">
-            <p>logo</p>
-            <Workspace
-              className="nav-icon workspace"
-              onClick={this.toggleWorkspaceNav}
-            />
-            <Notifications className="nav-icon Notifications" />
-            <Inbox className="nav-icon Inbox" />
-            <MyWeek className="nav-icon MyWeek" />
-          </div>
-          <div className="flex column">
-            <Invite className="nav-icon Invite" />
-            <Help className="nav-icon Help" />
-            <button onClick={this.onLogout}>Log out</button>
+  return (
+    <div className="sidebar-container flex">
+      <nav className="sidebar-icons flex space-between column">
+        <div className="flex column">
+          <p>logo</p>
+          <Link to={`/board/b102`}>
+            <Workspace className="nav-icon workspace" />
+          </Link>
+          <Notifications className="nav-icon Notifications" />
+          <Inbox className="nav-icon Inbox" />
+          <MyWeek className="nav-icon MyWeek" />
+        </div>
+        <div className="flex column">
+          <Invite className="nav-icon Invite" />
+          <Help className="nav-icon Help" />
+          <button onClick={logout}>Log out</button>
+          <Link to={`/user/${user._id}`}>
             <img className="user-profile" src={user.img} alt="" />
-          </div>
-        </nav>
-        {isWorkspaceNav && <WorkspaceNav />}
-      </div>
-    );
-  }
+          </Link>
+        </div>
+      </nav>
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
   return {
     user: state.userModule.user,
+    board: state.boardModule.board,
   };
 }
 

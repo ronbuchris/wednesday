@@ -4,24 +4,22 @@ import { connect } from 'react-redux';
 import Add from 'monday-ui-react-core/dist/icons/Add';
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Search from 'monday-ui-react-core/dist/icons/Search';
+import Menu from 'monday-ui-react-core/dist/icons/Menu';
+import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 
 import { BoardList } from './board/BoardList';
 import {
   loadWorkspaces,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
-import { addBoard} from '../store/actions/board.actions';
+import { addBoard } from '../store/actions/board.actions';
 
 class _WorkspaceNav extends Component {
-  state = {
-    workspaceId: null,
-  };
-
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.props.loadWorkspaces(this.props.user);
   }
 
@@ -31,16 +29,25 @@ class _WorkspaceNav extends Component {
   };
 
   onAddBoard = () => {
-    const {workspace, user } = this.props;
-    this.props.addBoard(workspace, user)
-  }
+    const { workspace, user } = this.props;
+    this.props.addBoard(workspace, user);
+  };
 
   render() {
     const { workspaces, workspace, user } = this.props;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
-      <div className="workspace-nav">
-        <h5>Workspace</h5>
+      <div className="workspace-nav flex column">
+        <div className="dropdown-header flex space-between">
+          <span>Workspace</span>
+          <Menu />
+        </div>
+        <div className="workspace-dropdown-button b4 flex space-between align-center">
+          <div className="workspace-title">
+            <h2>{workspace.name}</h2>
+          </div>
+          <DropdownChevronDown />
+        </div>
         <select name="" id="" onChange={this.handleChange}>
           {workspaces.map((workspace) => {
             return (
@@ -51,15 +58,18 @@ class _WorkspaceNav extends Component {
           })}
         </select>
 
-        <button className="flex" onClick={this.onAddBoard}>
+        <button
+          className="flex menu-button-wrapper align-center"
+          onClick={this.onAddBoard}
+        >
           <Add />
           <span>Add</span>
         </button>
-        <button className="flex">
+        <button className="flex menu-button-wrapper align-center">
           <Filter />
           <span>Filter</span>
         </button>
-        <button className="flex">
+        <button className="flex menu-button-wrapper align-center">
           <Search />
           <span>Search</span>
         </button>
@@ -83,7 +93,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
-  addBoard
+  addBoard,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

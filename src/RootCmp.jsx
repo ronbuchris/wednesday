@@ -1,13 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router';
-import { AppHeader } from './js/cmps/AppHeader';
-import routes from './routes';
 
-class RootCmp extends React.Component {
+import { MainHeader } from './js/cmps/MainHeader';
+import { SidebarHeader } from './js/cmps/SidebarHeader';
+
+import routesHomePage from './routesHomePage';
+import routesMainApp from './routesMainApp';
+
+class _RootCmp extends React.Component {
   render() {
+    const routes = this.props.user ? routesMainApp : routesHomePage;
+    const header = this.props.user ? <SidebarHeader /> : <MainHeader />;
     return (
-      <div className="app-container flex">
-        <AppHeader />
+      <div className={`app-container ${this.props.user && 'flex'}`}>
+        {header}
         <main>
           <Switch>
             {routes.map((route) => (
@@ -25,4 +32,10 @@ class RootCmp extends React.Component {
   }
 }
 
-export default RootCmp;
+function mapStateToProps(state) {
+  return {
+    user: state.userModule.user,
+  };
+}
+
+export const RootCmp = connect(mapStateToProps, null)(_RootCmp);

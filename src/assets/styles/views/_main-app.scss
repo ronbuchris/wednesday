@@ -3,27 +3,37 @@
   height: 100vh;
 
   .sidebar-container {
-    display: flex;
-    background-color: $clr3;
+    background-color: $clr1;
 
     .nav-icon {
       width: 30px;
       height: 30px;
-      color: $clr5;
+      color: $clr7;
       margin: 10px;
     }
 
-    .workspace-nav {
-      background-color: $riverstone-color;
-      gap: 20px;
-      display: flex;
-      flex-direction: column;
-    }
     .user-profile {
       width: 50px;
     }
   }
   main {
     flex: 1;
+  }
+
+  .board-app {
+    height: 100vh;
+    .workspace-nav {
+      background-color: $clr6;
+      padding: 16px;
+    }
+    .board-details {
+      flex: 1;
+      .board-header {
+        padding: 16px 30px 0;
+      }
+      .board-content {
+        padding: 18px 0 40px 16px;
+      }
+    }
   }
 }

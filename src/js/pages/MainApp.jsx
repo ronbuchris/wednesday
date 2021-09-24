@@ -1,71 +1,45 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { BoardDetails } from '../cmps/board/BoardDetails';
-import { BoardHeader } from '../cmps/board/BoardHeader';
-import { loadBoard, onEditBoard } from '../../js/store/actions/board.actions';
-import { onEditGroup } from '../../js/store/actions/group.actions';
-import { onEditItem } from '../../js/store/actions/item.actions';
 
-import { UserDetails } from '../cmps/UserDetails';
+import {
+  loadWorkspaces,
+  loadWorkspace,
+} from '../store/actions/workspace.actions';
+import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 
 class _MainApp extends Component {
   componentDidMount() {
-    this.loadBoard();
+    const { board, user, workspace, workspaces } = this.props;
+    this.props.loadWorkspaces(user);
+    console.log(`workspaces`, workspaces);
+    const boardId =
+      this.props.match.params.boardId || workspaces[0].boards[0]._id;
+    this.props.history.push(`/board/${boardId}`);
+
+    // this.props.loadBoard(workspaces[0], boardId);
+    // const { board, workspace, workspaces } = this.props;
   }
-
-  loadBoard = () => {
-    const { boardId } = this.props.match.params;
-    this.props.loadBoard(this.props.workspace, boardId);
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    const { boardId } = this.props.match.params;
-    if (prevProps.match.params.boardId !== boardId) {
-      this.props.loadBoard(this.props.workspace, boardId);
-    }
-  }
-
-  onBlur = (newTxt, pevTxt, type, strType) => {
-    if (newTxt === pevTxt) return;
-    const newType =
-      strType === 'boardDesc'
-        ? { ...type, description: newTxt }
-        : { ...type, title: newTxt };
-    if (strType === 'board' || strType === 'boardDesc') {
-      this.props.onEditBoard(newType);
-    }
-    if (strType === 'group') {
-      this.props.onEditGroup(newType);
-    }
-    if (strType === 'item') {
-      this.props.onEditItem(newType);
-    }
-  };
 
   render() {
     const { board, user } = this.props;
-    return (
-      <div className="main-app">
-        {!board && user && <UserDetails user={user} />}
-        {board && <BoardHeader onBlur={this.onBlur} board={board} />}
-        {board && <BoardDetails onBlur={this.onBlur} board={board} />}
-      </div>
-    );
+
+    // if (!board) return <div className="">loading</div>;
+
+    return <div className="main-app">Loading...</div>;
   }
 }
 
 function mapStateToProps(state) {
   return {
+    workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
     board: state.boardModule.board,
     user: state.userModule.user,
   };
 }
 const mapDispatchToProps = {
+  loadWorkspaces,
   loadBoard,
-  onEditGroup,
-  onEditItem,
-  onEditBoard,
 };
 
 export const MainApp = connect(mapStateToProps, mapDispatchToProps)(_MainApp);
