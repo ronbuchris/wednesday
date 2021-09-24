@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 
 import { userService } from '../services/user.service';
 
+import { loadWorkspaces } from '../store/actions/workspace.actions';
 import { onLogin, onSignup, onLogout } from '../store/actions/user.actions.js';
 
 class _Login extends React.Component {
@@ -44,7 +45,12 @@ class _Login extends React.Component {
     await this.props.onLogin({ username, password });
     const user = userService.getLoggedinUser();
     console.log(`user`, user);
-    this.props.history.push(`/user/${user._id}`);
+    const workspaces = await this.props.loadWorkspaces(user);
+
+    //Open first board of first workspace
+    const boardId = workspaces[0].boards[0]._id;
+    // loadWorkspace(workspaces[0])
+    this.props.history.push(`/board/${boardId}`);
   };
 
   onSignup = (ev) => {
@@ -177,6 +183,7 @@ const mapDispatchToProps = {
   onLogin,
   onSignup,
   onLogout,
+  loadWorkspaces,
 };
 
 export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login);
