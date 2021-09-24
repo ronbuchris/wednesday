@@ -32,7 +32,9 @@ export function _SidebarHeader({ user, onLogout, board }) {
         <div className="flex column">
           <Invite className="nav-icon Invite" />
           <Help className="nav-icon Help" />
-          <button onClick={logout}>Log out</button>
+          <Link to={'/'}>
+            <button onClick={logout}>Log out</button>
+          </Link>
           <Link to={`/user/${user._id}`}>
             <img className="user-profile" src={user.img} alt="" />
           </Link>

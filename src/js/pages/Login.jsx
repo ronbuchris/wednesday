@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,9 +13,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { userService } from '../services/user.service';
+
 import { onLogin, onSignup, onLogout } from '../store/actions/user.actions.js';
 
 class _Login extends React.Component {
+  // const [state, setstate] = useState(initialState)
   state = {
     credentials: {
       username: '',
@@ -39,8 +42,9 @@ class _Login extends React.Component {
     const { username, password } = this.state.credentials;
     if (!username || !password) return;
     await this.props.onLogin({ username, password });
-    console.log(`this.props.user`, this.props.user);
-    this.props.history.push(`/user/${this.props.user._id}`);
+    const user = userService.getLoggedinUser();
+    console.log(`user`, user);
+    this.props.history.push(`/user/${user._id}`);
   };
 
   onSignup = (ev) => {
