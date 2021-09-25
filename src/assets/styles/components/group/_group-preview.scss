@@ -1,4 +1,47 @@
 .group-preview{
     display: flex;
     flex-direction: column;
+    height: 36px;
+    .group-header{
+        display: flex;
+        position: relative;
+        height: 100%;
+        .group-name{
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .group-column-list{
+        display: flex;
+        .group-column{
+            display: flex;
+        }
+        }
+    }
+    .item-list{
+        height: 100%;
+        display: flex;
+        flex-direction:column;
+        
+        .item-preview{
+            height: 100%;
+            display: flex;
+            border-bottom: 1px solid;
+            border-bottom-color: $clr7;
+            .item-title{
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 10px 0 0;
+                height: 100%;
+            }
+            .item-column-list{
+
+            }
+        }
+    }
+    .item-add{
+        display: flex;
+        height: 100%;
+    }
 }
