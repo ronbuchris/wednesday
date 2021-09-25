@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
+import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import { onEditGroup } from '../../js/store/actions/group.actions';
 import { onEditItem } from '../../js/store/actions/item.actions';
-import { WorkspaceNav } from '../cmps/WorkspaceNav';
-
 import {
   loadWorkspaces,
   loadWorkspace,

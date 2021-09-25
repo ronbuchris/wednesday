@@ -2,6 +2,7 @@ const initialState = {
     workspace: null,
     workspaces: [],
     labels: [],
+    isOpenNav: false
 }
 
 export function workspaceReducer(state = initialState, action) {
@@ -9,7 +10,7 @@ export function workspaceReducer(state = initialState, action) {
     var workspaces
     switch (action.type) {
         case 'SET_WORKSPACES':
-            newState = { ...state, workspaces: action.workspaces,workspace:action.workspaces[0] }
+            newState = { ...state, workspaces: action.workspaces, workspace: action.workspaces[0] }
             break
         case 'SET_WORKSPACE':
             newState = { ...state, workspace: action.workspace }
@@ -26,6 +27,10 @@ export function workspaceReducer(state = initialState, action) {
             const lastRemovedWorkspace = state.workspaces.find(workspace => workspace._id === action.workspaceId)
             workspaces = state.workspaces.filter(workspace => workspace._id !== action.workspaceId)
             newState = { ...state, workspaces, lastRemovedWorkspace }
+            break
+        case 'TOGGLE_NAV':
+            newState = { ...state, isOpenNav: !state.isOpenNav }
+            console.log(`newState`, newState)
             break
         default:
     }

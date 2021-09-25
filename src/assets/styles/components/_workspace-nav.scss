@@ -1,7 +1,40 @@
 .workspace-nav {
+  position: relative;
   width: 254px;
+  border-inline-end: 1px solid $ui-grey-color;
+
+  &.close {
+    width: 30px;
+  }
+
   select {
     padding: 6px;
+  }
+
+  .collapse-button-component {
+    position: absolute;
+    padding: 3px 7px;
+    top: 20px;
+    background-color: $clr7;
+    border-radius: 50%;
+    border: 1px solid $ui-grey-color;
+
+    &.is-pinned {
+      right: -14px;
+    }
+
+    svg {
+      width: 13px;
+    }
+
+    &:hover {
+      background-color: $primary-color;
+      svg {
+        path {
+          color: $clr7;
+        }
+      }
+    }
   }
 
   .workspace-dropdown-button {

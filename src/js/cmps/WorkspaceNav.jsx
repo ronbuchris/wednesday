@@ -6,11 +6,14 @@ import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Search from 'monday-ui-react-core/dist/icons/Search';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
+import NavigationChevronRight from 'monday-ui-react-core/dist/icons/NavigationChevronRight';
+import NavigationChevronLeft from 'monday-ui-react-core/dist/icons/NavigationChevronLeft';
 
 import { BoardList } from './board/BoardList';
 import {
   loadWorkspaces,
   loadWorkspace,
+  toggleNav,
 } from '../store/actions/workspace.actions';
 import { addBoard } from '../store/actions/board.actions';
 
@@ -34,49 +37,62 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace, user } = this.props;
+    const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
-      <div className="workspace-nav flex column">
-        <div className="dropdown-header flex space-between">
-          <span>Workspace</span>
-          <Menu />
-        </div>
-        <div className="workspace-dropdown-button b4 flex space-between align-center">
-          <div className="workspace-title">
-            <h2>{workspace.name}</h2>
-          </div>
-          <DropdownChevronDown />
-        </div>
-        <select name="" id="" onChange={this.handleChange}>
-          {workspaces.map((workspace) => {
-            return (
-              <option key={workspace._id} value={workspace._id}>
-                {workspace.name}
-              </option>
-            );
-          })}
-        </select>
-
-        <button
-          className="flex menu-button-wrapper align-center"
-          onClick={this.onAddBoard}
+      <div className={`workspace-nav flex column ${isOpenNav && 'close'}`}>
+        <div
+          className={`collapse-button-component flex align-center justify-center ${
+            !isOpenNav && 'is-pinned'
+          }`}
+          onClick={() => toggleNav()}
         >
-          <Add />
-          <span>Add</span>
-        </button>
-        <button className="flex menu-button-wrapper align-center">
-          <Filter />
-          <span>Filter</span>
-        </button>
-        <button className="flex menu-button-wrapper align-center">
-          <Search />
-          <span>Search</span>
-        </button>
-
-        <div className="">
-          <BoardList workspace={workspace} />
+          {isOpenNav ? <NavigationChevronRight /> : <NavigationChevronLeft />}
         </div>
+
+        {!isOpenNav && (
+          <>
+            <div className="dropdown-header flex space-between">
+              <span>Workspace</span>
+              <Menu />
+            </div>
+            <div className="workspace-dropdown-button b4 flex space-between align-center">
+              <div className="workspace-title">
+                <h2>{workspace.name}</h2>
+              </div>
+              <DropdownChevronDown />
+            </div>
+            <select name="" id="" onChange={this.handleChange}>
+              {workspaces.map((workspace) => {
+                return (
+                  <option key={workspace._id} value={workspace._id}>
+                    {workspace.name}
+                  </option>
+                );
+              })}
+            </select>
+
+            <button
+              className="flex menu-button-wrapper align-center"
+              onClick={this.onAddBoard}
+            >
+              <Add />
+              <span>Add</span>
+            </button>
+            <button className="flex menu-button-wrapper align-center">
+              <Filter />
+              <span>Filter</span>
+            </button>
+            <button className="flex menu-button-wrapper align-center">
+              <Search />
+              <span>Search</span>
+            </button>
+
+            <div className="">
+              <BoardList workspace={workspace} />
+            </div>
+          </>
+        )}
       </div>
     );
   }
@@ -85,6 +101,7 @@ class _WorkspaceNav extends Component {
 function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
+    isOpenNav: state.workspaceModule.isOpenNav,
     workspace: state.workspaceModule.workspace,
     user: state.userModule.user,
   };
@@ -94,6 +111,7 @@ const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
   addBoard,
+  toggleNav,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,
