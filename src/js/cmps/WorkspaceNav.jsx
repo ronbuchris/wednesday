@@ -50,7 +50,7 @@ state={
   }
 
   render() {
-    const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace,isOpenNav, toggleNav } = this.props;
     const {isHovered}=this.state
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (

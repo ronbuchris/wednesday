@@ -25,7 +25,7 @@ render() {
       <nav className="sidebar-icons flex space-between column">
         <div className="flex column">
           <p>logo</p>
-          <Link to={board && `/board/${board._id}`} className={workspaceId ? 'disabled-link' : ''}>
+          <Link to={board ? `/board/${board._id}` : `/`} className={workspaceId ? 'disabled-link' : ''}>
             <Workspace className="nav-icon workspace" />
           </Link>
           <Notifications className="nav-icon Notifications" />
