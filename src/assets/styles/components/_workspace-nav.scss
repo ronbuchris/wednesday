@@ -2,12 +2,12 @@
   position: relative;
   width: 254px;
   border-inline-end: 1px solid $ui-grey-color;
-  transition:width .3s ;
+  transition: width 0.3s;
 
   &.close {
     width: 30px;
   }
-  &.hovered{
+  &.hovered {
     position: absolute;
     height: 100vh;
   }
@@ -52,7 +52,11 @@
     }
   }
   .workspace-menu {
+    position: absolute;
     width: 280px;
+    background-color: $clr7;
+    padding: 12px;
+    box-shadow: 0 4px 17px 6px #0000001a;
   }
   .menu-button-wrapper {
     height: 32px;

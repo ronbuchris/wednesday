@@ -16,11 +16,13 @@ import {
   toggleNav,
 } from '../store/actions/workspace.actions';
 import { addBoard, loadBoard } from '../store/actions/board.actions';
+import { WorkspaceMenu } from './WorkspaceMenu';
 
 class _WorkspaceNav extends Component {
-state={
-  isHovered: false,
-}
+  state = {
+    isHovered: false,
+    isOpenMenu: false,
+  };
 
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
@@ -43,18 +45,25 @@ state={
   };
 
   handleHover = () => {
-    console.log(`in`)
-    this.setState(prevState=>({
-      isHovered:!prevState.isHovered
-    }))
-  }
+    console.log(`in`);
+    this.setState((prevState) => ({
+      isHovered: !prevState.isHovered,
+    }));
+  };
 
   render() {
     const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
-    const {isHovered}=this.state
+    const { isHovered, isOpenMenu } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
-      <div className={`workspace-nav flex column ${isOpenNav && !isHovered && 'close'} ${isOpenNav && isHovered && 'hovered'}`} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
+      <div
+        className={`workspace-nav flex column ${
+          isOpenNav && !isHovered && 'close'
+        }
+      ${isOpenNav && isHovered && 'hovered'}`}
+        onMouseEnter={this.handleHover}
+        onMouseLeave={this.handleHover}
+      >
         <div
           className={`collapse-button-component flex align-center justify-center ${
             (!isOpenNav || isHovered) && 'is-pinned'
@@ -70,13 +79,16 @@ state={
               <span>Workspace</span>
               <Menu />
             </div>
-            <div className="workspace-dropdown-button b4 flex space-between align-center">
+
+            <div className="workspace-dropdown-button br4 flex space-between align-center">
               <div className="workspace-title">
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />
             </div>
-            <select name="" id="" onChange={this.handleChange}>
+            {isOpenMenu && <WorkspaceMenu />}
+
+            {/* <select name="" id="" onChange={this.handleChange}>
               {workspaces.map((workspace) => {
                 return (
                   <option key={workspace._id} value={workspace._id}>
@@ -84,7 +96,7 @@ state={
                   </option>
                 );
               })}
-            </select>
+            </select> */}
 
             <button
               className="flex menu-button-wrapper align-center"
@@ -102,7 +114,7 @@ state={
               <span>Search</span>
             </button>
 
-            <div className="">
+            <div className="board-list">
               <BoardList workspace={workspace} />
             </div>
           </>
