@@ -17,6 +17,7 @@ export function _WorkspaceMenu({ workspaces }) {
   );
 }
 
+
 function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
