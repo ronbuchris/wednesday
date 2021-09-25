@@ -12,21 +12,27 @@ import { WorkspaceNav } from '../cmps/WorkspaceNav';
 import {
   loadWorkspaces,
   loadWorkspace,
+  getWorkspaceByBoardId
 } from '../store/actions/workspace.actions';
 
 export class _BoardDetails extends React.Component {
-  async componentDidMount() {
-    //Load Workspaces
-    //Load Workspace
-    //Load Board = boardId from params(survive refresh) || board from store(clicked on Workspaces) || workspaces[0].boards[0]._id(first entry)
+    async componentDidMount() {
+      //Load Workspaces
+      //Load Workspace
+      //Load Board = boardId from params(survive refresh) || board from store(clicked on Workspaces) || workspaces[0].boards[0]._id(first entry)
+      
+      // const { user } = this.props;
+      // const workspaces = await this.props.loadWorkspaces(user);
+      
+      const boardId = this.props.match.params.boardId || this.props.board._id;
+      await this.props.getWorkspaceByBoardId(boardId) 
+    this.props.loadBoard(this.props.workspace, boardId);
+  }
 
-    const { user } = this.props;
-    const workspaces = await this.props.loadWorkspaces(user);
-
-    const { boardId } = this.props.match.params || this.props.board._id;
-    console.log(`boardId`, boardId);
-    console.log(`this.props.workspaces`, this.props.workspaces);
-    this.props.loadBoard(this.props.workspaces[0], boardId);
+   componentDidUpdate(prevProps, prevState) {
+    if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
+       this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
+    }
   }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
@@ -76,6 +82,7 @@ const mapDispatchToProps = {
   onEditGroup,
   onEditItem,
   onEditBoard,
+  getWorkspaceByBoardId
 };
 
 export const BoardDetails = connect(

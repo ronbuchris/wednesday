@@ -12,15 +12,18 @@ import {
   loadWorkspaces,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
-import { addBoard } from '../store/actions/board.actions';
+import { addBoard,loadBoard} from '../store/actions/board.actions';
 
 class _WorkspaceNav extends Component {
+
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
   }
 
-  componentDidUpdate() {
-    this.props.loadWorkspaces(this.props.user);
+   componentDidUpdate(prevProps, prevState) {
+    if(prevProps.workspace._id!==this.props.workspace._id) {
+       this.props.loadWorkspace(this.props.workspace._id);
+    }
   }
 
   handleChange = ({ target }) => {
@@ -86,6 +89,7 @@ function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
+    board: state.boardModule.board,
     user: state.userModule.user,
   };
 }
@@ -94,6 +98,7 @@ const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
   addBoard,
+  loadBoard
 };
 export const WorkspaceNav = connect(
   mapStateToProps,
