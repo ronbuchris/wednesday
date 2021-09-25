@@ -9,25 +9,12 @@ export class BoardContent extends Component {
       <div className="board-content">
         {board.groups.map((group) => {
           return (
-            <div key={group.id} className="group-container">
-              <div className="group-header">
-                <div
-                  contentEditable="true"
-                  suppressContentEditableWarning={true}
-                  onBlur={(ev) => {
-                    onBlur(ev.target.innerText, group.title, group, 'group');
-                  }}
-                >
-                  {group.title}
-                </div>
-                <div>
-                  {board.cmpsOrder.map((cmp) => {
-                    return <div key={cmp}>{cmp}</div>;
-                  })}
-                </div>
-              </div>
-              <GroupPreview onBlur={onBlur} key={group.id} group={group} />
-            </div>
+            <GroupPreview
+              onBlur={onBlur}
+              key={group.id}
+              group={group}
+              board={board}
+            />
           );
         })}
       </div>
