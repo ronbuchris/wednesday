@@ -88,7 +88,6 @@ export function getWorkspaceByBoardId(boardId) {
     return async dispatch => {
         try {
             const workspace = await workspaceService.getByBoardId(boardId)
-            console.log(`workspa23432ssfr2323dss`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

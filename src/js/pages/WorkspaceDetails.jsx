@@ -27,7 +27,6 @@ class _WorkspaceDetails extends Component {
       })}
       <h1>Members:</h1>
       {workspace.members.map(member => {
-        console.log(member);
         return <Link key={member._id} to={`/user/${member._id}`}>{member.fullname}</Link>
       })}
     </div>;

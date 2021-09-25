@@ -43,7 +43,6 @@ state={
   };
 
   handleHover = () => {
-    console.log(`in`)
     this.setState(prevState=>({
       isHovered:!prevState.isHovered
     }))
