@@ -14,6 +14,17 @@ export function onLogin(credentials) {
     }
 }
 
+export function getById(userId) {
+    return async (dispatch) => {
+        const user = await userService.getById(userId)
+        dispatch({
+            type: 'SET_MEMBER',
+            user
+        })
+
+    }
+
+}
 
 export function onSignup(credentials) {
     return async (dispatch) => {
