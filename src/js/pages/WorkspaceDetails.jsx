@@ -12,6 +12,12 @@ export class _WorkspaceDetails extends Component {
     const { workspaceId } = this.props.match.params;
     this.props.loadWorkspace(workspaceId);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.workspace._id !== this.props.workspace._id) {
+      this.props.loadWorkspace(this.props.workspace._id);
+    }
+  }
   render() {
     const { workspace, board } = this.props;
     if (!workspace && !board) return <div className="">loading</div>;
