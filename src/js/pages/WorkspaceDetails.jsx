@@ -14,6 +14,8 @@ export class _WorkspaceDetails extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(`prevProps.workspace._id`, prevProps.workspace._id)
+    console.log(`this.props.workspace._id`, this.props.workspace._id)
     if (prevProps.workspace._id !== this.props.workspace._id) {
       this.props.loadWorkspace(this.props.workspace._id);
     }

@@ -4,6 +4,7 @@ export class HomePage extends React.Component {
     render(){
 
         return (
+            <div className="main-home-page">
             <div className='home-page flex justify-center'>
                 <div className="head-line flex column align-center">
                     <h1>Work Without Limits</h1>
@@ -12,6 +13,7 @@ export class HomePage extends React.Component {
                     What would you like to manage with monday.com Work OS?
                 </h2>
                 </div>
+            </div>
             </div>
     )
 }

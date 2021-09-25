@@ -28,11 +28,6 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspaces(this.props.user);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.workspace._id !== this.props.workspace._id) {
-      this.props.loadWorkspace(this.props.workspace._id);
-    }
-  }
 
   handleChange = ({ target }) => {
     const value = target.value;

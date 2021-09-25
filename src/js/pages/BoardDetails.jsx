@@ -28,7 +28,7 @@ export class _BoardDetails extends React.Component {
   }
 
    componentDidUpdate(prevProps, prevState) {
-    if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
+     if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
        this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
     }
   }
@@ -36,7 +36,7 @@ export class _BoardDetails extends React.Component {
   onBlur = (newTxt, pevTxt, type, strType) => {
     if (newTxt === pevTxt) return;
     const newType =
-      strType === 'boardDesc'
+      strType === 'boardDesc' 
         ? { ...type, description: newTxt }
         : { ...type, title: newTxt };
     if (strType === 'board' || strType === 'boardDesc') {
