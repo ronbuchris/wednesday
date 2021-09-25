@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { WorkspaceContent } from '../cmps/workspace/WorkspaceContent';
 import { WorkspaceHeader } from '../cmps/workspace/WorkspaceHeader';
@@ -20,8 +19,8 @@ export class _WorkspaceDetails extends Component {
       <div className="workspace-app flex">
         <WorkspaceNav />
         <div className="workspace-details">
-          <WorkspaceHeader onBlur={this.onBlur} />
-          <WorkspaceContent onBlur={this.onBlur} />
+          <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} />
+          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} />
         </div>
       </div>
     );

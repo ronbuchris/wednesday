@@ -45,9 +45,16 @@ class _WorkspaceNav extends Component {
   };
 
   handleHover = () => {
-    console.log(`in`);
+    console.log(`hover`);
     this.setState((prevState) => ({
       isHovered: !prevState.isHovered,
+    }));
+  };
+
+  toggleMenu = () => {
+    console.log(`this.state.isOpenMenu`, this.state.isOpenMenu);
+    this.setState((prevState) => ({
+      isOpenMenu: !prevState.isOpenMenu,
     }));
   };
 
@@ -80,13 +87,16 @@ class _WorkspaceNav extends Component {
               <Menu />
             </div>
 
-            <div className="workspace-dropdown-button br4 flex space-between align-center">
+            <div
+              className="workspace-dropdown-button br4 flex space-between align-center"
+              onClick={this.toggleMenu}
+            >
               <div className="workspace-title">
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />
+              {isOpenMenu && <WorkspaceMenu />}
             </div>
-            {isOpenMenu && <WorkspaceMenu />}
 
             {/* <select name="" id="" onChange={this.handleChange}>
               {workspaces.map((workspace) => {

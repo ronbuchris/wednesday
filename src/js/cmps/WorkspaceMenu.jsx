@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export function _WorkspaceMenu({ workspaces }) {
+  console.log(`workspaces`, workspaces);
   return (
     <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>
       {workspaces.map((workspace) => {
         return (
-          <div key={workspace._id} className="workspace-option">
-            {workspace.name}
-          </div>
+          <Link key={workspace._id} to={`/workspace/${workspace._id}`}>
+            <div className="workspace-option">{workspace.name}</div>
+          </Link>
         );
       })}
     </div>

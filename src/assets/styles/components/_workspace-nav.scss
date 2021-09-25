@@ -43,6 +43,7 @@
   }
 
   .workspace-dropdown-button {
+    position: relative;
     height: 40px;
     border: 1px solid $clr1;
     padding: 6px;
@@ -50,13 +51,15 @@
       font-size: rem(16px);
       font-family: roboto-bold;
     }
-  }
-  .workspace-menu {
-    position: absolute;
-    width: 280px;
-    background-color: $clr7;
-    padding: 12px;
-    box-shadow: 0 4px 17px 6px #0000001a;
+    .workspace-menu {
+      position: absolute;
+      width: 280px;
+      background-color: $clr7;
+      padding: 12px;
+      box-shadow: 0 4px 17px 6px #0000001a;
+      top: 120%;
+      left: 0;
+    }
   }
   .menu-button-wrapper {
     height: 32px;
