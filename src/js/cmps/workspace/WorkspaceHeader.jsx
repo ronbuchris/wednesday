@@ -1,4 +1,4 @@
-export function WorkspaceHeader({ workspace }) {
+export function WorkspaceHeader({ workspace, handleChange }) {
   return (
     <div className="workspace-header">
       <h1>{workspace.title}</h1>
@@ -6,6 +6,8 @@ export function WorkspaceHeader({ workspace }) {
         Use the main Workspace to manage and collaborate on all company-wide
         boards. All team members are in this Workspace
       </p>
+      <button onClick={handleChange}>Boards</button>
+      <button onClick={handleChange}>Members</button>
     </div>
   );
 }

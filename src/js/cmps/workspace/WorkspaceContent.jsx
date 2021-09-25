@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-export function WorkspaceContent({ workspace }) {
+export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen}) {
   return (
     <div className="workspace-content">
-      <h1>Boards:</h1>
+      {isBoardsOpen && <div>
       {workspace.boards.map((board) => {
         return (
           <Link key={board._id} to={`/board/${board._id}`}>
@@ -10,7 +10,8 @@ export function WorkspaceContent({ workspace }) {
           </Link>
         );
       })}
-      <h1>Members:</h1>
+      </div>}
+      {isMembersOpen && <div>
       {workspace.members.map((member) => {
         console.log(member);
         return (
@@ -19,6 +20,7 @@ export function WorkspaceContent({ workspace }) {
           </Link>
         );
       })}
+      </div>}
     </div>
   );
 }
