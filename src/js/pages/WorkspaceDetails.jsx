@@ -8,6 +8,10 @@ import { WorkspaceNav } from '../cmps/WorkspaceNav';
 import { loadWorkspace } from '../store/actions/workspace.actions';
 
 export class _WorkspaceDetails extends Component {
+  state = {
+    isBoardsOpen: true,
+    isMembersOpen: false 
+  }
   componentDidMount() {
     const { workspaceId } = this.props.match.params;
     this.props.loadWorkspace(workspaceId);
@@ -18,6 +22,11 @@ export class _WorkspaceDetails extends Component {
       this.props.loadWorkspace(this.props.workspace._id);
     }
   }
+  handleChange = () => {
+    const { isBoardsOpen, isMembersOpen} = this.state
+    this.setState({ isBoardsOpen: !isBoardsOpen, isMembersOpen: !isMembersOpen})
+  }
+
   render() {
     const { workspace, board } = this.props;
     if (!workspace && !board) return <div className="">loading</div>;
@@ -25,8 +34,8 @@ export class _WorkspaceDetails extends Component {
       <div className="workspace-app flex">
         <WorkspaceNav />
         <div className="workspace-details">
-          <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} />
-          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} />
+          <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
+          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
         </div>
       </div>
     );
