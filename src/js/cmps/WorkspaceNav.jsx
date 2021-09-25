@@ -18,6 +18,10 @@ import {
 import { addBoard, loadBoard } from '../store/actions/board.actions';
 
 class _WorkspaceNav extends Component {
+state={
+  isHovered: false,
+}
+
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
   }
@@ -38,21 +42,29 @@ class _WorkspaceNav extends Component {
     this.props.addBoard(workspace, user);
   };
 
+  handleHover = () => {
+    console.log(`in`)
+    this.setState(prevState=>({
+      isHovered:!prevState.isHovered
+    }))
+  }
+
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
+    const {isHovered}=this.state
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
-      <div className={`workspace-nav flex column ${isOpenNav && 'close'}`}>
+      <div className={`workspace-nav flex column ${isOpenNav && !isHovered && 'close'} ${isOpenNav && isHovered && 'hovered'}`} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
         <div
           className={`collapse-button-component flex align-center justify-center ${
-            !isOpenNav && 'is-pinned'
+            (!isOpenNav || isHovered) && 'is-pinned'
           }`}
           onClick={() => toggleNav()}
         >
           {isOpenNav ? <NavigationChevronRight /> : <NavigationChevronLeft />}
         </div>
 
-        {!isOpenNav && (
+        {(!isOpenNav || isHovered) && (
           <>
             <div className="dropdown-header flex space-between">
               <span>Workspace</span>

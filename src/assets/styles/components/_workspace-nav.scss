@@ -2,9 +2,14 @@
   position: relative;
   width: 254px;
   border-inline-end: 1px solid $ui-grey-color;
+  transition:width .3s ;
 
   &.close {
     width: 30px;
+  }
+  &.hovered{
+    position: absolute;
+    height: 100vh;
   }
 
   select {
