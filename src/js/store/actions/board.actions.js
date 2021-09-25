@@ -41,7 +41,6 @@ export function addBoard(workspace,user) {
 }
 
 export function onEditBoard(boardToSave) {
-    console.log(`boardToSave`, boardToSave)
     return (dispatch) => {
         boardService.save(boardToSave)
             .then(savedboard => {

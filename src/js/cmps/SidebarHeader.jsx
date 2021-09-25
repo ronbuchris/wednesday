@@ -18,14 +18,14 @@ class _SidebarHeader extends Component{
       this.props.history.push('/')
   };
 render() {
-const { user, board }=this.props;
-// if(!board)return <div>loading</div>
+  const { user, board }=this.props;
+  const workspaceId = this.props.location.pathname.includes('/workspace');
   return (
     <div className="sidebar-container flex">
       <nav className="sidebar-icons flex space-between column">
         <div className="flex column">
           <p>logo</p>
-          <Link to={board && `/board/${board._id}`}>
+          <Link to={board ? `/board/${board._id}` : `/`} className={workspaceId ? 'disabled-link' : ''}>
             <Workspace className="nav-icon workspace" />
           </Link>
           <Notifications className="nav-icon Notifications" />

@@ -3,6 +3,8 @@ import Board from 'monday-ui-react-core/dist/icons/Board';
 import { connect } from 'react-redux';
 
 export function _BoardPreview({ boardPreview, board }) {
+  console.log(`board`, board);
+  console.log(`boardPreview`, boardPreview);
   return (
     <Link to={`/board/${boardPreview._id}`}>
       <div className={`${board._id === boardPreview._id && 'selected'} br4`}>
