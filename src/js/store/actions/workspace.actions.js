@@ -73,6 +73,7 @@ export function removeWorkspace(workspaceId) {
         }
     }
 }
+
 export function toggleNav() {
     return dispatch => {
         console.log(`hello from dispatch`)
@@ -81,3 +82,21 @@ export function toggleNav() {
         })
     }
 }
+
+export function getWorkspaceByBoardId(boardId) {
+
+    return async dispatch => {
+        try {
+            const workspace = await workspaceService.getByBoardId(boardId)
+            console.log(`workspa23432ssfr2323dss`, workspace)
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace
+            })
+        }
+        catch (err) {
+            console.log('Cannot remove workspace', err)
+        }
+    }
+}
+

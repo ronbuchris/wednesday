@@ -44,7 +44,6 @@ class _Login extends React.Component {
     if (!username || !password) return;
     await this.props.onLogin({ username, password });
     const user = userService.getLoggedinUser();
-    console.log(`user`, user);
     const workspaces = await this.props.loadWorkspaces(user);
 
     //Open first board of first workspace

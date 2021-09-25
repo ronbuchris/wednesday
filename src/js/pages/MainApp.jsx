@@ -11,7 +11,6 @@ class _MainApp extends Component {
   componentDidMount() {
     const { board, user, workspace, workspaces } = this.props;
     this.props.loadWorkspaces(user);
-    console.log(`workspaces`, workspaces);
     const boardId =
       this.props.match.params.boardId || workspaces[0].boards[0]._id;
     this.props.history.push(`/board/${boardId}`);

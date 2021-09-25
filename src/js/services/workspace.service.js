@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service';
 
 const STORAGE_KEY = 'workspaceDB'
 
-export const workspaceService = { query, getById, remove, save }
+export const workspaceService = { query, getById, remove, save,getByBoardId }
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
@@ -34,6 +34,17 @@ function save(workspace) {
         // workspace.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, workspace)
     }
+}
+
+async function getByBoardId(boardId) {
+    const workspaces = await storageService.query(STORAGE_KEY)
+         return workspaces.find(workspace=>{
+           return workspace.boards.find(board=>{
+            if(board._id === boardId){
+                return workspace
+            }
+        })
+    })
 }
 
 // function createWorkspaces() {
