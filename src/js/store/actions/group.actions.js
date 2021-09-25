@@ -1,6 +1,19 @@
 import { groupService } from "../../services/group.service";
 
 
+export function setGroup(group) {
+    return async dispatch => {
+        try {
+            dispatch({
+                type: 'SET_GROUP',
+                group
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
+    }
+}
+
 export function onEditGroup(groupToSave) {
     console.log(`groupToSave`, groupToSave)
     return (dispatch) => {

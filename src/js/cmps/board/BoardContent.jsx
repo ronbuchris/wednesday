@@ -3,7 +3,7 @@ import { GroupPreview } from '../group/GroupPreview';
 
 export class BoardContent extends Component {
   render() {
-    const { board, onBlur } = this.props;
+    const { board, onBlur,onAddItem } = this.props;
     if (!board) return <div className="">loading</div>;
     return (
       <div className="board-content">
@@ -14,6 +14,7 @@ export class BoardContent extends Component {
               key={group.id}
               group={group}
               board={board}
+              onAddItem={onAddItem}
             />
           );
         })}

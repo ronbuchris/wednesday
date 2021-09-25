@@ -6,32 +6,34 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
-import { onEditGroup } from '../../js/store/actions/group.actions';
+import { onEditGroup,setGroup } from '../../js/store/actions/group.actions';
 import { onEditItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
   getWorkspaceByBoardId
 } from '../store/actions/workspace.actions';
 
+
 export class _BoardDetails extends React.Component {
     async componentDidMount() {
-      //Load Workspaces
-      //Load Workspace
-      //Load Board = boardId from params(survive refresh) || board from store(clicked on Workspaces) || workspaces[0].boards[0]._id(first entry)
-      
-      // const { user } = this.props;
-      // const workspaces = await this.props.loadWorkspaces(user);
-      
       const boardId = this.props.match.params.boardId || this.props.board._id;
       await this.props.getWorkspaceByBoardId(boardId) 
-    this.props.loadBoard(this.props.workspace, boardId);
-  }
-
-   componentDidUpdate(prevProps, prevState) {
+      this.props.loadBoard(this.props.workspace, boardId);
+    }
+    
+     componentDidUpdate(prevProps, prevState) {
      if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
        this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
-    }
+      }
+      // if(prevProps.group){
+      //   console.log(`new`, this.props.group.items.length)
+      //   console.log(`prevProps`, prevProps.group.items.length)
+      //   if(prevProps.group.items.length !== this.props.group.items.length){
+      //     this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
+      //   }
+      // }
   }
+  
 
   onBlur = (newTxt, pevTxt, type, strType) => {
     if (newTxt === pevTxt) return;
@@ -46,9 +48,17 @@ export class _BoardDetails extends React.Component {
       this.props.onEditGroup(newType);
     }
     if (strType === 'item') {
-      this.props.onEditItem(newType);
+      this.props.onEditItem(newType,null,this.props.workspace);
     }
   };
+
+  onAddItem=async(ev,newItem,group)=>{
+    ev.preventDefault();
+    await this.props.onEditItem(newItem,group.id,this.props.workspace)
+    await this.props.setGroup(group)
+    console.log(`object`, this.props.workspace)
+    this.props.loadBoard(this.props.workspace,this.props.match.params.boardId)
+  }
 
   render() {
     const { board } = this.props;
@@ -58,7 +68,7 @@ export class _BoardDetails extends React.Component {
         <WorkspaceNav />
         <div className="board-details">
           <BoardHeader board={board} onBlur={this.onBlur} />
-          <BoardContent board={board} onBlur={this.onBlur} />
+          <BoardContent onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
         </div>
       </div>
     );
@@ -69,6 +79,7 @@ function mapStateToProps(state) {
   return {
     user: state.userModule.user,
     board: state.boardModule.board,
+    group: state.groupModule.group,
     workspace: state.workspaceModule.workspace,
     workspaces: state.workspaceModule.workspaces,
   };
@@ -80,7 +91,8 @@ const mapDispatchToProps = {
   onEditGroup,
   onEditItem,
   onEditBoard,
-  getWorkspaceByBoardId
+  getWorkspaceByBoardId,
+  setGroup
 };
 
 export const BoardDetails = connect(

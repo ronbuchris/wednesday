@@ -108,6 +108,40 @@ const gWorkspaces = [
                             "color": "blue",
                         }
                     },
+                    {
+
+                        "id": "g401",
+                        "title": "Group 2",
+                        "items": [
+                            {
+                                "id": "c501",
+                                "title": "Replace logo",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "done",
+                                    "bgcolor": "green",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                            {
+                                "id": "c502",
+                                "title": "Replace logo",
+                                "person": [],
+                                "status": {
+                                    "type": "status",
+                                    "title": "warning",
+                                    "bgcolor": "red",
+                                },
+                                "date": 1589983468418,
+
+                            },
+                        ],
+                        "style": {
+                            "color": "red",
+                        }
+                    },
 
                 ],
                 "activities": [],
