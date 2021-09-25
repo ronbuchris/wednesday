@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 
 import {
   loadWorkspaces,
-  loadWorkspace,
 } from '../store/actions/workspace.actions';
-import { loadBoard, onEditBoard } from '../store/actions/board.actions';
+import { loadBoard} from '../store/actions/board.actions';
 
 class _MainApp extends Component {
   componentDidMount() {
-    const { board, user, workspace, workspaces } = this.props;
+    const { user,workspaces } = this.props;
     this.props.loadWorkspaces(user);
     const boardId =
       this.props.match.params.boardId || workspaces[0].boards[0]._id;
@@ -20,10 +19,6 @@ class _MainApp extends Component {
   }
 
   render() {
-    const { board, user } = this.props;
-
-    // if (!board) return <div className="">loading</div>;
-
     return <div className="main-app">Loading...</div>;
   }
 }

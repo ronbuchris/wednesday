@@ -10,7 +10,6 @@ import { onEditGroup } from '../../js/store/actions/group.actions';
 import { onEditItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
-  loadWorkspace,
   getWorkspaceByBoardId
 } from '../store/actions/workspace.actions';
 

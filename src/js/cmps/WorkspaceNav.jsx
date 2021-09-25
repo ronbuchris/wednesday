@@ -39,7 +39,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace, isOpenNav, toggleNav } = this.props;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div className={`workspace-nav flex column ${isOpenNav && 'close'}`}>

@@ -8,7 +8,7 @@ export function _UserDetails({ user }) {
   return (
     <div className="user-details">
       <header className="user-header">
-        <img src={user.img} className="user-img" />
+        <img src={user.img} alt="" className="user-img" />
         <h1>{user.fullname}</h1>
       </header>
       <div className="user-content">
