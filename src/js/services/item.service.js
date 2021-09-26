@@ -3,45 +3,17 @@ import { storageService } from './async-storage.service'
 const STORAGE_KEY = 'workspaceDB';
 
 export const itemService = {
-    save
+    save,
+    remove
 }
+async function remove(workspace,group,itemId) {
+    console.log(group);
+    const itemIdx = group.items.findIndex(item => item.id === itemId);
+    console.log(itemIdx);
+    group.items.splice(itemIdx,1)
+    storageService.put(STORAGE_KEY, workspace)
 
-// async function save(newItem,groupId) {
-//     const workspaces= await storageService.query(STORAGE_KEY)
-//      return workspaces.forEach(workspace =>{
-//         workspace.boards.forEach((board) =>{
-//             board.groups.forEach((group) =>{
-//                 // if(groupId){
-//                 //     if(group.id=== groupId){
-//                 //     const newAddItem ={
-//                 //     "id": makeId(),
-//                 //     "title": newItem,
-//                 //     "person": [],
-//                 //     "status": {
-//                 //     "type": "status",
-//                 //     "title": "done",
-//                 //     "bgcolor": "green",
-//                 // },
-//                 // "date": new Date(),
-//                 // }
-//                 // group.items.push(newAddItem)
-//                 // storageService.put(STORAGE_KEY, workspace)
-//                 // return newAddItem;
-//                 //     }
-//                 // }else if(newItem.id){
-//                     const itemId=newItem.id;
-//                 group.items.forEach((item,idx) =>{
-//                         if(item.id===itemId){
-//                             group.items.splice(idx,1,newItem)
-//                             storageService.put(STORAGE_KEY, workspace)
-//                             return newItem;
-//                         }
-//                     })
-//                 // )}
-//             })
-//         })
-//     })
-//     }
+}
 
 async function save(newItem, groupId, workspace) {
     return workspace.boards.forEach((board) => {

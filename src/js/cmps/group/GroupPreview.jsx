@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ItemList } from '../item/ItemList';
-import {onEditItem} from '../../store/actions/item.actions'
+import { onEditItem, loadItems} from '../../store/actions/item.actions'
 import {setGroup} from '../../store/actions/group.actions'
 
 
@@ -14,6 +14,7 @@ class _GroupPreview extends React.Component{
   }
 
 componentDidMount(){
+  this.props.loadItems(this.props.group)
 }
 
   handleChange=({target})=>{
@@ -24,12 +25,6 @@ componentDidMount(){
   clearState=()=>{
    this.setState({addItem:'',isFocused:false})
   }
-
-  // onAddItem=async(ev)=>{
-  //   ev.preventDefault();
-  //   await this.props.onEditItem(this.state.addItem,this.props.group.id)
-  //   this.clearState();
-  // }
 
   onBlur=()=>{
     const {isFocused}=this.state;
@@ -42,7 +37,8 @@ componentDidMount(){
   }
 
   render() {   
-    const { group, onBlur, board,onAddItem }=this.props;
+    const { group, onBlur, board, onAddItem, items }=this.props;
+    if (!items) return <div>loading</div>
     const {addItem,isFocused}=this.state
     return (
       <div key={group.id} className="group-preview">
@@ -65,7 +61,7 @@ componentDidMount(){
         </div>
       </div>
       <div className="item-list">
-        {group.items.map((item) => {
+        {items.map((item) => {
           return (
             <ItemList onBlur={onBlur} key={item.id} item={item} group={group} />
             );
@@ -102,6 +98,7 @@ function mapStateToProps(state) {
     workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
     workspace: state.workspaceModule.workspace,
+    items: state.itemModule.items,
     board: state.boardModule.board,
     user: state.userModule.user,
   };
@@ -109,7 +106,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   onEditItem,
-  setGroup
+  setGroup,
+  loadItems
 };
 export const GroupPreview = connect(
   mapStateToProps,

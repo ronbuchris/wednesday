@@ -18,6 +18,7 @@ export class BoardActions extends Component {
     const { board} = this.props;
     return (
       <div className="actions-container">
+        
         <p onClick={this.toggleFilter}>Filter:<Filter /></p>
         {isFilter && <BoardFilter board={board}/>}
         <p>Person:<Person /></p>
