@@ -69,10 +69,11 @@ class _GroupPreview extends React.Component {
             );
           })}
         </div>
-        <div className="item-add">
+        <div>
           <form
+            className="item-add"
             onSubmit={(ev) => {
-              ev.stopPropagation();
+              ev.preventDefault();
               onAddItem(addItem, group, board);
               this.clearState();
             }}
@@ -90,6 +91,7 @@ class _GroupPreview extends React.Component {
             />
 
             {(isFocused || addItem) && <button>Add</button>}
+            <div className="indicator"></div>
           </form>
         </div>
       </div>

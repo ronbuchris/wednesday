@@ -17,7 +17,7 @@
                 "createdBy": {
                     "_id": "user101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "style": {},
                 "columns": [

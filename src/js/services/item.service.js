@@ -27,7 +27,7 @@ async function save(newItem, groupId, workspace) {
                 })
             } else if (!newItem.id) {
                 if (group.id === groupId) {
-                    const addItem = _createItem(newItem)
+                    const addItem = createItem(newItem)
                     if (addItem.title === 'New Item') {
                         group.items.unshift(addItem)
                     } else {
@@ -43,40 +43,38 @@ async function save(newItem, groupId, workspace) {
 }
 
 
-
-
-
-export function createItem(newItem) {
+export function createItem(title, user) {
     return {
-        "id": makeId(),
-        "title": newItem,
-        "columns": [
+        id: makeId(),
+        title,
+        columns: [
             {
-                "type": "member",
-                "members": [
+                type: "member",
+                members: [
                     {
-                        "_id": "u101",
-                        "fullname": "Adir Cohen",
-                        "img": `https://robohash.org/adir`,
+                        _id: "u101",
+                        fullname: "Adir Cohen",
+                        img: `https://robohash.org/adir`,
                     }
                 ]
             },
             {
-                "type": "status",
-                "label": {
-                    "title": "Done",
-                    "color": "green"
+                type: "status",
+                label: {
+                    title: "Done",
+                    color: "green"
                 }
 
             },
         ],
-        "createdAt": new Date(),
+        creator: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img
+        },
+        createdAt: Date.now(),
     }
 }
-
-
-
-
 
 function makeId(length = 6) {
     var txt = '';

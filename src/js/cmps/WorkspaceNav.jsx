@@ -37,8 +37,9 @@ class _WorkspaceNav extends Component {
   };
 
   onAddBoard = () => {
-    const { workspace, user, editWorkspace } = this.props;
-    const newBoard = createBoard(user);
+    const { workspace, user, editWorkspace, users } = this.props;
+    const newBoard = createBoard(user, users);
+    console.log(`newBoard`, newBoard);
     const newWorkspace = {
       ...workspace,
       boards: [...workspace.boards, newBoard],
@@ -140,6 +141,7 @@ function mapStateToProps(state) {
     isOpenNav: state.workspaceModule.isOpenNav,
     workspace: state.workspaceModule.workspace,
     board: state.boardModule.board,
+    users: state.userModule.users,
     user: state.userModule.user,
   };
 }

@@ -54,3 +54,19 @@ export function onLogout() {
         }
     }
 }
+
+
+export function loadUsers() {
+    return async dispatch => {
+        try {
+            const users = await userService.query()
+            console.log(`users`, users)
+            dispatch({
+                type: 'SET_USERS',
+                users
+            })
+        } catch (err) {
+            console.log('Cannot load users', err)
+        }
+    }
+}

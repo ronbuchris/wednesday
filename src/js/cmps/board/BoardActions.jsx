@@ -4,6 +4,7 @@ import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
 import { BoardFilter } from './BoardFilter';
+
 export class BoardActions extends Component {
   state = {
     isFilter: false,
@@ -21,8 +22,8 @@ export class BoardActions extends Component {
           <div
             className="add-item"
             onClick={(ev) => {
-              ev.stopPropagation();
-              onAddItem('New Item', board.groups[0]);
+              ev.preventDefault();
+              onAddItem('New Item', board.groups[0], board, true);
             }}
           >
             New Item
@@ -31,7 +32,7 @@ export class BoardActions extends Component {
             className="add-group"
             onClick={(ev) => {
               ev.preventDefault();
-              onAddGroup('new-group',board);
+              onAddGroup('new-group', board);
             }}
           >
             New group of Items

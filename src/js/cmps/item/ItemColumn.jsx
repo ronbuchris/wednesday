@@ -1,4 +1,4 @@
-export function ItemColumn({ column, board }) {
+export function ItemColumn({ column, board, item }) {
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':

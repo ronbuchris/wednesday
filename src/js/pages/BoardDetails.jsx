@@ -17,6 +17,7 @@ import { onEditItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
   getWorkspaceByBoardId,
+  editWorkspace,
 } from '../store/actions/workspace.actions';
 
 export class _BoardDetails extends React.Component {
@@ -55,26 +56,70 @@ export class _BoardDetails extends React.Component {
   };
 
   onRemoveBoard = (boardId) => {
+    //get workspace from store
+
     console.log('remove');
   };
 
-  onAddItem = (newItem, group, board) => {
-    console.log(`newItem`, newItem);
-    const { workspace, editWorkspace } = this.props;
-    const newItem = this.props.createItem(newItem);
+  onAddItem = (newItemData, group, board, addToTop = false) => {
+    const { editWorkspace, workspace, user } = this.props;
+    const newWorkspace = { ...workspace };
+    console.log(`newItemData`, newItemData);
+    console.log(`group`, group);
+    console.log(`board`, board);
 
-    const newWorkspace = {
-      ...workspace,
-      boards: [...workspace.boards,
-        board: {...board.groups,
-          group: [...group.items, newItem]}]
+    //create Item
+    const newItem = createItem(newItemData, user);
+
+    //add to groups Array
+    const newGroup = {
+      ...group,
+      items: addToTop ? [newItem, ...group.items] : [...group.items, newItem],
     };
 
-    
+    //find group index
+    const groupIdx = board.groups.findIndex(
+      (group) => group.id === newGroup.id
+    );
+
+    // change group
+    board.groups.splice(groupIdx, 1, newGroup);
+
+    //change board
+    // workspace.boards.splice(boardIdx, 1, newBoard)
+
+    //find board index
+    const boardIdx = workspace.boards.findIndex(
+      (findBoard) => findBoard.id === board.id
+    );
+    // change board
+    newWorkspace.boards.splice(boardIdx, 1, board);
+
+    // console.log(`board`, board);
+    // const newWorkspace = {
+    //   ...workspace,
+    //   boards: [...workspace.boards, board],
+    // };
+
+    //     groups: [{...board.groups,
+    //       group: [...group, newItem]}]]
+    // };
+
     editWorkspace(newWorkspace);
     // await this.props.onEditItem(newItem, group.id, this.props.workspace);
     // await this.props.setGroup(group);
     // this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
+  };
+
+  onEditGroup = (group, boardId) => {
+    //get workspace from store
+    if (group.id) {
+      //
+    } else {
+      // newGroup = createGroup(group)
+      //copy NEW workspace
+    }
+    // editWorkspace(newWorkspace)
   };
 
   onAddGroup = (newGroup, board) => {
@@ -128,6 +173,7 @@ const mapDispatchToProps = {
   setGroup,
   loadGroups,
   createItem,
+  editWorkspace,
 };
 
 export const BoardDetails = connect(

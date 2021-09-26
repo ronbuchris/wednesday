@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service'
+import { createItem } from './item.service'
 
 const STORAGE_KEY = 'workspaceDB';
 
@@ -12,7 +13,7 @@ async function save(newGroup, boardForAdd) {
         return workspace.boards.find((board) => {
             if (boardForAdd) {
                 if (board._id === boardForAdd._id) {
-                    const newAddGroup = _createGroup();
+                    const newAddGroup = createGroup();
                     board.groups.unshift(newAddGroup);
                     return storageService.put(STORAGE_KEY, workspace)
                 }
@@ -29,38 +30,16 @@ async function save(newGroup, boardForAdd) {
     })
 }
 
-function _createGroup() {
+export function createGroup(user, itemCount = 1) {
+    const items = []
+    for (var i = 0; i < itemCount; i++) {
+        items.push(createItem("New Item", user))
+    }
+
     return {
         "id": makeId(),
         "title": "New Group",
-        "items": [
-            {
-                "id": makeId(),
-                "title": "New Item",
-                "columns": [
-                    {
-                        "type": "member",
-                        "members": [
-                            {
-                                "_id": "u101",
-                                "fullname": "Adir Cohen",
-                                "img": `https://robohash.org/adir`,
-                            }
-                        ]
-                    },
-                    {
-                        "type": "status",
-                        "label": {
-                            "title": "Done",
-                            "color": "green"
-                        }
-
-                    },
-                ],
-                "date": 1589983468418,
-
-            }
-        ],
+        items,
         "style": {
             "color": "brown",
         }

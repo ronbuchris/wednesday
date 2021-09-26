@@ -31,7 +31,7 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "columns": [
                     {
@@ -107,7 +107,11 @@ const gWorkspaces = [
                                     },
                                 ],
                                 "createdAt": 1589983468418,
-
+                                "creator": {
+                                    "_id": "us101",
+                                    "fullname": "Adir Cohen",
+                                    "img": `https://robohash.org/adir`
+                                },
                             },
                             {
                                 "id": "c102",
@@ -123,7 +127,7 @@ const gWorkspaces = [
                                         "bgcolor": "red",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -159,7 +163,7 @@ const gWorkspaces = [
 
                                     },
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -183,7 +187,7 @@ const gWorkspaces = [
 
                                     },
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -273,7 +277,7 @@ const gWorkspaces = [
                                     }
                                     ,
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -292,7 +296,7 @@ const gWorkspaces = [
                                         }
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -331,7 +335,7 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "style": {},
                 "columns": [
@@ -398,7 +402,7 @@ const gWorkspaces = [
                                         "bgcolor": "green",
                                     }
                                 ],
-                                "date": 1589983468418
+                                "createdAt": 1589983468418
                             },
                             {
                                 "id": "c202",
@@ -414,7 +418,7 @@ const gWorkspaces = [
                                         "bgcolor": "red",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -436,7 +440,7 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "style": {},
                 "columns": [
@@ -503,7 +507,7 @@ const gWorkspaces = [
                                         "bgcolor": "green",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -521,7 +525,7 @@ const gWorkspaces = [
                                     }
                                     ,
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
