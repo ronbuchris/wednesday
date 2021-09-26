@@ -1,3 +1,7 @@
 .item-preview {
-  display: flex;
+  .item-column {
+    .profile-icon {
+      height: 100%;
+    }
+  }
 }

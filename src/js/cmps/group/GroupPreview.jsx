@@ -3,10 +3,10 @@ import { ItemList } from '../item/ItemList';
 
 export function GroupPreview({ group, onBlur, board }) {
   return (
-    <div key={group.id} className="group-preview">
-      <div className="group-header">
+    <div key={group.id} className="group-preview flex column">
+      <div className="group-header flex">
         <div
-          className="group-name"
+          className="group-name flex align-center"
           style={{ color: group.style.color }}
           contentEditable="true"
           suppressContentEditableWarning={true}
@@ -16,7 +16,7 @@ export function GroupPreview({ group, onBlur, board }) {
         >
           {group.title}
         </div>
-        <div className="group-column-list">
+        <div className="group-column-list flex">
           {board.cmpsOrder.map((cmp) => {
             return <div key={cmp}>{cmp}</div>;
           })}

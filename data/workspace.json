@@ -1,0 +1,261 @@
+[
+    {
+        "_id": "workspace101",
+        "name": "Workspace-1",
+        "description": "desc-workspace",
+        "createdAt": 1489983468418,
+        "createdBy": {
+            "_id": "user101",
+            "fullname": "Adir Cohen"
+        },
+        "boards": [
+            {
+                "_id": "board101",
+                "title": "board-1",
+                "createdAt": 1589983468418,
+                "description": "desc-board",
+                "createdBy": {
+                    "_id": "user101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "style": {},
+                "columns": [
+                    {
+                        "title": "status",
+                        "pos": 1,
+                        "width": "150",
+                        "type": "status",
+                        "labels": [
+                            {
+                                "title": "done",
+                                "bgcolor": "green"
+                            },
+                            {
+                                "title": "working on",
+                                "bgcolor": "yellow"
+                            },
+                            {
+                                "title": "stuck",
+                                "bgcolor": "red"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "priority",
+                        "pos": 2,
+                        "width": "150",
+                        "type": "status",
+                        "labels": [
+                            {
+                                "title": "done",
+                                "bgcolor": "green"
+                            },
+                            {
+                                "title": "working on",
+                                "bgcolor": "yellow"
+                            },
+                            {
+                                "title": "stuck",
+                                "bgcolor": "red"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Owner",
+                        "pos": 3,
+                        "width": "150",
+                        "type": "member",
+                        "members": [
+                            {
+                                "id": "user101",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "user101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "user101",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    }
+                ],
+                "groups": [
+                    {
+                        "id": "group101",
+                        "title": "Group 1",
+                        "color": "blue",
+                        "items": [
+                            {
+                                "id": "item101"
+                            }
+                        ],
+                        "pos": 1
+                    }
+                ],
+                "items": [
+                    {
+                        "id": "item101",
+                        "title": "Replace logo",
+                        "columns": [
+                            {
+                                "type": "member",
+                                "members": [
+                                    {
+                                        "_id": "user101",
+                                        "fullname": "Adir Cohen",
+                                        "img": "https://robohash.org/adir"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "status",
+                                "title": "done",
+                                "bgcolor": "green"
+                            }
+                        ],
+                        "boardId": "board101",
+                        "createdAt": 1589983468418,
+                        "creator": {
+                            "_id": "user101",
+                            "fullname": "Adir Cohen",
+                            "img": "https://robohash.org/adir"
+                        }
+                    },
+                    {
+                        "id": "item102",
+                        "title": "Replace logo",
+                        "columns": [
+                            {
+                                "type": "member",
+                                "members": []
+                            },
+                            {
+                                "type": "status",
+                                "title": "warning",
+                                "bgcolor": "red"
+                            }
+                        ],
+                        "date": 1589983468418
+                    }
+                ],
+                "members": [
+                    {
+                        "_id": "user102",
+                        "fullname": "On Chetrit"
+                    }
+                ],
+                "activities": [],
+                "cmpsOrder": [
+                    "status",
+                    "member",
+                    "date"
+                ]
+            },
+            {
+                "_id": "board102",
+                "title": "board-2",
+                "createdAt": 1589983468418,
+                "description": "desc-board",
+                "createdBy": {
+                    "_id": "u101",
+                    "fullname": "Adir Cohen"
+                },
+                "style": {},
+                "columns": {
+                    "status": {
+                        "type": "status",
+                        "labels": [
+                            {
+                                "title": "done",
+                                "bgcolor": "green"
+                            },
+                            {
+                                "title": "working on",
+                                "bgcolor": "yellow"
+                            },
+                            {
+                                "title": "stuck",
+                                "bgcolor": "red"
+                            }
+                        ]
+                    },
+                    "owner": {
+                        "type": "people",
+                        "members": [
+                            {
+                                "id": "f101",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "f101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "f101",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    }
+                },
+                "groups": [
+                    {
+                        "id": "g102",
+                        "title": "Group 2",
+                        "items": [
+                            {
+                                "id": "c103",
+                                "title": "Replace",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green"
+                                    }
+                                ],
+                                "date": 1589983468418
+                            },
+                            {
+                                "id": "c104",
+                                "title": "Replace",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green"
+                                    }
+                                ],
+                                "date": 1589983468418
+                            }
+                        ],
+                        "style": {
+                            "color": "blue"
+                        }
+                    }
+                ],
+                "activities": [],
+                "cmpsOrder": [
+                    "status",
+                    "member",
+                    "date"
+                ]
+            }
+        ]
+    }
+]

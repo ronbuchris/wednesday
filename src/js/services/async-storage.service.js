@@ -82,24 +82,41 @@ const gWorkspaces = [
                             {
                                 "id": "c101",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": `https://robohash.org/adir`,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+
+                                    },
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c102",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "warning",
-                                    "bgcolor": "red",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "warning",
+                                        "bgcolor": "red",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -112,7 +129,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             },
             {
                 "_id": "b102",
@@ -172,24 +189,35 @@ const gWorkspaces = [
                             {
                                 "id": "c103",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                    ,
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c104",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -202,7 +230,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             }]
     },
     {
@@ -280,24 +308,33 @@ const gWorkspaces = [
                             {
                                 "id": "c201",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
-                                "date": 1589983468418,
-
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                ],
+                                "date": 1589983468418
                             },
                             {
                                 "id": "c202",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "warning",
-                                    "bgcolor": "red",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "warning",
+                                        "bgcolor": "red",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -310,7 +347,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             },
             {
                 "_id": "b202",
@@ -371,24 +408,35 @@ const gWorkspaces = [
                             {
                                 "id": "c303",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c304",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                    ,
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -401,7 +449,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             }]
     },
 ];
