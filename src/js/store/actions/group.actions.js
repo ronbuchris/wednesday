@@ -36,9 +36,12 @@ export function onEditGroup(groupToSave,board=null) {
 export function loadGroups(board) {
     return async dispatch => {
         try {
+            const groupsIds = []
             dispatch({
                 type: 'SET_GROUPS',
-                groups: board.groups
+                board,
+                groups: board.groups, 
+                groupsIds
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
