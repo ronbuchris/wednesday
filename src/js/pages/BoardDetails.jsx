@@ -51,7 +51,6 @@ export class _BoardDetails extends React.Component {
     ev.preventDefault();
     await this.props.onEditItem(newItem,group.id,this.props.workspace)
     await this.props.setGroup(group)
-    console.log(`object`, this.props.workspace)
     this.props.loadBoard(this.props.workspace,this.props.match.params.boardId)
   }
 

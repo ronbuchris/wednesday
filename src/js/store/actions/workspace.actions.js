@@ -76,7 +76,6 @@ export function removeWorkspace(workspaceId) {
 
 export function toggleNav() {
     return dispatch => {
-        console.log(`hello from dispatch`)
         dispatch({
             type: 'TOGGLE_NAV',
         })

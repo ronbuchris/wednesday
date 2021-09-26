@@ -14,7 +14,6 @@ export function itemReducer(state = initialState, action) {
             newState = { ...state, items:[...state.items, action.item] }
             break
             case 'UPDATE_ITEM':
-                console.log(`action`, action)
                 items = state.items.map(item => (item.id === action.item.id)? action.item : item)
                 newState = { ...state, items}
                 break

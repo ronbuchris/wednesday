@@ -11,6 +11,7 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_GROUPS':
+            console.log(action);
             if(action.groupsIds) {
                 groups = state.groups.filter(group => {
                     return action.groupsIds.includes(group.id)

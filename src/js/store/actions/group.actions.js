@@ -19,7 +19,6 @@ export function onEditGroup(groupToSave) {
     return (dispatch) => {
         groupService.save(groupToSave)
             .then(savedgroup => {
-                console.log('Updated group:', savedgroup);
                 dispatch({
                     type: 'UPDATE_GROUP',
                     group: savedgroup
@@ -46,6 +45,7 @@ export function loadGroups(board) {
     }
 }
 export function filterGroups(groupsIds) {
+    console.log(groupsIds);
     return async dispatch => {
         try {
             dispatch({

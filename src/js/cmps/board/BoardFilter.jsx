@@ -4,21 +4,22 @@ import { filterGroups } from '../../store/actions/group.actions'
 
 class _BoardFilter extends Component {
     state = {
-        filterByGroupId: []
+        filterByGroupId: [],
+        filterGroups:[]
     }
 
-    handleChange = (groupId) => {
+    onFilter = (groupId) => {
         this.state.filterByGroupId.push(groupId)
         this.setState({ filterByGroupId: this.state.filterByGroupId })
-        this.props.filterGroups(this.props.board, this.state.filterByGroupId)
+        this.props.filterGroups(this.state.filterByGroupId)
     }
     render() {
-        const { groups} = this.props;
+        const { board,groups} = this.props;
         return (
             <div className="board-filter">
-                {groups.map(group => {
+                {board.groups.map(group => {
                     return <div key={group.id} className="group-filter-preview flex" onClick={() => {
-                        this.handleChange(group.id)
+                        this.onFilter(group.id)
                     }}>
                         <h3>{group.title}</h3>
                         <p>{group.items.length}</p>
