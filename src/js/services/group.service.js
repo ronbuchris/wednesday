@@ -15,6 +15,7 @@ async function save(newGroup, boardForAdd) {
                     const newAddGroup = _createGroup();
                     console.log(`newAddGroup`, newAddGroup)
                     board.groups.unshift(newAddGroup);
+                    console.log(`workspaceworkspaceworkspace`, workspace)
                    return storageService.put(STORAGE_KEY, workspace)
                 }
             }else{

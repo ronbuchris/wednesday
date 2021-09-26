@@ -1,7 +1,7 @@
 import { storageService } from "./async-storage.service"
 import {workspaceService} from "./workspace.service"
 
-export const boardService = { getById, addBoard,save }
+export const boardService = { getById,save,createBoard }
 const STORAGE_KEY = 'workspaceDB'
 function getById(workspace, boardId) {
     return workspace.boards.find(board => board._id === boardId)
@@ -22,13 +22,13 @@ async function save(newBoard) {
     })
 }
 
-function addBoard(workspace, user) {
-    const board = _createBoard(user)
-    workspace.boards.push(board)
-    workspaceService.save(workspace)
-}
+// function addBoard(workspace, user) {
+//     const board = _createBoard(user)
+//     workspace.boards.push(board)
+//     workspaceService.save(workspace)
+// }
 
-function _createBoard(user) {
+function createBoard(user) {
     return {
         "_id": makeId(),
         "title": "New Board",
@@ -37,8 +37,52 @@ function _createBoard(user) {
         "createdBy": {
             "_id": user._id,
             "fullname": user.fullname,
+            "imgUrl": user.img,
         },
-        "style": { },
+        "columns": [
+            {
+                "id": "column102",
+                "type": "member",
+                "title": "Owner",
+                "pos": 1,
+                "width": 140,
+                "members": [
+                    {
+                        "id": "_u102",
+                        "fullname": "On Chetrit",
+                        "img": "http://some-img"
+                    },
+                    {
+                        "_id": "user101",
+                        "fullname": "Adir Cohen",
+                        "img": "http://some-img"
+                    },
+                    {
+                        "_id": "user103",
+                        "fullname": "Ron Buchris",
+                        "img": "http://some-img"
+                    }
+                ]
+            },
+            {
+                "id": "column101",
+                "type": "status",
+                "title": "status",
+                "pos": 2,
+                "width": 140,
+                "labels": [
+                    {
+                        "title": "Done",
+                        "color": "green"
+                    },
+                    {
+                        "title": "stuck",
+                        "color": "red"
+                    }
+                ]
+            }
+
+        ],
         "groups": [
             {
                 "id": makeId(),
@@ -68,14 +112,33 @@ function _createBoard(user) {
 
                     },
                 ],
+                "columns": [
+                    {
+                        "type": "member",
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "fullname": "Adir Cohen",
+                                "img": `https://robohash.org/adir`,
+                            }
+                        ]
+                    },
+                    {
+                        "type": "status",
+                        "label": {
+                            "title": "Done",
+                            "color": "green"
+                        }
+
+                    },
+                ],
                 "style": {
                     "color": "blue",
                 }
             },
-
         ],
         "activities": [],
-        "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+        "cmpsOrder": ["status", "member", "date"]
     }
 }
 

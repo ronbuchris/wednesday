@@ -33,7 +33,6 @@ const gWorkspaces = [
                     "fullname": "Abi Abambi",
                     "imgUrl": "http://some-img"
                 },
-                "style": {},
                 "columns": [
                     {
                         "id": "column102",
