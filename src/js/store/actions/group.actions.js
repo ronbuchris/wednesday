@@ -45,12 +45,11 @@ export function loadGroups(board) {
         }
     }
 }
-export function filterGroups(board,groupsIds) {
+export function filterGroups(groupsIds) {
     return async dispatch => {
         try {
             dispatch({
                 type: 'SET_GROUPS',
-                board,
                 groupsIds
             })
         } catch (err) {

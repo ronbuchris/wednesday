@@ -13,7 +13,7 @@ class _BoardFilter extends Component {
         this.props.filterGroups(this.props.board, this.state.filterByGroupId)
     }
     render() {
-        const { board, groups} = this.props;
+        const { groups} = this.props;
         return (
             <div className="board-filter">
                 {groups.map(group => {
