@@ -28,13 +28,10 @@ export class _BoardDetails extends React.Component {
     this.props.loadGroups(this.props.board);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
-      this.props.loadBoard(
-        this.props.workspace,
-        this.props.match.params.boardId
-      );
-      this.props.loadGroups(this.props.board);
+     await this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
+       await this.props.loadGroups(this.props.board);
     }
   }
 
