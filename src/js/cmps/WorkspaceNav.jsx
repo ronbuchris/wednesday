@@ -9,14 +9,17 @@ import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevron
 import NavigationChevronRight from 'monday-ui-react-core/dist/icons/NavigationChevronRight';
 import NavigationChevronLeft from 'monday-ui-react-core/dist/icons/NavigationChevronLeft';
 
-import { BoardList } from './board/BoardList';
 import {
   loadWorkspaces,
   loadWorkspace,
   toggleNav,
+  editWorkspace,
 } from '../store/actions/workspace.actions';
 import { addBoard, loadBoard } from '../store/actions/board.actions';
+
+import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
+import { createBoard } from '../services/board.service';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -28,15 +31,20 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspaces(this.props.user);
   }
 
-
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);
   };
 
   onAddBoard = () => {
-    const { workspace, user } = this.props;
-    this.props.addBoard(workspace, user);
+    const { workspace, user, editWorkspace, users } = this.props;
+    const newBoard = createBoard(user, users);
+    console.log(`newBoard`, newBoard);
+    const newWorkspace = {
+      ...workspace,
+      boards: [...workspace.boards, newBoard],
+    };
+    editWorkspace(newWorkspace);
   };
 
   handleHover = () => {
@@ -52,7 +60,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace,isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace, isOpenNav, toggleNav } = this.props;
     const { isHovered, isOpenMenu } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
@@ -132,6 +140,7 @@ function mapStateToProps(state) {
     isOpenNav: state.workspaceModule.isOpenNav,
     workspace: state.workspaceModule.workspace,
     board: state.boardModule.board,
+    users: state.userModule.users,
     user: state.userModule.user,
   };
 }
@@ -142,6 +151,7 @@ const mapDispatchToProps = {
   addBoard,
   toggleNav,
   loadBoard,
+  editWorkspace,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

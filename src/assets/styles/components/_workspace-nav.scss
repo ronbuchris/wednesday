@@ -3,7 +3,7 @@
   width: 254px;
   border-inline-end: 1px solid $ui-grey-color;
   transition: width 0.3s;
-  
+
   &.close {
     width: 30px;
   }
@@ -63,5 +63,10 @@
   }
   .menu-button-wrapper {
     height: 32px;
+    gap: 5px;
+
+    &:hover {
+      background-color: $ui-grey-color;
+    }
   }
 }

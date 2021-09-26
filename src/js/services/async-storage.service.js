@@ -31,9 +31,8 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
-                "style": {},
                 "columns": [
                     {
                         "id": "column102",
@@ -107,8 +106,12 @@ const gWorkspaces = [
 
                                     },
                                 ],
-                                "date": 1589983468418,
-
+                                "createdAt": 1589983468418,
+                                "creator": {
+                                    "_id": "us101",
+                                    "fullname": "Adir Cohen",
+                                    "img": `https://robohash.org/adir`
+                                },
                             },
                             {
                                 "id": "c102",
@@ -124,7 +127,7 @@ const gWorkspaces = [
                                         "bgcolor": "red",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -160,7 +163,7 @@ const gWorkspaces = [
 
                                     },
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -184,7 +187,7 @@ const gWorkspaces = [
 
                                     },
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -210,23 +213,6 @@ const gWorkspaces = [
                 "style": {},
                 "columns": [
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "status",
-                        "pos": 1,
-                        "width": 140,
-                        "labels": [
-                            {
-                                "title": "Done",
-                                "color": "green"
-                            },
-                            {
-                                "title": "stuck",
-                                "color": "red"
-                            }
-                        ]
-                    },
-                    {
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
@@ -247,6 +233,23 @@ const gWorkspaces = [
                                 "_id": "u103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
                             }
                         ]
                     }
@@ -274,7 +277,7 @@ const gWorkspaces = [
                                     }
                                     ,
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -293,7 +296,7 @@ const gWorkspaces = [
                                         }
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -332,7 +335,7 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "style": {},
                 "columns": [
@@ -399,7 +402,7 @@ const gWorkspaces = [
                                         "bgcolor": "green",
                                     }
                                 ],
-                                "date": 1589983468418
+                                "createdAt": 1589983468418
                             },
                             {
                                 "id": "c202",
@@ -415,7 +418,7 @@ const gWorkspaces = [
                                         "bgcolor": "red",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],
@@ -437,27 +440,11 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "img": "http://some-img"
                 },
                 "style": {},
                 "columns": [
-                    {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "status",
-                        "pos": 1,
-                        "width": 140,
-                        "labels": [
-                            {
-                                "title": "Done",
-                                "color": "green"
-                            },
-                            {
-                                "title": "stuck",
-                                "color": "red"
-                            }
-                        ]
-                    },
+
                     {
                         "id": "column102",
                         "type": "member",
@@ -479,6 +466,23 @@ const gWorkspaces = [
                                 "id": "user103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
                             }
                         ]
                     }
@@ -503,7 +507,7 @@ const gWorkspaces = [
                                         "bgcolor": "green",
                                     }
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                             {
@@ -521,7 +525,7 @@ const gWorkspaces = [
                                     }
                                     ,
                                 ],
-                                "date": 1589983468418,
+                                "createdAt": 1589983468418,
 
                             },
                         ],

@@ -1,9 +1,9 @@
 import { boardService } from "../../services/board.service"
 
-export function loadBoard(workspace,boardId) {
+export function loadBoard(workspace, boardId) {
     return async dispatch => {
         try {
-            const board = await boardService.getById(workspace,boardId)
+            const board = await boardService.getById(workspace, boardId)
             dispatch({
                 type: 'SET_BOARD',
                 board
@@ -26,7 +26,7 @@ export function setBoard() {
         }
     }
 }
-export function addBoard(workspace,user) {
+export function addBoard(workspace, user) {
     return async dispatch => {
         try {
             const board = await boardService.addBoard(workspace, user)

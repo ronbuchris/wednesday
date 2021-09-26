@@ -22,14 +22,9 @@ export function ItemPreview({ item, onBlur, group, board }) {
       </div>
 
       <div className="item-column-list flex">
-        {item.columns.map((column) => {
+        {item.columns.map((column, idx) => {
           return (
-            <ItemColumn
-              key={column.id}
-              board={board}
-              column={column}
-              item={item}
-            />
+            <ItemColumn key={idx} board={board} column={column} item={item} />
           );
         })}
       </div>

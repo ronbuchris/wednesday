@@ -12,9 +12,9 @@ class _GroupPreview extends React.Component {
     isFocused: false,
   };
 
-  componentDidMount() {
-    this.props.loadItems(this.props.group);
-  }
+  // componentDidMount() {
+  //   this.props.loadItems(this.props.group);
+  // }
 
   handleChange = ({ target }) => {
     const value = target.value;
@@ -57,7 +57,7 @@ class _GroupPreview extends React.Component {
       <div key={group.id} className="group-preview">
         <GroupHeader group={group} board={board} onBlur={onBlur} />
         <div className="item-list">
-          {items.map((item) => {
+          {group.items.map((item) => {
             return (
               <ItemPreview
                 onBlur={onBlur}
@@ -69,11 +69,12 @@ class _GroupPreview extends React.Component {
             );
           })}
         </div>
-        <div className="item-add">
+        <div>
           <form
+            className="item-add"
             onSubmit={(ev) => {
-              ev.stopPropagation();
-              onAddItem(addItem, group);
+              ev.preventDefault();
+              onAddItem(addItem, group, board);
               this.clearState();
             }}
           >
@@ -89,16 +90,8 @@ class _GroupPreview extends React.Component {
               onKeyUp={this.onKeyUp}
             />
 
-            {(isFocused || addItem) && (
-              <button
-                onClick={(ev) => {
-                  onAddItem(ev, addItem, group);
-                  this.clearState();
-                }}
-              >
-                Add
-              </button>
-            )}
+            {(isFocused || addItem) && <button>Add</button>}
+            <div className="indicator"></div>
           </form>
         </div>
       </div>

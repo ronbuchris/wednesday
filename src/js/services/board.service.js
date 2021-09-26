@@ -1,81 +1,83 @@
 import { storageService } from "./async-storage.service"
-import {workspaceService} from "./workspace.service"
+import { workspaceService } from "./workspace.service"
+import { createGroup } from './group.service'
 
-export const boardService = { getById, addBoard,save }
+export const boardService = { getById, save }
 const STORAGE_KEY = 'workspaceDB'
 function getById(workspace, boardId) {
     return workspace.boards.find(board => board._id === boardId)
-    
+
 }
 
 async function save(newBoard) {
-    const boardId=newBoard._id;
-    const workspaces= await storageService.query(STORAGE_KEY)
-    workspaces.forEach(workspace =>{
-        workspace.boards.forEach((board,idx) =>{
-                if(board._id===boardId){
-                    workspace.boards.splice(idx,1,newBoard)
-                    storageService.put(STORAGE_KEY, workspace)
-                }
-            
+    const boardId = newBoard._id;
+    const workspaces = await storageService.query(STORAGE_KEY)
+    workspaces.forEach(workspace => {
+        workspace.boards.forEach((board, idx) => {
+            if (board._id === boardId) {
+                workspace.boards.splice(idx, 1, newBoard)
+                storageService.put(STORAGE_KEY, workspace)
+            }
+
         })
     })
 }
 
-function addBoard(workspace, user) {
-    const board = _createBoard(user)
-    workspace.boards.push(board)
-    workspaceService.save(workspace)
-}
+// function addBoard(workspace, user) {
+//     const board = _createBoard(user)
+//     workspace.boards.push(board)
+//     workspaceService.save(workspace)
+// }
 
-function _createBoard(user) {
+export function createBoard(user, users) {
+
+    const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
+
     return {
-        "_id": makeId(),
-        "title": "New Board",
-        "createdAt": Date.now(),
-        "description": "Click to add description",
-        "createdBy": {
-            "_id": user._id,
-            "fullname": user.fullname,
+        _id: makeId(),
+        title: "New Board",
+        createdAt: Date.now(),
+        description: "Click to add description",
+        members,
+        createdBy: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img,
         },
-        "style": { },
-        "groups": [
+        columns: [
             {
-                "id": makeId(),
-                "title": "New Group",
-                "items": [
-                    {
-                        "id": makeId(),
-                        "title": "New Item",
-                        "person": [],
-                        "status": {
-                            "type": "status",
-                            "title": "done",
-                            "bgcolor": "green",
-                        },
-                        "date": Date.now(),
-                    },
-                    {
-                        "id": makeId(),
-                        "title": "New Item",
-                        "person": [],
-                        "status": {
-                            "type": "status",
-                            "title": "warning",
-                            "bgcolor": "red",
-                        },
-                        "date": Date.now(),
-
-                    },
-                ],
-                "style": {
-                    "color": "blue",
-                }
+                id: "column102",
+                type: "member",
+                title: "Owner",
+                pos: 1,
+                width: 140,
+                members
             },
+            {
+                id: "column101",
+                type: "status",
+                title: "status",
+                pos: 2,
+                width: 140,
+                labels: [
+                    {
+                        title: "Done",
+                        color: "green"
+                    },
+                    {
+                        title: "stuck",
+                        color: "red"
+                    }
+                ]
+            }
 
         ],
-        "activities": [],
-        "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+        groups: [
+            createGroup(user, 3),
+            createGroup(user, 2)
+        ],
+        activities: [],
+        cmpsOrder: ["status", "member", "date"]
     }
 }
 

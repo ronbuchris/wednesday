@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service'
+import { createItem } from './item.service'
 
 const STORAGE_KEY = 'workspaceDB';
 
@@ -8,21 +9,20 @@ export const groupService = {
 
 async function save(newGroup, boardForAdd) {
     const workspaces = await storageService.query(STORAGE_KEY)
-   return workspaces.find(workspace => {
-      return  workspace.boards.find((board) => {
+    return workspaces.find(workspace => {
+        return workspace.boards.find((board) => {
             if (boardForAdd) {
-                if(board._id===boardForAdd._id){
-                    const newAddGroup = _createGroup();
-                    console.log(`newAddGroup`, newAddGroup)
+                if (board._id === boardForAdd._id) {
+                    const newAddGroup = createGroup();
                     board.groups.unshift(newAddGroup);
-                   return storageService.put(STORAGE_KEY, workspace)
+                    return storageService.put(STORAGE_KEY, workspace)
                 }
-            }else{
+            } else {
                 const groupId = newGroup.id;
                 board.groups.forEach((group, idx) => {
                     if (group.id === groupId) {
                         board.groups.splice(idx, 1, newGroup)
-                       return storageService.put(STORAGE_KEY, workspace)
+                        return storageService.put(STORAGE_KEY, workspace)
                     }
                 })
             }
@@ -30,38 +30,16 @@ async function save(newGroup, boardForAdd) {
     })
 }
 
-function _createGroup() {
+export function createGroup(user, itemCount = 1) {
+    const items = []
+    for (var i = 0; i < itemCount; i++) {
+        items.push(createItem("New Item", user))
+    }
+
     return {
         "id": makeId(),
         "title": "New Group",
-        "items": [
-            {
-                "id": makeId(),
-                "title": "New Item",
-                "columns": [
-                    {
-                        "type": "member",
-                        "members": [
-                            {
-                                "_id": "u101",
-                                "fullname": "Adir Cohen",
-                                "img": `https://robohash.org/adir`,
-                            }
-                        ]
-                    },
-                    {
-                        "type": "status",
-                        "label": {
-                            "title": "Done",
-                            "color": "green"
-                        }
-
-                    },
-                ],
-                "date": 1589983468418,
-
-            }
-        ],
+        items,
         "style": {
             "color": "brown",
         }

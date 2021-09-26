@@ -6,11 +6,9 @@ export const itemService = {
     save,
     remove
 }
-async function remove(workspace,group,itemId) {
-    console.log(group);
+async function remove(workspace, group, itemId) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
-    console.log(itemIdx);
-    group.items.splice(itemIdx,1)
+    group.items.splice(itemIdx, 1)
     storageService.put(STORAGE_KEY, workspace)
 
 }
@@ -29,10 +27,10 @@ async function save(newItem, groupId, workspace) {
                 })
             } else if (!newItem.id) {
                 if (group.id === groupId) {
-                    const addItem = _createItem(newItem)
-                    if(addItem.title==='New Item'){
+                    const addItem = createItem(newItem)
+                    if (addItem.title === 'New Item') {
                         group.items.unshift(addItem)
-                    }else{
+                    } else {
                         group.items.push(addItem)
                     }
                     storageService.put(STORAGE_KEY, workspace)
@@ -45,26 +43,38 @@ async function save(newItem, groupId, workspace) {
 }
 
 
-
-
-
-function _createItem(newItem) {
+export function createItem(title, user) {
     return {
-        "id": makeId(),
-        "title": newItem,
-        "person": [],
-        "status": {
-            "type": "status",
-            "title": "done",
-            "bgcolor": "green",
+        id: makeId(),
+        title,
+        columns: [
+            {
+                type: "member",
+                members: [
+                    {
+                        _id: "u101",
+                        fullname: "Adir Cohen",
+                        img: `https://robohash.org/adir`,
+                    }
+                ]
+            },
+            {
+                type: "status",
+                label: {
+                    title: "Done",
+                    color: "green"
+                }
+
+            },
+        ],
+        creator: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img
         },
-        "date": new Date(),
+        createdAt: Date.now(),
     }
 }
-
-
-
-
 
 function makeId(length = 6) {
     var txt = '';

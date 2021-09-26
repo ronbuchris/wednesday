@@ -4,26 +4,27 @@ import Board from 'monday-ui-react-core/dist/icons/Board';
 import { connect } from 'react-redux';
 import { loadBoard } from '../../store/actions/board.actions';
 
-
-export class _BoardPreview extends React.Component{
-
-
-  componentDidUpdate(prevProps, prevState){
-      if(prevProps.board._id!==this.props.board._id) {
-        this.props.loadBoard(this.props.workspace,this.props.board._id);
-     }
-  }
-  render(){
-const { boardPreview, board }=this.props;
+export class _BoardPreview extends React.Component {
+  // componentDidUpdate(prevProps, prevState){
+  //     if(prevProps.board._id!==this.props.board._id) {
+  //       this.props.loadBoard(this.props.workspace,this.props.board._id);
+  //    }
+  // }
+  render() {
+    const { boardPreview, board } = this.props;
     return (
       <Link to={`/board/${boardPreview._id}`}>
-      <div className={`${board._id === boardPreview._id && 'selected'} br4`}>
-        <Board />
-        {boardPreview.title}
-      </div>
-    </Link>
-  );
-}
+        <div
+          className={`${
+            board._id === boardPreview._id && 'selected'
+          } br4 menu-button-wrapper flex align-center`}
+        >
+          <Board />
+          {boardPreview.title}
+        </div>
+      </Link>
+    );
+  }
 }
 
 function mapStateToProps(state) {
@@ -34,7 +35,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  loadBoard
+  loadBoard,
 };
 
 export const BoardPreview = connect(
