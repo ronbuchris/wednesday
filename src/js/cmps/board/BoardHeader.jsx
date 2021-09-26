@@ -1,6 +1,6 @@
 import { BoardActions } from './BoardActions';
 
-export function BoardHeader({ board, onBlur, onAddItem, onAddGroup }) {
+export function BoardHeader({ board, onBlur, onAddItem, onEditGroup }) {
   return (
     <div className="board-header">
       <div
@@ -22,7 +22,7 @@ export function BoardHeader({ board, onBlur, onAddItem, onAddGroup }) {
         {board.description}
       </div>
       <BoardActions
-        onAddGroup={onAddGroup}
+        onEditGroup={onEditGroup}
         onAddItem={onAddItem}
         board={board}
       />

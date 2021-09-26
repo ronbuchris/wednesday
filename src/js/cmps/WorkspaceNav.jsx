@@ -39,7 +39,6 @@ class _WorkspaceNav extends Component {
   onAddBoard = () => {
     const { workspace, user, editWorkspace, users } = this.props;
     const newBoard = createBoard(user, users);
-    console.log(`newBoard`, newBoard);
     const newWorkspace = {
       ...workspace,
       boards: [...workspace.boards, newBoard],
@@ -89,7 +88,7 @@ class _WorkspaceNav extends Component {
             </div>
 
             <div
-              className="workspace-dropdown-button br4 flex space-between align-center"
+              className="workspace-dropdown-button br4 flex space-between align-center btn"
               onClick={this.toggleMenu}
             >
               <div className="workspace-title">

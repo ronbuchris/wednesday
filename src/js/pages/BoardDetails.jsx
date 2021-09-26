@@ -6,6 +6,7 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { createItem } from '../services/item.service';
+import { createGroup } from '../services/group.service';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import {
@@ -57,16 +58,11 @@ export class _BoardDetails extends React.Component {
 
   onRemoveBoard = (boardId) => {
     //get workspace from store
-
-    console.log('remove');
   };
 
   onAddItem = (newItemData, group, board, addToTop = false) => {
     const { editWorkspace, workspace, user } = this.props;
     const newWorkspace = { ...workspace };
-    console.log(`newItemData`, newItemData);
-    console.log(`group`, group);
-    console.log(`board`, board);
 
     //create Item
     const newItem = createItem(newItemData, user);
@@ -85,9 +81,6 @@ export class _BoardDetails extends React.Component {
     // change group
     board.groups.splice(groupIdx, 1, newGroup);
 
-    //change board
-    // workspace.boards.splice(boardIdx, 1, newBoard)
-
     //find board index
     const boardIdx = workspace.boards.findIndex(
       (findBoard) => findBoard.id === board.id
@@ -95,31 +88,27 @@ export class _BoardDetails extends React.Component {
     // change board
     newWorkspace.boards.splice(boardIdx, 1, board);
 
-    // console.log(`board`, board);
-    // const newWorkspace = {
-    //   ...workspace,
-    //   boards: [...workspace.boards, board],
-    // };
-
-    //     groups: [{...board.groups,
-    //       group: [...group, newItem]}]]
-    // };
-
     editWorkspace(newWorkspace);
-    // await this.props.onEditItem(newItem, group.id, this.props.workspace);
-    // await this.props.setGroup(group);
-    // this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
   };
 
   onEditGroup = (group, boardId) => {
+    const { editWorkspace, workspace, user, board } = this.props;
+    const newWorkspace = { ...workspace };
     //get workspace from store
     if (group.id) {
       //
     } else {
-      // newGroup = createGroup(group)
+      const newGroup = createGroup(user);
+      const newBoard = { ...board, groups: [newGroup, ...board.groups] };
+
+      const boardIdx = workspace.boards.findIndex(
+        (board) => board.id === newBoard.id
+      );
+      newWorkspace.boards.splice(boardIdx, 1, newBoard);
       //copy NEW workspace
     }
-    // editWorkspace(newWorkspace)
+
+    editWorkspace(newWorkspace);
   };
 
   onAddGroup = (newGroup, board) => {
@@ -135,7 +124,7 @@ export class _BoardDetails extends React.Component {
         <div className="board-details">
           <BoardHeader
             onRemoveBoard={this.onRemoveBoard}
-            onAddGroup={this.onAddGroup}
+            onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             board={board}
             onBlur={this.onBlur}

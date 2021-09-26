@@ -15,12 +15,12 @@ export class BoardActions extends Component {
   };
   render() {
     const { isFilter } = this.state;
-    const { board, onAddItem, onAddGroup } = this.props;
+    const { board, onAddItem, onEditGroup } = this.props;
     return (
-      <div className="actions-container">
-        <div className="add-dropdown">
+      <div className="actions-container flex">
+        <div className="add-action flex">
           <div
-            className="add-item"
+            className="add item-add flex align-center btn"
             onClick={(ev) => {
               ev.preventDefault();
               onAddItem('New Item', board.groups[0], board, true);
@@ -29,13 +29,13 @@ export class BoardActions extends Component {
             New Item
           </div>
           <div
-            className="add-group"
+            className="add group-add flex align-center btn"
             onClick={(ev) => {
               ev.preventDefault();
-              onAddGroup('new-group', board);
+              onEditGroup('new-group', board);
             }}
           >
-            New group of Items
+            New group
           </div>
         </div>
         <p onClick={this.toggleFilter}>
