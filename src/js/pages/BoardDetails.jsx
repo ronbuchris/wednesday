@@ -59,6 +59,8 @@ export class _BoardDetails extends React.Component {
   };
 
   onAddGroup=(newGroup,board)=>{
+    console.log(`newGroup`, newGroup)
+    console.log(`board`, board)
      this.props.onEditGroup(newGroup,board);
   }
 

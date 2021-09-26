@@ -7,14 +7,13 @@ export const groupService = {
 }
 
 async function save(newGroup, boardForAdd) {
-    console.log(`boardForAdd`, boardForAdd)
-    console.log(`newGroup`, newGroup)
     const workspaces = await storageService.query(STORAGE_KEY)
    return workspaces.find(workspace => {
       return  workspace.boards.find((board) => {
             if (boardForAdd) {
                 if(board._id===boardForAdd._id){
                     const newAddGroup = _createGroup();
+                    console.log(`newAddGroup`, newAddGroup)
                     board.groups.unshift(newAddGroup);
                    return storageService.put(STORAGE_KEY, workspace)
                 }
@@ -39,15 +38,30 @@ function _createGroup() {
             {
                 "id": makeId(),
                 "title": "New Item",
-                "person": [],
-                "status": {
-                    "type": "status",
-                    "title": "done",
-                    "bgcolor": "green",
-                },
+                "columns": [
+                    {
+                        "type": "member",
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "fullname": "Adir Cohen",
+                                "img": `https://robohash.org/adir`,
+                            }
+                        ]
+                    },
+                    {
+                        "type": "status",
+                        "label": {
+                            "title": "Done",
+                            "color": "green"
+                        }
+
+                    },
+                ],
                 "date": 1589983468418,
 
-            }],
+            }
+        ],
         "style": {
             "color": "brown",
         }
