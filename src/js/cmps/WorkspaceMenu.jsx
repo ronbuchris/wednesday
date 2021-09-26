@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export function _WorkspaceMenu({ workspaces }) {
-  console.log(`workspaces`, workspaces);
   return (
     <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>

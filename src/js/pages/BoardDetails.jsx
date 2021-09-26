@@ -6,7 +6,7 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
-import { onEditGroup,setGroup } from '../../js/store/actions/group.actions';
+import { onEditGroup, setGroup, loadGroups} from '../../js/store/actions/group.actions';
 import { onEditItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
@@ -18,20 +18,15 @@ export class _BoardDetails extends React.Component {
     async componentDidMount() {
       const boardId = this.props.match.params.boardId || this.props.board._id;
       await this.props.getWorkspaceByBoardId(boardId) 
-      this.props.loadBoard(this.props.workspace, boardId);
+      await this.props.loadBoard(this.props.workspace, boardId);
+      this.props.loadGroups(this.props.board)
     }
     
-     componentDidUpdate(prevProps, prevState) {
-     if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
-       this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
+    componentDidUpdate(prevProps, prevState) {
+      if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
+        this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
+        this.props.loadGroups(this.props.board)
       }
-      // if(prevProps.group){
-      //   console.log(`new`, this.props.group.items.length)
-      //   console.log(`prevProps`, prevProps.group.items.length)
-      //   if(prevProps.group.items.length !== this.props.group.items.length){
-      //     this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
-      //   }
-      // }
   }
   
 
@@ -64,8 +59,8 @@ export class _BoardDetails extends React.Component {
   }
 
   render() {
-    const { board } = this.props;
-    if (!board) return <div className="loading">loading</div>;
+    const { board, groups} = this.props;
+    if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
         <WorkspaceNav />
@@ -83,6 +78,7 @@ function mapStateToProps(state) {
     user: state.userModule.user,
     board: state.boardModule.board,
     group: state.groupModule.group,
+    groups: state.groupModule.groups,
     workspace: state.workspaceModule.workspace,
     workspaces: state.workspaceModule.workspaces,
   };
@@ -95,7 +91,8 @@ const mapDispatchToProps = {
   onEditItem,
   onEditBoard,
   getWorkspaceByBoardId,
-  setGroup
+  setGroup,
+  loadGroups
 };
 
 export const BoardDetails = connect(

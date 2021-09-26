@@ -1,6 +1,7 @@
 const initialState = {
     board: null,
-    boards:[]
+    boards:[],
+
 }
 
 export function boardReducer(state = initialState, action) {
@@ -12,6 +13,7 @@ export function boardReducer(state = initialState, action) {
         case 'ADD_BOARD':
             newState = { ...state, boards:[...state.boards, action.board] }
             break
+        
         default:
     }
     return newState

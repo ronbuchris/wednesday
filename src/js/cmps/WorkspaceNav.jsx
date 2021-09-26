@@ -40,21 +40,19 @@ class _WorkspaceNav extends Component {
   };
 
   handleHover = () => {
-    console.log(`hover`);
     this.setState((prevState) => ({
       isHovered: !prevState.isHovered,
     }));
   };
 
   toggleMenu = () => {
-    console.log(`this.state.isOpenMenu`, this.state.isOpenMenu);
     this.setState((prevState) => ({
       isOpenMenu: !prevState.isOpenMenu,
     }));
   };
 
   render() {
-    const { workspaces, workspace, user, isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace,isOpenNav, toggleNav } = this.props;
     const { isHovered, isOpenMenu } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
