@@ -1,6 +1,6 @@
 import { BoardActions } from './BoardActions';
 
-export function BoardHeader({ board,onBlur }) {
+export function BoardHeader({ board,onBlur,onAddItem,onAddGroup }) {
   return (
     <div className="board-header">
       <div contentEditable="true"
@@ -13,7 +13,7 @@ export function BoardHeader({ board,onBlur }) {
            onBlur={(ev)=>{
              onBlur(ev.target.innerText,board.description,board,'boardDesc');
            }}>{board.description}</div>
-      <BoardActions board={board}/>
+      <BoardActions onAddGroup={onAddGroup} onAddItem={onAddItem} board={board}/>
     </div>
   );
 }

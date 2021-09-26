@@ -15,9 +15,21 @@ export class BoardActions extends Component {
   }
   render() {
     const { isFilter} = this.state;
-    const { board} = this.props;
+    const { board,onAddItem,onAddGroup} = this.props;
     return (
       <div className="actions-container">
+        <div className="add-dropdown">
+
+        <div className="add-item" onClick={(ev)=>{
+          onAddItem(ev,'New Item',board.groups[0])
+        }}>New Item</div>
+        <div className="add-group" onClick={(ev)=>{
+          ev.preventDefault();
+          onAddGroup(ev,board,'new-group')
+        }}>
+          New group of Items
+        </div>
+        </div>
         <p onClick={this.toggleFilter}>Filter:<Filter /></p>
         {isFilter && <BoardFilter board={board}/>}
         <p>Person:<Person /></p>

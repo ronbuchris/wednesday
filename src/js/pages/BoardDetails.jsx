@@ -56,8 +56,11 @@ export class _BoardDetails extends React.Component {
     ev.preventDefault();
     await this.props.onEditItem(newItem,group.id,this.props.workspace)
     await this.props.setGroup(group)
-    console.log(`object`, this.props.workspace)
     this.props.loadBoard(this.props.workspace,this.props.match.params.boardId)
+  }
+
+  onAddGroup=async(newGroup,board)=>{
+    await this.props.onEditGroup(newGroup,board);
   }
 
   render() {
@@ -67,7 +70,7 @@ export class _BoardDetails extends React.Component {
       <div className="board-app flex">
         <WorkspaceNav />
         <div className="board-details">
-          <BoardHeader board={board} onBlur={this.onBlur} />
+          <BoardHeader onAddGroup={this.onAddGroup} onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
           <BoardContent onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
         </div>
       </div>

@@ -14,10 +14,10 @@ export function setGroup(group) {
     }
 }
 
-export function onEditGroup(groupToSave) {
+export function onEditGroup(groupToSave,board=null) {
     console.log(`groupToSave`, groupToSave)
     return (dispatch) => {
-        groupService.save(groupToSave)
+        groupService.save(groupToSave,board)
             .then(savedgroup => {
                 console.log('Updated group:', savedgroup);
                 dispatch({

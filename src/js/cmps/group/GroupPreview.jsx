@@ -13,9 +13,6 @@ class _GroupPreview extends React.Component{
     isFocused:false,
   }
 
-componentDidMount(){
-}
-
   handleChange=({target})=>{
     const value = target.value;
     this.setState({ addItem: value  });
@@ -33,18 +30,27 @@ componentDidMount(){
 
   onBlur=()=>{
     const {isFocused}=this.state;
+    if(!isFocused) return
     this.setState({isFocused:!isFocused})
   }
 
   onFocus=()=>{
     const {isFocused}=this.state;
+    if(isFocused) return
     this.setState({isFocused:!isFocused})
+  }
+
+  onKeyUp=(ev)=>{
+    if (ev.keyCode === 13) {
+      ev.preventDefault();
+      ev.target.blur();
+    }
   }
 
   render() {   
     const { group, onBlur, board,onAddItem }=this.props;
     const {addItem,isFocused}=this.state
-    console.log(`isFocused`, isFocused)
+    console.log(`isFocused123`, isFocused)
     return (
       <div key={group.id} className="group-preview">
       <div className="group-header">
@@ -85,7 +91,10 @@ componentDidMount(){
         value={addItem}
         onChange={this.handleChange}
         onBlur={this.onBlur}
-        onFocus={this.onFocus}/>
+        onFocus={this.onFocus}
+        onKeyUp={this.onKeyUp}
+        />
+
         {(isFocused||addItem) && <button onClick={(ev)=>{
           onAddItem(ev,addItem,group)
           this.clearState()
