@@ -39,21 +39,21 @@ const gWorkspaces = [
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
-                        "pos": 2,
+                        "pos": 1,
                         "width": 140,
                         "members": [
                             {
-                                "id": "user101",
+                                "id": "_u102",
                                 "fullname": "On Chetrit",
                                 "img": "http://some-img"
                             },
                             {
-                                "id": "user102",
+                                "_id": "user101",
                                 "fullname": "Adir Cohen",
                                 "img": "http://some-img"
                             },
                             {
-                                "id": "user103",
+                                "_id": "user103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
                             }
@@ -63,7 +63,7 @@ const gWorkspaces = [
                         "id": "column101",
                         "type": "status",
                         "title": "status",
-                        "pos": 1,
+                        "pos": 2,
                         "width": 140,
                         "labels": [
                             {
@@ -100,8 +100,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
 
                                     },
                                 ],
@@ -151,8 +153,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
 
                                     },
                                 ],
@@ -230,17 +234,17 @@ const gWorkspaces = [
                         "width": 140,
                         "members": [
                             {
-                                "id": "user101",
+                                "_id": "u102",
                                 "fullname": "On Chetrit",
                                 "img": "http://some-img"
                             },
                             {
-                                "id": "user102",
+                                "_id": "u101",
                                 "fullname": "Adir Cohen",
                                 "img": "http://some-img"
                             },
                             {
-                                "id": "user103",
+                                "_id": "u103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
                             }
@@ -263,8 +267,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
                                     }
                                     ,
                                 ],
@@ -281,8 +287,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
                                     }
                                 ],
                                 "date": 1589983468418,
@@ -327,45 +335,50 @@ const gWorkspaces = [
                     "imgUrl": "http://some-img"
                 },
                 "style": {},
-                // "columns":{
-                //     "status":{
-                //         "type":"status",
-                //         "labels":[
-                //             {
-                //                 "title":"done",
-                //                 "bgcolor":"green"
-                //             },
-                //             {
-                //                 "title":"working on",
-                //                 "bgcolor":"yellow"
-                //             },
-                //             {
-                //                 "title":"stuck",
-                //                 "bgcolor":"red"
-                //             },
-                //         ]
-                //     },
-                //     "owner":{
-                //         "type":"people",
-                //         "members":[
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"On Chetrit",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Adir Cohen",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Ron Buchris",
-                //                 "img":"http://some-img",
-                //             },
-                //         ]
-                //     },
-                // },
+                "columns": [
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Owner",
+                        "pos": 1,
+                        "width": 140,
+                        "members": [
+                            {
+                                "id": "_u102",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user103",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 2,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
+                            }
+                        ]
+                    }
+
+                ],
                 "groups": [
                     {
 

@@ -25,8 +25,8 @@ export function ItemPreview({ item, onBlur, group, board }) {
         {item.columns.map((column) => {
           return (
             <ItemColumn
+              key={column.id}
               board={board}
-              key={column}
               column={column}
               item={item}
             />

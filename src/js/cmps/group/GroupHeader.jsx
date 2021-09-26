@@ -17,7 +17,7 @@ export function GroupHeader({ board, group, onBlur }) {
           return (
             <div
               className="group-column-header"
-              key={column}
+              key={column.id}
               style={{ minWidth: column.width }}
             >
               {column.title}

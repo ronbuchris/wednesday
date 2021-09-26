@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
-import { ItemList } from '../item/ItemList';
 import { onEditItem, loadItems } from '../../store/actions/item.actions';
 
 class _GroupPreview extends React.Component {
@@ -58,7 +57,7 @@ class _GroupPreview extends React.Component {
       <div key={group.id} className="group-preview">
         <GroupHeader group={group} board={board} onBlur={onBlur} />
         <div className="item-list">
-          {group.items.map((item) => {
+          {items.map((item) => {
             return (
               <ItemPreview
                 onBlur={onBlur}
@@ -69,80 +68,38 @@ class _GroupPreview extends React.Component {
               />
             );
           })}
-          <div className="item-list">
-            {items.map((item) => {
-              return (
-                <ItemList
-                  onBlur={onBlur}
-                  key={item.id}
-                  item={item}
-                  group={group}
-                />
-              );
-            })}
-          </div>
-          <div className="item-add">
-            <form
-              className="login-form"
-              onSubmit={(ev) => {
-                onAddItem(ev, addItem, group);
-                this.clearState();
-              }}
-            >
-              <input
-                type="text"
-                dir="auto"
-                className="item-add-input"
-                placeholder="+ Add"
-                value={addItem}
-                onChange={this.handleChange}
-                onBlur={this.onBlur}
-                onFocus={this.onFocus}
-                onKeyUp={this.onKeyUp}
-              />
+        </div>
+        <div className="item-add">
+          <form
+            onSubmit={(ev) => {
+              ev.stopPropagation();
+              onAddItem(addItem, group);
+              this.clearState();
+            }}
+          >
+            <input
+              type="text"
+              dir="auto"
+              className="item-add-input"
+              placeholder="+ Add"
+              value={addItem}
+              onChange={this.handleChange}
+              onBlur={this.onBlur}
+              onFocus={this.onFocus}
+              onKeyUp={this.onKeyUp}
+            />
 
-              {(isFocused || addItem) && (
-                <button
-                  onClick={(ev) => {
-                    onAddItem(ev, addItem, group);
-                    this.clearState();
-                  }}
-                >
-                  Add
-                </button>
-              )}
-            </form>
-          </div>
-          <div className="item-add">
-            <form
-              className="login-form"
-              onSubmit={(ev) => {
-                onAddItem(ev, addItem, group);
-                this.clearState();
-              }}
-            >
-              <input
-                type="text"
-                dir="auto"
-                className="item-add-input"
-                placeholder="+ Add"
-                value={addItem}
-                onChange={this.handleChange}
-                onBlur={this.onBlur}
-                onFocus={this.onFocus}
-              />
-              {(isFocused || addItem) && (
-                <button
-                  onClick={(ev) => {
-                    onAddItem(ev, addItem, group);
-                    this.clearState();
-                  }}
-                >
-                  Add
-                </button>
-              )}
-            </form>
-          </div>
+            {(isFocused || addItem) && (
+              <button
+                onClick={(ev) => {
+                  onAddItem(ev, addItem, group);
+                  this.clearState();
+                }}
+              >
+                Add
+              </button>
+            )}
+          </form>
         </div>
       </div>
     );
