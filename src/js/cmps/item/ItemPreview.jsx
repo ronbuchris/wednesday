@@ -2,11 +2,11 @@ import React from 'react';
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { ItemColumn } from './ItemColumn';
 
-export function ItemList({ item, onBlur, group }) {
+export function ItemPreview({ item, onBlur, group, board }) {
   return (
     <div className="item-preview flex">
       <div
-        className="left-indicator"
+        className="indicator"
         style={{ backgroundColor: group.style.color }}
       ></div>
       <div
@@ -20,13 +20,20 @@ export function ItemList({ item, onBlur, group }) {
         <div className="item-title-text">{item.title}</div>
         <AddUpdate />
       </div>
+
       <div className="item-column-list flex">
         {item.columns.map((column) => {
-          console.log(`item`, item);
-          return <ItemColumn column={column} item={item} />;
+          return (
+            <ItemColumn
+              board={board}
+              key={column}
+              column={column}
+              item={item}
+            />
+          );
         })}
       </div>
-      <div className="left-indicator"></div>
+      <div className="indicator"></div>
     </div>
   );
 }

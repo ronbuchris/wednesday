@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ItemList } from '../item/ItemList';
+import { ItemPreview } from '../item/ItemPreview';
 import { onEditItem } from '../../store/actions/item.actions';
 import { setGroup } from '../../store/actions/group.actions';
+import { GroupHeader } from './GroupHeader';
 
 class _GroupPreview extends React.Component {
   state = {
@@ -40,37 +41,19 @@ class _GroupPreview extends React.Component {
 
   render() {
     const { group, onBlur, board, onAddItem } = this.props;
-    console.log('board from preview', board);
     const { addItem, isFocused } = this.state;
-    console.log(`isFocused`, isFocused);
     return (
       <div key={group.id} className="group-preview">
-        <div className="group-header">
-          <div
-            className="group-name flex align-center"
-            style={{ color: group.style.color }}
-            contentEditable="true"
-            suppressContentEditableWarning={true}
-            onBlur={(ev) => {
-              onBlur(ev.target.innerText, group.title, group, 'group');
-            }}
-          >
-            {group.title}
-          </div>
-          <div className="group-column-list flex">
-            {board.cmpsOrder.map((cmp) => {
-              return <div key={cmp}>{cmp}</div>;
-            })}
-          </div>
-        </div>
+        <GroupHeader group={group} board={board} onBlur={onBlur} />
         <div className="item-list">
           {group.items.map((item) => {
             return (
-              <ItemList
+              <ItemPreview
                 onBlur={onBlur}
                 key={item.id}
                 item={item}
                 group={group}
+                board={board}
               />
             );
           })}

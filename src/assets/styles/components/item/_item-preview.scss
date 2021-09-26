@@ -1,7 +1,16 @@
-.item-preview {
-  .item-column {
-    .profile-icon {
-      height: 100%;
-    }
+.member-col {
+  align-items: center;
+  justify-content: center;
+  .profile-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid $clr1;
   }
+}
+
+.status-col {
+  align-items: center;
+  justify-content: center;
+  color: $clr7;
 }
