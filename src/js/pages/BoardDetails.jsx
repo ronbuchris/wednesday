@@ -58,9 +58,11 @@ export class _BoardDetails extends React.Component {
     this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
   };
 
-  onAddGroup = async (newGroup, board) => {
-    await this.props.onEditGroup(newGroup, board);
-  };
+  onAddGroup=(newGroup,board)=>{
+    console.log(`newGroup`, newGroup)
+    console.log(`board`, board)
+     this.props.onEditGroup(newGroup,board);
+  }
 
   render() {
     const { board, groups } = this.props;

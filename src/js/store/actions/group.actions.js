@@ -18,10 +18,11 @@ export function onEditGroup(groupToSave,board=null) {
     console.log(`groupToSave`, groupToSave)
     return (dispatch) => {
         groupService.save(groupToSave,board)
-            .then(savedgroup => {
+            .then(workspace => {
+                console.log(`workspace`, workspace)
                 dispatch({
-                    type: 'UPDATE_GROUP',
-                    group: savedgroup
+                    type: 'SET_WORKSPACE',
+                      workspace,
                 })
                 console.log('group updated')
             })
