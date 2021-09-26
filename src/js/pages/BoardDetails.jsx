@@ -54,8 +54,8 @@ export class _BoardDetails extends React.Component {
     this.props.loadBoard(this.props.workspace,this.props.match.params.boardId)
   }
 
-  onAddGroup=async(newGroup,board)=>{
-    await this.props.onEditGroup(newGroup,board);
+  onAddGroup=(newGroup,board)=>{
+     this.props.onEditGroup(newGroup,board);
   }
 
   render() {
@@ -66,7 +66,7 @@ export class _BoardDetails extends React.Component {
         <WorkspaceNav />
         <div className="board-details">
           <BoardHeader onAddGroup={this.onAddGroup} onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
-          <BoardContent onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
+          <BoardContent onAddItem={this.onAddItem} board={board} groups={groups} onBlur={this.onBlur} />
         </div>
       </div>
     );

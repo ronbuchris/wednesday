@@ -25,7 +25,7 @@ export class BoardActions extends Component {
         }}>New Item</div>
         <div className="add-group" onClick={(ev)=>{
           ev.preventDefault();
-          onAddGroup(ev,board,'new-group')
+          onAddGroup('new-group',board)
         }}>
           New group of Items
         </div>
