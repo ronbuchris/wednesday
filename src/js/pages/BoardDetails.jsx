@@ -6,34 +6,39 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
-import { onEditGroup, setGroup, loadGroups} from '../../js/store/actions/group.actions';
+import {
+  onEditGroup,
+  setGroup,
+  loadGroups,
+} from '../../js/store/actions/group.actions';
 import { onEditItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
-  getWorkspaceByBoardId
+  getWorkspaceByBoardId,
 } from '../store/actions/workspace.actions';
 
-
 export class _BoardDetails extends React.Component {
-    async componentDidMount() {
-      const boardId = this.props.match.params.boardId || this.props.board._id;
-      await this.props.getWorkspaceByBoardId(boardId) 
-      await this.props.loadBoard(this.props.workspace, boardId);
-      this.props.loadGroups(this.props.board)
-    }
-    
-    componentDidUpdate(prevProps, prevState) {
-      if(prevProps.match.params.boardId!==this.props.match.params.boardId) {
-        this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
-        this.props.loadGroups(this.props.board)
-      }
+  async componentDidMount() {
+    const boardId = this.props.match.params.boardId || this.props.board._id;
+    await this.props.getWorkspaceByBoardId(boardId);
+    await this.props.loadBoard(this.props.workspace, boardId);
+    this.props.loadGroups(this.props.board);
   }
-  
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
+      this.props.loadBoard(
+        this.props.workspace,
+        this.props.match.params.boardId
+      );
+      this.props.loadGroups(this.props.board);
+    }
+  }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
     if (newTxt === pevTxt) return;
     const newType =
-      strType === 'boardDesc' 
+      strType === 'boardDesc'
         ? { ...type, description: newTxt }
         : { ...type, title: newTxt };
     if (strType === 'board' || strType === 'boardDesc') {
@@ -43,30 +48,39 @@ export class _BoardDetails extends React.Component {
       this.props.onEditGroup(newType);
     }
     if (strType === 'item') {
-      this.props.onEditItem(newType,null,this.props.workspace);
+      this.props.onEditItem(newType, null, this.props.workspace);
     }
   };
 
-  onAddItem=async(ev,newItem,group)=>{
-    ev.preventDefault();
-    await this.props.onEditItem(newItem,group.id,this.props.workspace)
-    await this.props.setGroup(group)
-    this.props.loadBoard(this.props.workspace,this.props.match.params.boardId)
-  }
+  onAddItem = async (newItem, group) => {
+    await this.props.onEditItem(newItem, group.id, this.props.workspace);
+    await this.props.setGroup(group);
+    this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
+  };
 
   onAddGroup=(newGroup,board)=>{
      this.props.onEditGroup(newGroup,board);
   }
 
   render() {
-    const { board, groups} = this.props;
+    const { board, groups } = this.props;
     if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
         <WorkspaceNav />
         <div className="board-details">
-          <BoardHeader onAddGroup={this.onAddGroup} onAddItem={this.onAddItem} board={board} onBlur={this.onBlur} />
-          <BoardContent onAddItem={this.onAddItem} board={board} groups={groups} onBlur={this.onBlur} />
+          <BoardHeader
+            onAddGroup={this.onAddGroup}
+            onAddItem={this.onAddItem}
+            board={board}
+            onBlur={this.onBlur}
+          />
+          <BoardContent
+            onAddItem={this.onAddItem}
+            groups={groups}
+            board={board}
+            onBlur={this.onBlur}
+          />
         </div>
       </div>
     );
@@ -92,7 +106,7 @@ const mapDispatchToProps = {
   onEditBoard,
   getWorkspaceByBoardId,
   setGroup,
-  loadGroups
+  loadGroups,
 };
 
 export const BoardDetails = connect(

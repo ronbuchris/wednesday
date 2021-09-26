@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service';
 
 const STORAGE_KEY = 'workspaceDB'
 
-export const workspaceService = { query, getById, remove, save,getByBoardId }
+export const workspaceService = { query, getById, remove, save, getByBoardId }
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
@@ -20,6 +20,7 @@ async function query(user) {
 function getById(workspaceId) {
     return storageService.get(STORAGE_KEY, workspaceId)
 }
+
 function remove(workspaceId) {
     // return new Promise((resolve, reject) => {
     //     setTimeout(reject, 2000)
@@ -27,6 +28,7 @@ function remove(workspaceId) {
     // return Promise.reject('Not now!');
     return storageService.remove(STORAGE_KEY, workspaceId)
 }
+
 function save(workspace) {
     if (workspace._id) {
         return storageService.put(STORAGE_KEY, workspace)
@@ -38,9 +40,9 @@ function save(workspace) {
 
 async function getByBoardId(boardId) {
     const workspaces = await storageService.query(STORAGE_KEY)
-         return workspaces.find(workspace=>{
-           return workspace.boards.find(board=>{
-            if(board._id === boardId){
+    return workspaces.find(workspace => {
+        return workspace.boards.find(board => {
+            if (board._id === boardId) {
                 return workspace
             }
         })

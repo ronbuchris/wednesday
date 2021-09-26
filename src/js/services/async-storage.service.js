@@ -34,45 +34,50 @@ const gWorkspaces = [
                     "imgUrl": "http://some-img"
                 },
                 "style": {},
-                // "columns":{
-                //     "status":{
-                //         "type":"status",
-                //         "labels":[
-                //             {
-                //                 "title":"done",
-                //                 "bgcolor":"green"
-                //             },
-                //             {
-                //                 "title":"working on",
-                //                 "bgcolor":"yellow"
-                //             },
-                //             {
-                //                 "title":"stuck",
-                //                 "bgcolor":"red"
-                //             },
-                //         ]
-                //     },
-                //     "owner":{
-                //         "type":"people",
-                //         "members":[
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"On Chetrit",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Adir Cohen",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Ron Buchris",
-                //                 "img":"http://some-img",
-                //             },
-                //         ]
-                //     },
-                // },
+                "columns": [
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Owner",
+                        "pos": 1,
+                        "width": 140,
+                        "members": [
+                            {
+                                "id": "_u102",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user103",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 2,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
+                            }
+                        ]
+                    }
+
+                ],
                 "groups": [
                     {
 
@@ -82,24 +87,43 @@ const gWorkspaces = [
                             {
                                 "id": "c101",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": `https://robohash.org/adir`,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
+
+                                    },
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c102",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "warning",
-                                    "bgcolor": "red",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "warning",
+                                        "bgcolor": "red",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -116,24 +140,50 @@ const gWorkspaces = [
                             {
                                 "id": "c501",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": `https://robohash.org/adir`,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
+
+                                    },
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c502",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "warning",
-                                    "bgcolor": "red",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": `https://robohash.org/adir`,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+
+                                    },
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -146,7 +196,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             },
             {
                 "_id": "b102",
@@ -158,45 +208,49 @@ const gWorkspaces = [
                     "fullname": "Adir Cohen",
                 },
                 "style": {},
-                // "columns":{
-                //     "status":{
-                //         "type":"status",
-                //         "labels":[
-                //             {
-                //                 "title":"done",
-                //                 "bgcolor":"green"
-                //             },
-                //             {
-                //                 "title":"working on",
-                //                 "bgcolor":"yellow"
-                //             },
-                //             {
-                //                 "title":"stuck",
-                //                 "bgcolor":"red"
-                //             },
-                //         ]
-                //     },
-                //     "owner":{
-                //         "type":"people",
-                //         "members":[
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"On Chetrit",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Adir Cohen",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Ron Buchris",
-                //                 "img":"http://some-img",
-                //             },
-                //         ]
-                //     },
-                // },
+                "columns": [
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Owner",
+                        "pos": 2,
+                        "width": 140,
+                        "members": [
+                            {
+                                "_id": "u102",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "u101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "u103",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    }
+                ],
                 "groups": [
                     {
 
@@ -206,24 +260,39 @@ const gWorkspaces = [
                             {
                                 "id": "c103",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
+                                    }
+                                    ,
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c104",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "green"
+                                        }
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -236,7 +305,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             }]
     },
     {
@@ -266,45 +335,50 @@ const gWorkspaces = [
                     "imgUrl": "http://some-img"
                 },
                 "style": {},
-                // "columns":{
-                //     "status":{
-                //         "type":"status",
-                //         "labels":[
-                //             {
-                //                 "title":"done",
-                //                 "bgcolor":"green"
-                //             },
-                //             {
-                //                 "title":"working on",
-                //                 "bgcolor":"yellow"
-                //             },
-                //             {
-                //                 "title":"stuck",
-                //                 "bgcolor":"red"
-                //             },
-                //         ]
-                //     },
-                //     "owner":{
-                //         "type":"people",
-                //         "members":[
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"On Chetrit",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Adir Cohen",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Ron Buchris",
-                //                 "img":"http://some-img",
-                //             },
-                //         ]
-                //     },
-                // },
+                "columns": [
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Owner",
+                        "pos": 1,
+                        "width": 140,
+                        "members": [
+                            {
+                                "id": "_u102",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user101",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "_id": "user103",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 2,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
+                            }
+                        ]
+                    }
+
+                ],
                 "groups": [
                     {
 
@@ -314,24 +388,33 @@ const gWorkspaces = [
                             {
                                 "id": "c201",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
-                                "date": 1589983468418,
-
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                ],
+                                "date": 1589983468418
                             },
                             {
                                 "id": "c202",
                                 "title": "Replace logo",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "warning",
-                                    "bgcolor": "red",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "warning",
+                                        "bgcolor": "red",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -344,7 +427,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             },
             {
                 "_id": "b202",
@@ -357,45 +440,49 @@ const gWorkspaces = [
                     "imgUrl": "http://some-img"
                 },
                 "style": {},
-                // "columns":{
-                //     "status":{
-                //         "type":"status",
-                //         "labels":[
-                //             {
-                //                 "title":"done",
-                //                 "bgcolor":"green"
-                //             },
-                //             {
-                //                 "title":"working on",
-                //                 "bgcolor":"yellow"
-                //             },
-                //             {
-                //                 "title":"stuck",
-                //                 "bgcolor":"red"
-                //             },
-                //         ]
-                //     },
-                //     "owner":{
-                //         "type":"people",
-                //         "members":[
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"On Chetrit",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Adir Cohen",
-                //                 "img":"http://some-img",
-                //             },
-                //             {
-                //                 "id":"f101",
-                //                 "fullname":"Ron Buchris",
-                //                 "img":"http://some-img",
-                //             },
-                //         ]
-                //     },
-                // },
+                "columns": [
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Owner",
+                        "pos": 2,
+                        "width": 140,
+                        "members": [
+                            {
+                                "id": "user101",
+                                "fullname": "On Chetrit",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "user102",
+                                "fullname": "Adir Cohen",
+                                "img": "http://some-img"
+                            },
+                            {
+                                "id": "user103",
+                                "fullname": "Ron Buchris",
+                                "img": "http://some-img"
+                            }
+                        ]
+                    }
+                ],
                 "groups": [
                     {
 
@@ -405,24 +492,35 @@ const gWorkspaces = [
                             {
                                 "id": "c303",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                ],
                                 "date": 1589983468418,
 
                             },
                             {
                                 "id": "c304",
                                 "title": "Replace",
-                                "person": [],
-                                "status": {
-                                    "type": "status",
-                                    "title": "done",
-                                    "bgcolor": "green",
-                                },
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": []
+                                    },
+                                    {
+                                        "type": "status",
+                                        "title": "done",
+                                        "bgcolor": "green",
+                                    }
+                                    ,
+                                ],
                                 "date": 1589983468418,
 
                             },
@@ -435,7 +533,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+                "cmpsOrder": ["status", "member", "date"]
             }]
     },
 ];
@@ -466,8 +564,8 @@ const gUsers = [
         workspaces: ['w102']
     },
 ]
-// _save('workspaceDB', gWorkspaces)
-// _save('userDB', gUsers)
+_save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {

@@ -17,8 +17,8 @@ async function remove(workspace,group,itemId) {
 
 async function save(newItem, groupId, workspace) {
     return workspace.boards.forEach((board) => {
-         return board.groups.forEach((group) => {
-            if(newItem.id){
+        return board.groups.forEach((group) => {
+            if (newItem.id) {
                 const itemId = newItem.id;
                 group.items.forEach((item, idx) => {
                     if (item.id === itemId) {
@@ -39,7 +39,7 @@ async function save(newItem, groupId, workspace) {
                     return addItem;
                 }
             }
-    })
+        })
 
     })
 }
