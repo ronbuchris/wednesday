@@ -13,10 +13,10 @@ class _BoardFilter extends Component {
         this.props.filterGroups(this.props.board, this.state.filterByGroupId)
     }
     render() {
-        const { board } = this.props;
+        const { board, groups} = this.props;
         return (
             <div className="board-filter">
-                {board.groups.map(group => {
+                {groups.map(group => {
                     return <div key={group.id} className="group-filter-preview flex" onClick={() => {
                         this.handleChange(group.id)
                     }}>
@@ -37,6 +37,7 @@ class _BoardFilter extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
+        groups: state.groupModule.groups,
     };
 }
 
