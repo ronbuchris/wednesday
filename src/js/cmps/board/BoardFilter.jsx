@@ -11,10 +11,11 @@ class _BoardFilter extends Component {
     onFilter = (groupId) => {
         this.state.filterByGroupId.push(groupId)
         this.setState({ filterByGroupId: this.state.filterByGroupId })
-        this.props.filterGroups(this.state.filterByGroupId)
+        this.props.filterGroups(this.props.board,this.state.filterByGroupId)
     }
     render() {
         const { board,groups} = this.props;
+        console.log(board);
         return (
             <div className="board-filter">
                 {board.groups.map(group => {

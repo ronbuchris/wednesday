@@ -13,11 +13,12 @@ export function groupReducer(state = initialState, action) {
         case 'SET_GROUPS':
             console.log(action);
             if(action.groupsIds) {
-                groups = state.groups.filter(group => {
+                groups = action.board.groups.filter(group => {
+                    console.log(group);
                     return action.groupsIds.includes(group.id)
                 })
                 console.log('groups returns', groups);
-                newState = { ...state, groups }
+                newState = { ...state.groups, groups:[...groups] }
                 break
             }
             newState = { ...state, groups: action.groups }
