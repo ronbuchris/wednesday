@@ -22,7 +22,7 @@ class _SidebarHeader extends Component {
     const workspaceId = this.props.location.pathname.includes('/workspace');
     return (
       <div className="sidebar-container flex">
-        <nav className="sidebar-icons flex space-between column">
+        <nav className="sidebar-icons flex space-between column align-center">
           <div className="flex column">
             <p>logo</p>
             <Link
@@ -35,7 +35,7 @@ class _SidebarHeader extends Component {
             <Inbox className="nav-icon Inbox" />
             <MyWeek className="nav-icon MyWeek" />
           </div>
-          <div className="flex column">
+          <div className="flex column align-center">
             <Invite className="nav-icon Invite" />
             <Help className="nav-icon Help" />
             <button onClick={this.logout}>

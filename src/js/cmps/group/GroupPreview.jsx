@@ -73,7 +73,7 @@ class _GroupPreview extends React.Component {
           <form
             onSubmit={(ev) => {
               ev.stopPropagation();
-              onAddItem(addItem, group);
+              onAddItem(addItem, group, board);
               this.clearState();
             }}
           >
@@ -89,16 +89,7 @@ class _GroupPreview extends React.Component {
               onKeyUp={this.onKeyUp}
             />
 
-            {(isFocused || addItem) && (
-              <button
-                onClick={(ev) => {
-                  onAddItem(ev, addItem, group);
-                  this.clearState();
-                }}
-              >
-                Add
-              </button>
-            )}
+            {(isFocused || addItem) && <button>Add</button>}
           </form>
         </div>
       </div>

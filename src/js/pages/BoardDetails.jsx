@@ -5,6 +5,8 @@ import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
+import { createItem } from '../services/item.service';
+
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import {
   onEditGroup,
@@ -52,24 +54,42 @@ export class _BoardDetails extends React.Component {
     }
   };
 
-  onAddItem = async (newItem, group) => {
-    await this.props.onEditItem(newItem, group.id, this.props.workspace);
-    await this.props.setGroup(group);
-    this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
+  onRemoveBoard = (boardId) => {
+    console.log('remove');
   };
 
-  onAddGroup=(newGroup,board)=>{
-     this.props.onEditGroup(newGroup,board);
-  }
+  onAddItem = (newItem, group, board) => {
+    console.log(`newItem`, newItem);
+    const { workspace, editWorkspace } = this.props;
+    const newItem = this.props.createItem(newItem);
+
+    const newWorkspace = {
+      ...workspace,
+      boards: [...workspace.boards,
+        board: {...board.groups,
+          group: [...group.items, newItem]}]
+    };
+
+    
+    editWorkspace(newWorkspace);
+    // await this.props.onEditItem(newItem, group.id, this.props.workspace);
+    // await this.props.setGroup(group);
+    // this.props.loadBoard(this.props.workspace, this.props.match.params.boardId);
+  };
+
+  onAddGroup = (newGroup, board) => {
+    this.props.onEditGroup(newGroup, board);
+  };
 
   render() {
     const { board, groups } = this.props;
     if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
-        <WorkspaceNav />
+        <WorkspaceNav onRemoveBoard={this.onRemoveBoard} />
         <div className="board-details">
           <BoardHeader
+            onRemoveBoard={this.onRemoveBoard}
             onAddGroup={this.onAddGroup}
             onAddItem={this.onAddItem}
             board={board}
@@ -107,6 +127,7 @@ const mapDispatchToProps = {
   getWorkspaceByBoardId,
   setGroup,
   loadGroups,
+  createItem,
 };
 
 export const BoardDetails = connect(

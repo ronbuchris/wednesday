@@ -9,15 +9,17 @@ import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevron
 import NavigationChevronRight from 'monday-ui-react-core/dist/icons/NavigationChevronRight';
 import NavigationChevronLeft from 'monday-ui-react-core/dist/icons/NavigationChevronLeft';
 
-import { BoardList } from './board/BoardList';
 import {
   loadWorkspaces,
   loadWorkspace,
   toggleNav,
+  editWorkspace,
 } from '../store/actions/workspace.actions';
 import { addBoard, loadBoard } from '../store/actions/board.actions';
+
+import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
-import boardService from '../services/board.service'
+import { createBoard } from '../services/board.service';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -29,17 +31,19 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspaces(this.props.user);
   }
 
-
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);
   };
 
   onAddBoard = () => {
-    const { workspace, user } = this.props;
-    const newBoard= boardService.createBoard(user);
-    const newWorkspace={...workspace,boards:[...workspace.boards,newBoard]}
-    this.props.editWorkspace(newWorkspace);
+    const { workspace, user, editWorkspace } = this.props;
+    const newBoard = createBoard(user);
+    const newWorkspace = {
+      ...workspace,
+      boards: [...workspace.boards, newBoard],
+    };
+    editWorkspace(newWorkspace);
   };
 
   handleHover = () => {
@@ -55,7 +59,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace,isOpenNav, toggleNav } = this.props;
+    const { workspaces, workspace, isOpenNav, toggleNav } = this.props;
     const { isHovered, isOpenMenu } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
@@ -146,6 +150,7 @@ const mapDispatchToProps = {
   addBoard,
   toggleNav,
   loadBoard,
+  editWorkspace,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

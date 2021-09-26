@@ -25,7 +25,7 @@ export function ItemColumn({ column, board }) {
             {column.members.map((member) => {
               return (
                 <img
-                  key={member.id}
+                  key={member._id}
                   src={member.img}
                   className="profile-icon"
                   alt="member-img"

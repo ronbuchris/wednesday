@@ -8,7 +8,6 @@ export class BoardContent extends Component {
     return (
       <div className="board-content">
         {groups.map((group) => {
-          console.log(`groupgroupgroupgroupgroup`, group)
           return (
             <GroupPreview
               onBlur={onBlur}

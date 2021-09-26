@@ -8,22 +8,20 @@ export const groupService = {
 
 async function save(newGroup, boardForAdd) {
     const workspaces = await storageService.query(STORAGE_KEY)
-   return workspaces.find(workspace => {
-      return  workspace.boards.find((board) => {
+    return workspaces.find(workspace => {
+        return workspace.boards.find((board) => {
             if (boardForAdd) {
-                if(board._id===boardForAdd._id){
+                if (board._id === boardForAdd._id) {
                     const newAddGroup = _createGroup();
-                    console.log(`newAddGroup`, newAddGroup)
                     board.groups.unshift(newAddGroup);
-                    console.log(`workspaceworkspaceworkspace`, workspace)
-                   return storageService.put(STORAGE_KEY, workspace)
+                    return storageService.put(STORAGE_KEY, workspace)
                 }
-            }else{
+            } else {
                 const groupId = newGroup.id;
                 board.groups.forEach((group, idx) => {
                     if (group.id === groupId) {
                         board.groups.splice(idx, 1, newGroup)
-                       return storageService.put(STORAGE_KEY, workspace)
+                        return storageService.put(STORAGE_KEY, workspace)
                     }
                 })
             }
