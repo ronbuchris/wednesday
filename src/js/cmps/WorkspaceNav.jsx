@@ -123,7 +123,6 @@ class _WorkspaceNav extends Component {
               <Search />
               <span>Search</span>
             </button>
-
             <div className="board-list">
               <BoardList workspace={workspace} />
             </div>

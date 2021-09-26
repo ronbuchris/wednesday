@@ -9,12 +9,20 @@ class _BoardFilter extends Component {
     }
 
     onFilter = (groupId) => {
-        this.state.filterByGroupId.push(groupId)
-        this.setState({ filterByGroupId: this.state.filterByGroupId })
-        this.props.filterGroups(this.props.board,this.state.filterByGroupId)
+        const { filterByGroupId} = this.state
+        if (filterByGroupId.includes(groupId)) {
+            const groupIdIdx = filterByGroupId.findIndex(g => g === groupId)
+            filterByGroupId.splice(groupIdIdx,1)
+            this.setState({ filterByGroupId: filterByGroupId })
+        } else {
+            filterByGroupId.push(groupId)
+            this.setState({ filterByGroupId: filterByGroupId })
+        }
+        this.props.filterGroups(this.props.board,filterByGroupId)
+        console.log(filterByGroupId);
     }
     render() {
-        const { board,groups} = this.props;
+        const { board} = this.props;
         return (
             <div className="board-filter">
                 {board.groups.map(group => {
