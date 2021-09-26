@@ -43,6 +43,7 @@ componentDidMount(){
 
   render() {   
     const { group, onBlur, board,onAddItem }=this.props;
+    console.log('board from preview', board);
     const {addItem,isFocused}=this.state
     console.log(`isFocused`, isFocused)
     return (

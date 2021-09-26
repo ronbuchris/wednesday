@@ -44,12 +44,9 @@ export const itemService = {
 //     }
 
 async function save(newItem, groupId, workspace) {
-    console.log(`newItemididididdi`, newItem.id)
     return workspace.boards.forEach((board) => {
          return board.groups.forEach((group) => {
-             console.log(`123456787990`, 123456787990)
             if(newItem.id){
-                console.log(`newItem-59`, newItem)
                 const itemId = newItem.id;
                 group.items.forEach((item, idx) => {
                     if (item.id === itemId) {
@@ -59,7 +56,6 @@ async function save(newItem, groupId, workspace) {
                     }
                 })
             } else if (!newItem.id) {
-                console.log(`newItem1`, newItem)
                 if (group.id === groupId) {
                     const addItem = _createItem(newItem)
                     group.items.push(addItem)

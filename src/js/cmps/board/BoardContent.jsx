@@ -3,11 +3,11 @@ import { GroupPreview } from '../group/GroupPreview';
 
 export class BoardContent extends Component {
   render() {
-    const { board, onBlur,onAddItem } = this.props;
+    const { board, onBlur, onAddItem, groups } = this.props;
     if (!board) return <div className="">loading</div>;
     return (
       <div className="board-content">
-        {board.groups.map((group) => {
+        {groups.map((group) => {
           return (
             <GroupPreview
               onBlur={onBlur}
