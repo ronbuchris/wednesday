@@ -210,23 +210,6 @@ const gWorkspaces = [
                 "style": {},
                 "columns": [
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "status",
-                        "pos": 1,
-                        "width": 140,
-                        "labels": [
-                            {
-                                "title": "Done",
-                                "color": "green"
-                            },
-                            {
-                                "title": "stuck",
-                                "color": "red"
-                            }
-                        ]
-                    },
-                    {
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
@@ -247,6 +230,23 @@ const gWorkspaces = [
                                 "_id": "u103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
                             }
                         ]
                     }
@@ -441,23 +441,7 @@ const gWorkspaces = [
                 },
                 "style": {},
                 "columns": [
-                    {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "status",
-                        "pos": 1,
-                        "width": 140,
-                        "labels": [
-                            {
-                                "title": "Done",
-                                "color": "green"
-                            },
-                            {
-                                "title": "stuck",
-                                "color": "red"
-                            }
-                        ]
-                    },
+
                     {
                         "id": "column102",
                         "type": "member",
@@ -479,6 +463,23 @@ const gWorkspaces = [
                                 "id": "user103",
                                 "fullname": "Ron Buchris",
                                 "img": "http://some-img"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "status",
+                        "pos": 1,
+                        "width": 140,
+                        "labels": [
+                            {
+                                "title": "Done",
+                                "color": "green"
+                            },
+                            {
+                                "title": "stuck",
+                                "color": "red"
                             }
                         ]
                     }
@@ -564,8 +565,8 @@ const gUsers = [
         workspaces: ['w102']
     },
 ]
-_save('workspaceDB', gWorkspaces)
-_save('userDB', gUsers)
+// _save('workspaceDB', gWorkspaces)
+// _save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {
