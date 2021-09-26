@@ -15,12 +15,6 @@ export function groupReducer(state = initialState, action) {
                 groups = state.groups.filter(group => {
                     return action.groupsIds.includes(group.id)
                 })
-                // groups = state.groups.filter(group => {
-                //     return action.groupsIds.forEach(groupId => {
-                //         if(group.id === groupId) {   
-                //             return group
-                //     } 
-                // })})
                 console.log('groups returns', groups);
                 newState = { ...state, groups }
                 break
