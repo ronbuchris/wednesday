@@ -33,6 +33,23 @@ export function onEditItem(itemToSave,groupId=null,workspace) {
     }
 }
 
+export function onSortItemTitle(board, sortType) {
+    console.log(sortType);
+    return async (dispatch) => {
+        const groupsIds = []
+        try {
+            dispatch({
+                type: 'SET_GROUPS',
+                board,
+                sortType,
+                groupsIds
+            })
+        } catch (err) {
+            console.log('Cannot sort item', err)
+        }        
+    }
+}
+
 export function onRemoveItem(workspace,group,itemId) {
     return async (dispatch) => {
         try{
