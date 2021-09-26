@@ -9,9 +9,9 @@ export class _BoardPreview extends React.Component{
 
 
   componentDidUpdate(prevProps, prevState){
-    if(prevProps.board._id!==this.props.board._id) {
-      this.props.loadBoard(this.props.workspace,this.props.board._id);
-   }
+      if(prevProps.board._id!==this.props.board._id) {
+        this.props.loadBoard(this.props.workspace,this.props.board._id);
+     }
   }
   render(){
 const { boardPreview, board }=this.props;
