@@ -13,7 +13,6 @@ export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen}) {
       </div>}
       {isMembersOpen && <div>
       {workspace.members.map((member) => {
-        console.log(member);
         return (
           <Link key={member._id} to={`/user/${member._id}`}>
             {member.fullname}

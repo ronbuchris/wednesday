@@ -13,7 +13,7 @@ export function BoardHeader({ board,onBlur }) {
            onBlur={(ev)=>{
              onBlur(ev.target.innerText,board.description,board,'boardDesc');
            }}>{board.description}</div>
-      <BoardActions />
+      <BoardActions board={board}/>
     </div>
   );
 }
