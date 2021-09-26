@@ -10,7 +10,7 @@ export function BoardHeader({ board, onBlur, onAddItem, onEditGroup }) {
           onBlur(ev.target.innerText, board.title, board, 'board');
         }}
       >
-        {board.title}
+        <h1>{board.title}</h1>
       </div>
       <div
         contentEditable="true"
