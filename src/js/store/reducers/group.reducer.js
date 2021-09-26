@@ -12,13 +12,9 @@ export function groupReducer(state = initialState, action) {
             break
         case 'SET_GROUPS':
             if(action.groupsIds) {
-                groups = state.groups.forEach(group => {
-                    return action.groupsIds.map(groupId => {
-                        if(group.id === groupId) {
-                        console.log('fsdf',group);           
-                            return group
-                    } 
-                })})
+                groups = state.groups.filter(group => {
+                    return action.groupsIds.includes(group.id)
+                })
                 console.log('groups returns', groups);
                 newState = { ...state, groups }
                 break
