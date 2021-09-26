@@ -12,9 +12,9 @@ class _GroupPreview extends React.Component {
     isFocused: false,
   };
 
-  componentDidMount() {
-    this.props.loadItems(this.props.group);
-  }
+  // componentDidMount() {
+  //   this.props.loadItems(this.props.group);
+  // }
 
   handleChange = ({ target }) => {
     const value = target.value;
@@ -57,7 +57,7 @@ class _GroupPreview extends React.Component {
       <div key={group.id} className="group-preview">
         <GroupHeader group={group} board={board} onBlur={onBlur} />
         <div className="item-list">
-          {items.map((item) => {
+          {group.items.map((item) => {
             return (
               <ItemPreview
                 onBlur={onBlur}

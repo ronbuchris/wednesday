@@ -17,6 +17,7 @@ import {
 } from '../store/actions/workspace.actions';
 import { addBoard, loadBoard } from '../store/actions/board.actions';
 import { WorkspaceMenu } from './WorkspaceMenu';
+import boardService from '../services/board.service'
 
 class _WorkspaceNav extends Component {
   state = {
@@ -36,7 +37,9 @@ class _WorkspaceNav extends Component {
 
   onAddBoard = () => {
     const { workspace, user } = this.props;
-    this.props.addBoard(workspace, user);
+    const newBoard= boardService.createBoard(user);
+    const newWorkspace={...workspace,boards:[...workspace.boards,newBoard]}
+    this.props.editWorkspace(newWorkspace);
   };
 
   handleHover = () => {
