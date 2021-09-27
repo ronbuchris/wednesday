@@ -33,6 +33,12 @@ class _BoardFilter extends Component {
                     </div>
 
                 })}
+                {board.columns[1].labels.map(label => {
+                    return <div key={label.color}>
+                        {label.title}
+                    </div>
+
+                })}
             </div>
         )
     }
