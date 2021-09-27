@@ -13,7 +13,6 @@ async function remove(workspace, group, itemId) {
 
 }
 
-
 async function save(newItem, groupId, workspace) {
     return workspace.boards.forEach((board) => {
         return board.groups.forEach((group) => {
@@ -43,7 +42,6 @@ async function save(newItem, groupId, workspace) {
     })
 }
 
-
 export function createItem(title, user) {
     return {
         id: makeId(),
@@ -62,8 +60,8 @@ export function createItem(title, user) {
             {
                 type: "status",
                 label: {
-                    title: "Done",
-                    color: "green"
+                    title: "",
+                    color: "#c4c4c4"
                 }
 
             },

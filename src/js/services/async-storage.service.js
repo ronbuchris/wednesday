@@ -25,9 +25,9 @@ const gWorkspaces = [
         "boards": [
             {
                 "_id": "b101",
-                "title": "board-1",
+                "title": "Board 1",
                 "createdAt": 1589983468418,
-                "description": "desc-board",
+                "description": "desc board",
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Abi Abambi",
@@ -61,17 +61,21 @@ const gWorkspaces = [
                     {
                         "id": "column101",
                         "type": "status",
-                        "title": "status",
+                        "title": "Status",
                         "pos": 2,
                         "width": 140,
                         "labels": [
                             {
-                                "title": "Done",
-                                "color": "green"
+                                title: "Done",
+                                color: "#00c875"
                             },
                             {
-                                "title": "stuck",
-                                "color": "red"
+                                title: "Stuck",
+                                color: "#e2445c"
+                            },
+                            {
+                                title: "Working on it",
+                                color: "#fdab3d"
                             }
                         ]
                     }
@@ -85,23 +89,23 @@ const gWorkspaces = [
                         "items": [
                             {
                                 "id": "c101",
-                                "title": "Replace logo",
+                                "title": "Punch adir in the nutz",
                                 "columns": [
                                     {
                                         "type": "member",
                                         "members": [
                                             {
-                                                "_id": "u101",
-                                                "fullname": "Adir Cohen",
-                                                "img": `https://robohash.org/adir`,
+                                                "_id": "u102",
+                                                "fullname": "On Chetrit",
+                                                "img": `https://robohash.org/on`,
                                             }
                                         ]
                                     },
                                     {
                                         "type": "status",
                                         "label": {
-                                            "title": "Done",
-                                            "color": "green"
+                                            title: "Done",
+                                            color: "#00c875"
                                         }
 
                                     },
@@ -115,16 +119,22 @@ const gWorkspaces = [
                             },
                             {
                                 "id": "c102",
-                                "title": "Replace logo",
+                                "title": "This also demo data",
                                 "columns": [
                                     {
                                         "type": "member",
-                                        "members": []
+                                        "members": [{
+                                            _id: 'u101',
+                                            fullname: 'Adir Cohen',
+                                            img: `https://robohash.org/adir`
+                                        }]
                                     },
                                     {
                                         "type": "status",
-                                        "title": "warning",
-                                        "bgcolor": "red",
+                                        "label": {
+                                            title: "Stuck",
+                                            color: "#e2445c"
+                                        }
                                     }
                                 ],
                                 "createdAt": 1589983468418,
@@ -157,8 +167,8 @@ const gWorkspaces = [
                                     {
                                         "type": "status",
                                         "label": {
-                                            "title": "Done",
-                                            "color": "green"
+                                            title: "Done",
+                                            color: "#00c875"
                                         }
 
                                     },
@@ -182,9 +192,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
-
+                                        "label": {
+                                            title: "Stuck",
+                                            color: "#e2445c"
+                                        }
                                     },
                                 ],
                                 "createdAt": 1589983468418,
@@ -239,17 +250,21 @@ const gWorkspaces = [
                     {
                         "id": "column101",
                         "type": "status",
-                        "title": "status",
+                        "title": "Status",
                         "pos": 1,
                         "width": 140,
                         "labels": [
                             {
-                                "title": "Done",
-                                "color": "green"
+                                title: "Done",
+                                color: "#00c875"
                             },
                             {
-                                "title": "stuck",
-                                "color": "red"
+                                title: "Stuck",
+                                color: "#e2445c"
+                            },
+                            {
+                                title: "Working on it",
+                                color: "#fdab3d"
                             }
                         ]
                     }
@@ -272,7 +287,7 @@ const gWorkspaces = [
                                         "type": "status",
                                         "label": {
                                             "title": "Done",
-                                            "color": "green"
+                                            "color": "#00c875"
                                         }
                                     }
                                     ,
@@ -291,8 +306,8 @@ const gWorkspaces = [
                                     {
                                         "type": "status",
                                         "label": {
-                                            "title": "Done",
-                                            "color": "green"
+                                            title: "",
+                                            color: "#c4c4c4"
                                         }
                                     }
                                 ],
@@ -366,17 +381,21 @@ const gWorkspaces = [
                     {
                         "id": "column101",
                         "type": "status",
-                        "title": "status",
+                        "title": "Status",
                         "pos": 2,
                         "width": 140,
                         "labels": [
                             {
-                                "title": "Done",
-                                "color": "green"
+                                title: "Done",
+                                color: "#00c875"
                             },
                             {
-                                "title": "stuck",
-                                "color": "red"
+                                title: "Stuck",
+                                color: "#e2445c"
+                            },
+                            {
+                                title: "Working on it",
+                                color: "#fdab3d"
                             }
                         ]
                     }
@@ -398,8 +417,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            title: "Stuck",
+                                            color: "#e2445c"
+                                        }
                                     }
                                 ],
                                 "createdAt": 1589983468418
@@ -413,9 +434,12 @@ const gWorkspaces = [
                                         "members": []
                                     },
                                     {
-                                        "type": "status",
-                                        "title": "warning",
-                                        "bgcolor": "red",
+                                        type: "status",
+                                        label: {
+                                            title: "Done",
+                                            color: "#00c875"
+                                        }
+
                                     }
                                 ],
                                 "createdAt": 1589983468418,
@@ -472,17 +496,21 @@ const gWorkspaces = [
                     {
                         "id": "column101",
                         "type": "status",
-                        "title": "status",
+                        "title": "Status",
                         "pos": 1,
                         "width": 140,
                         "labels": [
                             {
-                                "title": "Done",
-                                "color": "green"
+                                title: "Done",
+                                color: "#00c875"
                             },
                             {
-                                "title": "stuck",
-                                "color": "red"
+                                title: "Stuck",
+                                color: "#e2445c"
+                            },
+                            {
+                                title: "Working on it",
+                                color: "#fdab3d"
                             }
                         ]
                     }
@@ -503,8 +531,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            title: "Working on it",
+                                            color: "#fdab3d"
+                                        }
                                     }
                                 ],
                                 "createdAt": 1589983468418,
@@ -520,8 +550,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green",
+                                        "label": {
+                                            title: "Working on it",
+                                            color: "#fdab3d"
+                                        }
                                     }
                                     ,
                                 ],
@@ -541,6 +573,7 @@ const gWorkspaces = [
             }]
     },
 ];
+
 const gUsers = [
     {
         _id: 'u101',

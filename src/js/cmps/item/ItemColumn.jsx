@@ -7,7 +7,7 @@ export function ItemColumn({ column, board, item }) {
             className="item-column status-col flex cell-cmp"
             style={{
               backgroundColor: column.label.color,
-              minWidth: board.columns[0].width,
+              minWidth: board.columns[1].width,
             }}
           >
             {column.label.title}

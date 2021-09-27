@@ -46,7 +46,7 @@ export function createBoard(user, users) {
         },
         columns: [
             {
-                id: "column102",
+                id: makeId(),
                 type: "member",
                 title: "Owner",
                 pos: 1,
@@ -54,19 +54,23 @@ export function createBoard(user, users) {
                 members
             },
             {
-                id: "column101",
+                id: makeId(),
                 type: "status",
-                title: "status",
+                title: "Status",
                 pos: 2,
                 width: 140,
                 labels: [
                     {
                         title: "Done",
-                        color: "green"
+                        color: "#00c875"
                     },
                     {
-                        title: "stuck",
-                        color: "red"
+                        title: "Stuck",
+                        color: "#e2445c"
+                    },
+                    {
+                        title: "Working on it",
+                        color: " #fdab3d"
                     }
                 ]
             }

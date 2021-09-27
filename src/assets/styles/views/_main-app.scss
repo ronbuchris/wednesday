@@ -22,25 +22,31 @@
 
   .board-app {
     height: 100vh;
-    .workspace-nav {
-      background-color: $clr6;
-      padding: 16px;
-    }
-    .board-details {
+  }
+  .workspace-app {
+    height: 100vh;
+    .workspace-details {
       flex: 1;
-      .board-header {
-        padding: 16px 30px 0;
-        & h1 {
-              font-size: 32px;
-              letter-spacing: -0.2px;
-              line-height: 52px;
-              font-family: Roboto-bold,sans-serif;
-              color: $primary-text-color;
-        }
+    }
+  }
+  .workspace-nav {
+    background-color: $clr6;
+    padding: 16px;
+  }
+  .board-details {
+    flex: 1;
+    .board-header {
+      padding: 16px 30px 0;
+      & h1 {
+        font-size: 32px;
+        letter-spacing: -0.2px;
+        line-height: 52px;
+        font-family: Roboto-bold, sans-serif;
+        color: $primary-text-color;
       }
-      .board-content {
-        padding: 18px 30px 40px 16px;
-      }
+    }
+    .board-content {
+      padding: 18px 30px 40px 16px;
     }
   }
 }
