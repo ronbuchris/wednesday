@@ -19,7 +19,7 @@ class _UserDetails extends Component {
   }
   render() {
     const {member} = this.props;
-    if (!member) return <div>loading</div>
+    if (!member) return <div className="">loading...</div>
     return (
       <div className="user-details">
       <header className="user-header">

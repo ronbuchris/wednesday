@@ -5,3 +5,13 @@ height: 72px;
 padding-left: 32px;
 padding-right: 32px;
 }
+
+.workspace-header {
+    // background-color: black;
+    & .workspace-bgimg{
+        height: 193px;
+        background-image: url(https://cdn7.monday.com/images/workspaces_cover_photos/full/pink_purple.png);
+        background-size: 100%;
+        background-position: center center;
+    }
+}

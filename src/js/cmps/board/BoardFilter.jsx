@@ -22,7 +22,7 @@ class _BoardFilter extends Component {
     }
 
     onFilterStatus= (status) => {
-        const { filterByStatus } = this.state
+        const { filterByStatus, filterByGroupId } = this.state
         if (filterByStatus.includes(status)) {
             const statusIdx = filterByStatus.findIndex(s => s === status)
             filterByStatus.splice(statusIdx, 1)
@@ -31,7 +31,7 @@ class _BoardFilter extends Component {
             filterByStatus.push(status)
             this.setState({ filterByStatus })
         }
-        this.props.filterStatus(this.props.board, filterByStatus)
+        this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId)
     }
     render() {
         const { board} = this.props;
