@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service"
 import {workspaceService} from "./workspace.service"
+import { createGroup } from './group.service'
 
 export const boardService = { getById,save,createBoard }
 const STORAGE_KEY = 'workspaceDB'
@@ -41,43 +42,31 @@ export function createBoard(user) {
         },
         "columns": [
             {
-                "id": "column102",
-                "type": "member",
-                "title": "Owner",
-                "pos": 1,
-                "width": 140,
-                "members": [
-                    {
-                        "id": "_u102",
-                        "fullname": "On Chetrit",
-                        "img": "http://some-img"
-                    },
-                    {
-                        "_id": "user101",
-                        "fullname": "Adir Cohen",
-                        "img": "http://some-img"
-                    },
-                    {
-                        "_id": "user103",
-                        "fullname": "Ron Buchris",
-                        "img": "http://some-img"
-                    }
-                ]
+                id: makeId(),
+                type: "member",
+                title: "Owner",
+                pos: 1,
+                width: 140,
+                members
             },
             {
-                "id": "column101",
-                "type": "status",
-                "title": "status",
-                "pos": 2,
-                "width": 140,
-                "labels": [
+                id: makeId(),
+                type: "status",
+                title: "Status",
+                pos: 2,
+                width: 140,
+                labels: [
                     {
-                        "title": "Done",
-                        "color": "green"
+                        title: "Done",
+                        color: "#00c875"
                     },
                     {
-                        "title": "stuck",
-                        "color": "red"
+                        title: "Stuck",
+                        color: "#e2445c"
+                    },
+                    {
+                        title: "Working on it",
+                        color: " #fdab3d"
                     }
                 ]
             }

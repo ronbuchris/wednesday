@@ -90,7 +90,9 @@ class _GroupPreview extends React.Component {
               onKeyUp={this.onKeyUp}
             />
 
-            {(isFocused || addItem) && <button>Add</button>}
+            {(isFocused || addItem) && (
+              <button className="item-add-button">Add</button>
+            )}
             <div className="indicator"></div>
           </form>
         </div>

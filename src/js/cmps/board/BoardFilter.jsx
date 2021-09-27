@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterGroups } from '../../store/actions/group.actions'
+import { filterGroups, filterStatus } from '../../store/actions/group.actions'
 
 class _BoardFilter extends Component {
     state = {
         filterByGroupId: [],
-        filterGroups:[]
+        filterByStatus:[]
     }
 
     onFilter = (groupId) => {
@@ -19,7 +19,19 @@ class _BoardFilter extends Component {
             this.setState({ filterByGroupId: filterByGroupId })
         }
         this.props.filterGroups(this.props.board,filterByGroupId)
-        console.log(filterByGroupId);
+    }
+
+    onFilterStatus= (status) => {
+        const { filterByStatus, filterByGroupId } = this.state
+        if (filterByStatus.includes(status)) {
+            const statusIdx = filterByStatus.findIndex(s => s === status)
+            filterByStatus.splice(statusIdx, 1)
+            this.setState({ filterByStatus })
+        } else {
+            filterByStatus.push(status)
+            this.setState({ filterByStatus })
+        }
+        this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId)
     }
     render() {
         const { board} = this.props;
@@ -31,6 +43,14 @@ class _BoardFilter extends Component {
                     }}>
                         <h3>{group.title}</h3>
                         <p>{group.items.length}</p>
+                    </div>
+
+                })}
+                {board.columns[1].labels.map(label => {
+                    return <div key={label.color} onClick={() => {
+                        this.onFilterStatus(label.title)
+                    }}>
+                        {label.title}
                     </div>
 
                 })}
@@ -47,7 +67,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    filterGroups
+    filterGroups,
+    filterStatus
 };
 export const BoardFilter = connect(
     mapStateToProps,

@@ -14,7 +14,6 @@ async function remove(workspace, group, itemId) {
 
 }
 
-
 async function save(newItem, groupId, workspace) {
     return workspace.boards.forEach((board) => {
         return board.groups.forEach((group) => {
@@ -44,41 +43,39 @@ async function save(newItem, groupId, workspace) {
     })
 }
 
-
- export function createItem(title, user) {
-    return Promise.resolve(
-        {
-            id: makeId(),
-            title,
-            columns: [
-                {
-                    type: "member",
-                    members: [
-                        {
-                            _id: "u101",
-                            fullname: "Adir Cohen",
-                            img: `https://robohash.org/adir`,
-                        }
-                    ]
-                },
-                {
-                    type: "status",
-                    label: {
-                        title: "Done",
-                        color: "green"
+export function createItem(title, user) {
+    return {
+        id: makeId(),
+        title,
+        columns: [
+            {
+                type: "member",
+                members: [
+                    {
+                        _id: "u101",
+                        fullname: "Adir Cohen",
+                        img: `https://robohash.org/adir`,
                     }
-                    
-                },
-            ],
-            creator: {
-                _id: user._id,
-                fullname: user.fullname,
-                img: user.img
+                ]
             },
-            createdAt: Date.now(),
-        }
-        )
+            {
+                type: "status",
+                label: {
+                    title: "",
+                    color: "#c4c4c4"
+                }
+
+            },
+        ],
+        creator: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img
+        },
+        createdAt: Date.now(),
     }
+}
+
     
     function makeId(length = 6) {
         var txt = '';

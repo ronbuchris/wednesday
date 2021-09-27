@@ -18,7 +18,7 @@ class _SidebarHeader extends Component {
     this.props.history.push('/');
   };
   render() {
-    const { user, board } = this.props;
+    const { user, board, workspace} = this.props;
     const workspaceId = this.props.location.pathname.includes('/workspace');
     return (
       <div className="sidebar-container flex">
@@ -53,6 +53,7 @@ class _SidebarHeader extends Component {
 
 function mapStateToProps(state) {
   return {
+    workspace: state.workspaceModule.workspace,
     user: state.userModule.user,
     board: state.boardModule.board,
   };

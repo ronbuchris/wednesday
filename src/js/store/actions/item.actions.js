@@ -14,27 +14,39 @@ export function loadItems(group) {
     }
 }
 
-export function onEditItem(itemToSave,groupId=null,workspace) {
-    console.log(`itemToSave`, itemToSave)
+export function onSetSearch(board, searchBy) {
     return async (dispatch) => {
-        try{
-            const saveditem=await itemService.save(itemToSave,groupId,workspace)
-            console.log('Updated item:', saveditem);
+        const groupsIds = []
+        try {
+            dispatch({
+                type: 'SET_GROUPS',
+                board,
+                searchBy,
+                groupsIds
+            })
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
+
+export function onEditItem(itemToSave, groupId = null, workspace) {
+    return async (dispatch) => {
+        try {
+            const saveditem = await itemService.save(itemToSave, groupId, workspace)
             dispatch({
                 type: 'UPDATE_ITEM',
                 item: saveditem
             })
-            console.log('item updated')
         }
-             catch(err)  {
-                console.log('Cannot update item')
-                console.log('Cannot save item', err)
-            }
+        catch (err) {
+            console.log('Cannot update item')
+            console.log('Cannot save item', err)
+        }
     }
 }
 
 export function onSortItemTitle(board, sortType) {
-    console.log(sortType);
     return async (dispatch) => {
         const groupsIds = []
         try {
@@ -46,20 +58,20 @@ export function onSortItemTitle(board, sortType) {
             })
         } catch (err) {
             console.log('Cannot sort item', err)
-        }        
+        }
     }
 }
 
-export function onRemoveItem(workspace,group,itemId) {
+export function onRemoveItem(workspace, group, itemId) {
     return async (dispatch) => {
-        try{
-            await itemService.remove(workspace,group,itemId)
+        try {
+            await itemService.remove(workspace, group, itemId)
             console.log('Deleted Succesfully!');
             dispatch({
                 type: 'REMOVE_ITEM',
                 itemId
             })
-        }catch(err){
+        } catch (err) {
             console.log('Cannot remove item', err)
         }
     }

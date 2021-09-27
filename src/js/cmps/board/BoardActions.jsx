@@ -5,6 +5,7 @@ import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
 import { BoardFilter } from './BoardFilter';
 import { BoardSort } from './BoardSort';
+import { BoardSearch } from './BoardSearch';
 
 export class BoardActions extends Component {
   state = {
@@ -13,10 +14,10 @@ export class BoardActions extends Component {
   };
 
   toggleFilter = () => {
-    this.setState({ isFilter: !this.state.isFilter });
+    this.setState({ isFilter: !this.state.isFilter, isSort: false });
   };
   toggleSort = () => {
-    this.setState({ isSort: !this.state.isSort });
+    this.setState({ isSort: !this.state.isSort, isFilter: false });
   };
   render() {
     const { isFilter, isSort } = this.state;
@@ -43,6 +44,7 @@ export class BoardActions extends Component {
             New group
           </div>
         </div>
+        <BoardSearch board={board}/>
         <p onClick={this.toggleFilter}>
           Filter:
           <Filter />

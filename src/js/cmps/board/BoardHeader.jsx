@@ -27,6 +27,7 @@ export function BoardHeader({ board, onBlur, onAddItem, onEditGroup,onRemoveBoar
       >
         {board.description}
       </div>
+      <div className="divider"></div>
       <BoardActions
         onEditGroup={onEditGroup}
         onAddItem={onAddItem}

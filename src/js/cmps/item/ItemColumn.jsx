@@ -4,20 +4,20 @@ export function ItemColumn({ column, board, item }) {
       case 'status':
         return (
           <div
-            className="item-column status-col flex"
+            className="item-column status-col flex cell-cmp"
             style={{
-              backgroundColor: column.bgcolor,
-              minWidth: board.columns[0].width,
+              backgroundColor: column.label.color,
+              minWidth: board.columns[1].width,
             }}
           >
-            {column.title}
+            {column.label.title}
           </div>
         );
 
       case 'member':
         return (
           <div
-            className="item-column member-col flex"
+            className="item-column member-col flex cell-cmp"
             style={{
               minWidth: board.columns[0].width,
             }}
