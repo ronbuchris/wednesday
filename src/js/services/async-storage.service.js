@@ -110,6 +110,28 @@ const gWorkspaces = [
 
                                     },
                                 ],
+                                "updates": [
+                                    {
+                                       id: 'update101',
+                                       txt:'first update!',
+                                       createBy: {
+                                           _id: 'u101',
+                                           fullname: 'Adir Cohen',
+                                           img: `https://robohash.org/adir`,
+                                       },
+                                       createAt: 1589983468418
+                                    },
+                                    {
+                                       id: 'update102',
+                                       txt:'Sec update!',
+                                       createBy: {
+                                           _id: 'u102',
+                                           fullname: 'On Chetrit',
+                                           img: `https://robohash.org/on`,
+                                       },
+                                       createAt: 1589989468418
+                                    }
+                                ],
                                 "createdAt": 1589983468418,
                                 "creator": {
                                     "_id": "us101",
@@ -607,7 +629,7 @@ const gUsers = [
 
 function query(entityType, delay = 400) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-
+    
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(entities)

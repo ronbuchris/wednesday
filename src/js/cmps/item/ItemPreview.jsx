@@ -1,6 +1,7 @@
 import React from 'react';
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { ItemColumn } from './ItemColumn';
+import { Link } from 'react-router-dom';
 
 export function ItemPreview({ item, onBlur, group, board }) {
   return (
@@ -18,7 +19,9 @@ export function ItemPreview({ item, onBlur, group, board }) {
         }}
       >
         <div className="item-title-text">{item.title}</div>
+        <Link to={`/board/${board._id}/item/${item.id}`}>
         <AddUpdate />
+        </Link>
       </div>
 
       <div className="item-column-list flex">

@@ -1,3 +1,4 @@
+import { boardService } from "../../services/board.service";
 import { itemService } from "../../services/item.service";
 
 
@@ -14,6 +15,22 @@ export function loadItems(group) {
     }
 }
 
+export function onPost(update,user, item, workspace) {
+    return async dispatch => {
+        try {
+            const workspaceToSave = await itemService.onPost(update, user, item, workspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: workspaceToSave
+            })  
+        }catch (err) {
+            console.log('Cannot add update', err)
+
+        }
+
+    }
+}
+
 export function onSetSearch(board, searchBy) {
     return async (dispatch) => {
         const groupsIds = []
@@ -26,6 +43,21 @@ export function onSetSearch(board, searchBy) {
             })
         } catch (err) {
             console.log('Cannot search item', err)
+        }
+    }
+}
+
+export function loadItem(boardId, itemId) {
+    return async (dispatch) => {
+        try {
+            const board = await boardService.getBoardById(boardId)
+            const item = await itemService.getById(board, itemId)
+             dispatch({
+                 type: 'SET_ITEM',
+                 item
+             })
+        } catch (err) {
+            console.log('Cannot load item', err)
         }
     }
 }

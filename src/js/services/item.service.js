@@ -4,8 +4,37 @@ const STORAGE_KEY = 'workspaceDB';
 
 export const itemService = {
     save,
-    remove
+    remove,
+    getById,
+    onPost
 }
+
+async function getById(board,itemId) {
+    const group = board.groups.find(group => group.items.find(item => item.id === itemId));
+    const item = group.items.find(item => item.id === itemId)
+    return Promise.resolve(item)
+}
+
+async function onPost(update, user, item, workspace) {
+   const newUpdate = createUpdate(update.txt, user)
+   item.updates.unshift(newUpdate)
+   await storageService.put(STORAGE_KEY, workspace)
+    return Promise.resolve(workspace)
+}
+
+function createUpdate(txt, user) {
+    return {
+        id: makeId(),
+        txt,
+        createBy: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img
+        },
+        createAt: Date.now()
+    }
+}
+
 async function remove(workspace, group, itemId) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
     group.items.splice(itemIdx, 1)

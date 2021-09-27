@@ -1,10 +1,20 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save }
+export const boardService = { getById, save, getBoardById}
 const STORAGE_KEY = 'workspaceDB'
+
 function getById(workspace, boardId) {
     return workspace.boards.find(board => board._id === boardId)
+}
+//without access to workspace
+async function getBoardById(boardId){
+    const workspaces = await storageService.query(STORAGE_KEY)
+    const workspace = workspaces.find(workspace => {
+        return workspace.boards.find(board => board._id === boardId)
+    })
+    const board = workspace.boards.find(board => board._id === boardId)
+    return Promise.resolve(board)
 
 }
 
