@@ -61,3 +61,18 @@ export function filterGroups(board,groupsIds) {
         }
     }
 }
+export function filterStatus(board,status) {
+    return async dispatch => {
+        try {
+            const groupsIds = [] 
+            dispatch({
+                type: 'SET_GROUPS',
+                board,
+                status,
+                groupsIds
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
+    }
+}
