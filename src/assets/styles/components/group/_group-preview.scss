@@ -7,6 +7,7 @@
 
     .group-title {
       flex: 1;
+      outline: none;
     }
     .group-column-list {
       display: flex;
@@ -28,11 +29,15 @@
       border-bottom: 1px solid $clr7;
       height: 36px;
 
+      &:hover {
+        background-color: $ui-grey-color;
+      }
       .item-title {
         display: flex;
         align-items: center;
         padding: 0 10px 0 0;
         flex: 1 0;
+        outline: none;
         .item-title-text {
           flex: 1;
           padding-left: 10px;
@@ -53,6 +58,18 @@
       width: 100%;
       background: transparent;
       padding: 5px 0 3px 20px;
+      outline: none;
+      &:focus {
+        border: 1px solid $primary-color;
+      }
+    }
+    .item-add-button {
+      background-color: $primary-color;
+      color: $clr7;
+      padding: 0 16px;
+      &:hover {
+        background-color: $primary-hover-color;
+      }
     }
   }
 }
@@ -71,7 +88,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: center;
   font-size: 13px;
   font-weight: 400;
   border-right: 1px solid;

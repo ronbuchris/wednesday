@@ -10,7 +10,7 @@ export function ItemPreview({ item, onBlur, group, board }) {
         style={{ backgroundColor: group.style.color }}
       ></div>
       <div
-        className="item-title flex space-between"
+        className="item-title flex space-between cell-cmp"
         contentEditable="true"
         suppressContentEditableWarning={true}
         onBlur={(ev) => {

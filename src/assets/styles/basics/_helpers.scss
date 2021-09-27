@@ -47,6 +47,13 @@
   }
 }
 
+//Divider
+.divider {
+  height: 1px;
+  border-bottom: 1px solid $ui-grey-color;
+  width: 100%;
+}
+
 // flex helpers
 
 .flex {
