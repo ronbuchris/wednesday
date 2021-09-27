@@ -130,8 +130,8 @@ function mapStateToProps(state) {
     isMenuOpen: state.workspaceModule.isMenuOpen,
     workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
-    workspace: state.workspaceModule.workspace,
-    board: state.boardModule.board,
+    // workspace: state.workspaceModule.workspace,
+    // board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
   };

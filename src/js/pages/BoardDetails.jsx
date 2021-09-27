@@ -26,21 +26,21 @@ export class _BoardDetails extends React.Component {
     console.log(`didmount`)
     const boardId = this.props.match.params.boardId || this.props.board._id;
     await this.props.getWorkspaceByBoardId(boardId);
-    await this.props.loadBoard(this.props.workspace, boardId);
-    this.props.loadGroups(this.props.board);
+    // await this.props.loadBoard(this.props.workspace, boardId);
+    // this.props.loadGroups(this.props.board);
   }
 
-  async componentDidUpdate(prevProps, prevState) {
-    const { boardId } = this.props.match.params
-    const { workspace } = this.props
-    console.log(`prevProps111`, prevProps)
-    if (prevProps.match.params.boardId !== boardId) {
-      // console.log(`prevProps111`, prevProps)
-      await this.props.getWorkspaceByBoardId(boardId);
-      await this.props.loadBoard(workspace, boardId);
-    }
-    await this.props.loadGroups(this.props.board);
-  }
+  // async componentDidUpdate(prevProps, prevState) {
+  //   const { boardId } = this.props.match.params
+  //   const { workspace } = this.props
+
+  //   if (prevProps.match.params.boardId !== boardId) {
+  //     // console.log(`prevProps111`, prevProps)
+  //     await this.props.getWorkspaceByBoardId(boardId);
+  //     await this.props.loadBoard(workspace, boardId);
+  //   }
+  //   await this.props.loadGroups(this.props.board);
+  // }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
     if (newTxt === pevTxt) return;
@@ -74,8 +74,11 @@ export class _BoardDetails extends React.Component {
   };
 
   onEditGroup = (group) => {
-    const { workspace, user, board } = this.props;
+    const { workspace, user} = this.props;
+    const boardIdx=this.getIdxById();
+    const board=workspace.boards[boardIdx]
     this.props.editGroup(workspace, board, group, user)
+    // this.props.history.push(this.props.history.location.pathname);
   };
 
   getIdxById = () => {
@@ -96,7 +99,7 @@ export class _BoardDetails extends React.Component {
     // if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
-        <WorkspaceNav onRemoveBoard={this.onRemoveBoard} />
+        <WorkspaceNav workspace={workspace} onRemoveBoard={this.onRemoveBoard} />
         <div className="board-details">
           <BoardHeader
             onRemoveBoard={this.onRemoveBoard}
@@ -120,9 +123,6 @@ export class _BoardDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.userModule.user,
-    board: state.boardModule.board,
-    group: state.groupModule.group,
-    groups: state.groupModule.groups,
     workspace: state.workspaceModule.workspace,
     workspaces: state.workspaceModule.workspaces,
   };

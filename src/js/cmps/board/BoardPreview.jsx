@@ -14,14 +14,16 @@ export class _BoardPreview extends React.Component {
   //    }
   // }
   render() {
-    const { boardPreview, board } = this.props;
+    const { boardPreview} = this.props;
+    // const {boardId} = this.props.match.params;
+    console.log(`this.props.match`, this.props)
     return (
       <Link to={`/board/${boardPreview._id}`}>
-        <div
+        {/* <div
           className={`${
-            board._id === boardPreview._id && 'selected'
+            boardId  === boardPreview._id && 'selected'
           } br4 menu-button-wrapper flex align-center space-between`}
-        >
+        > */}
           <div className="board-title flex align-center">
             <Board />
             <span>{boardPreview.title}</span>
@@ -29,7 +31,7 @@ export class _BoardPreview extends React.Component {
           <div className="hover-display flex align-center">
             <Menu />
           </div>
-        </div>
+        {/* </div> */}
       </Link>
     );
   }
@@ -37,7 +39,7 @@ export class _BoardPreview extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    board: state.boardModule.board,
+    // board: state.boardModule.board,
     workspace: state.workspaceModule.workspace,
   };
 }
