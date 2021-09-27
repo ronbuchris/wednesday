@@ -32,7 +32,7 @@ export class BoardActions extends Component {
             className="add group-add flex align-center btn"
             onClick={(ev) => {
               ev.preventDefault();
-              onEditGroup('new-group', board);
+              onEditGroup('New Group');
             }}
           >
             New group

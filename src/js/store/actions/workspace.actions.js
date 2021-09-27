@@ -47,7 +47,6 @@ export function editWorkspace(workspaceToSave) {
     return async dispatch => {
         try {
             const savedWorkspace = await workspaceService.save(workspaceToSave)
-            console.log('Updated Workspace:', savedWorkspace);
             dispatch({
                 type: 'EDIT_WORKSPACE',
                 workspace: savedWorkspace
