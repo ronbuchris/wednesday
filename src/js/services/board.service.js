@@ -29,7 +29,8 @@ async function save(newBoard) {
 //     workspaceService.save(workspace)
 // }
 
-export function createBoard(user) {
+export function createBoard(user,users) {
+    const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
     return {
         "_id": makeId(),
         "title": "New Board",

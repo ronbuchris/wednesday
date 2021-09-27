@@ -18,7 +18,7 @@ export class _WorkspaceDetails extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-      if (prevProps.workspace._id !== this.props.workspace._id) {
+      if (prevProps.match.params.workspaceId !== this.props.workspace._id) {
         this.props.loadWorkspace(this.props.workspace._id);
       }
   }
@@ -28,11 +28,11 @@ export class _WorkspaceDetails extends Component {
   }
 
   render() {
-    const { workspace, board } = this.props;
-    if (!workspace && !board) return <div className="">loading</div>;
+    const { workspace} = this.props;
+    if (!workspace) return <div className="">loading</div>;
     return (
       <div className="workspace-app flex">
-        <WorkspaceNav />
+        <WorkspaceNav  />
         <div className="workspace-details">
           <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
           <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
