@@ -11,23 +11,19 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_GROUPS':
-            console.log(action);
-            if (action.groupsIds.length) {
+            if (action.groupsIds.length || action.statuses.length) {
                 groups = action.board.groups.filter(group => {
                     return action.groupsIds.includes(group.id)
                 })
-                newState = { ...state.groups, groups: [...groups] }
-                break
-            }
-            if (action.statuses.length) {
-                groups = action.board.groups.map(group => {
-                       return {
-                           ...group, items:group.items.filter(item => {
-                               return action.statuses.includes(item.columns[1].label.title)
-                            //    return item.columns[1].label.title === action.status
-                           }) 
-                       }
-                })
+                if (action.statuses.length) {
+                    groups = state.groups.map(group => {
+                           return {
+                               ...group, items:group.items.filter(item => {
+                                   return action.statuses.includes(item.columns[1].label.title)
+                               }) 
+                           }
+                    })
+                }
                 newState = { ...state.groups, groups: [...groups] }
                 break
             }

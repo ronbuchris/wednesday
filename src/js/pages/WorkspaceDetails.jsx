@@ -21,7 +21,6 @@ export class _WorkspaceDetails extends Component {
       if (prevProps.workspace._id !== this.props.workspace._id) {
         this.props.loadWorkspace(this.props.workspace._id);
       }
-
   }
   handleChange = () => {
     const { isBoardsOpen, isMembersOpen} = this.state

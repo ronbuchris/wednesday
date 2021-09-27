@@ -65,10 +65,9 @@ export function filterGroups(board,groupsIds) {
         }
     }
 }
-export function filterStatus(board,statuses) {
+export function filterStatus(board, statuses, groupsIds) {
     return async dispatch => {
         try {
-            const groupsIds = [] 
             dispatch({
                 type: 'SET_GROUPS',
                 board,
