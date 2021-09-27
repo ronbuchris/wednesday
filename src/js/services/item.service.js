@@ -6,7 +6,8 @@ export const itemService = {
     save,
     remove,
     getById,
-    onPost
+    onPost,
+    createItem
 }
 
 async function getById(board,itemId) {
@@ -104,9 +105,10 @@ export function createItem(title, user) {
     }
 }
 
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
+    
+    function makeId(length = 6) {
+        var txt = '';
+        var possible =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (var i = 0; i < length; i++) {

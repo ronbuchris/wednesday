@@ -27,8 +27,6 @@ class _BoarSort extends Component {
 
 function mapStateToProps(state) {
     return {
-        board: state.boardModule.board,
-        groups: state.groupModule.groups,
     };
 }
 

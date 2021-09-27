@@ -50,9 +50,9 @@ class _GroupPreview extends React.Component {
   };
 
   render() {
-    const { group, onBlur, board, onAddItem, items } = this.props;
+    const { group, onBlur, board, onAddItem} = this.props;
     const { addItem, isFocused } = this.state;
-    if (!items) return <div>loading</div>;
+    if (!group.items) return <div>loading</div>;
     return (
       <div key={group.id} className="group-preview">
         <GroupHeader group={group} board={board} onBlur={onBlur} />
@@ -103,11 +103,7 @@ class _GroupPreview extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
-    workspace: state.workspaceModule.workspace,
-    items: state.itemModule.items,
-    board: state.boardModule.board,
     user: state.userModule.user,
   };
 }

@@ -1,3 +1,6 @@
+import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
+
+
 export function GroupHeader({ board, group, onBlur }) {
   return (
     <div className="group-header flex">

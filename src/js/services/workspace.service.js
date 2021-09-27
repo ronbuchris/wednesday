@@ -1,8 +1,8 @@
 import { storageService } from './async-storage.service';
-
+import { groupService } from './group.service';
 const STORAGE_KEY = 'workspaceDB'
 
-export const workspaceService = { query, getById, remove, save, getByBoardId }
+export const workspaceService = { query, getById, remove, save, getByBoardId, addItem, editGroup }
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
@@ -22,10 +22,6 @@ function getById(workspaceId) {
 }
 
 function remove(workspaceId) {
-    // return new Promise((resolve, reject) => {
-    //     setTimeout(reject, 2000)
-    // })
-    // return Promise.reject('Not now!');
     return storageService.remove(STORAGE_KEY, workspaceId)
 }
 
@@ -36,6 +32,53 @@ function save(workspace) {
         // workspace.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, workspace)
     }
+}
+
+async function addItem(newItem, workspace, group, board, addToTop) {
+    const newWorkspace = { ...workspace };
+    const newGroup = {
+        ...group,
+        items: addToTop ? [newItem, ...group.items] : [...group.items, newItem],
+    };
+    const groupIdx = board.groups.findIndex(
+        (group) => group.id === newGroup.id
+    );
+    board.groups.splice(groupIdx, 1, newGroup);
+    const boardIdx = workspace.boards.findIndex(
+        (findBoard) => findBoard._id === board._id
+    );
+    newWorkspace.boards.splice(boardIdx, 1, board);
+    const saveWorkspace = await save(newWorkspace)
+    return Promise.resolve(saveWorkspace)
+}
+
+
+//EDIT-ADD GROUP
+async function editGroup(workspace,board,group,user) {
+    console.log(`group`, group)
+    const newWorkspace = { ...workspace };
+    if (group.id) {
+        const groupIdx = board.groups.findIndex(oldGroup => oldGroup.id === group.id);
+        const boardIdx = await getBoardIdx(workspace.boards, board._id)
+        board.groups.splice(groupIdx, 1, group);
+        newWorkspace.boards.splice(boardIdx, 1, board);
+    } else {
+        const newGroup = await groupService.createGroup(user)
+        const newBoard = { ...board, groups: [newGroup, ...board.groups] };
+        const boardIdx = await getBoardIdx(workspace.boards, newBoard._id)
+        newWorkspace.boards.splice(boardIdx, 1, newBoard);
+    }
+    const saveWorkspace = await save(newWorkspace)
+    return Promise.resolve(saveWorkspace)
+}
+
+function getBoardIdx(boards, boardId) {
+    return Promise.resolve(
+        boards.findIndex(
+            (board) => board._id === boardId
+            )
+            );
+
 }
 
 async function getByBoardId(boardId) {

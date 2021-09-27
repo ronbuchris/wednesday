@@ -10,11 +10,11 @@ import { createGroup } from '../services/group.service';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import {
-  onEditGroup,
+  editGroup,
   setGroup,
   loadGroups,
 } from '../../js/store/actions/group.actions';
-import { onEditItem } from '../../js/store/actions/item.actions';
+import { onEditItem, addItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
   getWorkspaceByBoardId,
@@ -23,6 +23,7 @@ import {
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
+    console.log(`didmount`)
     const boardId = this.props.match.params.boardId || this.props.board._id;
     await this.props.getWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
@@ -30,10 +31,15 @@ export class _BoardDetails extends React.Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
-     await this.props.loadBoard(this.props.workspace,this.props.match.params.boardId);
-       await this.props.loadGroups(this.props.board);
+    const { boardId } = this.props.match.params
+    const { workspace } = this.props
+    console.log(`prevProps111`, prevProps)
+    if (prevProps.match.params.boardId !== boardId) {
+      // console.log(`prevProps111`, prevProps)
+      await this.props.getWorkspaceByBoardId(boardId);
+      await this.props.loadBoard(workspace, boardId);
     }
+    await this.props.loadGroups(this.props.board);
   }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
@@ -46,7 +52,7 @@ export class _BoardDetails extends React.Component {
       this.props.onEditBoard(newType);
     }
     if (strType === 'group') {
-      this.props.onEditGroup(newType);
+      this.onEditGroup(newType);
     }
     if (strType === 'item') {
       this.props.onEditItem(newType, null, this.props.workspace);
@@ -54,65 +60,40 @@ export class _BoardDetails extends React.Component {
   };
 
   onRemoveBoard = (boardId) => {
-    //get workspace from store
+    const { workspace } = this.props;
+    const newWorkspace = { ...workspace };
+    const boardIdx = workspace.boards.findIndex(board => board._id === boardId);
+    newWorkspace.boards.splice(boardIdx, 1);
+    editWorkspace(newWorkspace);
+    this.props.history.push(`/board/${newWorkspace.boards[0]._id}`)
   };
 
   onAddItem = (newItemData, group, board, addToTop = false) => {
-    const { editWorkspace, workspace, user } = this.props;
-    const newWorkspace = { ...workspace };
-
-    //create Item
-    const newItem = createItem(newItemData, user);
-
-    //add to groups Array
-    const newGroup = {
-      ...group,
-      items: addToTop ? [newItem, ...group.items] : [...group.items, newItem],
-    };
-
-    //find group index
-    const groupIdx = board.groups.findIndex(
-      (group) => group.id === newGroup.id
-    );
-
-    // change group
-    board.groups.splice(groupIdx, 1, newGroup);
-
-    //find board index
-    const boardIdx = workspace.boards.findIndex(
-      (findBoard) => findBoard._id === board._id
-    );
-    // change board
-    newWorkspace.boards.splice(boardIdx, 1, board);
-
-    editWorkspace(newWorkspace);
+    const { workspace, user } = this.props;
+    this.props.addItem(newItemData, user, workspace, group, board, addToTop)
   };
 
-  onEditGroup = (group, boardId) => {
-    const { editWorkspace, workspace, user, board } = this.props;
-    const newWorkspace = { ...workspace };
-    //get workspace from store
-    if (group.id) {
-      //
-    } else {
-      const newGroup = createGroup(user);
-      const newBoard = { ...board, groups: [newGroup, ...board.groups] };
-      const boardIdx = workspace.boards.findIndex(
-        (board) => board._id === newBoard._id
-      );
-      newWorkspace.boards.splice(boardIdx, 1, newBoard);
-      //copy NEW workspace
-    }
-    editWorkspace(newWorkspace);
+  onEditGroup = (group) => {
+    const { workspace, user, board } = this.props;
+    this.props.editGroup(workspace, board, group, user)
   };
 
-  onAddGroup = (newGroup, board) => {
-    this.props.onEditGroup(newGroup, board);
-  };
+  getIdxById = () => {
+    const { workspace } = this.props
+    const {boardId}=this.props.match.params
+    const boardIdx = workspace.boards.findIndex(wBoard => wBoard._id === boardId)
+    return boardIdx
+  }
+
 
   render() {
-    const { board, groups } = this.props;
-    if (!board || !groups) return <div className="loader">loading...</div>;
+    const { workspace } = this.props;
+    if (!workspace) return <div>loading</div>
+    console.log(`workspace`, workspace);
+    const boardIdx = this.getIdxById()
+    const currBoard = workspace.boards[boardIdx];
+      console.log(`currBoard`, currBoard.groups)
+    // if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
         <WorkspaceNav onRemoveBoard={this.onRemoveBoard} />
@@ -121,13 +102,13 @@ export class _BoardDetails extends React.Component {
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
-            board={board}
+            board={currBoard}
             onBlur={this.onBlur}
           />
           <BoardContent
             onAddItem={this.onAddItem}
-            groups={groups}
-            board={board}
+            groups={currBoard.groups}
+            board={currBoard}
             onBlur={this.onBlur}
           />
         </div>
@@ -150,7 +131,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaces,
   loadBoard,
-  onEditGroup,
+  editGroup,
   onEditItem,
   onEditBoard,
   getWorkspaceByBoardId,
@@ -158,9 +139,22 @@ const mapDispatchToProps = {
   loadGroups,
   createItem,
   editWorkspace,
+  addItem
 };
 
 export const BoardDetails = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_BoardDetails);
+
+
+
+
+
+//IF-NEED
+
+    //   const boardId = await this.props.match.params.boardId;
+  //   if(!prevProps.workspace || !workspace )return;
+  //   // if(!workspace.boards.includes(boardId))return;
+  //   const boardIdx = await workspace.boards.findIndex(board => board._id === boardId);
+  //   if(boardIdx === -1)return;
