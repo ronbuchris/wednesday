@@ -4,7 +4,8 @@ import { createItem } from './item.service'
 const STORAGE_KEY = 'workspaceDB';
 
 export const groupService = {
-    save
+    save,
+    createGroup
 }
 
 async function save(newGroup, boardForAdd) {
@@ -30,20 +31,23 @@ async function save(newGroup, boardForAdd) {
     })
 }
 
-export function createGroup(user, itemCount = 1) {
+export async function createGroup(user, itemCount = 1) {
     const items = []
     for (var i = 0; i < itemCount; i++) {
-        items.push(createItem("New Item", user))
+        const item = await createItem("New Item", user)
+        items.push(item)
     }
-
-    return {
-        "id": makeId(),
-        "title": "New Group",
-        items,
-        "style": {
-            "color": "brown",
+    
+    return Promise.resolve(
+        {
+            "id": makeId(),
+            "title": "New Group",
+            items,
+            "style": {
+                "color": "brown",
+            }
         }
-    }
+        )
 }
 
 function makeId(length = 6) {

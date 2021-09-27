@@ -4,7 +4,8 @@ const STORAGE_KEY = 'workspaceDB';
 
 export const itemService = {
     save,
-    remove
+    remove,
+    createItem
 }
 async function remove(workspace, group, itemId) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
@@ -44,42 +45,44 @@ async function save(newItem, groupId, workspace) {
 }
 
 
-export function createItem(title, user) {
-    return {
-        id: makeId(),
-        title,
-        columns: [
-            {
-                type: "member",
-                members: [
-                    {
-                        _id: "u101",
-                        fullname: "Adir Cohen",
-                        img: `https://robohash.org/adir`,
+ export function createItem(title, user) {
+    return Promise.resolve(
+        {
+            id: makeId(),
+            title,
+            columns: [
+                {
+                    type: "member",
+                    members: [
+                        {
+                            _id: "u101",
+                            fullname: "Adir Cohen",
+                            img: `https://robohash.org/adir`,
+                        }
+                    ]
+                },
+                {
+                    type: "status",
+                    label: {
+                        title: "Done",
+                        color: "green"
                     }
-                ]
+                    
+                },
+            ],
+            creator: {
+                _id: user._id,
+                fullname: user.fullname,
+                img: user.img
             },
-            {
-                type: "status",
-                label: {
-                    title: "Done",
-                    color: "green"
-                }
-
-            },
-        ],
-        creator: {
-            _id: user._id,
-            fullname: user.fullname,
-            img: user.img
-        },
-        createdAt: Date.now(),
+            createdAt: Date.now(),
+        }
+        )
     }
-}
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
+    
+    function makeId(length = 6) {
+        var txt = '';
+        var possible =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (var i = 0; i < length; i++) {

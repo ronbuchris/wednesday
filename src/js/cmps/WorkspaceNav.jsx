@@ -151,6 +151,7 @@ const mapDispatchToProps = {
   toggleNav,
   loadBoard,
   editWorkspace,
+  createBoard,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

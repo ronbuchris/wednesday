@@ -1,4 +1,5 @@
 import { groupService } from "../../services/group.service";
+import { workspaceService } from "../../services/workspace.service";
 
 
 export function setGroup(group) {
@@ -14,23 +15,21 @@ export function setGroup(group) {
     }
 }
 
-export function onEditGroup(groupToSave,board=null) {
-    console.log(`groupToSave`, groupToSave)
-    return (dispatch) => {
-        groupService.save(groupToSave,board)
-            .then(workspace => {
-                console.log(`workspace`, workspace)
-                dispatch({
-                    type: 'SET_WORKSPACE',
-                      workspace,
-                })
-                console.log('group updated')
+
+export function editGroup(workspace,board,group,user){
+    return async(dispatch)=>{
+        try{
+            const newWorkspace = await workspaceService.editGroup(workspace,board,group,user)
+            dispatch({
+                type:'EDIT_WORKSPACE', 
+                workspace:newWorkspace,
             })
-            .catch(err => {
-                console.log('Cannot update group')
-                console.log('Cannot save group', err)
-            })
+        }catch(err){
+            console.log('Cannot edit group', err)
+        }
     }
+
+
 }
 
 export function loadGroups(board) {

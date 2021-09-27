@@ -1,5 +1,5 @@
 import { itemService } from "../../services/item.service";
-
+import {workspaceService} from '../../services/workspace.service'
 
 export function loadItems(group) {
     return async dispatch => {
@@ -64,3 +64,20 @@ export function onRemoveItem(workspace,group,itemId) {
         }
     }
 }
+
+export function addItem(newItemData,user,workspace,group,board,addToTop){
+    return async (dispatch) => {
+        try{
+            const newItem= await itemService.createItem(newItemData,user)
+            const newWorkspace=await workspaceService.addItem(newItem,workspace,group,board,addToTop)
+            dispatch({
+                type:'EDIT_WORKSPACE', 
+                workspace:newWorkspace,
+            })
+              
+
+        }catch(err){
+            console.log('Cannot add item', err)
+        }
+    }
+} 

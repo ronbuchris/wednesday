@@ -19,7 +19,7 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, workspaces: [...state.workspaces, action.workspace] }
             break
         case 'EDIT_WORKSPACE':
-            console.log(`action`, action)
+            console.log(`action.workspace`, action.workspace)
             workspaces = state.workspaces.map(workspace => (workspace._id === action.workspace._id) ? action.workspace : workspace)
             newState = { ...state, workspaces, workspace: action.workspace }
             break
