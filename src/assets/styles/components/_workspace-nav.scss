@@ -59,14 +59,26 @@
       box-shadow: 0 4px 17px 6px #0000001a;
       top: 120%;
       left: 0;
+      z-index: 10;
     }
   }
   .menu-button-wrapper {
     height: 32px;
     gap: 5px;
+    padding: 0 8px;
+    .board-title {
+      gap: 5px;
+    }
 
+    .hover-display {
+      display: none;
+    }
     &:hover {
       background-color: $ui-grey-color;
+
+      .hover-display {
+        display: flex;
+      }
     }
   }
 }
