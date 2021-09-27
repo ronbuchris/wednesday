@@ -11,8 +11,8 @@ export class BoardContent extends Component {
         {groups.map((group) => {;
           return (
             <GroupPreview
-              onBlur={onBlur}
-              key={group.id}
+            onBlur={onBlur}
+            key={group.id}
               group={group}
               board={board}
               onAddItem={onAddItem}

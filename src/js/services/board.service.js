@@ -95,8 +95,6 @@ export async function createBoard(user, users) {
         cmpsOrder: ["status", "member", "date"]
     })
 }
-
-
 function makeId(length = 6) {
     var txt = '';
     var possible =

@@ -32,7 +32,7 @@ export class _WorkspaceDetails extends Component {
     if (!workspace) return <div className="">loading</div>;
     return (
       <div className="workspace-app flex">
-        <WorkspaceNav  />
+        <WorkspaceNav workspace={workspace} />
         <div className="workspace-details">
           <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
           <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
@@ -46,7 +46,6 @@ function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
-    board: state.boardModule.board,
     user: state.userModule.user,
   };
 }

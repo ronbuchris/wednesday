@@ -59,7 +59,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen } =
+    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen,boardId } =
       this.props;
     const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
@@ -115,7 +115,7 @@ class _WorkspaceNav extends Component {
             </button>
             <div className="divider"></div>
             <div className="board-list">
-              <BoardList workspace={workspace} />
+              <BoardList boardId={boardId} workspace={workspace} />
             </div>
           </>
         )}
@@ -130,8 +130,8 @@ function mapStateToProps(state) {
     isMenuOpen: state.workspaceModule.isMenuOpen,
     workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
-    workspace: state.workspaceModule.workspace,
-    board: state.boardModule.board,
+    // workspace: state.workspaceModule.workspace,
+    // board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
   };
