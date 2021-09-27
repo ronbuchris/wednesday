@@ -80,7 +80,7 @@ export class _BoardDetails extends React.Component {
 
     //find board index
     const boardIdx = workspace.boards.findIndex(
-      (findBoard) => findBoard.id === board.id
+      (findBoard) => findBoard._id === board._id
     );
     // change board
     newWorkspace.boards.splice(boardIdx, 1, board);
@@ -97,14 +97,12 @@ export class _BoardDetails extends React.Component {
     } else {
       const newGroup = createGroup(user);
       const newBoard = { ...board, groups: [newGroup, ...board.groups] };
-
       const boardIdx = workspace.boards.findIndex(
-        (board) => board.id === newBoard.id
+        (board) => board._id === newBoard._id
       );
       newWorkspace.boards.splice(boardIdx, 1, newBoard);
       //copy NEW workspace
     }
-
     editWorkspace(newWorkspace);
   };
 
