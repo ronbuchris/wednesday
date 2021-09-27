@@ -1,6 +1,6 @@
 const initialState = {
     group: null,
-    groups:[]
+    groups: []
 }
 
 export function groupReducer(state = initialState, action) {
@@ -11,39 +11,49 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_GROUPS':
-            console.log(action);
-            if(action.groupsIds.length) {
+            if (action.groupsIds.length) {
                 groups = action.board.groups.filter(group => {
                     return action.groupsIds.includes(group.id)
                 })
-                newState = { ...state.groups, groups:[...groups] }
+                newState = { ...state.groups, groups: [...groups] }
                 break
             }
-            if(action.sortType || action.searchBy) {
+            if (action.sortType || action.searchBy) {
                 groups = action.board.groups.map(group => {
                     if (action.searchBy) {
-                        return group.items.map(item => {
-                            return item.title.includes(action.searchBy.itemTitle)
-                        })
-                    }
-                    if (action.sortType) {
-                        if (action.sortType === 'A-Z') {
-                            return group.items.sort((a,b) => {
-                                return a.title.localeCompare(b.title)
+                        return {
+                            ...group, items: group.items.filter(item => {
+                                return item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase())
                             })
                         }
-                    } else {
-                        return group.items.sort((a, b) => b.title.localeCompare(a.title))
-                    }
+                    } 
                 })
+                if (action.sortType) {
+                    groups = action.board.groups.map(group => {
+                            return {
+                                ...group, items: group.items.sort((a,b) => {
+                                    if (action.sortType === 'A-Z') {
+                                        return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                                    } else if (action.sortType === 'Z-A'){
+                                        if (a.title.toLowerCase() > b.title.toLowerCase())
+                                            return -1;
+                                        if (a.title.toLowerCase() < b.title.toLowerCase())
+                                            return 1;
+                                        return 0;
+                                    }
+                                })
+                            }
+                    })
+                }
+
                 console.log(groups);
-                newState = { ...state.groups, groups: [...action.board.groups] }
+                newState = { ...state.groups, groups: [...groups] }
                 break
             }
             newState = { ...state, groups: action.board.groups }
             break
         case 'ADD_GROUP':
-            newState = { ...state, groups:[...state.groups, action.group] }
+            newState = { ...state, groups: [...state.groups, action.group] }
             break
         default:
     }

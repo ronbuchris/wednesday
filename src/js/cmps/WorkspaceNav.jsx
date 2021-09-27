@@ -124,7 +124,7 @@ class _WorkspaceNav extends Component {
               <span>Search</span>
             </button>
             <div className="separate-line">
-              <hr />
+              <hr className="line"/>
             </div>
             <div className="board-list">
               <BoardList workspace={workspace} />
