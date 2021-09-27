@@ -1,5 +1,4 @@
 import { storageService } from "./async-storage.service"
-import {workspaceService} from "./workspace.service"
 import { createGroup } from './group.service'
 
 export const boardService = { getById, save, getBoardById}
@@ -20,15 +19,15 @@ async function getBoardById(boardId){
 }
 
 async function save(newBoard) {
-    const boardId=newBoard._id;
-    const workspaces= await storageService.query(STORAGE_KEY)
-    workspaces.forEach(workspace =>{
-        workspace.boards.forEach((board,idx) =>{
-                if(board._id===boardId){
-                    workspace.boards.splice(idx,1,newBoard)
-                    storageService.put(STORAGE_KEY, workspace)
-                }
-            
+    const boardId = newBoard._id;
+    const workspaces = await storageService.query(STORAGE_KEY)
+    workspaces.forEach(workspace => {
+        workspace.boards.forEach((board, idx) => {
+            if (board._id === boardId) {
+                workspace.boards.splice(idx, 1, newBoard)
+                storageService.put(STORAGE_KEY, workspace)
+            }
+
         })
     })
 }
@@ -42,8 +41,13 @@ async function save(newBoard) {
 export async function createBoard(user, users) {
 
     const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
-
-    return {
+    const groups = [];
+    for(let i = 0 ;i< 3;i++) {
+        const group = await createGroup(user, i+1)
+        groups.push(group)
+    }
+    console.log(groups);
+    return Promise.resolve({
         _id: makeId(),
         title: "New Board",
         createdAt: Date.now(),
@@ -86,13 +90,10 @@ export async function createBoard(user, users) {
             }
 
         ],
-        groups: [
-            createGroup(user, 3),
-            createGroup(user, 2)
-        ],
+        groups: groups,
         activities: [],
         cmpsOrder: ["status", "member", "date"]
-    }
+    })
 }
 function makeId(length = 6) {
     var txt = '';

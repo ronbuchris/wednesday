@@ -2,7 +2,6 @@ import Home from 'monday-ui-react-core/dist/icons/Home';
 
 
 export function WorkspaceHeader({ workspace, handleChange }) {
-  console.log(workspace);
   return (
     <div className="workspace-header">
       <div className="workspace-bgimg"></div>

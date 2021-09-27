@@ -37,17 +37,16 @@ export async function createGroup(user, itemCount = 1) {
         const item = await createItem("New Item", user)
         items.push(item)
     }
-    
-    return Promise.resolve(
-        {
-            "id": makeId(),
-            "title": "New Group",
-            items,
-            "style": {
-                "color": "brown",
-            }
+    const group = {
+        "id": makeId(),
+        "title": "New Group",
+        items,
+        "style": {
+            "color": "brown",
         }
-        )
+    }
+    return Promise.resolve(group)
+        
 }
 
 function makeId(length = 6) {
