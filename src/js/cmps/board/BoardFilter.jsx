@@ -19,7 +19,6 @@ class _BoardFilter extends Component {
             this.setState({ filterByGroupId: filterByGroupId })
         }
         this.props.filterGroups(this.props.board,filterByGroupId)
-        console.log(filterByGroupId);
     }
     render() {
         const { board} = this.props;

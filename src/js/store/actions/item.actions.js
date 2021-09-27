@@ -14,6 +14,22 @@ export function loadItems(group) {
     }
 }
 
+export function onSetSearch(board, searchBy) {
+    return async (dispatch) => {
+        const groupsIds = []
+        try {
+            dispatch({
+                type: 'SET_GROUPS',
+                board,
+                searchBy,
+                groupsIds
+            })
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
+
 export function onEditItem(itemToSave,groupId=null,workspace) {
     console.log(`itemToSave`, itemToSave)
     return async (dispatch) => {

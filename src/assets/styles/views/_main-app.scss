@@ -26,6 +26,10 @@
       background-color: $clr6;
       padding: 16px;
     }
+    .separate-line {
+      padding-top:16px ;
+      color:$ui-grey-color;
+    }
     .board-details {
       flex: 1;
       .board-header {

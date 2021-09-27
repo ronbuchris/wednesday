@@ -11,6 +11,7 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_GROUPS':
+            console.log(action);
             if(action.groupsIds.length) {
                 groups = action.board.groups.filter(group => {
                     return action.groupsIds.includes(group.id)
@@ -18,16 +19,24 @@ export function groupReducer(state = initialState, action) {
                 newState = { ...state.groups, groups:[...groups] }
                 break
             }
-            if(action.sortType) {
+            if(action.sortType || action.searchBy) {
                 groups = action.board.groups.map(group => {
-                    if (action.sortType === 'A-Z') {
-                        return group.items.sort((a,b) => {
-                            return a.title.localeCompare(b.title)
+                    if (action.searchBy) {
+                        return group.items.map(item => {
+                            return item.title.includes(action.searchBy.itemTitle)
                         })
+                    }
+                    if (action.sortType) {
+                        if (action.sortType === 'A-Z') {
+                            return group.items.sort((a,b) => {
+                                return a.title.localeCompare(b.title)
+                            })
+                        }
                     } else {
                         return group.items.sort((a, b) => b.title.localeCompare(a.title))
                     }
                 })
+                console.log(groups);
                 newState = { ...state.groups, groups: [...action.board.groups] }
                 break
             }
