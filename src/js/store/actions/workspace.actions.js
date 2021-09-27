@@ -80,6 +80,14 @@ export function toggleNav() {
         })
     }
 }
+export function toggleMenu(isMenuOpen = true) {
+    return dispatch => {
+        dispatch({
+            type: 'TOGGLE_MENU',
+            isMenuOpen
+        })
+    }
+}
 
 export function getWorkspaceByBoardId(boardId) {
 
