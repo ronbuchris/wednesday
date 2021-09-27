@@ -1,5 +1,4 @@
 import { storageService } from "./async-storage.service"
-import {workspaceService} from "./workspace.service"
 import { createGroup } from './group.service'
 
 export const boardService = { getById, save, getBoardById}
@@ -20,15 +19,15 @@ async function getBoardById(boardId){
 }
 
 async function save(newBoard) {
-    const boardId=newBoard._id;
-    const workspaces= await storageService.query(STORAGE_KEY)
-    workspaces.forEach(workspace =>{
-        workspace.boards.forEach((board,idx) =>{
-                if(board._id===boardId){
-                    workspace.boards.splice(idx,1,newBoard)
-                    storageService.put(STORAGE_KEY, workspace)
-                }
-            
+    const boardId = newBoard._id;
+    const workspaces = await storageService.query(STORAGE_KEY)
+    workspaces.forEach(workspace => {
+        workspace.boards.forEach((board, idx) => {
+            if (board._id === boardId) {
+                workspace.boards.splice(idx, 1, newBoard)
+                storageService.put(STORAGE_KEY, workspace)
+            }
+
         })
     })
 }
@@ -39,19 +38,22 @@ async function save(newBoard) {
 //     workspaceService.save(workspace)
 // }
 
-export function createBoard(user,users) {
+export function createBoard(user, users) {
+
     const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
+
     return {
-        "_id": makeId(),
-        "title": "New Board",
-        "createdAt": Date.now(),
-        "description": "Click to add description",
-        "createdBy": {
-            "_id": user._id,
-            "fullname": user.fullname,
-            "imgUrl": user.img,
+        _id: makeId(),
+        title: "New Board",
+        createdAt: Date.now(),
+        description: "Click to add description",
+        members,
+        createdBy: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img,
         },
-        "columns": [
+        columns: [
             {
                 id: makeId(),
                 type: "member",
@@ -83,62 +85,12 @@ export function createBoard(user,users) {
             }
 
         ],
-        "groups": [
-            {
-                "id": makeId(),
-                "title": "New Group",
-                "items": [
-                    {
-                        "id": makeId(),
-                        "title": "New Item",
-                        "person": [],
-                        "status": {
-                            "type": "status",
-                            "title": "done",
-                            "bgcolor": "green",
-                        },
-                        "date": Date.now(),
-                    },
-                    {
-                        "id": makeId(),
-                        "title": "New Item",
-                        "person": [],
-                        "status": {
-                            "type": "status",
-                            "title": "warning",
-                            "bgcolor": "red",
-                        },
-                        "date": Date.now(),
-
-                    },
-                ],
-                "columns": [
-                    {
-                        "type": "member",
-                        "members": [
-                            {
-                                "_id": "u101",
-                                "fullname": "Adir Cohen",
-                                "img": `https://robohash.org/adir`,
-                            }
-                        ]
-                    },
-                    {
-                        "type": "status",
-                        "label": {
-                            "title": "Done",
-                            "color": "green"
-                        }
-
-                    },
-                ],
-                "style": {
-                    "color": "blue",
-                }
-            },
+        groups: [
+            createGroup(user, 3),
+            createGroup(user, 2)
         ],
-        "activities": [],
-        "cmpsOrder": ["status", "member", "date"]
+        activities: [],
+        cmpsOrder: ["status", "member", "date"]
     }
 }
 
