@@ -73,7 +73,7 @@ async function save(newItem, groupId, workspace) {
 }
 
 export function createItem(title, user) {
-    return {
+    return Promise.resolve( {
         id: makeId(),
         title,
         columns: [
@@ -102,7 +102,7 @@ export function createItem(title, user) {
             img: user.img
         },
         createdAt: Date.now(),
-    }
+    })
 }
 
     

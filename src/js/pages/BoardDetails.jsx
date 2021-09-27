@@ -90,7 +90,8 @@ export class _BoardDetails extends React.Component {
 
 
   render() {
-    const { workspace } = this.props;
+    const { workspace,match } = this.props;
+    const {boardId}=match.params
     if (!workspace) return <div>loading</div>
     console.log(`workspace`, workspace);
     const boardIdx = this.getIdxById()
@@ -99,7 +100,7 @@ export class _BoardDetails extends React.Component {
     // if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
-        <WorkspaceNav workspace={workspace} onRemoveBoard={this.onRemoveBoard} />
+        <WorkspaceNav boardId={boardId} workspace={workspace} onRemoveBoard={this.onRemoveBoard} />
         <div className="board-details">
           <BoardHeader
             onRemoveBoard={this.onRemoveBoard}
