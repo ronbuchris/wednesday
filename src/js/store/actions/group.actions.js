@@ -36,10 +36,12 @@ export function onEditGroup(groupToSave,board=null) {
 export function loadGroups(board) {
     return async dispatch => {
         try {
+            const statuses = []
             const groupsIds = []
             dispatch({
                 type: 'SET_GROUPS',
                 board,
+                statuses,
                 groups: board.groups, 
                 groupsIds
             })
@@ -51,9 +53,11 @@ export function loadGroups(board) {
 export function filterGroups(board,groupsIds) {
     return async dispatch => {
         try {
+            const statuses = []
             dispatch({
                 type: 'SET_GROUPS',
                 board,
+                statuses,
                 groupsIds
             })
         } catch (err) {
@@ -61,14 +65,14 @@ export function filterGroups(board,groupsIds) {
         }
     }
 }
-export function filterStatus(board,status) {
+export function filterStatus(board,statuses) {
     return async dispatch => {
         try {
             const groupsIds = [] 
             dispatch({
                 type: 'SET_GROUPS',
                 board,
-                status,
+                statuses,
                 groupsIds
             })
         } catch (err) {

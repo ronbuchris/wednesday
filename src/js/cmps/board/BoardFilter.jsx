@@ -5,7 +5,7 @@ import { filterGroups, filterStatus } from '../../store/actions/group.actions'
 class _BoardFilter extends Component {
     state = {
         filterByGroupId: [],
-        filterGroups:[]
+        filterByStatus:[]
     }
 
     onFilter = (groupId) => {
@@ -22,7 +22,16 @@ class _BoardFilter extends Component {
     }
 
     onFilterStatus= (status) => {
-        this.props.filterStatus(this.props.board, status)
+        const { filterByStatus } = this.state
+        if (filterByStatus.includes(status)) {
+            const statusIdx = filterByStatus.findIndex(s => s === status)
+            filterByStatus.splice(statusIdx, 1)
+            this.setState({ filterByStatus })
+        } else {
+            filterByStatus.push(status)
+            this.setState({ filterByStatus })
+        }
+        this.props.filterStatus(this.props.board, filterByStatus)
     }
     render() {
         const { board} = this.props;

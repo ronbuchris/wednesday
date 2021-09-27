@@ -1,5 +1,4 @@
 import { storageService } from "./async-storage.service"
-import { workspaceService } from "./workspace.service"
 import { createGroup } from './group.service'
 
 export const boardService = { getById, save }
