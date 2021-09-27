@@ -45,8 +45,6 @@ export function groupReducer(state = initialState, action) {
                             }
                     })
                 }
-
-                console.log(groups);
                 newState = { ...state.groups, groups: [...groups] }
                 break
             }
