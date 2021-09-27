@@ -28,7 +28,6 @@ export function groupReducer(state = initialState, action) {
                 break
             }
             if (action.sortType || action.searchBy) {
-                console.log('hi from sort, search');
                 groups = action.board.groups.map(group => {
                     if (action.searchBy) {
                         return {

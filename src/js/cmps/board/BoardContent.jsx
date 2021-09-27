@@ -8,7 +8,7 @@ export class BoardContent extends Component {
     if (!groups) return <div className="">No groups to show</div>;
     return (
       <div className="board-content">
-        {groups.map((group) => {
+        {groups.map((group) => {;
           return (
             <GroupPreview
               onBlur={onBlur}

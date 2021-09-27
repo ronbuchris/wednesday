@@ -2,7 +2,6 @@
 
 
 export function ItemUpdates({updates}) {
-    console.log(updates);
     return (
         <div>
             {updates.map(update => {

@@ -11,7 +11,6 @@ export function itemReducer(state = initialState, action) {
             newState = { ...state, items: action.items }
             break
         case 'SET_ITEM':
-            console.log(action);
             newState = { ...state, item: action.item }
             break
         case 'ADD_ITEM':

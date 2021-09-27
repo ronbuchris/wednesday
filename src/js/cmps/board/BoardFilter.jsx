@@ -35,7 +35,6 @@ class _BoardFilter extends Component {
     }
     render() {
         const { board} = this.props;
-        console.log(`board`, board)
         return (
             <div className="board-filter">
                 {board.groups.map(group => {

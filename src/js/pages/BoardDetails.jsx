@@ -23,7 +23,6 @@ import {
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
-    console.log(`didmount`)
     const boardId = this.props.match.params.boardId || this.props.board._id;
     await this.props.getWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
@@ -33,9 +32,7 @@ export class _BoardDetails extends React.Component {
   async componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params
     const { workspace } = this.props
-    console.log(`prevProps111`, prevProps)
     if (prevProps.match.params.boardId !== boardId) {
-      // console.log(`prevProps111`, prevProps)
       await this.props.getWorkspaceByBoardId(boardId);
       await this.props.loadBoard(workspace, boardId);
     }
@@ -89,11 +86,8 @@ export class _BoardDetails extends React.Component {
   render() {
     const { workspace } = this.props;
     if (!workspace) return <div>loading</div>
-    console.log(`workspace`, workspace);
     const boardIdx = this.getIdxById()
     const currBoard = workspace.boards[boardIdx];
-      console.log(`currBoard`, currBoard.groups)
-    // if (!board || !groups) return <div className="loading">loading</div>;
     return (
       <div className="board-app flex">
         <WorkspaceNav onRemoveBoard={this.onRemoveBoard} />

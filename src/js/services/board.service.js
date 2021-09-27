@@ -38,11 +38,16 @@ async function save(newBoard) {
 //     workspaceService.save(workspace)
 // }
 
-export function createBoard(user, users) {
+export async function createBoard(user, users) {
 
     const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
-
-    return {
+    const groups = [];
+    for(let i = 0 ;i< 3;i++) {
+        const group = await createGroup(user, i+1)
+        groups.push(group)
+    }
+    console.log(groups);
+    return Promise.resolve({
         _id: makeId(),
         title: "New Board",
         createdAt: Date.now(),
@@ -85,13 +90,10 @@ export function createBoard(user, users) {
             }
 
         ],
-        groups: [
-            createGroup(user, 3),
-            createGroup(user, 2)
-        ],
+        groups: groups,
         activities: [],
         cmpsOrder: ["status", "member", "date"]
-    }
+    })
 }
 
 
