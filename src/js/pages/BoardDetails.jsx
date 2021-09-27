@@ -87,7 +87,7 @@ export class _BoardDetails extends React.Component {
 
 
   render() {
-    const { board, groups, workspace } = this.props;
+    const { workspace } = this.props;
     if (!workspace) return <div>loading</div>
     console.log(`workspace`, workspace);
     const boardIdx = this.getIdxById()

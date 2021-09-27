@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Screen } from '../pages/Screen';
 
 export function _WorkspaceMenu({ workspaces }) {
   return (
@@ -8,7 +9,9 @@ export function _WorkspaceMenu({ workspaces }) {
       {workspaces.map((workspace) => {
         return (
           <Link key={workspace._id} to={`/workspace/${workspace._id}`}>
-            <div className="workspace-option">{workspace.name}</div>
+            <div className="workspace-option menu-button-wrapper flex align-center br4">
+              {workspace.name}
+            </div>
           </Link>
         );
       })}

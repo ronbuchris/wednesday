@@ -99,6 +99,15 @@
 .disabled-link {
   pointer-events: none;
 }
+
+.header-btn {
+  height: 32px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $ui-grey-color;
+  }
+}
 // Media helpers
 
 .square-ratio {

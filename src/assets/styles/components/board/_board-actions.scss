@@ -1,8 +1,10 @@
 .actions-container {
   padding: 16px 0;
+
   .add-action {
     height: 32px;
     margin-right: 14px;
+
     .add {
       background-color: $primary-color;
       color: $clr7;
@@ -11,9 +13,11 @@
       &:hover {
         background-color: $primary-hover-color;
       }
+
       &.item-add {
         border-radius: 4px 0 0 4px;
       }
+
       &.group-add {
         border-radius: 0 4px 4px 0;
         border-left: 1px solid $primary-hover-color;

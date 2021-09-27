@@ -14,17 +14,19 @@ import {
   loadWorkspace,
   toggleNav,
   editWorkspace,
+  toggleMenu,
 } from '../store/actions/workspace.actions';
 import { addBoard, loadBoard } from '../store/actions/board.actions';
 
 import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
 import { createBoard } from '../services/board.service';
+import { Screen } from '../pages/Screen';
 
 class _WorkspaceNav extends Component {
   state = {
     isHovered: false,
-    isOpenMenu: false,
+    // isOpenMenu: false,
   };
 
   componentDidMount() {
@@ -53,14 +55,13 @@ class _WorkspaceNav extends Component {
   };
 
   toggleMenu = () => {
-    this.setState((prevState) => ({
-      isOpenMenu: !prevState.isOpenMenu,
-    }));
+    this.props.toggleMenu();
   };
 
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav } = this.props;
-    const { isHovered, isOpenMenu } = this.state;
+    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen } =
+      this.props;
+    const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div
@@ -95,19 +96,8 @@ class _WorkspaceNav extends Component {
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />
-              {isOpenMenu && <WorkspaceMenu />}
+              {isMenuOpen && <WorkspaceMenu />}
             </div>
-
-            {/* <select name="" id="" onChange={this.handleChange}>
-              {workspaces.map((workspace) => {
-                return (
-                  <option key={workspace._id} value={workspace._id}>
-                    {workspace.name}
-                  </option>
-                );
-              })}
-            </select> */}
-
             <button
               className="flex menu-button-wrapper align-center"
               onClick={this.onAddBoard}
@@ -129,6 +119,7 @@ class _WorkspaceNav extends Component {
             </div>
           </>
         )}
+        {isMenuOpen && <Screen />}
       </div>
     );
   }
@@ -136,6 +127,7 @@ class _WorkspaceNav extends Component {
 
 function mapStateToProps(state) {
   return {
+    isMenuOpen: state.workspaceModule.isMenuOpen,
     workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
     workspace: state.workspaceModule.workspace,

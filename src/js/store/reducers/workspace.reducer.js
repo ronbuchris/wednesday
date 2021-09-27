@@ -2,7 +2,8 @@ const initialState = {
     workspace: null,
     workspaces: [],
     labels: [],
-    isOpenNav: false
+    isOpenNav: false,
+    isMenuOpen: false
 }
 
 export function workspaceReducer(state = initialState, action) {
@@ -30,6 +31,8 @@ export function workspaceReducer(state = initialState, action) {
         case 'TOGGLE_NAV':
             newState = { ...state, isOpenNav: !state.isOpenNav }
             break
+        case 'TOGGLE_MENU':
+            newState = { ...state, isMenuOpen: action.isMenuOpen }
         default:
     }
     return newState
