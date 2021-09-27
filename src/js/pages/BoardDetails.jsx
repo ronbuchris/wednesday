@@ -112,7 +112,7 @@ export class _BoardDetails extends React.Component {
 
   render() {
     const { board, groups } = this.props;
-    if (!board || !groups) return <div className="loading">loading</div>;
+    if (!board || !groups) return <div className="loader">loading...</div>;
     return (
       <div className="board-app flex">
         <WorkspaceNav onRemoveBoard={this.onRemoveBoard} />

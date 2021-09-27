@@ -14,6 +14,7 @@ export function GroupHeader({ board, group, onBlur }) {
       </div>
       <div className="group-column-list flex">
         {board.columns.map((column) => {
+
           return (
             <div
               className="group-column-header"
