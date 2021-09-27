@@ -18,6 +18,17 @@ export function groupReducer(state = initialState, action) {
                 newState = { ...state.groups, groups: [...groups] }
                 break
             }
+            if(action.status) {
+                console.log(action.status);
+                groups = action.board.groups.map(group => {
+                       return {
+                           ...group, items:group.items.filter(item => {
+                               console.log(item);
+                               return item.columns[1].label.title === action.status
+                           }) 
+                       }
+                })
+            }
             if (action.sortType || action.searchBy) {
                 groups = action.board.groups.map(group => {
                     if (action.searchBy) {

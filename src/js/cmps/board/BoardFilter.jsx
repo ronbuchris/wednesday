@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterGroups } from '../../store/actions/group.actions'
+import { filterGroups, filterStatus } from '../../store/actions/group.actions'
 
 class _BoardFilter extends Component {
     state = {
@@ -20,6 +20,10 @@ class _BoardFilter extends Component {
         }
         this.props.filterGroups(this.props.board,filterByGroupId)
     }
+
+    onFilterStatus= (status) => {
+        this.props.filterStatus(this.props.board, status)
+    }
     render() {
         const { board} = this.props;
         return (
@@ -34,7 +38,9 @@ class _BoardFilter extends Component {
 
                 })}
                 {board.columns[1].labels.map(label => {
-                    return <div key={label.color}>
+                    return <div key={label.color} onClick={() => {
+                        this.onFilterStatus(label.title)
+                    }}>
                         {label.title}
                     </div>
 
@@ -52,7 +58,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    filterGroups
+    filterGroups,
+    filterStatus
 };
 export const BoardFilter = connect(
     mapStateToProps,
