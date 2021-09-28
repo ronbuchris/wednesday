@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterGroups, filterStatus } from '../../store/actions/group.actions'
+import { GroupFilter } from '../group/GroupFilter';
+import { StatusFilter } from '../item/StatusFilter';
 
 class _BoardFilter extends Component {
     state = {
@@ -10,6 +12,7 @@ class _BoardFilter extends Component {
 
     onFilter = (groupId) => {
         const { filterByGroupId} = this.state
+        const { board, workspace} = this.props
         if (filterByGroupId.includes(groupId)) {
             const groupIdIdx = filterByGroupId.findIndex(g => g === groupId)
             filterByGroupId.splice(groupIdIdx,1)
@@ -18,7 +21,7 @@ class _BoardFilter extends Component {
             filterByGroupId.push(groupId)
             this.setState({ filterByGroupId: filterByGroupId })
         }
-        this.props.filterGroups(this.props.board,filterByGroupId)
+        this.props.filterGroups(workspace,board,filterByGroupId)
     }
 
     onFilterStatus= (status) => {
@@ -37,35 +40,24 @@ class _BoardFilter extends Component {
         const { board} = this.props;
         return (
             <div className="board-filter">
-                {board.groups.map(group => {
-                    return <div key={group.id} className="group-filter-preview flex" onClick={() => {
-                        this.onFilter(group.id)
-                    }}>
-                        <h3>{group.title}</h3>
-                        <p>{group.items.length}</p>
-                    </div>
-
-                })}
-                {board.columns[1].labels.map(label => {
-                    return <div key={label.color} onClick={() => {
-                        this.onFilterStatus(label.title)
-                    }}>
-                        {label.title}
-                    </div>
-
-                })}
+                <GroupFilter groups={board.groups} onFilter={this.onFilter}/>
+                <StatusFilter board={board} onFilterStatus={this.onFilterStatus}/>
             </div>
         )
     }
 }
 
-
+function mapStateToProps(state) {
+    return {
+        workspace: state.workspaceModule.workspace,
+    };
+}
 
 const mapDispatchToProps = {
     filterGroups,
     filterStatus
 };
 export const BoardFilter = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(_BoardFilter);

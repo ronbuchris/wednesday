@@ -5,7 +5,8 @@ const STORAGE_KEY = 'workspaceDB';
 
 export const groupService = {
     save,
-    createGroup
+    createGroup,
+    filterGroups
 }
 
 async function save(newGroup, boardForAdd) {
@@ -59,4 +60,16 @@ function makeId(length = 6) {
     }
 
     return txt;
+}
+
+
+async function filterGroups(workspace, board, groupsIds) {
+    const groups = board.groups.filter(group => {
+        return groupsIds.includes(group.id)
+    })
+    const boardIdx = workspace.boards.findIndex(wBoard => wBoard._id === board._id);
+    const newBoard = {...board, groups}
+    workspace.boards.splice(boardIdx, 1, newBoard)
+    const savedWorkspace= {...workspace}
+    return Promise.resolve(savedWorkspace)
 }
