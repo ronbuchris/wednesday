@@ -15,16 +15,15 @@ export function setGroup(group) {
     }
 }
 
-
-export function editGroup(workspace,board,group,user){
-    return async(dispatch)=>{
-        try{
-            const newWorkspace = await workspaceService.editGroup(workspace,board,group,user)
+export function editGroup(workspace, board, group, user) {
+    return async (dispatch) => {
+        try {
+            const newWorkspace = await workspaceService.editGroup(workspace, board, group, user)
             dispatch({
-                type:'EDIT_WORKSPACE', 
-                workspace:newWorkspace,
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace,
             })
-        }catch(err){
+        } catch (err) {
             console.log('Cannot edit group', err)
         }
     }
@@ -50,11 +49,12 @@ export function loadGroups(board) {
         }
     }
 }
+
 export function filterGroups(board, groupsIds, statuses) {
-    console.log('ids',groupsIds);
+    console.log('ids', groupsIds);
     return async dispatch => {
         try {
-            const groups = await groupService.query(board, { groupsIds})
+            const groups = await groupService.query(board, { groupsIds })
             dispatch({
                 type: 'SET_GROUPS',
                 groups
@@ -64,6 +64,7 @@ export function filterGroups(board, groupsIds, statuses) {
         }
     }
 }
+
 export function filterStatus(board, statuses, groupsIds) {
     return async dispatch => {
         try {
@@ -79,7 +80,7 @@ export function filterStatus(board, statuses, groupsIds) {
     }
 }
 
-export function removeGroup(workspace,board,groupId) {
+export function removeGroup(workspace, board, groupId) {
     return async dispatch => {
         try {
             const workspaceToSave = groupService.removeGroup(workspace, board, groupId)
