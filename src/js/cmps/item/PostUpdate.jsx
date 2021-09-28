@@ -19,6 +19,7 @@ export class PostUpdate extends Component {
   onPost = (ev) => {
     ev.preventDefault();
     this.props.onPost(this.state.update);
+    this.setState({update: {txt:''}})
   };
 
   render() {
