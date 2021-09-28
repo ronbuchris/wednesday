@@ -6,7 +6,10 @@ import { boardService } from "../../services/board.service"
 export function loadBoard(workspace, boardId) {
     return dispatch => {
         try {
+            if (!boardId) return
             const board = boardService.getById(workspace, boardId)
+            console.log('board',board);
+            console.log('work',workspace);
             dispatch({
                 type: 'SET_BOARD',
                 board
