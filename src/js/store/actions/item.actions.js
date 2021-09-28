@@ -1,4 +1,5 @@
 import { boardService } from "../../services/board.service";
+import { groupService } from "../../services/group.service";
 import { itemService } from "../../services/item.service";
 import {workspaceService} from '../../services/workspace.service'
 
@@ -33,13 +34,12 @@ export function onPost(update,user, item, workspace) {
 
 export function onSetSearch(board, searchBy) {
     return async (dispatch) => {
-        const groupsIds = []
+        // const groups = groupService.query(board, {searchBy})
         try {
             dispatch({
-                type: 'SET_GROUPS',
+                type: 'SET_SEARCH',
                 board,
-                searchBy,
-                groupsIds
+                searchBy
             })
         } catch (err) {
             console.log('Cannot search item', err)
