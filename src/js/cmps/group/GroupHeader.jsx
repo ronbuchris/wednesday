@@ -4,6 +4,8 @@ import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevron
 export function GroupHeader({ board, group, onBlur, onRemoveGroup }) {
   return (
     <div className="group-header flex">
+      <div className="group-menu-button">
+      </div>
       <div
         className="group-title flex align-center"
         style={{ color: group.style.color }}
