@@ -19,10 +19,11 @@ export function setGroup(group) {
 export function editGroup(workspace,board,group,user){
     return async(dispatch)=>{
         try{
-            const newWorkspace = await workspaceService.editGroup(workspace,board,group,user)
+            const workspaceToSave =  groupService.editGroup(workspace,board,group,user)
+            await workspaceService.save(workspaceToSave)
             dispatch({
                 type:'EDIT_WORKSPACE', 
-                workspace:newWorkspace,
+                workspace:workspaceToSave,
             })
         }catch(err){
             console.log('Cannot edit group', err)
