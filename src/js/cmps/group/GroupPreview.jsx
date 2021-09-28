@@ -43,7 +43,7 @@ class _GroupPreview extends React.Component {
   };
 
   onRemoveGroup = (groupId) => {
-    const { workspace, board} = this.props
+    const { workspace, board, removeGroup} = this.props
     removeGroup(workspace,board,groupId)
   }
 
