@@ -53,10 +53,12 @@ export function loadGroups(board) {
 export function filterGroups(board, groupsIds, statuses) {
     return async dispatch => {
         try {
-            const groups = groupService.query(board, { groupsIds })
+
             dispatch({
-                type: 'SET_GROUPS',
-                groups
+                type: 'SET_FILTER',
+                groupsIds,
+                statuses,
+                board
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
@@ -68,7 +70,7 @@ export function filterStatus(board, statuses, groupsIds) {
     return async dispatch => {
         try {
             dispatch({
-                type: 'SET_GROUPS',
+                type: 'SET_FILTER',
                 board,
                 statuses,
                 groupsIds
