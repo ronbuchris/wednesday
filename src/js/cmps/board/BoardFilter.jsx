@@ -11,8 +11,8 @@ class _BoardFilter extends Component {
     }
 
     onFilter = (groupId) => {
-        const { filterByGroupId} = this.state
-        const { board, workspace} = this.props
+        const { filterByGroupId, filterByStatus} = this.state
+        const { board} = this.props
         if (filterByGroupId.includes(groupId)) {
             const groupIdIdx = filterByGroupId.findIndex(g => g === groupId)
             filterByGroupId.splice(groupIdIdx,1)
@@ -21,7 +21,7 @@ class _BoardFilter extends Component {
             filterByGroupId.push(groupId)
             this.setState({ filterByGroupId: filterByGroupId })
         }
-        this.props.filterGroups(workspace,board,filterByGroupId)
+        this.props.filterGroups(board, filterByGroupId, filterByStatus)
     }
 
     onFilterStatus= (status) => {
@@ -37,10 +37,10 @@ class _BoardFilter extends Component {
         this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId)
     }
     render() {
-        const { board} = this.props;
+        const { board, groups} = this.props;
         return (
             <div className="board-filter">
-                <GroupFilter groups={board.groups} onFilter={this.onFilter}/>
+                <GroupFilter groups={groups} onFilter={this.onFilter}/>
                 <StatusFilter board={board} onFilterStatus={this.onFilterStatus}/>
             </div>
         )
@@ -50,6 +50,7 @@ class _BoardFilter extends Component {
 function mapStateToProps(state) {
     return {
         workspace: state.workspaceModule.workspace,
+        groups: state.groupModule.groups,
     };
 }
 
