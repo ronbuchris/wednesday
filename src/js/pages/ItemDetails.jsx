@@ -9,26 +9,29 @@ import { PostUpdate } from '../cmps/item/PostUpdate';
 
 class _ItemDetails extends Component {
   componentDidMount() {
-    const { boardId } = this.props.match.params;
-    const { loadWorkspaceByBoardId } = this.props;
-    loadWorkspaceByBoardId(boardId);
+    const { boardId, itemId } = this.props.match.params;
+    this.props.loadItem(boardId, itemId);
   }
 
-  getItem = () => {
-    const { workspace } = this.props;
-    const { itemId, boardId } = this.props.match.params;
-    const boardIdx = workspace.boards.findIndex(
-      (board) => board._id === boardId
-    );
-    const board = workspace.boards[boardIdx];
-    const group = board.groups.find((group) =>
-      group.items.map((item) => {
-        return item.id === itemId;
-      })
-    );
-    const item = group.items.find((item) => item.id === itemId);
-    return item;
+  onPost = async (update) => {
+    const { user, workspace, history, onPost, match, item, loadItem } =
+      this.props;
+    const { boardId, itemId } = match.params;
+    await onPost(update, user, item, workspace);
+    loadItem(boardId, itemId);
+    history.push(`/board/${boardId}/item/${itemId}`);
   };
+  render() {
+    const { item } = this.props;
+    if (!item) return <div className="">loading</div>;
+    return (
+      <div>
+        <h1>{item.title}</h1>
+        <PostUpdate onPost={this.onPost} />
+        <ItemUpdates updates={item.updates} />
+      </div>
+    );
+  }
 
   onPost = async (update) => {
     const { user, workspace, history, onPost, match } = this.props;
@@ -56,6 +59,7 @@ function mapStateToProps(state) {
   return {
     user: state.userModule.user,
     workspace: state.workspaceModule.workspace,
+    item: state.itemModule.item,
   };
 }
 

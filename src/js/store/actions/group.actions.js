@@ -37,11 +37,12 @@ export function loadGroups(board) {
         try {
             const statuses = []
             const groupsIds = []
+            const groups = await groupService.query(board)
             dispatch({
                 type: 'SET_GROUPS',
                 board,
                 statuses,
-                groups: board.groups, 
+                groups,
                 groupsIds
             })
         } catch (err) {
@@ -49,10 +50,10 @@ export function loadGroups(board) {
         }
     }
 }
-export function filterGroups(board,groupsIds) {
+export function filterGroups(board, groupsIds, statuses) {
+    console.log('ids',groupsIds);
     return async dispatch => {
         try {
-            const statuses = []
             dispatch({
                 type: 'SET_GROUPS',
                 board,

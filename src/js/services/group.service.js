@@ -5,7 +5,12 @@ const STORAGE_KEY = 'workspaceDB';
 
 export const groupService = {
     save,
-    createGroup
+    createGroup,
+    query
+}
+
+async function query(board) {
+    return Promise.resolve(board.groups)
 }
 
 async function save(newGroup, boardForAdd) {
@@ -60,3 +65,4 @@ function makeId(length = 6) {
 
     return txt;
 }
+
