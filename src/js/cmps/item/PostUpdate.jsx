@@ -11,7 +11,6 @@ export class PostUpdate extends Component {
         const field = ev.target.name;
         if (!field) return;
         const value = ev.target.value;
-        console.log(value);
         this.setState((prevState) => ({ update: { ...prevState.update, [field]: value } }));
     };
 

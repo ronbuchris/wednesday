@@ -55,7 +55,6 @@ async function addItem(newItem, workspace, group, board, addToTop) {
 
 //EDIT-ADD GROUP
 async function editGroup(workspace,board,group,user) {
-    console.log(`board`, board)
     const newWorkspace = { ...workspace };
     if (group.id) {
         const groupIdx = board.groups.findIndex(oldGroup => oldGroup.id === group.id);

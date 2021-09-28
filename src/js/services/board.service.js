@@ -46,7 +46,6 @@ export async function createBoard(user, users) {
         const group = await createGroup(user, i+1)
         groups.push(group)
     }
-    console.log(groups);
     return Promise.resolve({
         _id: makeId(),
         title: "New Board",
