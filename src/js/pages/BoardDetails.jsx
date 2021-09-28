@@ -65,6 +65,7 @@ export class _BoardDetails extends React.Component {
       (board) => board._id === boardId
     );
     newWorkspace.boards.splice(boardIdx, 1);
+    console.log(`newWorkspace`, newWorkspace);
     editWorkspace(newWorkspace);
     this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
   };
