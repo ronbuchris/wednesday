@@ -26,11 +26,11 @@ export class _BoardDetails extends React.Component {
     await this.props.loadBoard(this.props.workspace, boardId);
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+ componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
-      await this.props.getWorkspaceByBoardId(boardId);
+      // await this.props.getWorkspaceByBoardId(boardId);
       this.props.loadBoard(workspace, boardId);
     }
   }
