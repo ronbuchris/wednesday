@@ -19,6 +19,7 @@ export function loadWorkspace(workspaceId) {
     return async dispatch => {
         try {
             const workspace = await workspaceService.getById(workspaceId)
+            console.log('check',workspace._id === 'w101');
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

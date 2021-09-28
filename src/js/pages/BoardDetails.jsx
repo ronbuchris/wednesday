@@ -85,7 +85,6 @@ export class _BoardDetails extends React.Component {
   getBoard = (workspace) => {
     if(!workspace) return; 
     const {boardId}=this.props.match.params
-    console.log(`boardId`, boardId)
     const board = workspace.boards.find(board => board._id === boardId)
     return board
   }
@@ -95,9 +94,7 @@ export class _BoardDetails extends React.Component {
     const { workspace,match } = this.props;
     const {boardId}=match.params
     const board = this.getBoard(workspace)
-    console.log(`workspace`, workspace)
     if (!workspace || !board) return <div>loading</div>
-    console.log(`1`)
     return (
       <div className="board-app flex">
         <WorkspaceNav boardId={boardId} workspace={workspace} onRemoveBoard={this.onRemoveBoard} />
