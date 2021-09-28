@@ -54,28 +54,26 @@ class _WorkspaceNav extends Component {
     }));
   };
 
-  toggleMenu = () => {
-    this.props.toggleMenu();
-  };
+  // toggleMenu = () => {
+  //   this.props.toggleMenu();
+  // };
 
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen,boardId } =
+    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen, boardId } =
       this.props;
     const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div
-        className={`workspace-nav flex column ${
-          isOpenNav && !isHovered && 'close'
-        }
+        className={`workspace-nav flex column ${isOpenNav && !isHovered && 'close'
+          }
       ${isOpenNav && isHovered && 'hovered'}`}
         onMouseEnter={this.handleHover}
         onMouseLeave={this.handleHover}
       >
         <div
-          className={`collapse-button-component flex align-center justify-center ${
-            (!isOpenNav || isHovered) && 'is-pinned'
-          }`}
+          className={`collapse-button-component flex align-center justify-center ${(!isOpenNav || isHovered) && 'is-pinned'
+            }`}
           onClick={() => toggleNav()}
         >
           {isOpenNav ? <NavigationChevronRight /> : <NavigationChevronLeft />}
@@ -90,7 +88,7 @@ class _WorkspaceNav extends Component {
 
             <div
               className="workspace-dropdown-button br4 flex space-between align-center btn"
-              onClick={this.toggleMenu}
+              onClick={()=>this.props.toggleMenu()}
             >
               <div className="workspace-title">
                 <h2>{workspace.name}</h2>
@@ -130,8 +128,6 @@ function mapStateToProps(state) {
     isMenuOpen: state.workspaceModule.isMenuOpen,
     workspaces: state.workspaceModule.workspaces,
     isOpenNav: state.workspaceModule.isOpenNav,
-    // workspace: state.workspaceModule.workspace,
-    // board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
   };
@@ -145,6 +141,7 @@ const mapDispatchToProps = {
   loadBoard,
   editWorkspace,
   createBoard,
+  toggleMenu
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

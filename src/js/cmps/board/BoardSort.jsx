@@ -25,15 +25,10 @@ class _BoarSort extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-    };
-}
-
 const mapDispatchToProps = {
     onSortItemTitle
 };
 export const BoardSort = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(_BoarSort);

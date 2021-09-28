@@ -13,18 +13,9 @@ class _PersonFilter extends Component {
     }
 }
 
-
-
-
-
-function mapStateToProps(state) {
-    return {
-    };
-}
-
 const mapDispatchToProps = {
 };
 export const PersonFilter = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(_PersonFilter);

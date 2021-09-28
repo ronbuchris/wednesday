@@ -12,16 +12,18 @@ export class _WorkspaceDetails extends Component {
     isBoardsOpen: true,
     isMembersOpen: false 
   }
-  componentDidMount() {
+  async componentDidMount() {
     const { workspaceId } = this.props.match.params;
-    this.props.loadWorkspace(workspaceId);
+    await this.props.loadWorkspace(workspaceId);
   }
-
-  componentDidUpdate(prevProps, prevState) {
-      if (prevProps.match.params.workspaceId !== this.props.workspace._id) {
-        this.props.loadWorkspace(this.props.workspace._id);
+  
+  async componentDidUpdate(prevProps, prevState) {
+    const { workspaceId } = this.props.match.params;
+    if (prevProps.match.params.workspaceId !== workspaceId) {
+       await this.props.loadWorkspace(workspaceId);
       }
   }
+
   handleChange = () => {
     const { isBoardsOpen, isMembersOpen} = this.state
     this.setState({ isBoardsOpen: !isBoardsOpen, isMembersOpen: !isMembersOpen})

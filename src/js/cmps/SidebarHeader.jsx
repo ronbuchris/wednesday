@@ -18,17 +18,15 @@ class _SidebarHeader extends Component {
     this.props.history.push('/');
   };
   render() {
-    const { user, board, workspace} = this.props;
-    const workspaceId = this.props.location.pathname.includes('/workspace');
+    const { user,workspace} = this.props;
+    if(!workspace) return <div>loading...</div>;
+    const boardId = workspace.boards[0]._id
     return (
       <div className="sidebar-container flex">
         <nav className="sidebar-icons flex space-between column align-center">
           <div className="flex column">
             <p>logo</p>
-            <Link
-              to={board ? `/board/${board._id}` : `/`}
-              className={workspaceId ? 'disabled-link' : ''}
-            >
+            <Link to={boardId ? `/board/${boardId}` : `/`}>
               <Workspace className="nav-icon workspace" />
             </Link>
             <Notifications className="nav-icon Notifications" />
@@ -55,7 +53,6 @@ function mapStateToProps(state) {
   return {
     workspace: state.workspaceModule.workspace,
     user: state.userModule.user,
-    board: state.boardModule.board,
   };
 }
 

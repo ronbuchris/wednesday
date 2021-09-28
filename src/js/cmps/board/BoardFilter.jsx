@@ -59,16 +59,13 @@ class _BoardFilter extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-    };
-}
+
 
 const mapDispatchToProps = {
     filterGroups,
     filterStatus
 };
 export const BoardFilter = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(_BoardFilter);

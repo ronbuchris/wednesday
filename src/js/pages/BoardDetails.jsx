@@ -22,6 +22,7 @@ import {
 } from '../store/actions/workspace.actions';
 
 export class _BoardDetails extends React.Component {
+
   async componentDidMount() {
     const boardId = this.props.match.params.boardId || this.props.board._id;
     await this.props.getWorkspaceByBoardId(boardId);
@@ -80,20 +81,22 @@ export class _BoardDetails extends React.Component {
     // this.props.history.push(this.props.history.location.pathname);
   };
 
-  getIdxById = () => {
-    const { workspace } = this.props
+  getBoard = (workspace) => {
+    if(!workspace) return; 
     const {boardId}=this.props.match.params
-    const boardIdx = workspace.boards.findIndex(wBoard => wBoard._id === boardId)
-    return boardIdx
+    console.log(`boardId`, boardId)
+    const board = workspace.boards.find(board => board._id === boardId)
+    return board
   }
 
 
   render() {
     const { workspace,match } = this.props;
     const {boardId}=match.params
-    if (!workspace) return <div>loading</div>
-    const boardIdx = this.getIdxById()
-    const currBoard = workspace.boards[boardIdx];
+    const board = this.getBoard(workspace)
+    console.log(`workspace`, workspace)
+    if (!workspace || !board) return <div>loading</div>
+    console.log(`1`)
     return (
       <div className="board-app flex">
         <WorkspaceNav boardId={boardId} workspace={workspace} onRemoveBoard={this.onRemoveBoard} />
@@ -102,13 +105,13 @@ export class _BoardDetails extends React.Component {
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
-            board={currBoard}
+            board={board}
             onBlur={this.onBlur}
           />
           <BoardContent
             onAddItem={this.onAddItem}
-            groups={currBoard.groups}
-            board={currBoard}
+            groups={board.groups}
+            board={board}
             onBlur={this.onBlur}
           />
         </div>

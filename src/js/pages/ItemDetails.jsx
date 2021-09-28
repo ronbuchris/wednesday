@@ -28,14 +28,12 @@ class _ItemDetails extends Component {
     }
 
     onPost = async (update) => {
-        const { user, workspace} = this.props
-        const { boardId,itemId } = this.props.match.params
+        const { user, workspace,history,onPost,match} = this.props
+        const { boardId,itemId } = match.params
         const item = this.getItem()
-        await this.props.onPost(update, user, item, workspace)
-
+        await onPost(update, user, item, workspace)
         getWorkspaceByBoardId(boardId)
-        this.props.history.push(`/board/${boardId}/item/${itemId}`)
-
+        history.push(`/board/${boardId}/item/${itemId}`)
     }
     render() {
         const { workspace } = this.props
