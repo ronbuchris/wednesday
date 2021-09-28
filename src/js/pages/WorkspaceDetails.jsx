@@ -6,6 +6,7 @@ import { WorkspaceHeader } from '../cmps/workspace/WorkspaceHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadWorkspace } from '../store/actions/workspace.actions';
+import { loadBoard } from '../store/actions/board.actions';
 
 export class _WorkspaceDetails extends Component {
   state = {
@@ -15,6 +16,8 @@ export class _WorkspaceDetails extends Component {
   async componentDidMount() {
     const { workspaceId } = this.props.match.params;
     await this.props.loadWorkspace(workspaceId);
+    const { workspace} = this.props
+    this.props.loadBoard(workspace, workspace[0])
   }
   
   async componentDidUpdate(prevProps, prevState) {
@@ -30,11 +33,11 @@ export class _WorkspaceDetails extends Component {
   }
 
   render() {
-    const { workspace} = this.props;
+    const { workspace, board} = this.props;
     if (!workspace) return <div className="">loading</div>;
     return (
       <div className="workspace-app flex">
-        <WorkspaceNav workspace={workspace} />
+        <WorkspaceNav board={board} workspace={workspace} />
         <div className="workspace-details">
           <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
           <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
@@ -48,12 +51,14 @@ function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
+    board: state.boardModule.board,
     user: state.userModule.user,
   };
 }
 
 const mapDispatchToProps = {
   loadWorkspace,
+  loadBoard
 };
 
 export const WorkspaceDetails = connect(

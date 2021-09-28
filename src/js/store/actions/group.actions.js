@@ -1,5 +1,6 @@
-import { groupService } from "../../services/group.service";
+
 import { workspaceService } from "../../services/workspace.service";
+import { groupService } from "../../services/group.service";
 
 
 export function setGroup(group) {
@@ -76,6 +77,22 @@ export function filterStatus(board, statuses, groupsIds) {
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
+        }
+    }
+}
+
+export function removeGroup(workspace,board,groupId) {
+    console.log('from actoins',workspace, board, groupId);
+    return async dispatch => {
+        try {
+            const workspaceToSave = await groupService.removeGroup(workspace, board, groupId)
+            console.log(workspaceToSave);
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: workspaceToSave
+            })
+        } catch (err) {
+            console.log('Cannot REMOVE group', err)
         }
     }
 }

@@ -31,6 +31,7 @@ class _WorkspaceNav extends Component {
 
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
+
   }
 
   handleChange = ({ target }) => {
@@ -113,7 +114,7 @@ class _WorkspaceNav extends Component {
             </button>
             <div className="divider"></div>
             <div className="board-list">
-              <BoardList boardId={board._id} workspace={workspace} />
+              <BoardList boardId={board ? board._id : workspace.boards[0]}workspace={workspace} />
             </div>
           </>
         )}

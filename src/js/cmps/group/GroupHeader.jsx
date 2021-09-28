@@ -1,7 +1,7 @@
 import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 
 
-export function GroupHeader({ board, group, onBlur }) {
+export function GroupHeader({ board, group, onBlur, onRemoveGroup }) {
   return (
     <div className="group-header flex">
       <div className="group-menu-button">
@@ -17,6 +17,9 @@ export function GroupHeader({ board, group, onBlur }) {
         }}
       >
         {group.title}
+      <button onClick={() => {
+          onRemoveGroup(group.id)
+      }}>remove group</button>
       </div>
       <div className="group-column-list flex">
         {board.columns.map((column) => {
