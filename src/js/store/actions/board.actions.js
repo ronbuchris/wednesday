@@ -4,9 +4,9 @@ import { boardService } from "../../services/board.service"
 
 
 export function loadBoard(workspace, boardId) {
-    return async dispatch => {
+    return dispatch => {
         try {
-            const board = await boardService.getById(workspace, boardId)
+            const board = boardService.getById(workspace, boardId)
             dispatch({
                 type: 'SET_BOARD',
                 board

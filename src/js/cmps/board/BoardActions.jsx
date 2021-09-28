@@ -29,7 +29,7 @@ export class BoardActions extends Component {
             className="add item-add flex align-center btn"
             onClick={(ev) => {
               ev.preventDefault();
-              onAddItem('New Item', board.groups[0], board, true);
+              onAddItem('New Item', board.groups[0], true);
             }}
           >
             New Item

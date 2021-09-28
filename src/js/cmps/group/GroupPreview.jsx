@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ItemPreview } from '../item/ItemPreview';
-import { setGroup, removeGroup} from '../../store/actions/group.actions';
+import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
 import { onEditItem, loadItems } from '../../store/actions/item.actions';
 
@@ -12,10 +12,6 @@ class _GroupPreview extends React.Component {
     isFocused: false,
   };
 
-  // componentDidMount() {
-  //   this.props.loadItems(this.props.group);
-  // }
-
   handleChange = ({ target }) => {
     const value = target.value;
     this.setState({ addItem: value });
@@ -24,12 +20,6 @@ class _GroupPreview extends React.Component {
   clearState = () => {
     this.setState({ addItem: '', isFocused: false });
   };
-
-  // onAddItem=async(ev)=>{
-  //   ev.preventDefault();
-  //   await this.props.onEditItem(this.state.addItem,this.props.group.id)
-  //   this.clearState();
-  // }
 
   onBlur = () => {
     const { isFocused } = this.state;
@@ -43,9 +33,9 @@ class _GroupPreview extends React.Component {
   };
 
   onRemoveGroup = (groupId) => {
-    const { workspace, board, removeGroup} = this.props
-    removeGroup(workspace,board,groupId)
-  }
+    const { workspace, board, removeGroup } = this.props;
+    removeGroup(workspace, board, groupId);
+  };
 
   onKeyUp = (ev) => {
     if (ev.keyCode === 13) {
@@ -55,31 +45,37 @@ class _GroupPreview extends React.Component {
   };
 
   render() {
-    const { group, onBlur, board, onAddItem} = this.props;
+    const { group, onBlur, board, onAddItem } = this.props;
     const { addItem, isFocused } = this.state;
-    if (!group.items) return <div>loading</div>;
+    if (!group) return <div>loading</div>;
     return (
       <div key={group.id} className="group-preview">
-        <GroupHeader group={group} board={board} onBlur={onBlur} onRemoveGroup={this.onRemoveGroup}/>
+        <GroupHeader
+          group={group}
+          board={board}
+          onBlur={onBlur}
+          onRemoveGroup={this.onRemoveGroup}
+        />
         <div className="item-list">
-          {group.items.map((item) => {
-            return (
-              <ItemPreview
-                onBlur={onBlur}
-                key={item.id}
-                item={item}
-                group={group}
-                board={board}
-              />
-            );
-          })}
+          {group.items &&
+            group.items.map((item) => {
+              return (
+                <ItemPreview
+                  onBlur={onBlur}
+                  key={item.id}
+                  item={item}
+                  group={group}
+                  board={board}
+                />
+              );
+            })}
         </div>
         <div>
           <form
             className="item-add"
             onSubmit={(ev) => {
               ev.preventDefault();
-              onAddItem(addItem, group, board);
+              onAddItem(addItem, group);
               this.clearState();
             }}
           >
@@ -118,7 +114,7 @@ const mapDispatchToProps = {
   onEditItem,
   setGroup,
   loadItems,
-  removeGroup
+  removeGroup,
 };
 
 export const GroupPreview = connect(

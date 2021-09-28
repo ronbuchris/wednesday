@@ -1,6 +1,6 @@
 import { boardService } from "../../services/board.service";
 import { itemService } from "../../services/item.service";
-import {workspaceService} from '../../services/workspace.service'
+import { workspaceService } from '../../services/workspace.service'
 
 export function loadItems(group) {
     return async dispatch => {
@@ -15,15 +15,15 @@ export function loadItems(group) {
     }
 }
 
-export function onPost(update,user, item, workspace) {
+export function onPost(update, user, item, workspace) {
     return async dispatch => {
         try {
             const workspaceToSave = await itemService.onPost(update, user, item, workspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
                 workspace: workspaceToSave
-            })  
-        }catch (err) {
+            })
+        } catch (err) {
             console.log('Cannot add update', err)
 
         }
@@ -52,10 +52,10 @@ export function loadItem(boardId, itemId) {
         try {
             const board = await boardService.getBoardById(boardId)
             const item = await itemService.getById(board, itemId)
-             dispatch({
-                 type: 'SET_ITEM',
-                 item
-             })
+            dispatch({
+                type: 'SET_ITEM',
+                item
+            })
         } catch (err) {
             console.log('Cannot load item', err)
         }
@@ -109,18 +109,18 @@ export function onRemoveItem(workspace, group, itemId) {
     }
 }
 
-export function addItem(newItemData,user,workspace,group,board,addToTop){
+export function addItem(newItemData, user, workspace, group, addToTop) {
     return async (dispatch) => {
-        try{
-            const newItem= await itemService.createItem(newItemData,user)
-            const newWorkspace=await workspaceService.addItem(newItem,workspace,group,board,addToTop)
+        try {
+            const newWorkspace = itemService.save(newItemData, group, workspace, user, addToTop)
+            await workspaceService.save(newWorkspace)
             dispatch({
-                type:'EDIT_WORKSPACE', 
-                workspace:newWorkspace,
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace,
             })
-              
 
-        }catch(err){
+
+        } catch (err) {
             console.log('Cannot add item', err)
         }
     }

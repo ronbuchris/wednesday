@@ -48,7 +48,6 @@ class _Login extends React.Component {
 
     await this.props.onLogin({ username, password });
     const user = userService.getLoggedinUser();
-
     const workspaces = await this.props.loadWorkspaces(user);
     this.props.loadUsers();
 

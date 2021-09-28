@@ -16,7 +16,6 @@ import {
 } from '../../js/store/actions/group.actions';
 import { onEditItem, addItem } from '../../js/store/actions/item.actions';
 import {
-  loadWorkspaces,
   loadWorkspaceByBoardId,
   editWorkspace,
 } from '../store/actions/workspace.actions';
@@ -24,7 +23,7 @@ import {
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
-    await this.props.getWorkspaceByBoardId(boardId);
+    await this.props.loadWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
     this.props.loadGroups(this.props.board);
   }
@@ -33,10 +32,11 @@ export class _BoardDetails extends React.Component {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
-      await this.props.getWorkspaceByBoardId(boardId);
+      await this.props.loadWorkspaceByBoardId(boardId);
+      this.props.loadBoard(workspace, boardId);
+      console.log(`this.props.board`, this.props.board);
+      this.props.loadGroups(this.props.board);
     }
-    await this.props.loadBoard(workspace, boardId);
-    await this.props.loadGroups(this.props.board);
   }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
@@ -56,6 +56,7 @@ export class _BoardDetails extends React.Component {
     }
   };
 
+  //Boards Functions
   onRemoveBoard = async (boardId) => {
     const { workspace, editWorkspace } = this.props;
     const newWorkspace = { ...workspace };
@@ -67,14 +68,16 @@ export class _BoardDetails extends React.Component {
     this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
   };
 
-  onAddItem = (newItemData, group, board, addToTop = false) => {
-    const { workspace, user, addItem } = this.props;
-    addItem(newItemData, user, workspace, group, board, addToTop);
-  };
-
+  //Groups Functions
   onEditGroup = async (group) => {
     const { workspace, user, board } = this.props;
     await this.props.editGroup(workspace, board, group, user);
+  };
+
+  //Items Functions
+  onAddItem = (newItemData, group, addToTop = false) => {
+    const { workspace, user, addItem } = this.props;
+    addItem(newItemData, user, workspace, group, addToTop);
   };
 
   render() {
@@ -119,7 +122,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadWorkspaceByBoardId,
-  loadWorkspaces,
   editWorkspace,
   onEditBoard,
   onEditItem,
