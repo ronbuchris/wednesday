@@ -10,7 +10,39 @@ export function groupReducer(state = initialState, action) {
         case 'SET_GROUP':
             newState = { ...state, group: action.group }
             break
-        case 'SET_GROUPS':
+        case 'SET_SEARCH':
+            groups = action.board.groups.map(group => {
+                    if (action.searchBy) {
+                        return {
+                            ...group, items: group.items.filter(item => {
+                                return item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase())
+                            })
+                        }
+                    } 
+
+                })
+            newState = { ...state, groups }
+            break
+        case 'SORT_ITEMS':
+                groups = action.board.groups.map(group => {
+                    return {
+                        ...group, items: group.items.sort((a, b) => {
+                            if (action.sortType === 'A-Z') {
+                                return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                            } else if (action.sortType === 'Z-A') {
+                                if (a.title.toLowerCase() > b.title.toLowerCase())
+                                    return -1;
+                                if (a.title.toLowerCase() < b.title.toLowerCase())
+                                    return 1;
+                                return 0;
+                            }
+                        })
+                    }
+                })
+            newState = { ...state.groups, groups: [...groups] }
+            break
+        case 'SET_FILTER':
+            console.log(action);
             if (action.groupsIds.length || action.statuses.length) {
                 groups = action.board.groups.filter(group => {
                     return action.groupsIds.includes(group.id)
@@ -24,41 +56,17 @@ export function groupReducer(state = initialState, action) {
                            }
                     })
                 }
-                newState = { ...state.groups, groups: [...groups] }
+
+                newState = { ...state.groups, groups }
+                break
+            }else {
+                newState = { ...state, groups: action.board.groups }
                 break
             }
-            if (action.sortType || action.searchBy) {
-                groups = action.board.groups.map(group => {
-                    if (action.searchBy) {
-                        return {
-                            ...group, items: group.items.filter(item => {
-                                return item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase())
-                            })
-                        }
-                    } 
-                
-                })
-                if (action.sortType) {
-                    groups = action.board.groups.map(group => {
-                            return {
-                                ...group, items: group.items.sort((a,b) => {
-                                    if (action.sortType === 'A-Z') {
-                                        return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                                    } else if (action.sortType === 'Z-A'){
-                                        if (a.title.toLowerCase() > b.title.toLowerCase())
-                                            return -1;
-                                        if (a.title.toLowerCase() < b.title.toLowerCase())
-                                            return 1;
-                                        return 0;
-                                    }
-                                })
-                            }
-                    })
-                }
-                newState = { ...state.groups, groups: [...groups] }
-                break
-            }
-            newState = { ...state, groups: action.board.groups }
+
+        case 'SET_GROUPS':
+            groups = action.groups.length ? action.groups : action.board.groups
+            newState = { ...state, groups: action.groups }
             break
         case 'ADD_GROUP':
             newState = { ...state, groups: [...state.groups, action.group] }

@@ -6,7 +6,6 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { createItem } from '../services/item.service';
-import { createGroup } from '../services/group.service';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import {
@@ -16,27 +15,24 @@ import {
 } from '../../js/store/actions/group.actions';
 import { onEditItem, addItem } from '../../js/store/actions/item.actions';
 import {
-  loadWorkspaces,
-  getWorkspaceByBoardId,
+  loadWorkspaceByBoardId,
   editWorkspace,
 } from '../store/actions/workspace.actions';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
-    await this.props.getWorkspaceByBoardId(boardId);
+    await this.props.loadWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
-    this.props.loadGroups(this.props.board);
   }
 
-  async componentDidUpdate(prevProps, prevState) {
-    const { boardId } = this.props.match.params
-    const { workspace } = this.props
+ componentDidUpdate(prevProps, prevState) {
+    const { boardId } = this.props.match.params;
+    const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
-      await this.props.getWorkspaceByBoardId(boardId);
+      // await this.props.getWorkspaceByBoardId(boardId);
+      this.props.loadBoard(workspace, boardId);
     }
-    await this.props.loadBoard(workspace, boardId);
-    await this.props.loadGroups(this.props.board);
   }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
@@ -56,6 +52,7 @@ export class _BoardDetails extends React.Component {
     }
   };
 
+  //Boards Functions
   onRemoveBoard = async (boardId) => {
     const { workspace, editWorkspace } = this.props;
     const newWorkspace = { ...workspace };
@@ -67,20 +64,22 @@ export class _BoardDetails extends React.Component {
     this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
   };
 
-  onAddItem = (newItemData, group, board, addToTop = false) => {
-    const { workspace, user } = this.props;
-    this.props.addItem(newItemData, user, workspace, group, board, addToTop);
-  };
-
-  onEditGroup = async(group) => {
+  //Groups Functions
+  onEditGroup = async (group) => {
     const { workspace, user, board } = this.props;
     await this.props.editGroup(workspace, board, group, user);
   };
 
+  //Items Functions
+  onAddItem = (newItemData, group, addToTop = false) => {
+    const { workspace, user, addItem } = this.props;
+    addItem(newItemData, user, workspace, group, addToTop);
+  };
 
   render() {
-    const { workspace,board,groups} = this.props;
+    const { workspace, board, groups } = this.props;
     if (!workspace || !board) return <div>loading</div>;
+
     return (
       <div className="board-app flex">
         <WorkspaceNav
@@ -110,25 +109,24 @@ export class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.userModule.user,
-    workspace: state.workspaceModule.workspace,
     workspaces: state.workspaceModule.workspaces,
-    board: state.boardModule.board,
+    workspace: state.workspaceModule.workspace,
     groups: state.groupModule.groups,
+    board: state.boardModule.board,
+    user: state.userModule.user,
   };
 }
 
 const mapDispatchToProps = {
-  loadWorkspaces,
-  loadBoard,
-  editGroup,
-  onEditItem,
-  onEditBoard,
-  getWorkspaceByBoardId,
-  setGroup,
-  loadGroups,
-  createItem,
+  loadWorkspaceByBoardId,
   editWorkspace,
+  onEditBoard,
+  onEditItem,
+  createItem,
+  loadGroups,
+  editGroup,
+  loadBoard,
+  setGroup,
   addItem,
 };
 

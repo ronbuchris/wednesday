@@ -1,52 +1,40 @@
-import { storageService } from './async-storage.service'
 import { createItem } from './item.service'
-
-const STORAGE_KEY = 'workspaceDB';
 
 export const groupService = {
     createGroup,
     query,
     removeGroup,
-    editGroup
+    save
 }
 
-function query(board, filterBy) {
-    console.log(filterBy);
-    return Promise.resolve(board.groups)
+function query(board) {
+    return board.groups
 }
 
 //EDIT-ADD GROUP
- function editGroup(workspace, board, group, user) {
-    const newWorkspace = { ...workspace };
+function save(workspace, board, group, user) {
     if (group.id) {
-        const groupIdx = board.groups.findIndex(oldGroup => oldGroup.id === group.id);
-        const boardIdx =  workspace.boards.findIndex(currBoard => currBoard._id === board._id);
+        const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
         board.groups.splice(groupIdx, 1, group);
-        newWorkspace.boards.splice(boardIdx, 1, board);
     } else {
         const newGroup = createGroup(user)
-        const newBoard = { ...board, groups: [newGroup, ...board.groups] };
-        const boardIdx = workspace.boards.findIndex(currBoard => currBoard._id === board._id);
-        newWorkspace.boards.splice(boardIdx, 1, newBoard);
+        board.groups.unshift(newGroup)
     }
+    const newWorkspace = { ...workspace };
     return newWorkspace
 }
 
-
-function removeGroup(workspace,board,groupId) {
-    console.log('from service', workspace, board, groupId);
+function removeGroup(workspace, board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
-    console.log(groupIdx);
-    board.groups.splice(groupIdx,1)
-    const returnedWorkspace = {...workspace}
+    board.groups.splice(groupIdx, 1)
+    const returnedWorkspace = { ...workspace }
     return returnedWorkspace
 }
-
 
 export function createGroup(user, itemCount = 1) {
     const items = []
     for (var i = 0; i < itemCount; i++) {
-        const item =  createItem("New Item", user)
+        const item = createItem("New Item", user)
         items.push(item)
     }
     const group = {
@@ -58,7 +46,6 @@ export function createGroup(user, itemCount = 1) {
         }
     }
     return group
-        
 }
 
 function makeId(length = 6) {

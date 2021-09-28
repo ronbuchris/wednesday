@@ -4,12 +4,19 @@ import { boardService } from "../../services/board.service"
 
 
 export function loadBoard(workspace, boardId) {
-    return async dispatch => {
+    return dispatch => {
         try {
-            const board = await boardService.getById(workspace, boardId)
+            if (!boardId) return
+            const board = boardService.getById(workspace, boardId)
+            console.log('board',board);
+            console.log('work',workspace);
             dispatch({
                 type: 'SET_BOARD',
                 board
+            })
+            dispatch({
+                type: 'SET_GROUPS',
+                groups: board.groups
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
