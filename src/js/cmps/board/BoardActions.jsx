@@ -10,7 +10,7 @@ import { BoardSearch } from './BoardSearch';
 export class BoardActions extends Component {
   state = {
     isFilter: false,
-    isSort:false
+    isSort: false,
   };
 
   toggleFilter = () => {
@@ -44,11 +44,16 @@ export class BoardActions extends Component {
             New group
           </div>
         </div>
-        <BoardSearch board={board}/>
-        <p onClick={this.toggleFilter}>
-          Filter:
+        <div className="board-filter-search header-btn">
+          <BoardSearch board={board} />
+        </div>
+        <div
+          className="board-filter-filter header-btn"
+          onClick={this.toggleFilter}
+        >
           <Filter />
-        </p>
+          <span>Filter</span>
+        </div>
         {isFilter && <BoardFilter board={board} />}
         <p>
           Person:
