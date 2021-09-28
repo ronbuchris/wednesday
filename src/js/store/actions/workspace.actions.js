@@ -82,6 +82,7 @@ export function toggleNav() {
     }
 }
 export function toggleMenu(isMenuOpen = true) {
+    console.log(`isMenuOpen`, isMenuOpen)
     return dispatch => {
         dispatch({
             type: 'TOGGLE_MENU',
@@ -95,6 +96,7 @@ export function getWorkspaceByBoardId(boardId) {
     return async dispatch => {
         try {
             const workspace = await workspaceService.getByBoardId(boardId)
+            console.log(`workspace`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

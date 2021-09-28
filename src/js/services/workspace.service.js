@@ -55,7 +55,7 @@ async function addItem(newItem, workspace, group, board, addToTop) {
 
 
 //EDIT-ADD GROUP
-async function editGroup(workspace,board,group,user) {
+async function editGroup(workspace, board, group, user) {
     const newWorkspace = { ...workspace };
     if (group.id) {
         const groupIdx = board.groups.findIndex(oldGroup => oldGroup.id === group.id);
@@ -76,8 +76,8 @@ function getBoardIdx(boards, boardId) {
     return Promise.resolve(
         boards.findIndex(
             (board) => board._id === boardId
-            )
-            );
+        )
+    );
 
 }
 
