@@ -54,11 +54,10 @@ export function filterGroups(board, groupsIds, statuses) {
     console.log('ids',groupsIds);
     return async dispatch => {
         try {
+            const groups = await groupService.query(board, { groupsIds})
             dispatch({
                 type: 'SET_GROUPS',
-                board,
-                statuses,
-                groupsIds
+                groups
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
@@ -81,7 +80,6 @@ export function filterStatus(board, statuses, groupsIds) {
 }
 
 export function removeGroup(workspace,board,groupId) {
-    console.log('from actoins',workspace, board, groupId);
     return async dispatch => {
         try {
             const workspaceToSave = groupService.removeGroup(workspace, board, groupId)

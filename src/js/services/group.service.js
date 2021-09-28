@@ -10,7 +10,8 @@ export const groupService = {
     removeGroup
 }
 
-async function query(board) {
+function query(board, filterBy) {
+    console.log(filterBy);
     return Promise.resolve(board.groups)
 }
 
