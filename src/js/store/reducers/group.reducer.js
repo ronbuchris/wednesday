@@ -11,10 +11,8 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_SEARCH':
-            console.log(action);
             groups = action.board.groups.map(group => {
                     if (action.searchBy) {
-                        console.log('hi');
                         return {
                             ...group, items: group.items.filter(item => {
                                 return item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase())

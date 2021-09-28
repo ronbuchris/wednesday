@@ -58,7 +58,6 @@ class _GroupPreview extends React.Component {
     const { group, onBlur, board, onAddItem} = this.props;
     const { addItem, isFocused } = this.state;
     if(!group) return <div>loading</div>
-    console.log(`group`, group)
     return (
       <div key={group.id} className="group-preview">
         <GroupHeader group={group} board={board} onBlur={onBlur} onRemoveGroup={this.onRemoveGroup}/>

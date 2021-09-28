@@ -33,9 +33,7 @@ function query(board) {
 
 
 function removeGroup(workspace,board,groupId) {
-    console.log('from service', workspace, board, groupId);
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
-    console.log(groupIdx);
     board.groups.splice(groupIdx,1)
     const returnedWorkspace = {...workspace}
     return returnedWorkspace

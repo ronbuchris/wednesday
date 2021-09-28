@@ -25,7 +25,6 @@ export class _BoardDetails extends React.Component {
     const boardId = this.props.match.params.boardId;
     await this.props.getWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
-    this.props.loadGroups(this.props.board);
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -33,9 +32,9 @@ export class _BoardDetails extends React.Component {
     const { workspace} = this.props
     if (prevProps.match.params.boardId !== boardId) {
       await this.props.getWorkspaceByBoardId(boardId);
+      this.props.loadBoard(workspace, boardId);
     }
     // this.props.loadGroups(this.props.board);
-    this.props.loadBoard(workspace, boardId);
   }
 
   onBlur = (newTxt, pevTxt, type, strType) => {
