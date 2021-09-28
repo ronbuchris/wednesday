@@ -19,7 +19,7 @@ export function setGroup(group) {
 export function editGroup(workspace, board, group, user) {
     return async (dispatch) => {
         try {
-            const workspaceToSave = groupService.editGroup(workspace, board, group, user)
+            const workspaceToSave = groupService.save(workspace, board, group, user)
             const newBoard = boardService.getById(workspaceToSave, board._id)
             await workspaceService.save(workspaceToSave)
             dispatch({

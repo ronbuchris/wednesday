@@ -94,14 +94,15 @@ export function onSortItemTitle(board, sortType) {
     }
 }
 
-export function onRemoveItem(workspace, group, itemId) {
+export function removeItem(workspace, group, itemId) {
     return async (dispatch) => {
         try {
-            await itemService.remove(workspace, group, itemId)
-            console.log('Deleted Succesfully!');
+            const newWorkspace = itemService.remove(workspace, group, itemId)
+            console.log(`newWorkspace`, newWorkspace)
+            await workspaceService.save(newWorkspace)
             dispatch({
-                type: 'REMOVE_ITEM',
-                itemId
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace
             })
         } catch (err) {
             console.log('Cannot remove item', err)

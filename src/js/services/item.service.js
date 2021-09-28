@@ -36,7 +36,7 @@ function createUpdate(txt, user) {
     }
 }
 
-async function remove(workspace, group, itemId) {
+function remove(workspace, group, itemId) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
     group.items.splice(itemIdx, 1)
     const returnedWorkspace = { ...workspace }

@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
-import { onEditItem, loadItems } from '../../store/actions/item.actions';
+import {
+  onEditItem,
+  loadItems,
+  removeItem,
+} from '../../store/actions/item.actions';
 
 class _GroupPreview extends React.Component {
   state = {
@@ -37,6 +41,11 @@ class _GroupPreview extends React.Component {
     removeGroup(workspace, board, groupId);
   };
 
+  onRemoveItem = (itemId) => {
+    const { workspace, group, removeItem } = this.props;
+    removeItem(workspace, group, itemId);
+  };
+
   onKeyUp = (ev) => {
     if (ev.keyCode === 13) {
       ev.preventDefault();
@@ -66,6 +75,7 @@ class _GroupPreview extends React.Component {
                   item={item}
                   group={group}
                   board={board}
+                  onRemoveItem={this.onRemoveItem}
                 />
               );
             })}
@@ -115,6 +125,7 @@ const mapDispatchToProps = {
   setGroup,
   loadItems,
   removeGroup,
+  removeItem,
 };
 
 export const GroupPreview = connect(
