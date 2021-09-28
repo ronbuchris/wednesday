@@ -113,7 +113,7 @@ class _WorkspaceNav extends Component {
             </button>
             <div className="divider"></div>
             <div className="board-list">
-              <BoardList boardId={board._id}workspace={workspace} />
+              <BoardList boardId={board._id} workspace={workspace} />
             </div>
           </>
         )}
