@@ -4,25 +4,21 @@ import { connect } from 'react-redux';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
-import {
-  onEditItem,
-  loadItems,
-  removeItem,
-} from '../../store/actions/item.actions';
+import { removeItem } from '../../store/actions/item.actions';
 
 class _GroupPreview extends React.Component {
   state = {
-    addItem: '',
+    itemTitle: '',
     isFocused: false,
   };
 
   handleChange = ({ target }) => {
     const value = target.value;
-    this.setState({ addItem: value });
+    this.setState({ itemTitle: value });
   };
 
   clearState = () => {
-    this.setState({ addItem: '', isFocused: false });
+    this.setState({ itemTitle: '', isFocused: false });
   };
 
   onBlur = () => {
@@ -55,7 +51,7 @@ class _GroupPreview extends React.Component {
 
   render() {
     const { group, onBlur, board, onAddItem } = this.props;
-    const { addItem, isFocused } = this.state;
+    const { itemTitle, isFocused } = this.state;
     if (!group) return <div>loading</div>;
     return (
       <div key={group.id} className="group-preview">
@@ -85,7 +81,7 @@ class _GroupPreview extends React.Component {
             className="item-add"
             onSubmit={(ev) => {
               ev.preventDefault();
-              onAddItem(addItem, group);
+              onAddItem(itemTitle, group);
               this.clearState();
             }}
           >
@@ -94,14 +90,14 @@ class _GroupPreview extends React.Component {
               dir="auto"
               className="item-add-input"
               placeholder="+ Add"
-              value={addItem}
+              value={itemTitle}
               onChange={this.handleChange}
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onKeyUp={this.onKeyUp}
             />
 
-            {(isFocused || addItem) && (
+            {(isFocused || itemTitle) && (
               <button className="item-add-button">Add</button>
             )}
             <div className="indicator"></div>
@@ -121,9 +117,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  onEditItem,
   setGroup,
-  loadItems,
   removeGroup,
   removeItem,
 };

@@ -62,22 +62,6 @@ export function loadItem(boardId, itemId) {
     }
 }
 
-export function onEditItem(itemToSave, groupId = null, workspace) {
-    return async (dispatch) => {
-        try {
-            const saveditem = await itemService.save(itemToSave, groupId, workspace)
-            dispatch({
-                type: 'UPDATE_ITEM',
-                item: saveditem
-            })
-        }
-        catch (err) {
-            console.log('Cannot update item')
-            console.log('Cannot save item', err)
-        }
-    }
-}
-
 export function onSortItemTitle(board, sortType) {
     return async (dispatch) => {
         try {
@@ -108,10 +92,10 @@ export function removeItem(workspace, group, itemId) {
     }
 }
 
-export function addItem(newItemData, user, workspace, group, addToTop) {
+export function saveItem(item, user, workspace, group, addToTop) {
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.save(newItemData, group, workspace, user, addToTop)
+            const newWorkspace = itemService.save(item, group, workspace, user, addToTop)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

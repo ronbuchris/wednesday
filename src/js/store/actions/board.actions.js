@@ -1,15 +1,13 @@
 import { boardService } from "../../services/board.service"
-
-
-
+import { workspaceService } from "../../services/workspace.service";
 
 export function loadBoard(workspace, boardId) {
     return dispatch => {
         try {
             if (!boardId) return
             const board = boardService.getById(workspace, boardId)
-            console.log('board',board);
-            console.log('work',workspace);
+            console.log('board', board);
+            console.log('work', workspace);
             dispatch({
                 type: 'SET_BOARD',
                 board
@@ -50,20 +48,33 @@ export function addBoard(workspace, user) {
     }
 }
 
-export function onEditBoard(boardToSave) {
-    return (dispatch) => {
-        boardService.save(boardToSave)
-            .then(savedboard => {
-                console.log('Updated board:', savedboard);
-                dispatch({
-                    type: 'UPDATE_BOARD',
-                    board: savedboard
-                })
-                console.log('board updated')
+export function removeBoard(workspace, boardId) {
+    return async dispatch => {
+        try {
+            const newWorkspace = boardService.remove(workspace, boardId)
+            await workspaceService.save(newWorkspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace
             })
-            .catch(err => {
-                console.log('Cannot update board')
-                console.log('Cannot save board', err)
+        } catch (err) {
+            console.log('Cannot REMOVE group', err)
+        }
+    }
+}
+
+export function editBoard(workspace, board, user, users) {
+    return async (dispatch) => {
+        try {
+            const newWorkspace = boardService.save(workspace, board, user, users)
+            await workspaceService.save(newWorkspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace,
             })
+        } catch (err) {
+            console.log('Cannot update board')
+            console.log('Cannot save board', err)
+        }
     }
 }

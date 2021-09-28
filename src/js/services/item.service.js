@@ -47,7 +47,7 @@ function remove(workspace, group, itemId) {
 function save(item, group, workspace, user, addToTop) {
     if (item.id) {
         const itemIdx = group.items.findIndex(currItem => currItem.id === item.id);
-        group.items[itemIdx].splice(itemIdx, 1, item);
+        group.items.splice(itemIdx, 1, item);
     } else {
         const newItem = createItem(item, user)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
@@ -55,34 +55,7 @@ function save(item, group, workspace, user, addToTop) {
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
-// async function saveItem(newItem, groupId, workspace) {
-//     return workspace.boards.forEach((board) => {
-//         return board.groups.forEach((group) => {
-//             if (newItem.id) {
-//                 const itemId = newItem.id;
-//                 group.items.forEach((item, idx) => {
-//                     if (item.id === itemId) {
-//                         group.items.splice(idx, 1, newItem)
-//                         storageService.put(STORAGE_KEY, workspace)
-//                         return newItem;
-//                     }
-//                 })
-//             } else if (!newItem.id) {
-//                 if (group.id === groupId) {
-//                     const addItem = createItem(newItem)
-//                     if (addItem.title === 'New Item') {
-//                         group.items.unshift(addItem)
-//                     } else {
-//                         group.items.push(addItem)
-//                     }
-//                     storageService.put(STORAGE_KEY, workspace)
-//                     return addItem;
-//                 }
-//             }
-//         })
 
-//     })
-// }
 
 export function createItem(title, user) {
     return {

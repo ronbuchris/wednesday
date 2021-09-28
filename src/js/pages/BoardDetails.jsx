@@ -7,13 +7,17 @@ import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { createItem } from '../services/item.service';
 
-import { loadBoard, onEditBoard } from '../store/actions/board.actions';
+import {
+  loadBoard,
+  editBoard,
+  removeBoard,
+} from '../store/actions/board.actions';
 import {
   editGroup,
   setGroup,
   loadGroups,
 } from '../../js/store/actions/group.actions';
-import { onEditItem, addItem } from '../../js/store/actions/item.actions';
+import { saveItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
@@ -26,7 +30,7 @@ export class _BoardDetails extends React.Component {
     await this.props.loadBoard(this.props.workspace, boardId);
   }
 
- componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
@@ -35,45 +39,51 @@ export class _BoardDetails extends React.Component {
     }
   }
 
-  onBlur = (newTxt, pevTxt, type, strType) => {
+  onBlur = (newTxt, pevTxt, type, strType, group = null) => {
     if (newTxt === pevTxt) return;
     const newType =
       strType === 'boardDesc'
         ? { ...type, description: newTxt }
         : { ...type, title: newTxt };
     if (strType === 'board' || strType === 'boardDesc') {
-      this.props.onEditBoard(newType);
+      this.onEditBoard(newType);
     }
     if (strType === 'group') {
       this.onEditGroup(newType);
     }
     if (strType === 'item') {
-      this.props.onEditItem(newType, null, this.props.workspace);
+      this.onEditItem(newType, group);
     }
   };
 
   //Boards Functions
   onRemoveBoard = async (boardId) => {
-    const { workspace, editWorkspace } = this.props;
+    const { workspace, removeBoard } = this.props;
     const newWorkspace = { ...workspace };
-    const boardIdx = workspace.boards.findIndex(
-      (board) => board._id === boardId
-    );
-    newWorkspace.boards.splice(boardIdx, 1);
-    await editWorkspace(newWorkspace);
+    await removeBoard(workspace, boardId);
     this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
+  };
+
+  onEditBoard = async (board) => {
+    const { workspace, user, users, editBoard } = this.props;
+    await editBoard(workspace, board, user, users);
   };
 
   //Groups Functions
   onEditGroup = async (group) => {
-    const { workspace, user, board } = this.props;
-    await this.props.editGroup(workspace, board, group, user);
+    const { workspace, user, board, editGroup } = this.props;
+    await editGroup(workspace, board, group, user);
   };
 
   //Items Functions
   onAddItem = (newItemData, group, addToTop = false) => {
-    const { workspace, user, addItem } = this.props;
-    addItem(newItemData, user, workspace, group, addToTop);
+    const { workspace, user, saveItem } = this.props;
+    saveItem(newItemData, user, workspace, group, addToTop);
+  };
+
+  onEditItem = async (item, group) => {
+    const { workspace, user, saveItem } = this.props;
+    await saveItem(item, user, workspace, group);
   };
 
   render() {
@@ -113,6 +123,7 @@ function mapStateToProps(state) {
     workspace: state.workspaceModule.workspace,
     groups: state.groupModule.groups,
     board: state.boardModule.board,
+    users: state.userModule.users,
     user: state.userModule.user,
   };
 }
@@ -120,14 +131,14 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaceByBoardId,
   editWorkspace,
-  onEditBoard,
-  onEditItem,
+  removeBoard,
   createItem,
   loadGroups,
+  editBoard,
   editGroup,
   loadBoard,
   setGroup,
-  addItem,
+  saveItem,
 };
 
 export const BoardDetails = connect(

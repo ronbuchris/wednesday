@@ -1,7 +1,7 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save, getBoardById }
+export const boardService = { getById, save, getBoardById, remove }
 const STORAGE_KEY = 'workspaceDB'
 
 function getById(workspace, boardId) {
@@ -18,25 +18,25 @@ async function getBoardById(boardId) {
 
 }
 
-async function save(newBoard) {
-    const boardId = newBoard._id;
-    const workspaces = await storageService.query(STORAGE_KEY)
-    workspaces.forEach(workspace => {
-        workspace.boards.forEach((board, idx) => {
-            if (board._id === boardId) {
-                workspace.boards.splice(idx, 1, newBoard)
-                storageService.put(STORAGE_KEY, workspace)
-            }
-
-        })
-    })
+function save(workspace, board, user, users) {
+    if (board.id) {
+        const boardIdx = workspace.boards.findIndex(currBoard => currBoard.id === board.id);
+        workspace.boards.splice(boardIdx, 1, board);
+    } else {
+        const newboard = createBoard(user, users)
+        workspace.boards.unshift(newboard)
+    }
+    const newWorkspace = { ...workspace };
+    return newWorkspace
 }
 
-// function addBoard(workspace, user) {
-//     const board = _createBoard(user)
-//     workspace.boards.push(board)
-//     workspaceService.save(workspace)
-// }
+function remove(workspace, boardId) {
+    const boardIdx = workspace.boards.findIndex(board => board._id === boardId);
+    workspace.boards.splice(boardIdx, 1)
+    const returnedWorkspace = { ...workspace }
+    return returnedWorkspace
+}
+
 
 export async function createBoard(user, users) {
 
@@ -94,6 +94,7 @@ export async function createBoard(user, users) {
         cmpsOrder: ["status", "member", "date"]
     })
 }
+
 function makeId(length = 6) {
     var txt = '';
     var possible =
