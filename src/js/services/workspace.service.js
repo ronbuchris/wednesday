@@ -27,6 +27,7 @@ function remove(workspaceId) {
 
 function save(workspace) {
     if (workspace._id) {
+        console.log(`workspace from save`, workspace._id)
         return storageService.put(STORAGE_KEY, workspace)
     } else {
         // workspace.owner = userService.getLoggedinUser()

@@ -59,13 +59,12 @@ export class _BoardDetails extends React.Component {
     }
   };
 
-   onRemoveBoard = (boardId) => {
-    const { workspace } = this.props;
+   onRemoveBoard = async(boardId) => {
+    const { workspace,editWorkspace } = this.props;
     const newWorkspace = { ...workspace };
     const boardIdx = workspace.boards.findIndex(board => board._id === boardId);
     newWorkspace.boards.splice(boardIdx, 1);
-    console.log(`newWorkspace`, newWorkspace)
-     editWorkspace(newWorkspace);
+    await editWorkspace(newWorkspace);
     this.props.history.push(`/board/${newWorkspace.boards[0]._id}`)
   };
 
