@@ -1,14 +1,14 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save, getBoardById}
+export const boardService = { getById, save, getBoardById }
 const STORAGE_KEY = 'workspaceDB'
 
 function getById(workspace, boardId) {
     return workspace.boards.find(board => board._id === boardId)
 }
 //without access to workspace
-async function getBoardById(boardId){
+async function getBoardById(boardId) {
     const workspaces = await storageService.query(STORAGE_KEY)
     const workspace = workspaces.find(workspace => {
         return workspace.boards.find(board => board._id === boardId)
@@ -42,11 +42,10 @@ export async function createBoard(user, users) {
 
     const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
     const groups = [];
-    for(let i = 0 ;i< 3;i++) {
-        const group = await createGroup(user, i+1)
+    for (let i = 0; i < 3; i++) {
+        const group = await createGroup(user, i + 1)
         groups.push(group)
     }
-    console.log(groups);
     return Promise.resolve({
         _id: makeId(),
         title: "New Board",

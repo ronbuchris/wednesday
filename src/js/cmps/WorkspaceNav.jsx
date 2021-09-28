@@ -54,10 +54,6 @@ class _WorkspaceNav extends Component {
     }));
   };
 
-  // toggleMenu = () => {
-  //   this.props.toggleMenu();
-  // };
-
   render() {
     const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen, boardId } =
       this.props;
@@ -65,15 +61,17 @@ class _WorkspaceNav extends Component {
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div
-        className={`workspace-nav flex column ${isOpenNav && !isHovered && 'close'
-          }
+        className={`workspace-nav flex column ${
+          isOpenNav && !isHovered && 'close'
+        }
       ${isOpenNav && isHovered && 'hovered'}`}
         onMouseEnter={this.handleHover}
         onMouseLeave={this.handleHover}
       >
         <div
-          className={`collapse-button-component flex align-center justify-center ${(!isOpenNav || isHovered) && 'is-pinned'
-            }`}
+          className={`collapse-button-component flex align-center justify-center ${
+            (!isOpenNav || isHovered) && 'is-pinned'
+          }`}
           onClick={() => toggleNav()}
         >
           {isOpenNav ? <NavigationChevronRight /> : <NavigationChevronLeft />}
@@ -88,7 +86,9 @@ class _WorkspaceNav extends Component {
 
             <div
               className="workspace-dropdown-button br4 flex space-between align-center btn"
-              onClick={()=>this.props.toggleMenu()}
+              onClick={() => {
+                this.props.toggleMenu();
+              }}
             >
               <div className="workspace-title">
                 <h2>{workspace.name}</h2>
@@ -141,7 +141,7 @@ const mapDispatchToProps = {
   loadBoard,
   editWorkspace,
   createBoard,
-  toggleMenu
+  toggleMenu,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,
