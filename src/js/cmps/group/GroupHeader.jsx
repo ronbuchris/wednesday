@@ -5,7 +5,6 @@ export function GroupHeader({ board, group, onBlur, onRemoveGroup }) {
   return (
     <div className="group-header flex">
       <div className="group-menu-button">
-      <i className="fa-solid fa-caret-down"></i>
       </div>
       <div
         className="group-title flex align-center"
