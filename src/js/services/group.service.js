@@ -10,7 +10,8 @@ export const groupService = {
     removeGroup
 }
 
-async function query(board) {
+function query(board, filterBy) {
+    console.log(filterBy);
     return Promise.resolve(board.groups)
 }
 
@@ -37,13 +38,13 @@ async function save(newGroup, boardForAdd) {
     })
 }
 
-async function removeGroup(workspace,board,groupId) {
+function removeGroup(workspace,board,groupId) {
     console.log('from service', workspace, board, groupId);
-    const groupIdx = await board.groups.findIndex(group => group.id === groupId);
+    const groupIdx = board.groups.findIndex(group => group.id === groupId);
     console.log(groupIdx);
     board.groups.splice(groupIdx,1)
     const returnedWorkspace = {...workspace}
-    return storageService.put(STORAGE_KEY, returnedWorkspace)
+    return returnedWorkspace
 }
 
 
