@@ -19,13 +19,28 @@ export function loadWorkspace(workspaceId) {
     return async dispatch => {
         try {
             const workspace = await workspaceService.getById(workspaceId)
-            console.log('check',workspace._id === 'w101');
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
+        }
+    }
+}
+
+export function loadWorkspaceByBoardId(boardId) {
+
+    return async dispatch => {
+        try {
+            const workspace = await workspaceService.getByBoardId(boardId)
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace
+            })
+        }
+        catch (err) {
+            console.log('Cannot remove workspace', err)
         }
     }
 }
@@ -81,6 +96,7 @@ export function toggleNav() {
         })
     }
 }
+
 export function toggleMenu(isMenuOpen = true) {
     console.log(`isMenuOpen`, isMenuOpen)
     return dispatch => {
@@ -91,22 +107,6 @@ export function toggleMenu(isMenuOpen = true) {
     }
 }
 
-export function getWorkspaceByBoardId(boardId) {
-
-    return async dispatch => {
-        try {
-            const workspace = await workspaceService.getByBoardId(boardId)
-            console.log(`workspace`, workspace)
-            dispatch({
-                type: 'SET_WORKSPACE',
-                workspace
-            })
-        }
-        catch (err) {
-            console.log('Cannot remove workspace', err)
-        }
-    }
-}
 
 
 

@@ -17,14 +17,14 @@ import {
 import { onEditItem, addItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaces,
-  getWorkspaceByBoardId,
+  loadWorkspaceByBoardId,
   editWorkspace,
 } from '../store/actions/workspace.actions';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
-    await this.props.getWorkspaceByBoardId(boardId);
+    await this.props.loadWorkspaceByBoardId(boardId);
     // await this.props.loadBoard(this.props.workspace, boardId);
     // this.props.loadGroups(this.props.board);
   }
@@ -70,16 +70,15 @@ export class _BoardDetails extends React.Component {
   };
 
   onAddItem = (newItemData, group, board, addToTop = false) => {
-    const { workspace, user } = this.props;
-    this.props.addItem(newItemData, user, workspace, group, board, addToTop);
+    const { workspace, user, addItem } = this.props;
+    addItem(newItemData, user, workspace, group, board, addToTop);
   };
 
   onEditGroup = (group) => {
-    const { workspace, user } = this.props;
+    const { workspace, user, editGroup } = this.props;
     const boardIdx = this.getIdxById();
     const board = workspace.boards[boardIdx];
-    this.props.editGroup(workspace, board, group, user);
-    // this.props.history.push(this.props.history.location.pathname);
+    editGroup(workspace, board, group, user);
   };
 
   getBoard = (workspace) => {
@@ -123,9 +122,9 @@ export class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.userModule.user,
-    workspace: state.workspaceModule.workspace,
     workspaces: state.workspaceModule.workspaces,
+    workspace: state.workspaceModule.workspace,
+    user: state.userModule.user,
   };
 }
 
@@ -135,7 +134,7 @@ const mapDispatchToProps = {
   editGroup,
   onEditItem,
   onEditBoard,
-  getWorkspaceByBoardId,
+  loadWorkspaceByBoardId,
   setGroup,
   loadGroups,
   createItem,
