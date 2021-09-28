@@ -10,17 +10,19 @@ export const itemService = {
     createItem
 }
 
-async function getById(board, itemId) {
+function getById(board, itemId) {
     const group = board.groups.find(group => group.items.find(item => item.id === itemId));
     const item = group.items.find(item => item.id === itemId)
-    return Promise.resolve(item)
+    return item
 }
 
-async function onPost(update, user, item, workspace) {
+function onPost(update, user, item, workspace) {
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
-    await storageService.put(STORAGE_KEY, workspace)
-    return Promise.resolve(workspace)
+    console.log('old',workspace);
+    const newWorkspace = { ...workspace };
+    console.log('new',newWorkspace);
+    return newWorkspace
 }
 
 function createUpdate(txt, user) {

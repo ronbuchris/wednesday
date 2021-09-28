@@ -19,10 +19,11 @@ export function loadItems(group) {
 export function onPost(update, user, item, workspace) {
     return async dispatch => {
         try {
-            const workspaceToSave = await itemService.onPost(update, user, item, workspace)
+            const newWorkspace = itemService.onPost(update, user, item, workspace)
+            await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
-                workspace: workspaceToSave
+                workspace: newWorkspace
             })
         } catch (err) {
             console.log('Cannot add update', err)
@@ -51,7 +52,7 @@ export function loadItem(boardId, itemId) {
     return async (dispatch) => {
         try {
             const board = await boardService.getBoardById(boardId)
-            const item = await itemService.getById(board, itemId)
+            const item = itemService.getById(board, itemId)
             dispatch({
                 type: 'SET_ITEM',
                 item

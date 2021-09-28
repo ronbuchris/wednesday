@@ -14,7 +14,7 @@ async function getBoardById(boardId) {
         return workspace.boards.find(board => board._id === boardId)
     })
     const board = workspace.boards.find(board => board._id === boardId)
-    return Promise.resolve(board)
+    return board
 
 }
 
