@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ItemPreview } from '../item/ItemPreview';
-import { setGroup } from '../../store/actions/group.actions';
+import { setGroup, removeGroup} from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
 import { onEditItem, loadItems } from '../../store/actions/item.actions';
 
@@ -42,6 +42,11 @@ class _GroupPreview extends React.Component {
     this.setState({ isFocused: !isFocused });
   };
 
+  onRemoveGroup = (groupId) => {
+    const { workspace, board} = this.props
+    removeGroup(workspace,board,groupId)
+  }
+
   onKeyUp = (ev) => {
     if (ev.keyCode === 13) {
       ev.preventDefault();
@@ -55,7 +60,7 @@ class _GroupPreview extends React.Component {
     if (!group.items) return <div>loading</div>;
     return (
       <div key={group.id} className="group-preview">
-        <GroupHeader group={group} board={board} onBlur={onBlur} />
+        <GroupHeader group={group} board={board} onBlur={onBlur} onRemoveGroup={this.onRemoveGroup}/>
         <div className="item-list">
           {group.items.map((item) => {
             return (
@@ -105,6 +110,7 @@ function mapStateToProps(state) {
   return {
     isOpenNav: state.workspaceModule.isOpenNav,
     user: state.userModule.user,
+    workspace: state.workspaceModule.workspace,
   };
 }
 
@@ -112,6 +118,7 @@ const mapDispatchToProps = {
   onEditItem,
   setGroup,
   loadItems,
+  removeGroup
 };
 
 export const GroupPreview = connect(

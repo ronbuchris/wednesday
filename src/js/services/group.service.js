@@ -6,7 +6,8 @@ const STORAGE_KEY = 'workspaceDB';
 export const groupService = {
     save,
     createGroup,
-    query
+    query,
+    removeGroup
 }
 
 async function query(board) {
@@ -35,6 +36,16 @@ async function save(newGroup, boardForAdd) {
         })
     })
 }
+
+async function removeGroup(workspace,board,groupId) {
+    console.log('from service', workspace, board, groupId);
+    const groupIdx = await board.groups.findIndex(group => group.id === groupId);
+    console.log(groupIdx);
+    board.groups.splice(groupIdx,1)
+    const returnedWorkspace = {...workspace}
+    return storageService.put(STORAGE_KEY, returnedWorkspace)
+}
+
 
 export async function createGroup(user, itemCount = 1) {
     const items = []
