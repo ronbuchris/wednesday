@@ -80,13 +80,11 @@ export function onEditItem(itemToSave, groupId = null, workspace) {
 
 export function onSortItemTitle(board, sortType) {
     return async (dispatch) => {
-        const groupsIds = []
         try {
             dispatch({
-                type: 'SET_GROUPS',
+                type: 'SORT_ITEMS',
                 board,
-                sortType,
-                groupsIds
+                sortType
             })
         } catch (err) {
             console.log('Cannot sort item', err)
