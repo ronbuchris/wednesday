@@ -24,7 +24,6 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, groups }
             break
         case 'SET_GROUPS':
-            console.log(action);
             groups = action.groups.length ? action.groups : action.board.groups
             // if (action.groupsIds.length || action.statuses.length) {
             //     groups = action.board.groups.filter(group => {
