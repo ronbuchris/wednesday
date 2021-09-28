@@ -45,12 +45,15 @@ class _BoardSearch extends Component {
     }
 }
 
-
+function mapStateToProps(state) {
+    return {
+    };
+}
 
 const mapDispatchToProps = {
     onSetSearch
 };
 export const BoardSearch = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(_BoardSearch);

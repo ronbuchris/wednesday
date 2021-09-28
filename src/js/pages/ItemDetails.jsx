@@ -10,35 +10,20 @@ import { PostUpdate } from '../cmps/item/PostUpdate';
 class _ItemDetails extends Component {
 
     componentDidMount(){
-        const { boardId } = this.props.match.params
-        const { getWorkspaceByBoardId} = this.props
-        getWorkspaceByBoardId(boardId)
-    }
-    
-    getItem = () => {
-        const {workspace} = this.props
-        const { itemId, boardId } = this.props.match.params
-        const boardIdx = workspace.boards.findIndex(board => board._id === boardId)
-        const board = workspace.boards[boardIdx]
-        const group = board.groups.find(group => group.items.map(item => {
-            return item.id===itemId
-        })) 
-        const item = group.items.find(item => item.id === itemId)
-        return item
+        const { boardId,itemId } = this.props.match.params
+        this.props.loadItem(boardId, itemId)
     }
 
     onPost = async (update) => {
-        const { user, workspace,history,onPost,match} = this.props
+        const { user, workspace,history,onPost,match,item,loadItem} = this.props
         const { boardId,itemId } = match.params
-        const item = this.getItem()
         await onPost(update, user, item, workspace)
-        getWorkspaceByBoardId(boardId)
+        loadItem(boardId, itemId)
         history.push(`/board/${boardId}/item/${itemId}`)
     }
     render() {
-        const { workspace } = this.props
-        if (!workspace ) return <div className="">loading</div>
-        const item = this.getItem()
+        const {item } = this.props
+        if (!item ) return <div className="">loading</div>
         return (
             <div>
                 <h1>{item.title}</h1>
@@ -54,6 +39,8 @@ function mapStateToProps(state) {
     return {
         user: state.userModule.user,
         workspace: state.workspaceModule.workspace,
+        item: state.itemModule.item,
+        
 
     };
 }

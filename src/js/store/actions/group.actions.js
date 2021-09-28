@@ -33,6 +33,7 @@ export function editGroup(workspace,board,group,user){
 }
 
 export function loadGroups(board) {
+    console.log(`board`, board)
     return async dispatch => {
         try {
             const statuses = []
