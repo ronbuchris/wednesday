@@ -1,5 +1,6 @@
 import { workspaceService } from "../../services/workspace.service";
 import { groupService } from "../../services/group.service";
+import { boardService } from "../../services/board.service";
 
 export function setGroup(group) {
     return async dispatch => {
@@ -14,14 +15,20 @@ export function setGroup(group) {
     }
 }
 
+
 export function editGroup(workspace, board, group, user) {
     return async (dispatch) => {
         try {
             const workspaceToSave = groupService.editGroup(workspace, board, group, user)
+            const newBoard = boardService.getById(workspaceToSave, board._id)
             await workspaceService.save(workspaceToSave)
             dispatch({
                 type: 'EDIT_WORKSPACE',
                 workspace: workspaceToSave,
+            })
+            dispatch({
+                type: 'SET_GROUPS',
+                groups: newBoard.groups,
             })
         } catch (err) {
             console.log('Cannot edit group', err)
@@ -32,15 +39,10 @@ export function editGroup(workspace, board, group, user) {
 export function loadGroups(board) {
     return dispatch => {
         try {
-            const statuses = []
-            const groupsIds = []
             const groups = groupService.query(board)
             dispatch({
                 type: 'SET_GROUPS',
-                board,
-                statuses,
-                groups,
-                groupsIds
+                groups
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
@@ -49,10 +51,9 @@ export function loadGroups(board) {
 }
 
 export function filterGroups(board, groupsIds, statuses) {
-    console.log('ids', groupsIds);
     return async dispatch => {
         try {
-            const groups = await groupService.query(board, { groupsIds })
+            const groups = groupService.query(board, { groupsIds })
             dispatch({
                 type: 'SET_GROUPS',
                 groups

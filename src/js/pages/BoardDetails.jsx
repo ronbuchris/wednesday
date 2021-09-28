@@ -6,7 +6,6 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { createItem } from '../services/item.service';
-import { createGroup } from '../services/group.service';
 
 import { loadBoard, onEditBoard } from '../store/actions/board.actions';
 import {
@@ -25,17 +24,14 @@ export class _BoardDetails extends React.Component {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
-    this.props.loadGroups(this.props.board);
   }
 
   async componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
-      await this.props.loadWorkspaceByBoardId(boardId);
+      await this.props.getWorkspaceByBoardId(boardId);
       this.props.loadBoard(workspace, boardId);
-      console.log(`this.props.board`, this.props.board);
-      this.props.loadGroups(this.props.board);
     }
   }
 
@@ -83,6 +79,7 @@ export class _BoardDetails extends React.Component {
   render() {
     const { workspace, board, groups } = this.props;
     if (!workspace || !board) return <div>loading</div>;
+
     return (
       <div className="board-app flex">
         <WorkspaceNav

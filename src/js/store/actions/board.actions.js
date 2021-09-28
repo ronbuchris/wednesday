@@ -11,6 +11,10 @@ export function loadBoard(workspace, boardId) {
                 type: 'SET_BOARD',
                 board
             })
+            dispatch({
+                type: 'SET_GROUPS',
+                groups: board.groups
+            })
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }

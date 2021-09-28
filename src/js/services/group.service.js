@@ -7,9 +7,8 @@ export const groupService = {
     editGroup
 }
 
-function query(board, filterBy) {
-    console.log(filterBy);
-    return Promise.resolve(board.groups)
+function query(board) {
+    return board.groups
 }
 
 //EDIT-ADD GROUP
@@ -28,6 +27,7 @@ function editGroup(workspace, board, group, user) {
     }
     return newWorkspace
 }
+
 
 function removeGroup(workspace, board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
@@ -51,7 +51,6 @@ export function createGroup(user, itemCount = 1) {
         }
     }
     return group
-
 }
 
 function makeId(length = 6) {

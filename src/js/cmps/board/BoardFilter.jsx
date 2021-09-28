@@ -37,10 +37,10 @@ class _BoardFilter extends Component {
         this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId)
     }
     render() {
-        const { board, groups} = this.props;
+        const { board} = this.props;
         return (
             <div className="board-filter">
-                <GroupFilter groups={groups} onFilter={this.onFilter}/>
+                <GroupFilter groups={board.groups} onFilter={this.onFilter}/>
                 <StatusFilter board={board} onFilterStatus={this.onFilterStatus}/>
             </div>
         )
