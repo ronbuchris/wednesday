@@ -16,7 +16,7 @@ async function query(user) {
     });
     return Promise.resolve(userWorkspaces)
 }
- 
+
 
 function getById(workspaceId) {
     return storageService.get(STORAGE_KEY, workspaceId)
@@ -54,16 +54,17 @@ async function getByBoardId(boardId) {
         })
     })
 }
-async function addNewWorkspace(user,title) {
-    const workspace = createWorkspace(user,title)
+
+async function addNewWorkspace(user, title) {
+    const workspace = createWorkspace(user, title)
     await storageService.post(STORAGE_KEY, workspace)
     user.workspaces.push(workspace._id)
-    const userToSave = {...user}
+    const userToSave = { ...user }
     return [userToSave, workspace]
 }
 
 
-function createWorkspace(user,title) {
+function createWorkspace(user, title) {
     return {
         _id: makeId(),
         name: title,
@@ -73,7 +74,7 @@ function createWorkspace(user,title) {
             _id: user._id,
             fullname: user.fullname
         },
-        members:[],
+        members: [],
         boards: []
     }
 }

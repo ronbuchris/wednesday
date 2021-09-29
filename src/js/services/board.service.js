@@ -21,7 +21,7 @@ async function getBoardById(boardId) {
 }
 
 function save(workspace, boardOrTitle, user, users) {
-    console.log(typeof boardOrTitle);
+
     if (typeof boardOrTitle === 'string') {
         const newBoard = createBoard(user, users, boardOrTitle)
         console.log(newBoard);
@@ -50,7 +50,7 @@ export function createBoard(user, users, title) {
     }
     return {
         _id: makeId(),
-        title: title,
+        title,
         createdAt: Date.now(),
         description: "Click to add description",
         members,

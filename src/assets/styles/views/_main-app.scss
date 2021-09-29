@@ -76,7 +76,7 @@
     background-color: rgba(0, 0, 0, 0.3);
   }
 }
-
+//GLOVBAL MENUS
 .menu-modal {
   position: absolute;
   width: 264px;
@@ -105,6 +105,17 @@
 .board-menu {
   top: 90%;
   right: -105%;
+}
+
+//COLUMNS MENUS
+.status-menu {
+  width: 144px;
+  padding: 16px;
+
+  .labels-list {
+    .label {
+    }
+  }
 }
 
 .add-workspace-modal {

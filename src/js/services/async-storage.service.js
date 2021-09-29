@@ -42,7 +42,6 @@ const gWorkspaces = [
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
-                        "pos": 1,
                         "width": 140,
                         "members": [
                             {
@@ -66,7 +65,6 @@ const gWorkspaces = [
                         "id": "column101",
                         "type": "status",
                         "title": "Status",
-                        "pos": 2,
                         "width": 140,
                         "labels": [
                             {
@@ -261,7 +259,6 @@ const gWorkspaces = [
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
-                        "pos": 2,
                         "width": 140,
                         "members": [
                             {
@@ -285,7 +282,6 @@ const gWorkspaces = [
                         "id": "column101",
                         "type": "status",
                         "title": "Status",
-                        "pos": 1,
                         "width": 140,
                         "labels": [
                             {
@@ -396,7 +392,6 @@ const gWorkspaces = [
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
-                        "pos": 1,
                         "width": 140,
                         "members": [
                             {
@@ -420,7 +415,6 @@ const gWorkspaces = [
                         "id": "column101",
                         "type": "status",
                         "title": "Status",
-                        "pos": 2,
                         "width": 140,
                         "labels": [
                             {
