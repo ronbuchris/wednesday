@@ -21,8 +21,12 @@ export class AddWorkspace extends React.Component {
 
   render() {
     const { title } = this.state;
+    const { toggleMenus,toggleMenu} = this.props;
     return (
       <div className="add-workspace-modal br8">
+          <div className="close-add-workspace-modal btn" onClick={()=>{
+                toggleMenu(toggleMenus)
+            }}>X</div>
         <div className="create-workspace-title">Create Workspace</div>
         <div className="workspace-icon">ICON</div>
         <div className="add-workspace-input-wrapper">
@@ -42,10 +46,14 @@ export class AddWorkspace extends React.Component {
         </div>
         <div className="new-workspace-container-btn">
           <div className="cancel-btn">
-            <button className="cancel-workspace-btn">Cancel</button>
+            <button className="cancel-workspace-btn" onClick={()=>{
+                toggleMenu(toggleMenus)
+            }}>Cancel</button>
           </div>
           <div className="create-btn">
-            <button className="create-workspace-btn">Create Workspace</button>
+            <button className="create-workspace-btn" onClick={()=>{
+                toggleMenu(toggleMenus)
+            }}>Create Workspace</button>
           </div>
         </div>
       </div>

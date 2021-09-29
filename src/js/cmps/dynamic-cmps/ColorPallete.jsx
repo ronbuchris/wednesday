@@ -6,7 +6,7 @@ export class ColorPallete extends React.Component {
     };
   
     render() {
-      const { changeGroupColor,onOpenGroupMenu,colorPicker} = this.props;
+      const { changeGroupColor,colorPicker,toggleMenus,toggleMenu} = this.props;
       const { colors } = this.state;
       return (
           <div className="colors">
@@ -15,7 +15,7 @@ export class ColorPallete extends React.Component {
                       ev.stopPropagation();
                       changeGroupColor(color)
                       colorPicker();
-                      onOpenGroupMenu();
+                      toggleMenu(toggleMenus)
                   }}></div>
               ))}
           </div>
