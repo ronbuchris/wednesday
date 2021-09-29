@@ -109,6 +109,10 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace,board,result,groupId){
+    console.log(`object`, workspace)
+    console.log(`object`, board)
+    console.log(`object`, result)
+    console.log(`object`, groupId)
     const startIdx=result.source.index
     const endIdx=result.destination ? result.destination.index : 0
     if(result.type === "group"){
@@ -119,8 +123,8 @@ function dragAndDrop(workspace,board,result,groupId){
         const destination= result.destination ? result.destination.droppableId : groupId
         const fromGroup=board.groups.find(group =>group.id===result.source.droppableId)
         const toGroup=board.groups.find(group =>group.id===destination)
-        const [item]=fromGroup.items.splice(fromGroup.items[startIdx],1)
-       toGroup.items.splice(endIdx,0,item)
+        const [item]=fromGroup.items.splice(startIdx,1)
+        toGroup.items.splice(endIdx,0,item)
     }
     
     const newWorkspace = { ...workspace };
