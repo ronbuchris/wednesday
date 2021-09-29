@@ -20,10 +20,6 @@ export function BoardHeader({ board, onBlur, onAddItem, onEditGroup, onRemoveBoa
         </div>
       </div>
       <div className="delete-board">
-        <div className="delete-board btn" onClick={(ev)=>{
-          ev.preventDefault();
-          onRemoveBoard(board._id);
-        }}>delete</div>
       </div>
       <div
         contentEditable="true"
