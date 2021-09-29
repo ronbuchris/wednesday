@@ -22,6 +22,7 @@ import { saveItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
+  loadWorkspace
 } from '../store/actions/workspace.actions';
 import { ItemDetails } from './ItemDetails';
 
@@ -36,8 +37,9 @@ export class _BoardDetails extends React.Component {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
-      // await this.props.getWorkspaceByBoardId(boardId);
       this.props.loadBoard(workspace, boardId);
+    } else if (!workspace.boards.length) {
+      this.props.loadWorkspace(workspace._id)
     }
   }
 
@@ -68,10 +70,12 @@ export class _BoardDetails extends React.Component {
   //Boards Functions
   onRemoveBoard = (boardId) => {
     const { workspace, removeBoard, match } = this.props;
-    const newWorkspace = { ...workspace };
     removeBoard(workspace, boardId);
-    if (match.params.boardId === boardId) {
-      this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
+    if (!workspace.boards.length) {
+      this.props.history.push(`/workspace/${workspace._id}`);
+    }
+    else if (match.params.boardId === boardId) {
+      this.props.history.push(`/board/${workspace.boards[0]._id}`);
     }
   };
 
@@ -98,7 +102,8 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const { workspace, board, groups, changeView, isViewChange, item} = this.props;
+    const { workspace, board, groups, changeView, isViewChange, item } =
+      this.props;
     if (!workspace || !board) return <div>loading</div>;
 
     return (
@@ -126,8 +131,7 @@ export class _BoardDetails extends React.Component {
             board={board}
             onBlur={this.onBlur}
           />
-        {item && <ItemDetails item={item}/>}
-
+          {item && <ItemDetails item={item} />}
         </div>
       </div>
     );
@@ -151,6 +155,7 @@ const mapDispatchToProps = {
   //workspace
   loadWorkspaceByBoardId,
   editWorkspace,
+  loadWorkspace,
   //board
   removeBoard,
   loadBoard,

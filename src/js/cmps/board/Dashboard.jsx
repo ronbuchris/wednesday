@@ -62,7 +62,6 @@ class _Dashboard extends React.Component {
                         this.changeChart('Bar')
                     }}>Bar</p>
                 </div>
-                {console.log(<DynamicChart/>)}
                 <DynamicChart data={data} />
             </div>
         )

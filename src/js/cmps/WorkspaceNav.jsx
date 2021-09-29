@@ -43,9 +43,9 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspace(value);
   };
 
-  onAddBoard = async () => {
+  onAddBoard = () => {
     const { workspace, user, editWorkspace, users } = this.props;
-    const newBoard = await createBoard(user, users);
+    const newBoard = createBoard(user, users);
     const newWorkspace = {
       ...workspace,
       boards: [...workspace.boards, newBoard],
@@ -134,11 +134,15 @@ class _WorkspaceNav extends Component {
                 workspace={workspace}
                 onRemoveBoard={onRemoveBoard}
                 changeView={changeView}
+                toggleMenus={toggleMenus}
+                toggleMenu={toggleMenu}
               />
             </div>
           </>
         )}
-        {toggleMenus.isWorkspaceModal &&<AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />}
+        {toggleMenus.isWorkspaceModal && (
+          <AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
+        )}
         {toggleMenus.workspaceMenu && <Screen toggleMenus={toggleMenus} />}
         {toggleMenus.isWorkspaceModal && <Screen toggleMenus={toggleMenus} />}
       </div>

@@ -1,15 +1,14 @@
-import { FaAngleRight } from 'react-icons/fa';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 
-export function ItemMenu({ item, onRemoveItem, toggleMenus, toggleMenu }) {
+export function BoardMenu({ board, onRemoveBoard, toggleMenus, toggleMenu }) {
   return (
-    <div className="item-menu menu-modal br8">
+    <div className="board-menu menu-modal br8">
       <div className="menu-section">
         <div
           className="btn flex align-center header-btn"
           onClick={(ev) => {
             ev.stopPropagation();
-            onRemoveItem(item.id);
+            onRemoveBoard(board._id);
             toggleMenu(toggleMenus);
           }}
         >

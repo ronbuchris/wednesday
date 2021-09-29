@@ -34,8 +34,8 @@ export class _GroupHeader extends React.Component {
       this.props;
     const { isHover, isColor } = this.state;
     return (
-      <div className="group-header flex align-center">
-        <div className="group-menu">
+      <div className="group-header flex">
+        <div className="group-arrow">
           <div
             className="group-menu-button btn"
             style={

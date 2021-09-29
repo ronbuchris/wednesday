@@ -1,3 +1,4 @@
+import { userService } from "../../services/user.service"
 import { workspaceService } from "../../services/workspace.service"
 
 export function loadWorkspaces(user) {
@@ -45,14 +46,22 @@ export function loadWorkspaceByBoardId(boardId) {
     }
 }
 
-export function addWorkspace(workspace) {
+export function addWorkspace(user,title) {
     return async dispatch => {
         try {
-            const addedWorkspace = workspaceService.save(workspace)
+            const userAndWorkspace = await workspaceService.addNewWorkspace(user,title)
+            const userToSave = userAndWorkspace[0]
+            const workspaces = await workspaceService.query(userToSave)
+            await userService.save(userToSave)
+            const workspace = userAndWorkspace[1]
             dispatch({
-                type: 'ADD_WORKSPACE',
-                addedWorkspace
+                type: 'SET_WORKSPACES',
+                workspaces
             })
+            // dispatch({
+            //     type: 'SET_WORKSPACE',
+            //     workspace
+            // })
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }
