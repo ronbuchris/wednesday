@@ -115,6 +115,7 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
+          onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
             board={board}

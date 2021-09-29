@@ -1,4 +1,5 @@
 import { createItem } from './item.service'
+var randomColor = require('randomcolor');
 
 export const groupService = {
     createGroup,
@@ -42,7 +43,11 @@ export function createGroup(user, itemCount = 1) {
         "title": "New Group",
         items,
         "style": {
-            "color": "brown",
+            "color": randomColor({
+                luminosity: 'dark',
+                format: 'rgba',
+                alpha: 0.9
+             }),
         }
     }
     return group

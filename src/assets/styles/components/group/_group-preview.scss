@@ -12,6 +12,9 @@
       max-width: 30px;
       padding-bottom: 1px;
       align-items: center;
+      position: absolute;
+      left: -30px;
+      height: 36px;
 
       .group-menu-button{
         border-radius: 50%;
@@ -22,9 +25,10 @@
         align-items: center;
         font-size: 14px;
         border: 1px solid;
-        color: #fff;
+        color: $clr7;
+        
         &:hover{
-          background-color: #fff;
+          background-color: $clr7;
 
         }
       }
@@ -34,14 +38,51 @@
       position: absolute;
       top: 80%;
       width: 264px;
-      box-shadow: 0 4px 17px 6px #0000001a;
       z-index:10;
-      padding: 8px;
-    border-radius: 8px;
-    background-color: $clr7;
-    >*{
-      font-size: 14px;
-      padding: 4px 8px;
+      left: -30px;
+      box-shadow: 0 4px 17px 6px #0000001a;
+      background-color: $clr7;
+      .group-menu-section{
+        padding:8px;
+        >*{
+          font-size: 14px;
+          padding: 4px 8px;
+      }
+        // &.button-border{
+        //   border-bottom: 1px solid $ui-grey-color;
+        // }
+        .change-group-color{
+          gap: 5px;
+          .group-color{
+            width: 14px;
+            height: 14px;
+            border-radius: 50%; 
+
+          }
+        }
+      }
+      .color-pallete{
+        position: absolute;
+        box-shadow: 0 4px 17px 6px #0000001a;
+        background-color: $clr7;
+      top: 80%;
+      height: 114px;
+      width: 140px;
+      .colors{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8px;
+        gap: 6px;
+      }
+      .group-color-item{
+        width: 20px;
+        height: 20px;
+        border-radius:50%;
+        &:hover{
+          opacity: .6;
+        }
+      }
+
     }
     }
 
