@@ -1,6 +1,8 @@
+import { connect } from 'react-redux';
 import React from 'react';
+import { addWorkspace } from '../../store/actions/workspace.actions';
 
-export class AddWorkspace extends React.Component {
+class _AddWorkspace extends React.Component {
   state = {
     title: '',
   };
@@ -10,13 +12,14 @@ export class AddWorkspace extends React.Component {
     const field = ev.target.name;
     if (!field) return;
     const value = ev.target.value;
-    this.setState((prevState) => ({
-      update: { ...prevState.update, [field]: value },
-    }));
+    this.setState({title: value});
   };
 
-  onAddWorkspace = (ev) => {
-    ev.preventDefault();
+
+  onAddWorkspace = async (ev) => {
+    const { user, addWorkspace, workspace, history} =this.props;
+    const {title} = this.state
+    await addWorkspace(user, title)
   };
 
   render() {
@@ -45,10 +48,30 @@ export class AddWorkspace extends React.Component {
             <button className="cancel-workspace-btn">Cancel</button>
           </div>
           <div className="create-btn">
-            <button className="create-workspace-btn">Create Workspace</button>
+            <button className="create-workspace-btn" onClick={(ev) => {
+              ev.preventDefault();
+              this.onAddWorkspace()
+            }}>Create Workspace</button>
           </div>
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    workspaces: state.workspaceModule.workspaces,
+    workspace: state.workspaceModule.workspace,
+    user: state.userModule.user,
+  };
+}
+
+const mapDispatchToProps = {
+  addWorkspace
+};
+
+export const AddWorkspace = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_AddWorkspace);

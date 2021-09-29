@@ -2,6 +2,7 @@
 
 
 export function ItemUpdates({updates}) {
+    if (!updates) return <div>loading</div>
     return (
         <div>
             {updates.map(update => {

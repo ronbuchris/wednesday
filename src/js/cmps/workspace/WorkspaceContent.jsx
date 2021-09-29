@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
-export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen, changeView}) {
+import { connect } from 'react-redux';
+import { editBoard} from '../../store/actions/board.actions'
+function _WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen, changeView, editBoard, user, users}) {
   return (
     <div className="workspace-content">
-      {isBoardsOpen && <div>
+      {!workspace.boards.length && <div>
+        <h1>You have 0 boards in workspace</h1>
+        <button onClick={() =>{
+          editBoard(workspace,'My First Board',user,users)
+        }}
+          >+Add a board</button>
+        </div>}
+      {isBoardsOpen && workspace.boards && <div>
       {workspace.boards.map((board) => {
         return (
           <Link key={board._id} to={`/board/${board._id}`}>
@@ -27,3 +36,20 @@ export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen, chang
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    toggleMenus: state.workspaceModule.toggleMenus,
+    user: state.userModule.user,
+    users: state.userModule.users,
+  };
+}
+
+const mapDispatchToProps = {
+  editBoard
+};
+
+export const WorkspaceContent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_WorkspaceContent);

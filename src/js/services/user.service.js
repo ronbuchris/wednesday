@@ -11,6 +11,7 @@ export const userService = {
     getById,
     remove,
     update,
+    save
 }
 
 window.userService = userService
@@ -65,6 +66,14 @@ async function logout() {
 function _saveLocalUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
+}
+
+function save(user) {
+    if (user._id) {
+        return storageService.put(STORAGE_KEY, user)
+    } else {
+        return storageService.post(STORAGE_KEY, user)
+    }
 }
 
 function getLoggedinUser() {

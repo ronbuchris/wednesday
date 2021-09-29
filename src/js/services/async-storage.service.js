@@ -7,6 +7,7 @@ export const storageService = {
     post,
     put,
     remove,
+    _save
 }
 
 const gWorkspaces = [
@@ -647,8 +648,8 @@ const gUsers = [
     },
 ]
 
-_save('workspaceDB', gWorkspaces)
-_save('userDB', gUsers)
+// _save('workspaceDB', gWorkspaces)
+// _save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {
@@ -694,6 +695,7 @@ function remove(entityType, entityId) {
             _save(entityType, entities)
         })
 }
+
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))

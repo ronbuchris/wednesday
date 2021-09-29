@@ -1,15 +1,12 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleMenu } from '../store/actions/board.actions';
-import { AddWorkspace } from '../cmps/workspace/AddWorkspace';
-import { toggleNav } from '../store/actions/workspace.actions';
 
-export class _WorkspaceMenu extends React.Component {
+class _WorkspaceMenu extends React.Component {
 
   render(){
-   const { workspaces, toggleMenu,toggleMenus} =this.props
+    const { workspaces, toggleMenu, toggleMenus, addWorkspace} =this.props
     return (
       <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>
