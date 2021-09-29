@@ -22,6 +22,7 @@ import { saveItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
+  loadWorkspace
 } from '../store/actions/workspace.actions';
 import { ItemDetails } from './ItemDetails';
 
@@ -38,6 +39,8 @@ export class _BoardDetails extends React.Component {
     if (prevProps.match.params.boardId !== boardId) {
       // await this.props.getWorkspaceByBoardId(boardId);
       this.props.loadBoard(workspace, boardId);
+    } else if (!workspace.boards.length) {
+      this.props.loadWorkspace(workspace._id)
     }
   }
 
@@ -70,7 +73,10 @@ export class _BoardDetails extends React.Component {
     const { workspace, removeBoard, match } = this.props;
     const newWorkspace = { ...workspace };
     removeBoard(workspace, boardId);
-    if (match.params.boardId === boardId) {
+    if (!newWorkspace.boards.length) {
+      this.props.history.push(`/workspace/${newWorkspace._id}`);
+    }
+    else if (match.params.boardId === boardId) {
       this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
     }
   };
@@ -151,6 +157,7 @@ const mapDispatchToProps = {
   //workspace
   loadWorkspaceByBoardId,
   editWorkspace,
+  loadWorkspace,
   //board
   removeBoard,
   loadBoard,

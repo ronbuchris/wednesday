@@ -11,7 +11,9 @@ export function BoardPreview({
   onRemoveBoard,
   changeView,
 }) {
+
   const board = workspace.boards[boardIdx];
+  if (!board) return <div></div>
   return (
     <Link to={`/board/${board._id}`}>
       <div
