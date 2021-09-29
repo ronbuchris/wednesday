@@ -134,11 +134,15 @@ class _WorkspaceNav extends Component {
                 workspace={workspace}
                 onRemoveBoard={onRemoveBoard}
                 changeView={changeView}
+                toggleMenus={toggleMenus}
+                toggleMenu={toggleMenu}
               />
             </div>
           </>
         )}
-        {toggleMenus.isWorkspaceModal &&<AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />}
+        {toggleMenus.isWorkspaceModal && (
+          <AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
+        )}
         {toggleMenus.workspaceMenu && <Screen toggleMenus={toggleMenus} />}
         {toggleMenus.isWorkspaceModal && <Screen toggleMenus={toggleMenus} />}
       </div>

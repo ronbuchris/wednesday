@@ -21,8 +21,8 @@ async function getBoardById(boardId) {
 }
 
 function save(workspace, board, user, users) {
-    if (board.id) {
-        const boardIdx = workspace.boards.findIndex(currBoard => currBoard.id === board.id);
+    if (board._id) {
+        const boardIdx = workspace.boards.findIndex(currBoard => currBoard._id === board._id);
         workspace.boards.splice(boardIdx, 1, board);
     } else {
         const newBoard = createBoard(user, users)

@@ -33,7 +33,7 @@ export class _GroupHeader extends React.Component {
     const { isHover, isColor } = this.state;
     return (
       <div className="group-header flex">
-        <div className="group-menu">
+        <div className="group-arrow">
           <div
             className="group-menu-button btn"
             style={
@@ -54,9 +54,9 @@ export class _GroupHeader extends React.Component {
         </div>
         {toggleMenus.groupMenu === group.id && (
           <GroupMenu
-          toggleMenus={toggleMenus}
-          toggleMenu={toggleMenu}
-          changeGroupColor={this.changeGroupColor}
+            toggleMenus={toggleMenus}
+            toggleMenu={toggleMenu}
+            changeGroupColor={this.changeGroupColor}
             group={group}
             isColor={isColor}
             onRemoveGroup={onRemoveGroup}

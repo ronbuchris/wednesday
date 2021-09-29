@@ -2,16 +2,24 @@ import { FaAngleRight } from 'react-icons/fa';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 import { ColorPallete } from '../dynamic-cmps/ColorPallete';
 
-export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker,changeGroupColor,toggleMenus,toggleMenu }) {
+export function GroupMenu({
+  group,
+  isColor,
+  onRemoveGroup,
+  colorPicker,
+  changeGroupColor,
+  toggleMenus,
+  toggleMenu,
+}) {
   return (
-    <div className="group-menu-modal br8">
-      <div className="group-menu-section">
+    <div className="group-menu menu-modal br8">
+      <div className="menu-section">
         <div className="btn header-btn">Collapse this group</div>
         <div className="btn header-btn">Collapse all Groups</div>
         <div className="btn header-btn">Select all items</div>
       </div>
       <div className="divider"></div>
-      <div className="group-menu-section">
+      <div className="menu-section">
         <div className="btn header-btn">Add group</div>
         <div className="btn flex space-between align-center header-btn">
           Duplicate this group <FaAngleRight />
@@ -21,7 +29,7 @@ export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker,changeGro
         </div>
       </div>
       <div className="divider"></div>
-      <div className="group-menu-section">
+      <div className="menu-section">
         <div className="btn header-btn">Rename group</div>
         <div className="color-picker">
           <div className="btn header-btn" onClick={colorPicker}>
@@ -36,8 +44,8 @@ export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker,changeGro
           {isColor && (
             <div className="color-pallete">
               <ColorPallete
-              toggleMenus={toggleMenus}
-              toggleMenu={toggleMenu}
+                toggleMenus={toggleMenus}
+                toggleMenu={toggleMenu}
                 colorPicker={colorPicker}
                 changeGroupColor={changeGroupColor}
               />
@@ -46,7 +54,7 @@ export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker,changeGro
         </div>
       </div>
       <div className="divider"></div>
-      <div className="group-menu-section">
+      <div className="menu-section">
         <div
           className="btn flex align-center header-btn"
           onClick={(ev) => {

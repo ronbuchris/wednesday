@@ -5,7 +5,7 @@
     position: relative;
     height: 36px;
 
-    .group-menu {
+    .group-arrow {
       display: flex;
       flex: 0 0 30px;
       justify-content: center;
@@ -115,7 +115,7 @@
       height: 36px;
       position: relative;
 
-      .item-menu {
+      .item-menu-arrow {
         display: none;
         position: absolute;
         width: 30px;
@@ -133,7 +133,7 @@
       &:hover {
         background-color: $ui-grey-color;
 
-        .item-menu {
+        .item-menu-arrow {
           display: flex;
         }
       }
