@@ -26,6 +26,7 @@ import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
 import { createBoard } from '../services/board.service';
 import { Screen } from '../pages/Screen';
+import { AddWorkspace } from './workspace/AddWorkspace';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -137,7 +138,9 @@ class _WorkspaceNav extends Component {
             </div>
           </>
         )}
+        {toggleMenus.isWorkspaceModal &&<AddWorkspace />}
         {toggleMenus.workspaceMenu && <Screen toggleMenus={toggleMenus} />}
+        {toggleMenus.isWorkspaceModal && <Screen toggleMenus={toggleMenus} />}
       </div>
     );
   }

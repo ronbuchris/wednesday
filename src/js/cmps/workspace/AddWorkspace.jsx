@@ -56,7 +56,7 @@ export class AddWorkspace extends React.Component {
                             </button>
                         </div>
                         <div className="create-btn">
-                            <button className="create-workspace-btn" onClick={}>
+                            <button className="create-workspace-btn">
                                 Create Workspace
                             </button>
                         </div>

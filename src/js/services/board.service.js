@@ -102,9 +102,10 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
     }
     if (menuToOpen) {
         toggleMenus[menuToOpen] = id
-        console.log(`toggleMenus`, toggleMenus)
+        // console.log(`toggleMenus`, toggleMenus)
     }
     const newMenu = { ...toggleMenus }
+    console.log(`newMenu`, newMenu)
     return newMenu
 }
 

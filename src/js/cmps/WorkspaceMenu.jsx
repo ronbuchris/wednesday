@@ -3,22 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleMenu } from '../store/actions/board.actions';
-import { toggleMenu } from '../store/actions/workspace.actions';
 import { AddWorkspace } from '../cmps/workspace/AddWorkspace';
+import { toggleNav } from '../store/actions/workspace.actions';
 
 export class _WorkspaceMenu extends React.Component {
-  state={
-    isAddWorkspace:false,
-  }
-
-  onAddWorkspace=()=>{
-    const {isAddWorkspace} = this.state
-    this.setState({isAddWorkspace:!isAddWorkspace})
-  }
 
   render(){
-   const { workspaces, toggleMenu,toggleMenus } =this.props
-   const {isAddWorkspace}=this.state
+   const { workspaces, toggleMenu,toggleMenus} =this.props
     return (
       <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>
@@ -38,17 +29,17 @@ export class _WorkspaceMenu extends React.Component {
       })}
       <div className="workspace-action">
         <div className="add-workspace" onClick={(ev) =>{
-          ev.preventDefault();
-          this.onAddWorkspace()
+          ev.stopPropagation();
+          toggleMenu(toggleMenus,'isWorkspaceModal',true)
         }}>
           Add workspace
-        {isAddWorkspace &&<AddWorkspace/>}
         </div>
         <div className="browse-all">
           Browse all
         </div>
 
       </div>
+
     </div>
   )
 }

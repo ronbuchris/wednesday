@@ -1,9 +1,7 @@
 // import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { FaCaretDown } from 'react-icons/fa';
-
 import { toggleMenu } from '../../store/actions/board.actions';
 import { Screen } from '../../pages/Screen';
 import { GroupMenu } from '../menus/GroupMenu';

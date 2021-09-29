@@ -72,3 +72,31 @@
   cursor: default;
   z-index: 5;
 }
+
+.modal-container{
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height:100vh;
+  // width: 100vw;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // background-color:rgba(0,0,0,0.3);
+  // z-index: 10;
+  .add-workspace-modal{
+    position: absolute;
+    background-color: $clr7;
+    box-shadow: 0 4px 17px 6px #0000001a;
+    width: 500px;
+    height: 510px;
+    padding: 32px;
+    text-align: center;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%)
+  }
+  
+
+}

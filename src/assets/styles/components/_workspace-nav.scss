@@ -71,32 +71,6 @@
         cursor: default;
         padding: 8px 0;
       }
-      .workspace-action {
-        .add-workspace{
-          .modal-container{
-            position: fixed;
-            top: 0;
-            left: 0;
-            height:100vh;
-            width: 100vw;
-            background-color:rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .add-workspace-modal{
-              position: absolute;
-              background-color: $clr7;
-              box-shadow: 0 4px 17px 6px #0000001a;
-              width: 500px;
-              height: 510px;
-              padding: 32px;
-              text-align: center;
-            }
-            
-
-          }
-        }
-      }
     }
   }
 
