@@ -58,10 +58,10 @@ export function addWorkspace(user,title) {
                 type: 'SET_WORKSPACES',
                 workspaces
             })
-            dispatch({
-                type: 'SET_WORKSPACE',
-                workspace
-            })
+            // dispatch({
+            //     type: 'SET_WORKSPACE',
+            //     workspace
+            // })
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }
