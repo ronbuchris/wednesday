@@ -40,7 +40,7 @@ export class _WorkspaceDetails extends Component {
         <WorkspaceNav board={board} workspace={workspace} changeView={changeView}/>
         <div className="workspace-details">
           <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
-          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
+          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen} changeView={changeView}/>
         </div>
       </div>
     );
