@@ -4,10 +4,10 @@ import { WorkspaceDetails } from './js/pages/WorkspaceDetails';
 import { ItemDetails } from './js/pages/ItemDetails';
 
 const routesMainApp = [
-    {
-        path: '/board/:boardId/item/:itemId',
-        component: ItemDetails,
-    },
+    // {
+    //     path: '/board/:boardId/item/:itemId',
+    //     component: ItemDetails,
+    // },
     {
         path: '/board/:boardId',
         component: BoardDetails,

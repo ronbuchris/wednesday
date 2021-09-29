@@ -33,12 +33,11 @@ export class GroupHeader extends React.Component {
     this.setState({ isColor: !isColor })
   }
 
-  changeGroupColor=(color) => {
-    const {group,onEditGroup}=this.props
-    const newGroup={...group, style:{color}};
+  changeGroupColor = (color) => {
+    const { group, onEditGroup } = this.props
+    const newGroup = { ...group, style: { color } };
     onEditGroup(newGroup);
   }
-  
 
   render() {
     const { board, group, onBlur, onRemoveGroup } = this.props
@@ -46,7 +45,14 @@ export class GroupHeader extends React.Component {
     return (
       <div className="group-header flex">
         <div className="group-menu">
-          <div className="group-menu-button btn" style={isHover ? { color: group.style.color } : isClick ? { backgroundColor: "#cce5ff", color: "#0073ea" } : { backgroundColor: group.style.color }} onMouseEnter={() => this.onHover(true)} onMouseLeave={() => this.onHover(false)} onClick={() => this.onOpenGroupMenu()}>
+          <div className="group-menu-button btn"
+            style={isHover ? { color: group.style.color } :
+             isClick ? { backgroundColor: "#cce5ff", color: "#0073ea" } :
+              { backgroundColor: group.style.color }}
+               onMouseEnter={() => this.onHover(true)}
+                onMouseLeave={() => this.onHover(false)}
+                 onClick={() => this.onOpenGroupMenu()}>
+
             <FaCaretDown />
           </div>
         </div>
@@ -68,15 +74,15 @@ export class GroupHeader extends React.Component {
             <div className="color-picker">
               <div className="btn header-btn" onClick={this.colorPicker}>
                 <div className="change-group-color flex align-center">
-                <div className="group-color" style={{backgroundColor:group.style.color}}>
+                  <div className="group-color" style={{ backgroundColor: group.style.color }}>
                   </div>
-                   Change group color
-                   </div>
+                  Change group color
                 </div>
-              {isColor && 
-              <div className="color-pallete">
-                <ColorPallete onOpenGroupMenu={this.onOpenGroupMenu} colorPicker={this.colorPicker} changeGroupColor={this.changeGroupColor}/> 
-              </div>}
+              </div>
+              {isColor &&
+                <div className="color-pallete">
+                  <ColorPallete onOpenGroupMenu={this.onOpenGroupMenu} colorPicker={this.colorPicker} changeGroupColor={this.changeGroupColor} />
+                </div>}
             </div>
           </div>
           <div className="divider"></div>
