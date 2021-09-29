@@ -10,6 +10,7 @@ import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Help from 'monday-ui-react-core/dist/icons/Help';
 import LogOut from 'monday-ui-react-core/dist/icons/LogOut';
 
+import logo from '../../assets/img/logo/logo.png';
 import { onLogout } from '../store/actions/user.actions';
 
 class _SidebarHeader extends Component {
@@ -18,14 +19,14 @@ class _SidebarHeader extends Component {
     this.props.history.push('/');
   };
   render() {
-    const { user,workspace} = this.props;
-    if(!workspace) return <div>loading...</div>;
-    const boardId = workspace.boards[0]._id
+    const { user, workspace } = this.props;
+    if (!workspace) return <div>loading...</div>;
+    const boardId = workspace.boards[0]._id;
     return (
       <div className="sidebar-container flex">
         <nav className="sidebar-icons flex space-between column align-center">
-          <div className="flex column">
-            <p>logo</p>
+          <div className="flex column align-center">
+            <img className="logo" src={logo} alt="" />
             <Link to={boardId ? `/board/${boardId}` : `/`}>
               <Workspace className="nav-icon workspace" />
             </Link>

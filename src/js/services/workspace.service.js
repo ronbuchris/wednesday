@@ -1,8 +1,7 @@
 import { storageService } from './async-storage.service';
-import { groupService } from './group.service';
 const STORAGE_KEY = 'workspaceDB'
 
-export const workspaceService = { query, getById, remove, save, getByBoardId, addItem }
+export const workspaceService = { query, getById, remove, save, getByBoardId }
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
@@ -33,27 +32,6 @@ function save(workspace) {
         return storageService.post(STORAGE_KEY, workspace)
     }
 }
-
-async function addItem(newItem, workspace, group, board, addToTop) {
-    const newWorkspace = { ...workspace };
-    const newGroup = {
-        ...group,
-        items: addToTop ? [newItem, ...group.items] : [...group.items, newItem],
-    };
-    const groupIdx = board.groups.findIndex(
-        (group) => group.id === newGroup.id
-    );
-    board.groups.splice(groupIdx, 1, newGroup);
-    const boardIdx = workspace.boards.findIndex(
-        (findBoard) => findBoard._id === board._id
-    );
-    newWorkspace.boards.splice(boardIdx, 1, board);
-    const saveWorkspace = await save(newWorkspace)
-    return Promise.resolve(saveWorkspace)
-}
-
-
-
 
 function getBoardIdx(boards, boardId) {
     return Promise.resolve(

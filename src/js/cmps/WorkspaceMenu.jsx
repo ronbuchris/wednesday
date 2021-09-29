@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Screen } from '../pages/Screen';
 
-import { toggleMenu } from '../store/actions/workspace.actions';
+import { toggleMenu } from '../store/actions/board.actions';
 
-export function _WorkspaceMenu({ workspaces, toggleMenu }) {
+export function _WorkspaceMenu({ workspaces, toggleMenu, toggleMenus }) {
   return (
     <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>
@@ -15,7 +14,7 @@ export function _WorkspaceMenu({ workspaces, toggleMenu }) {
             className="workspace-option menu-button-wrapper flex align-center br4"
             onClick={(ev) => {
               ev.stopPropagation();
-              toggleMenu(false);
+              toggleMenu(toggleMenus);
             }}
           >
             <Link to={`/workspace/${workspace._id}`}>{workspace.name}</Link>

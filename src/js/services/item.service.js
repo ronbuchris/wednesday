@@ -1,7 +1,3 @@
-import { storageService } from './async-storage.service'
-
-const STORAGE_KEY = 'workspaceDB';
-
 export const itemService = {
     save,
     remove,
@@ -19,9 +15,9 @@ function getById(board, itemId) {
 function onPost(update, user, item, workspace) {
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
-    console.log('old',workspace);
+    console.log('old', workspace);
     const newWorkspace = { ...workspace };
-    console.log('new',newWorkspace);
+    console.log('new', newWorkspace);
     return newWorkspace
 }
 

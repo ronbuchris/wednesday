@@ -97,16 +97,6 @@ export function toggleNav() {
     }
 }
 
-export function toggleMenu(isMenuOpen = true) {
-    console.log(`isMenuOpen`, isMenuOpen)
-    return dispatch => {
-        dispatch({
-            type: 'TOGGLE_MENU',
-            isMenuOpen
-        })
-    }
-}
-
 
 
 

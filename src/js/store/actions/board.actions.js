@@ -78,3 +78,15 @@ export function editBoard(workspace, board, user, users) {
         }
     }
 }
+
+
+export function toggleMenu(toggleMenus, menuToOpen, id) {
+    return dispatch => {
+        const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
+        console.log(`newToggleMenus`, newToggleMenus)
+        dispatch({
+            type: 'TOGGLE_MENU',
+            toggleMenus: newToggleMenus
+        })
+    }
+}

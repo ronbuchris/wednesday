@@ -3,7 +3,13 @@ const initialState = {
     workspaces: [],
     labels: [],
     isOpenNav: false,
-    isMenuOpen: false
+    toggleMenus: {
+        workspaceMenu: false,
+        groupMenu: false,
+        boardMenu: false,
+        itemMenu: false,
+        colorMenu: false,
+    }
 }
 
 export function workspaceReducer(state = initialState, action) {
@@ -32,7 +38,18 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, isOpenNav: !state.isOpenNav }
             break
         case 'TOGGLE_MENU':
-            newState = { ...state, isMenuOpen: action.isMenuOpen }
+            newState = { ...state, toggleMenus: action.toggleMenus }
+            break
+        // for (let menu of Object.keys(state.isMenuOpen)) {
+        //     state.isMenuOpen[menu] = false
+        //     console.log(`state.isMenuOpen`, state.isMenuOpen[menu])
+        // }
+        // if (action.isMenuOpen) {
+        //     state.isMenuOpen[action.isMenuOpen] = true
+        //     console.log(`state.isMenuOpen[action.isMenuOpen]`, state.isMenuOpen[action.isMenuOpen])
+        // }
+        // newState = { ...state, isMenuOpen: {} }
+        // console.log(`newState`, newState)
         default:
     }
     return newState

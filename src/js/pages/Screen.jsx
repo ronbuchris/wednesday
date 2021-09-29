@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { toggleMenu } from '../store/actions/workspace.actions';
+import { toggleMenu } from '../store/actions/board.actions';
 
-export function _Screen({ toggleMenu }) {
+export function _Screen({ toggleMenu, toggleMenus }) {
   return (
     <div
       className="screen"
       onClick={() => {
-        toggleMenu(false);
+        toggleMenu(toggleMenus);
       }}
     ></div>
   );
