@@ -10,6 +10,7 @@ const initialState = {
         itemMenu: false,
         colorMenu: false,
         isWorkspaceModal:false,
+        
     }
 }
 

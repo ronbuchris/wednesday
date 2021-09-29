@@ -21,10 +21,12 @@ function _ItemPreview({
   toggleMenus,
   toggleMenu,
   loadItem,
-  provided
+  provided,
+  
+
 }) {
   return (
-    <div className="item-preview flex" {...provided.droppableProps} {...provided.draghandlerProps} ref={provided.innerRef}>
+    <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
           item={item}
@@ -48,17 +50,18 @@ function _ItemPreview({
         style={{ backgroundColor: group.style.color }}
       ></div>
       <div
+        {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
-        contentEditable="true"
-        suppressContentEditableWarning={true}
+        // contentEditable="true"
+        // suppressContentEditableWarning={true}
         onBlur={(ev) => {
           onBlur(ev.target.innerText, item.title, item, 'item', group);
         }}
       >
-        <div className="item-title-text">{item.title}</div>
-          <AddUpdate onClick={() => {
-            loadItem(board._id,item.id)
-          }}/>
+        <div className="item-title-text" >{item.title}</div>
+        <AddUpdate onClick={() => {
+          loadItem(board._id, item.id)
+        }} />
       </div>
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
@@ -79,7 +82,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   toggleMenu,
   loadItem
 };

@@ -105,3 +105,18 @@ export function toggleMenu(toggleMenus, menuToOpen, id) {
         })
     }
 }
+
+export function dragAndDrop(workspace,board,result,groupId) {
+    return async dispatch => {
+        try {
+            const newWorkspace=boardService.dragAndDrop(workspace,board,result,groupId)
+            await workspaceService.save(newWorkspace);
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace:newWorkspace,
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
+    }
+}

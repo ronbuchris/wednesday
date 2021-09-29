@@ -1,7 +1,6 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
-
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
@@ -11,6 +10,7 @@ class _GroupPreview extends React.Component {
   state = {
     itemTitle: '',
     isFocused: false,
+
   };
 
   handleChange = ({ target }) => {
@@ -50,44 +50,49 @@ class _GroupPreview extends React.Component {
     }
   };
 
+
   render() {
-    const { group, onBlur, board, onAddItem, onEditGroup } = this.props;
+    const { group, onBlur, board, onAddItem, onEditGroup, provided,setCurrGroupId } = this.props;
     const { itemTitle, isFocused } = this.state;
     if (!group) return <div>loading</div>;
     return (
-      <div key={group.id} className="groups-dnd group-preview">
+      <div key={group.id} className="group-preview">
         <GroupHeader
+        setCurrGroupId={setCurrGroupId}
+          provided={provided}
           onEditGroup={onEditGroup}
           group={group}
           board={board}
           onBlur={onBlur}
           onRemoveGroup={this.onRemoveGroup}
         />
-        <DragDropContext>
-          <Droppable droppableId="items-dnd">
-            {(provided)=>(
-              <div className="items-dnd item-list" {...provided.droppableProps} ref={provided.innerRef}>
-          {group.items &&
-            group.items.map((item,index) => {
-              return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided)=>(
-                    <ItemPreview
-                    provided={provided}
-                    onBlur={onBlur}
-                    item={item}
-                    group={group}
-                    board={board}
-                    onRemoveItem={this.onRemoveItem}
-                    />
-                    )}
-                </Draggable>
-                );
-              })}
-        </div>
-              )}
-              </Droppable>
-              </DragDropContext>
+        <Droppable type="item" droppableId={group.id}>
+          {(provided) => (
+            <div className="item-list" {...provided.droppableProps} ref={provided.innerRef}>
+              {group.items &&
+                group.items.map((item, index) => {
+                  return (
+                    <Draggable key={item.id} draggableId={item.id} index={index} >
+                      {(provided) => (
+                        <div {...provided.draggableProps} ref={provided.innerRef}>
+                        <ItemPreview
+                          provided={provided}
+                          onBlur={onBlur}
+                          key={item.id}
+                          item={item}
+                          group={group}
+                          board={board}
+                          onRemoveItem={this.onRemoveItem}
+                          />
+                          </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
         <div>
           <form
             className="item-add"
@@ -96,7 +101,7 @@ class _GroupPreview extends React.Component {
               onAddItem(itemTitle, group);
               this.clearState();
             }}
-            >
+          >
             <input
               type="text"
               dir="auto"
@@ -107,11 +112,11 @@ class _GroupPreview extends React.Component {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onKeyUp={this.onKeyUp}
-              />
+            />
 
             {(isFocused || itemTitle) && (
               <button className="item-add-button">Add</button>
-              )}
+            )}
             <div className="indicator"></div>
           </form>
         </div>

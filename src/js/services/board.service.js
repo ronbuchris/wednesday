@@ -3,7 +3,7 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save, getBoardById, remove, toggleMenu }
+export const boardService = { getById, save, getBoardById, remove, toggleMenu,dragAndDrop }
 const STORAGE_KEY = 'workspaceDB'
 
 function getById(workspace, boardId) {
@@ -102,11 +102,28 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
     }
     if (menuToOpen) {
         toggleMenus[menuToOpen] = id
-        // console.log(`toggleMenus`, toggleMenus)
     }
     const newMenu = { ...toggleMenus }
-    console.log(`newMenu`, newMenu)
     return newMenu
+}
+
+function dragAndDrop(workspace,board,result,groupId){
+    const startIdx=result.source.index
+    const endIdx=result.destination ? result.destination.index : 0
+    if(result.type === "group"){
+        const [group]=board.groups.splice(board.groups[startIdx],1)
+        board.groups.splice(endIdx,0,group)
+    }
+    if(result.type === "item"){
+        const destination= result.destination ? result.destination.droppableId : groupId
+        const fromGroup=board.groups.find(group =>group.id===result.source.droppableId)
+        const toGroup=board.groups.find(group =>group.id===destination)
+        const [item]=fromGroup.items.splice(fromGroup.items[startIdx],1)
+       toGroup.items.splice(endIdx,0,item)
+    }
+    
+    const newWorkspace = { ...workspace };
+    return newWorkspace
 }
 
 function makeId(length = 6) {

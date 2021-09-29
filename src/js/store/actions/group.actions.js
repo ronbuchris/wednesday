@@ -16,6 +16,7 @@ export function setGroup(group) {
 }
 
 
+
 export function editGroup(workspace, board, group, user) {
     return async (dispatch) => {
         try {
