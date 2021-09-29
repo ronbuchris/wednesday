@@ -70,7 +70,14 @@ function _ItemPreview({
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
           return (
-            <ItemColumn key={idx} board={board} column={column} item={item} />
+            <ItemColumn
+              key={idx}
+              board={board}
+              column={column}
+              item={item}
+              toggleMenus={toggleMenus}
+              toggleMenu={toggleMenu}
+            />
           );
         })}
       </div>

@@ -22,7 +22,6 @@ import {
 } from '../store/actions/user.actions.js';
 
 class _Login extends React.Component {
-  // const [state, setstate] = useState(initialState)
   state = {
     credentials: {
       username: '',

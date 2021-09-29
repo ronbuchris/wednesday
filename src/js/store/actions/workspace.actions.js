@@ -46,10 +46,10 @@ export function loadWorkspaceByBoardId(boardId) {
     }
 }
 
-export function addWorkspace(user,title) {
+export function addWorkspace(user, title) {
     return async dispatch => {
         try {
-            const userAndWorkspace = await workspaceService.addNewWorkspace(user,title)
+            const userAndWorkspace = await workspaceService.addNewWorkspace(user, title)
             const userToSave = userAndWorkspace[0]
             const workspaces = await workspaceService.query(userToSave)
             await userService.save(userToSave)
@@ -58,10 +58,10 @@ export function addWorkspace(user,title) {
                 type: 'SET_WORKSPACES',
                 workspaces
             })
-            // dispatch({
-            //     type: 'SET_WORKSPACE',
-            //     workspace
-            // })
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace
+            })
         } catch (err) {
             console.log('Cannot load workspaces', err)
         }

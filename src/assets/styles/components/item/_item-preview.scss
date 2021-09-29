@@ -14,9 +14,13 @@
   align-items: center;
   justify-content: center;
   color: $clr7;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
-.update-card{
+.update-card {
   width: 750px;
   height: 200px;
   border-radius: 8px;

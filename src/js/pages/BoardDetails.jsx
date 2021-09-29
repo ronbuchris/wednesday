@@ -22,7 +22,7 @@ import { saveItem } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
-  loadWorkspace
+  loadWorkspace,
 } from '../store/actions/workspace.actions';
 import { ItemDetails } from './ItemDetails';
 
@@ -39,7 +39,7 @@ export class _BoardDetails extends React.Component {
     if (prevProps.match.params.boardId !== boardId) {
       this.props.loadBoard(workspace, boardId);
     } else if (!workspace.boards.length) {
-      this.props.loadWorkspace(workspace._id)
+      this.props.loadWorkspace(workspace._id);
     }
   }
 
@@ -73,8 +73,7 @@ export class _BoardDetails extends React.Component {
     removeBoard(workspace, boardId);
     if (!workspace.boards.length) {
       this.props.history.push(`/workspace/${workspace._id}`);
-    }
-    else if (match.params.boardId === boardId) {
+    } else if (match.params.boardId === boardId) {
       this.props.history.push(`/board/${workspace.boards[0]._id}`);
     }
   };
@@ -110,8 +109,8 @@ export class _BoardDetails extends React.Component {
       <div className="board-app flex">
         <WorkspaceNav
           changeView={changeView}
-          board={board}
           workspace={workspace}
+          board={board}
           onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
