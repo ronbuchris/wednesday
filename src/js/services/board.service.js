@@ -23,8 +23,8 @@ function save(workspace, board, user, users) {
         const boardIdx = workspace.boards.findIndex(currBoard => currBoard.id === board.id);
         workspace.boards.splice(boardIdx, 1, board);
     } else {
-        const newboard = createBoard(user, users)
-        workspace.boards.unshift(newboard)
+        const newBoard = createBoard(user, users)
+        workspace.boards.unshift(newBoard)
     }
     const newWorkspace = { ...workspace };
     return newWorkspace
@@ -36,7 +36,6 @@ function remove(workspace, boardId) {
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
 }
-
 
 export async function createBoard(user, users) {
 
