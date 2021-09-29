@@ -1,5 +1,4 @@
 import { boardService } from "../../services/board.service";
-import { groupService } from "../../services/group.service";
 import { itemService } from "../../services/item.service";
 import { workspaceService } from '../../services/workspace.service'
 
@@ -31,6 +30,22 @@ export function onPost(update, user, item, workspace) {
         }
 
     }
+}
+
+export function loadStatuses(board) {
+    return async dispatch => {
+        try {
+            const statuses = itemService.getStatuses(board)
+            console.log(statuses);
+            dispatch({
+                type: 'GET_STATUS',
+                statuses
+            })
+        
+    } catch (err) {
+        console.log('Cannot search item', err)
+    }
+}
 }
 
 export function onSetSearch(board, searchBy) {

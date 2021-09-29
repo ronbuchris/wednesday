@@ -14,9 +14,13 @@ import {
   loadWorkspace,
   toggleNav,
   editWorkspace,
-  toggleMenu,
 } from '../store/actions/workspace.actions';
-import { addBoard, loadBoard } from '../store/actions/board.actions';
+import {
+  addBoard,
+  loadBoard,
+  toggleMenu,
+  changeView,
+} from '../store/actions/board.actions';
 
 import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
@@ -31,7 +35,6 @@ class _WorkspaceNav extends Component {
 
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
-
   }
 
   handleChange = ({ target }) => {
@@ -56,8 +59,17 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen, board } =
-      this.props;
+    const {
+      workspaces,
+      workspace,
+      isOpenNav,
+      toggleNav,
+      board,
+      onRemoveBoard,
+      toggleMenu,
+      toggleMenus,
+      changeView,
+    } = this.props;
     const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
@@ -88,14 +100,16 @@ class _WorkspaceNav extends Component {
             <div
               className="workspace-dropdown-button br4 flex space-between align-center btn"
               onClick={() => {
-                this.props.toggleMenu();
+                toggleMenu(toggleMenus, 'workspaceMenu', workspace._id);
               }}
             >
               <div className="workspace-title">
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />
-              {isMenuOpen && <WorkspaceMenu />}
+              {toggleMenus.workspaceMenu && (
+                <WorkspaceMenu toggleMenus={toggleMenus} />
+              )}
             </div>
             <button
               className="flex menu-button-wrapper align-center"
@@ -114,11 +128,16 @@ class _WorkspaceNav extends Component {
             </button>
             <div className="divider"></div>
             <div className="board-list">
-              <BoardList boardId={board ? board._id : workspace.boards[0]}workspace={workspace} />
+              <BoardList
+                boardId={board ? board._id : workspace.boards[0]}
+                workspace={workspace}
+                onRemoveBoard={onRemoveBoard}
+                changeView={changeView}
+              />
             </div>
           </>
         )}
-        {isMenuOpen && <Screen />}
+        {toggleMenus.workspaceMenu && <Screen toggleMenus={toggleMenus} />}
       </div>
     );
   }
@@ -126,12 +145,12 @@ class _WorkspaceNav extends Component {
 
 function mapStateToProps(state) {
   return {
-    isMenuOpen: state.workspaceModule.isMenuOpen,
     workspaces: state.workspaceModule.workspaces,
+    workspace: state.workspaceModule.workspace,
+    toggleMenus: state.workspaceModule.toggleMenus,
     isOpenNav: state.workspaceModule.isOpenNav,
     users: state.userModule.users,
     user: state.userModule.user,
-    workspace: state.workspaceModule.workspace,
     board: state.boardModule.board,
   };
 }
@@ -145,6 +164,7 @@ const mapDispatchToProps = {
   editWorkspace,
   createBoard,
   toggleMenu,
+  changeView,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

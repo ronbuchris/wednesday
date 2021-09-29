@@ -3,7 +3,7 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save, getBoardById, remove }
+export const boardService = { getById, save, getBoardById, remove, toggleMenu }
 const STORAGE_KEY = 'workspaceDB'
 
 function getById(workspace, boardId) {
@@ -25,8 +25,8 @@ function save(workspace, board, user, users) {
         const boardIdx = workspace.boards.findIndex(currBoard => currBoard.id === board.id);
         workspace.boards.splice(boardIdx, 1, board);
     } else {
-        const newboard = createBoard(user, users)
-        workspace.boards.unshift(newboard)
+        const newBoard = createBoard(user, users)
+        workspace.boards.unshift(newBoard)
     }
     const newWorkspace = { ...workspace };
     return newWorkspace
@@ -39,13 +39,12 @@ function remove(workspace, boardId) {
     return returnedWorkspace
 }
 
-
-export async function createBoard(user, users) {
+export function createBoard(user, users) {
 
     const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
     const groups = [];
     for (let i = 0; i < 3; i++) {
-        const group = await createGroup(user, i + 1)
+        const group = createGroup(user, i + 1)
         groups.push(group)
     }
     return Promise.resolve({
@@ -95,6 +94,18 @@ export async function createBoard(user, users) {
         activities: [],
         cmpsOrder: ["status", "member", "date"]
     })
+}
+
+function toggleMenu(toggleMenus, menuToOpen, id) {
+    for (let menu of Object.keys(toggleMenus)) {
+        toggleMenus[menu] = false
+    }
+    if (menuToOpen) {
+        toggleMenus[menuToOpen] = id
+        console.log(`toggleMenus`, toggleMenus)
+    }
+    const newMenu = { ...toggleMenus }
+    return newMenu
 }
 
 function makeId(length = 6) {

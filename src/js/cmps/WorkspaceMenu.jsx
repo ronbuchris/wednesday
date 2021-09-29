@@ -2,8 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Screen } from '../pages/Screen';
-
+import { toggleMenu } from '../store/actions/board.actions';
 import { toggleMenu } from '../store/actions/workspace.actions';
 import { AddWorkspace } from '../cmps/workspace/AddWorkspace';
 
@@ -18,7 +17,7 @@ export class _WorkspaceMenu extends React.Component {
   }
 
   render(){
-   const { workspaces, toggleMenu } =this.props
+   const { workspaces, toggleMenu,toggleMenus } =this.props
    const {isAddWorkspace}=this.state
     return (
       <div className="workspace-menu br8">
@@ -26,12 +25,12 @@ export class _WorkspaceMenu extends React.Component {
       {workspaces.map((workspace) => {
         return (
           <div
-          key={workspace._id}
-          className="workspace-option menu-button-wrapper flex align-center br4"
-          onClick={(ev) => {
-            ev.stopPropagation();
-            toggleMenu(false);
-          }}
+            key={workspace._id}
+            className="workspace-option menu-button-wrapper flex align-center br4"
+            onClick={(ev) => {
+              ev.stopPropagation();
+              toggleMenu(toggleMenus);
+            }}
           >
             <Link to={`/workspace/${workspace._id}`}>{workspace.name}</Link>
           </div>

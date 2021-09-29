@@ -1,13 +1,44 @@
 import React from 'react';
-import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
-import { ItemColumn } from './ItemColumn';
 import { Link } from 'react-router-dom';
 
-export function ItemPreview({ item, onBlur, group, board, onRemoveItem }) {
+import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
+import { FaCaretDown } from 'react-icons/fa';
+
+import { toggleMenu } from '../../store/actions/board.actions';
+
+import { ItemColumn } from './ItemColumn';
+import { connect } from 'react-redux';
+import { ItemMenu } from '../menus/ItemMenu';
+import { Screen } from '../../pages/Screen';
+
+function _ItemPreview({
+  item,
+  onBlur,
+  group,
+  board,
+  onRemoveItem,
+  toggleMenus,
+  toggleMenu,
+}) {
   return (
     <div className="item-preview flex">
-      <div className="item-menu" onClick={() => onRemoveItem(item.id)}>
-        delete
+      {toggleMenus.itemMenu === item.id && (
+        <ItemMenu
+          item={item}
+          onRemoveItem={onRemoveItem}
+          toggleMenus={toggleMenus}
+          toggleMenu={toggleMenu}
+        />
+      )}
+      <div className="item-menu flex align-center justify-center">
+        <div
+          className="item-menu-button br4 btn flex align-center justify-center"
+          onClick={() => {
+            toggleMenu(toggleMenus, 'itemMenu', item.id);
+          }}
+        >
+          <FaCaretDown />
+        </div>
       </div>
       <div
         className="indicator"
@@ -26,7 +57,6 @@ export function ItemPreview({ item, onBlur, group, board, onRemoveItem }) {
           <AddUpdate />
         </Link>
       </div>
-
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
           return (
@@ -35,6 +65,20 @@ export function ItemPreview({ item, onBlur, group, board, onRemoveItem }) {
         })}
       </div>
       <div className="indicator"></div>
+      {toggleMenus.itemMenu && <Screen toggleMenus={toggleMenus} />}
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    toggleMenus: state.workspaceModule.toggleMenus,
+  };
+}
+
+const mapDispatchToProps = { toggleMenu };
+
+export const ItemPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_ItemPreview);

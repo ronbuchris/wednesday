@@ -11,6 +11,7 @@ import {
   loadBoard,
   editBoard,
   removeBoard,
+  changeView
 } from '../store/actions/board.actions';
 import {
   editGroup,
@@ -25,7 +26,6 @@ import {
 
 
 export class _BoardDetails extends React.Component {
-  
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
@@ -47,34 +47,43 @@ export class _BoardDetails extends React.Component {
       strType === 'boardDesc'
         ? { ...type, description: newTxt }
         : { ...type, title: newTxt };
-    if (strType === 'board' || strType === 'boardDesc') {
-      this.onEditBoard(newType);
-    }
-    if (strType === 'group') {
-      this.onEditGroup(newType);
-    }
-    if (strType === 'item') {
-      this.onEditItem(newType, group);
+
+    switch (strType) {
+      case 'boardDesc':
+      case 'board':
+        this.onEditBoard(newType);
+        break;
+      case 'group':
+        this.onEditGroup(newType);
+        break;
+      case 'item':
+        this.onEditItem(newType, group);
+        break;
+      // case 'column':
+      //   this.onEditColumn(newType);
+      //   break;
     }
   };
 
   //Boards Functions
-  onRemoveBoard = async (boardId) => {
-    const { workspace, removeBoard } = this.props;
+  onRemoveBoard = (boardId) => {
+    const { workspace, removeBoard, match } = this.props;
     const newWorkspace = { ...workspace };
-    await removeBoard(workspace, boardId);
-    this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
+    removeBoard(workspace, boardId);
+    if (match.params.boardId === boardId) {
+      this.props.history.push(`/board/${newWorkspace.boards[0]._id}`);
+    }
   };
 
-  onEditBoard = async (board) => {
+  onEditBoard = (board) => {
     const { workspace, user, users, editBoard } = this.props;
-    await editBoard(workspace, board, user, users);
+    editBoard(workspace, board, user, users);
   };
 
   //Groups Functions
-  onEditGroup = async (group) => {
+  onEditGroup = (group) => {
     const { workspace, user, board, editGroup } = this.props;
-    await editGroup(workspace, board, group, user);
+    editGroup(workspace, board, group, user);
   };
 
   //Items Functions
@@ -83,24 +92,26 @@ export class _BoardDetails extends React.Component {
     saveItem(newItemData, user, workspace, group, addToTop);
   };
 
-  onEditItem = async (item, group) => {
+  onEditItem = (item, group) => {
     const { workspace, user, saveItem } = this.props;
-    await saveItem(item, user, workspace, group);
+    saveItem(item, user, workspace, group);
   };
 
   render() {
-    const { workspace, board, groups } = this.props;
+    const { workspace, board, groups, changeView, isViewChange} = this.props;
     if (!workspace || !board) return <div>loading</div>;
 
     return (
       <div className="board-app flex">
         <WorkspaceNav
+          changeView={changeView}
           board={board}
           workspace={workspace}
           onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
           <BoardHeader
+            changeView={changeView}
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
@@ -108,6 +119,7 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
+          isViewChange={isViewChange}
           onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
@@ -129,20 +141,26 @@ function mapStateToProps(state) {
     board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
+    isViewChange: state.boardModule.isViewChange
   };
 }
 
 const mapDispatchToProps = {
+  //workspace
   loadWorkspaceByBoardId,
   editWorkspace,
+  //board
   removeBoard,
-  createItem,
-  loadGroups,
-  editBoard,
-  editGroup,
   loadBoard,
+  editBoard,
+  //group
+  loadGroups,
+  editGroup,
   setGroup,
+  //item
+  createItem,
   saveItem,
+  changeView
 };
 
 export const BoardDetails = connect(

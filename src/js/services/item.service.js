@@ -1,19 +1,36 @@
-import { storageService } from './async-storage.service'
-
-const STORAGE_KEY = 'workspaceDB';
-
 export const itemService = {
     save,
     remove,
     getById,
     onPost,
-    createItem
+    createItem,
+    getStatuses
 }
 
 function getById(board, itemId) {
     const group = board.groups.find(group => group.items.find(item => item.id === itemId));
     const item = group.items.find(item => item.id === itemId)
     return item
+}
+
+function getStatuses(board) {
+    const statuses = {}
+    const colors = {}
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
+            const color = item.columns[1].label.color
+
+            const status = item.columns[1].label.title === '' ? item.columns[1].label.title = 'No Status' : item.columns[1].label.title
+            if (statuses[status]) {
+                statuses[status]++
+            } else {
+                colors[status] = color
+                statuses[status] = 1
+            }
+
+        })
+    })
+    return [statuses, colors]
 }
 
 function onPost(update, user, item, workspace) {

@@ -48,6 +48,21 @@ export function addBoard(workspace, user) {
     }
 }
 
+
+
+export function changeView(isViewChange) {
+    return async dispatch => {
+        console.log(isViewChange);
+        try {
+            dispatch({
+                type: 'CHANGE_VIEW',
+                isViewChange
+            })
+        } catch (err) {
+            console.log('Cannot REMOVE group', err)
+        }
+    }
+}
 export function removeBoard(workspace, boardId) {
     return async dispatch => {
         try {
@@ -76,5 +91,17 @@ export function editBoard(workspace, board, user, users) {
             console.log('Cannot update board')
             console.log('Cannot save board', err)
         }
+    }
+}
+
+
+export function toggleMenu(toggleMenus, menuToOpen, id) {
+    return dispatch => {
+        const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
+        console.log(`newToggleMenus`, newToggleMenus)
+        dispatch({
+            type: 'TOGGLE_MENU',
+            toggleMenus: newToggleMenus
+        })
     }
 }
