@@ -8,12 +8,6 @@ import { ItemUpdates } from '../cmps/item/ItemUpdates';
 import { PostUpdate } from '../cmps/item/PostUpdate';
 
 class _ItemDetails extends Component {
-  async componentDidMount() {
-    const { boardId, itemId } = this.props.match.params;
-    await this.props.loadWorkspaceByBoardId(boardId)
-    this.props.loadItem(boardId, itemId);
-  }
-
   onPost = (update) => {
     const { user, workspace,onPost,item} =this.props;
     onPost(update, user, item, workspace);
