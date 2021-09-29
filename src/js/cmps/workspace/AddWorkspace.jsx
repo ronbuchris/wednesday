@@ -11,12 +11,13 @@ export class AddWorkspace extends React.Component {
     if (!field) return;
     const value = ev.target.value;
     this.setState((prevState) => ({
-      update: { ...prevState.update, [field]: value },
+      ...prevState.update, [field]: value 
     }));
   };
 
-  onAddWorkspace = (ev) => {
+  onCreateWorkspace = (ev) => {
     ev.preventDefault();
+
   };
 
   render() {
@@ -32,7 +33,7 @@ export class AddWorkspace extends React.Component {
         <div className="add-workspace-input-wrapper">
           <div className="workspace-new-title-name">Workspace name</div>
           <div className="workspace-title-input">
-            <form className="title-input" onSubmit={this.onAddWorkspace}>
+            <form className="title-input" onSubmit={this.onCreateWorkspace}>
               <input
                 name="title"
                 id="title"
@@ -51,8 +52,9 @@ export class AddWorkspace extends React.Component {
             }}>Cancel</button>
           </div>
           <div className="create-btn">
-            <button className="create-workspace-btn" onClick={()=>{
-                toggleMenu(toggleMenus)
+            <button className="create-workspace-btn" onClick={(ev)=>{
+                this.onCreateWorkspace(ev);
+                toggleMenu(toggleMenus);
             }}>Create Workspace</button>
           </div>
         </div>
