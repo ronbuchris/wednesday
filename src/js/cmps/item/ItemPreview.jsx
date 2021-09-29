@@ -21,10 +21,15 @@ function _ItemPreview({
   toggleMenus,
   toggleMenu,
   loadItem,
-  provided
+  provided,
 }) {
   return (
-    <div className="item-preview flex" {...provided.droppableProps} {...provided.draghandlerProps} ref={provided.innerRef}>
+    <div
+      className="item-preview flex"
+      {...provided.droppableProps}
+      {...provided.draghandlerProps}
+      ref={provided.innerRef}
+    >
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
           item={item}
@@ -33,7 +38,7 @@ function _ItemPreview({
           toggleMenu={toggleMenu}
         />
       )}
-      <div className="item-menu flex align-center justify-center">
+      <div className="item-menu-arrow flex align-center justify-center">
         <div
           className="item-menu-button br4 btn flex align-center justify-center"
           onClick={() => {
@@ -56,9 +61,11 @@ function _ItemPreview({
         }}
       >
         <div className="item-title-text">{item.title}</div>
-          <AddUpdate onClick={() => {
-            loadItem(board._id,item.id)
-          }}/>
+        <AddUpdate
+          onClick={() => {
+            loadItem(board._id, item.id);
+          }}
+        />
       </div>
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
@@ -79,9 +86,9 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   toggleMenu,
-  loadItem
+  loadItem,
 };
 
 export const ItemPreview = connect(

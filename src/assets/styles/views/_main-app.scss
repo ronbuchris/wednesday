@@ -77,6 +77,36 @@
   }
 }
 
+.menu-modal {
+  position: absolute;
+  width: 264px;
+  z-index: 10;
+  box-shadow: 0 4px 17px 6px #0000001a;
+  background-color: $clr7;
+  .menu-section {
+    padding: 8px;
+    > * {
+      font-size: 14px;
+      padding: 4px 8px;
+    }
+  }
+}
+
+.group-menu {
+  top: 80%;
+  left: -30px;
+}
+
+.item-menu {
+  top: 30px;
+  left: -25px;
+}
+
+.board-menu {
+  top: 90%;
+  right: -105%;
+}
+
 .add-workspace-modal {
   position: fixed;
   background-color: $clr7;

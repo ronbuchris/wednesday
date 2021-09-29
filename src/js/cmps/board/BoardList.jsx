@@ -1,6 +1,6 @@
 import { BoardPreview } from './BoardPreview';
 
-export function BoardList({ workspace, boardId, onRemoveBoard, changeView }) {
+export function BoardList({ workspace, boardId, onRemoveBoard, changeView, toggleMenus, toggleMenu}) {
   if (!workspace.boards.length ) return <div></div>;
   return (
     <div className="board-list">
@@ -14,6 +14,8 @@ export function BoardList({ workspace, boardId, onRemoveBoard, changeView }) {
             key={board._id}
             boardIdx={idx}
             onRemoveBoard={onRemoveBoard}
+            toggleMenus={toggleMenus}
+            toggleMenu={toggleMenu}
           />
         );
       })}
