@@ -20,10 +20,11 @@ function _ItemPreview({
   onRemoveItem,
   toggleMenus,
   toggleMenu,
-  loadItem
+  loadItem,
+  provided
 }) {
   return (
-    <div className="item-preview flex">
+    <div className="item-preview flex" {...provided.droppableProps} {...provided.draghandlerProps} ref={provided.innerRef}>
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
           item={item}

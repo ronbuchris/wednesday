@@ -138,7 +138,7 @@ class _WorkspaceNav extends Component {
             </div>
           </>
         )}
-        {toggleMenus.isWorkspaceModal &&<AddWorkspace />}
+        {toggleMenus.isWorkspaceModal &&<AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />}
         {toggleMenus.workspaceMenu && <Screen toggleMenus={toggleMenus} />}
         {toggleMenus.isWorkspaceModal && <Screen toggleMenus={toggleMenus} />}
       </div>

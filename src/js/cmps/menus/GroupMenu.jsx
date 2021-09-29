@@ -2,7 +2,7 @@ import { FaAngleRight } from 'react-icons/fa';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 import { ColorPallete } from '../dynamic-cmps/ColorPallete';
 
-export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker }) {
+export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker,changeGroupColor,toggleMenus,toggleMenu }) {
   return (
     <div className="group-menu-modal br8">
       <div className="group-menu-section">
@@ -36,8 +36,10 @@ export function GroupMenu({ group, isColor, onRemoveGroup, colorPicker }) {
           {isColor && (
             <div className="color-pallete">
               <ColorPallete
-                colorPicker={this.colorPicker}
-                changeGroupColor={this.changeGroupColor}
+              toggleMenus={toggleMenus}
+              toggleMenu={toggleMenu}
+                colorPicker={colorPicker}
+                changeGroupColor={changeGroupColor}
               />
             </div>
           )}

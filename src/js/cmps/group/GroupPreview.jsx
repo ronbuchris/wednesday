@@ -1,4 +1,5 @@
 import React from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 import { ItemPreview } from '../item/ItemPreview';
@@ -50,33 +51,43 @@ class _GroupPreview extends React.Component {
   };
 
   render() {
-    const { group, onBlur, board, onAddItem,onEditGroup } = this.props;
+    const { group, onBlur, board, onAddItem, onEditGroup } = this.props;
     const { itemTitle, isFocused } = this.state;
     if (!group) return <div>loading</div>;
     return (
-      <div key={group.id} className="group-preview">
+      <div key={group.id} className="groups-dnd group-preview">
         <GroupHeader
-        onEditGroup={onEditGroup}
+          onEditGroup={onEditGroup}
           group={group}
           board={board}
           onBlur={onBlur}
           onRemoveGroup={this.onRemoveGroup}
         />
-        <div className="item-list">
+        <DragDropContext>
+          <Droppable droppableId="items-dnd">
+            {(provided)=>(
+              <div className="items-dnd item-list" {...provided.droppableProps} ref={provided.innerRef}>
           {group.items &&
-            group.items.map((item) => {
+            group.items.map((item,index) => {
               return (
-                <ItemPreview
-                  onBlur={onBlur}
-                  key={item.id}
-                  item={item}
-                  group={group}
-                  board={board}
-                  onRemoveItem={this.onRemoveItem}
-                />
-              );
-            })}
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(provided)=>(
+                    <ItemPreview
+                    provided={provided}
+                    onBlur={onBlur}
+                    item={item}
+                    group={group}
+                    board={board}
+                    onRemoveItem={this.onRemoveItem}
+                    />
+                    )}
+                </Draggable>
+                );
+              })}
         </div>
+              )}
+              </Droppable>
+              </DragDropContext>
         <div>
           <form
             className="item-add"
@@ -85,7 +96,7 @@ class _GroupPreview extends React.Component {
               onAddItem(itemTitle, group);
               this.clearState();
             }}
-          >
+            >
             <input
               type="text"
               dir="auto"
@@ -96,15 +107,16 @@ class _GroupPreview extends React.Component {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onKeyUp={this.onKeyUp}
-            />
+              />
 
             {(isFocused || itemTitle) && (
               <button className="item-add-button">Add</button>
-            )}
+              )}
             <div className="indicator"></div>
           </form>
         </div>
       </div>
+
     );
   }
 }

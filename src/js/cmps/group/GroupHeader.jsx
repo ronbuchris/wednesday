@@ -54,6 +54,9 @@ export class _GroupHeader extends React.Component {
         </div>
         {toggleMenus.groupMenu === group.id && (
           <GroupMenu
+          toggleMenus={toggleMenus}
+          toggleMenu={toggleMenu}
+          changeGroupColor={this.changeGroupColor}
             group={group}
             isColor={isColor}
             onRemoveGroup={onRemoveGroup}
