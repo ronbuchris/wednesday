@@ -1,13 +1,7 @@
 import { BoardPreview } from './BoardPreview';
 
-export function BoardList({
-  workspace,
-  boardId,
-  onRemoveBoard,
-  changeView,
-  toggleMenus,
-  toggleMenu,
-}) {
+export function BoardList({ workspace, boardId, onRemoveBoard, changeView, toggleMenus, toggleMenu}) {
+  if (!workspace.boards.length ) return <div></div>;
   return (
     <div className="board-list">
       {workspace.boards.map((board, idx) => {

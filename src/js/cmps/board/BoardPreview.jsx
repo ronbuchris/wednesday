@@ -15,7 +15,9 @@ export function BoardPreview({
   toggleMenus,
   toggleMenu,
 }) {
+
   const board = workspace.boards[boardIdx];
+  if (!board) return <div></div>
   return (
     <div
       className={`${
