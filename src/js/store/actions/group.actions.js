@@ -19,12 +19,12 @@ export function setGroup(group) {
 export function editGroup(workspace, board, group, user) {
     return async (dispatch) => {
         try {
-            const workspaceToSave = groupService.save(workspace, board, group, user)
-            const newBoard = boardService.getById(workspaceToSave, board._id)
-            await workspaceService.save(workspaceToSave)
+            const newWorkspace = groupService.save(workspace, board, group, user)
+            const newBoard = boardService.getById(newWorkspace, board._id)
+            await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
-                workspace: workspaceToSave,
+                workspace: newWorkspace,
             })
             dispatch({
                 type: 'SET_GROUPS',
@@ -84,11 +84,11 @@ export function filterStatus(board, statuses, groupsIds) {
 export function removeGroup(workspace, board, groupId) {
     return async dispatch => {
         try {
-            const workspaceToSave = groupService.removeGroup(workspace, board, groupId)
-            await workspaceService.save(workspaceToSave)
+            const newWorkspace = groupService.removeGroup(workspace, board, groupId)
+            await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
-                workspace: workspaceToSave
+                workspace: newWorkspace
             })
         } catch (err) {
             console.log('Cannot REMOVE group', err)

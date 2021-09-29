@@ -19,10 +19,11 @@ export function loadItems(group) {
 export function onPost(update, user, item, workspace) {
     return async dispatch => {
         try {
-            const workspaceToSave = await itemService.onPost(update, user, item, workspace)
+            const newWorkspace = itemService.onPost(update, user, item, workspace)
+            await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
-                workspace: workspaceToSave
+                workspace: newWorkspace
             })
         } catch (err) {
             console.log('Cannot add update', err)
@@ -51,29 +52,13 @@ export function loadItem(boardId, itemId) {
     return async (dispatch) => {
         try {
             const board = await boardService.getBoardById(boardId)
-            const item = await itemService.getById(board, itemId)
+            const item = itemService.getById(board, itemId)
             dispatch({
                 type: 'SET_ITEM',
                 item
             })
         } catch (err) {
             console.log('Cannot load item', err)
-        }
-    }
-}
-
-export function onEditItem(itemToSave, groupId = null, workspace) {
-    return async (dispatch) => {
-        try {
-            const saveditem = await itemService.save(itemToSave, groupId, workspace)
-            dispatch({
-                type: 'UPDATE_ITEM',
-                item: saveditem
-            })
-        }
-        catch (err) {
-            console.log('Cannot update item')
-            console.log('Cannot save item', err)
         }
     }
 }
@@ -108,10 +93,10 @@ export function removeItem(workspace, group, itemId) {
     }
 }
 
-export function addItem(newItemData, user, workspace, group, addToTop) {
+export function saveItem(item, user, workspace, group, addToTop) {
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.save(newItemData, group, workspace, user, addToTop)
+            const newWorkspace = itemService.save(item, group, workspace, user, addToTop)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

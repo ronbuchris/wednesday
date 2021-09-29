@@ -18,7 +18,7 @@ export function ItemPreview({ item, onBlur, group, board, onRemoveItem }) {
         contentEditable="true"
         suppressContentEditableWarning={true}
         onBlur={(ev) => {
-          onBlur(ev.target.innerText, item.title, item, 'item');
+          onBlur(ev.target.innerText, item.title, item, 'item', group);
         }}
       >
         <div className="item-title-text">{item.title}</div>
