@@ -1,3 +1,6 @@
+var randomColor = require('randomcolor');
+
+
 export const storageService = {
     query,
     get,
@@ -164,7 +167,11 @@ const gWorkspaces = [
                             },
                         ],
                         "style": {
-                            "color": "blue",
+                            "color": randomColor({
+                                luminosity: 'dark',
+                                format: 'rgba',
+                                alpha: 0.9
+                            }),
                         }
                     },
                     {
@@ -225,7 +232,11 @@ const gWorkspaces = [
                             },
                         ],
                         "style": {
-                            "color": "red",
+                            "color": randomColor({
+                                luminosity: 'dark',
+                                format: 'rgba',
+                                alpha: 0.9
+                            }),
                         }
                     },
 
@@ -338,7 +349,11 @@ const gWorkspaces = [
                             },
                         ],
                         "style": {
-                            "color": "blue",
+                            "color": randomColor({
+                                luminosity: 'dark',
+                                format: 'rgba',
+                                alpha: 0.9
+                            }),
                         }
                     },
 
@@ -469,7 +484,11 @@ const gWorkspaces = [
                             },
                         ],
                         "style": {
-                            "color": "blue",
+                            "color": randomColor({
+                                luminosity: 'dark',
+                                format: 'rgba',
+                                alpha: 0.9
+                            }),
                         }
                     },
 
@@ -584,7 +603,11 @@ const gWorkspaces = [
                             },
                         ],
                         "style": {
-                            "color": "blue",
+                            "color": randomColor({
+                                luminosity: 'dark',
+                                format: 'rgba',
+                                alpha: 0.9
+                            }),
                         }
                     },
 
