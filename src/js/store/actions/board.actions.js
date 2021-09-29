@@ -6,8 +6,6 @@ export function loadBoard(workspace, boardId) {
         try {
             if (!boardId) return
             const board = boardService.getById(workspace, boardId)
-            console.log('board', board);
-            console.log('work', workspace);
             dispatch({
                 type: 'SET_BOARD',
                 board
@@ -35,6 +33,7 @@ export function setBoard() {
     }
 }
 export function addBoard(workspace, user) {
+
     return async dispatch => {
         try {
             const board = await boardService.addBoard(workspace, user)
@@ -78,10 +77,11 @@ export function removeBoard(workspace, boardId) {
     }
 }
 
-export function editBoard(workspace, board, user, users) {
+export function editBoard(workspace, boardOrTitle, user, users) {
+    console.log('title',boardOrTitle);
     return async (dispatch) => {
         try {
-            const newWorkspace = boardService.save(workspace, board, user, users)
+            const newWorkspace = boardService.save(workspace, boardOrTitle, user, users)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

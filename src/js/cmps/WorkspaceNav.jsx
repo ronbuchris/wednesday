@@ -43,9 +43,9 @@ class _WorkspaceNav extends Component {
     this.props.loadWorkspace(value);
   };
 
-  onAddBoard = async () => {
+  onAddBoard = () => {
     const { workspace, user, editWorkspace, users } = this.props;
-    const newBoard = await createBoard(user, users);
+    const newBoard = createBoard(user, users);
     const newWorkspace = {
       ...workspace,
       boards: [...workspace.boards, newBoard],

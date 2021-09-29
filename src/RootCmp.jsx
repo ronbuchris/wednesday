@@ -10,6 +10,7 @@ import routesMainApp from './routesMainApp';
 
 class _RootCmp extends React.Component {
   render() {
+    
     const routes = this.props.user ? routesMainApp : routesHomePage;
     const header = this.props.user ? <SidebarHeader /> : <MainHeader />;
     return (
