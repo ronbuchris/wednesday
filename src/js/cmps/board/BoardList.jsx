@@ -1,12 +1,12 @@
 import { BoardPreview } from './BoardPreview';
 
-export function BoardList({ workspace, boardId, onChangeView}) {
+export function BoardList({ workspace, boardId, changeView}) {
   return (
     <div className="board-list">
       {workspace.boards.map((board, idx) => {
         return (
           <BoardPreview
-            onChangeView={onChangeView}
+            changeView={changeView}
             workspace={workspace}
             boardId={boardId}
             board={board}

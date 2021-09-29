@@ -1,7 +1,7 @@
 import { BoardActions } from './BoardActions';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 
-export function BoardHeader({ board, onBlur, onAddItem, onEditGroup, onRemoveBoard, onChangeView }) {
+export function BoardHeader({ board, onBlur, onAddItem, onEditGroup, onRemoveBoard, changeView }) {
   return (
     <div className="board-header flex column">
       <div className="board-header-top flex align-center">
@@ -37,11 +37,11 @@ export function BoardHeader({ board, onBlur, onAddItem, onEditGroup, onRemoveBoa
       <div>
       <button onClick={(ev) => {
         ev.preventDefault();
-          onChangeView(false)
+          changeView(false)
       }}>Main Table</button>
         <button onClick={(ev) => {
           ev.preventDefault();
-          onChangeView(true)
+          changeView(true)
         }}>Dashboard</button>
       </div>
       <div className="divider"></div>

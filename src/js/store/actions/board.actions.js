@@ -48,6 +48,21 @@ export function addBoard(workspace, user) {
     }
 }
 
+
+
+export function changeView(isViewChange) {
+    return async dispatch => {
+        console.log(isViewChange);
+        try {
+            dispatch({
+                type: 'CHANGE_VIEW',
+                isViewChange
+            })
+        } catch (err) {
+            console.log('Cannot REMOVE group', err)
+        }
+    }
+}
 export function removeBoard(workspace, boardId) {
     return async dispatch => {
         try {

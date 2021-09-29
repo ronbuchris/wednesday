@@ -11,6 +11,7 @@ import {
   loadBoard,
   editBoard,
   removeBoard,
+  changeView
 } from '../store/actions/board.actions';
 import {
   editGroup,
@@ -25,10 +26,6 @@ import {
 
 
 export class _BoardDetails extends React.Component {
-  state = {
-    isViewChange: false
-  }
-  
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
@@ -44,9 +41,6 @@ export class _BoardDetails extends React.Component {
     }
   }
 
-  onChangeView = (changeView) => {
-    this.setState({ isViewChange: changeView})
-  }
   onBlur = (newTxt, pevTxt, type, strType, group = null) => {
     if (newTxt === pevTxt) return;
     const newType =
@@ -95,21 +89,20 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const { workspace, board, groups } = this.props;
-    const { isViewChange} = this.state
+    const { workspace, board, groups, changeView, isViewChange} = this.props;
     if (!workspace || !board) return <div>loading</div>;
 
     return (
       <div className="board-app flex">
         <WorkspaceNav
-          onChangeView={this.onChangeView}
+          changeView={changeView}
           board={board}
           workspace={workspace}
           onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
           <BoardHeader
-            onChangeView={this.onChangeView}
+            changeView={changeView}
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
@@ -117,7 +110,7 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
-            isViewChange={isViewChange}
+          isViewChange={isViewChange}
           onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
@@ -139,6 +132,7 @@ function mapStateToProps(state) {
     board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
+    isViewChange: state.boardModule.isViewChange
   };
 }
 
@@ -153,6 +147,7 @@ const mapDispatchToProps = {
   loadBoard,
   setGroup,
   saveItem,
+  changeView
 };
 
 export const BoardDetails = connect(

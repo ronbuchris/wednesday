@@ -13,10 +13,11 @@ class _Dashboard extends React.Component {
     }
     render() {
         const { statuses } = this.props
+        if (!statuses.length) return <div>loading</div>
         const statusToShow = Object.keys(statuses[0])
         const numbers = Object.values(statuses[0])
         const colors = Object.values(statuses[1])
-        if (!statuses || !statusToShow || !numbers || !colors) return <div>loading</div>
+        if (!statusToShow || !numbers || !colors) return <div>loading</div>
         const data = {
             labels: statusToShow,
             datasets: [
