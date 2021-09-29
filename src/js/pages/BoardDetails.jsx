@@ -23,7 +23,9 @@ import {
   editWorkspace,
 } from '../store/actions/workspace.actions';
 
+
 export class _BoardDetails extends React.Component {
+  
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
@@ -112,6 +114,7 @@ export class _BoardDetails extends React.Component {
             board={board}
             onBlur={this.onBlur}
           />
+
         </div>
       </div>
     );
@@ -147,10 +150,3 @@ export const BoardDetails = connect(
   mapDispatchToProps
 )(_BoardDetails);
 
-//IF-NEED
-
-//   const boardId = await this.props.match.params.boardId;
-//   if(!prevProps.workspace || !workspace )return;
-//   // if(!workspace.boards.includes(boardId))return;
-//   const boardIdx = await workspace.boards.findIndex(board => board._id === boardId);
-//   if(boardIdx === -1)return;

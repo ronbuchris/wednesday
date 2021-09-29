@@ -19,9 +19,7 @@ function getById(board, itemId) {
 function onPost(update, user, item, workspace) {
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
-    console.log('old',workspace);
     const newWorkspace = { ...workspace };
-    console.log('new',newWorkspace);
     return newWorkspace
 }
 
