@@ -11,7 +11,7 @@ import {
   loadBoard,
   editBoard,
   removeBoard,
-  changeView
+  changeView,
 } from '../store/actions/board.actions';
 import {
   editGroup,
@@ -24,7 +24,6 @@ import {
   editWorkspace,
 } from '../store/actions/workspace.actions';
 import { ItemDetails } from './ItemDetails';
-
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -120,8 +119,8 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
-          isViewChange={isViewChange}
-          onEditGroup={this.onEditGroup}
+            isViewChange={isViewChange}
+            onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
             board={board}
@@ -144,7 +143,7 @@ function mapStateToProps(state) {
     users: state.userModule.users,
     item: state.itemModule.item,
     user: state.userModule.user,
-    isViewChange: state.boardModule.isViewChange
+    isViewChange: state.boardModule.isViewChange,
   };
 }
 
@@ -163,11 +162,10 @@ const mapDispatchToProps = {
   //item
   createItem,
   saveItem,
-  changeView
+  changeView,
 };
 
 export const BoardDetails = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_BoardDetails);
-
