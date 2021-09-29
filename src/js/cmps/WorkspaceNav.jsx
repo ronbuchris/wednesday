@@ -56,7 +56,7 @@ class _WorkspaceNav extends Component {
   };
 
   render() {
-    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen, board } =
+    const { workspaces, workspace, isOpenNav, toggleNav, isMenuOpen, board, onChangeView } =
       this.props;
     const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
@@ -114,7 +114,7 @@ class _WorkspaceNav extends Component {
             </button>
             <div className="divider"></div>
             <div className="board-list">
-              <BoardList boardId={board ? board._id : workspace.boards[0]}workspace={workspace} />
+              <BoardList boardId={board ? board._id : workspace.boards[0]} workspace={workspace} onChangeView={onChangeView}/>
             </div>
           </>
         )}

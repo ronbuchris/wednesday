@@ -25,6 +25,9 @@ import {
 
 
 export class _BoardDetails extends React.Component {
+  state = {
+    isViewChange: false
+  }
   
   async componentDidMount() {
     const boardId = this.props.match.params.boardId;
@@ -41,6 +44,9 @@ export class _BoardDetails extends React.Component {
     }
   }
 
+  onChangeView = (changeView) => {
+    this.setState({ isViewChange: changeView})
+  }
   onBlur = (newTxt, pevTxt, type, strType, group = null) => {
     if (newTxt === pevTxt) return;
     const newType =
@@ -90,17 +96,20 @@ export class _BoardDetails extends React.Component {
 
   render() {
     const { workspace, board, groups } = this.props;
+    const { isViewChange} = this.state
     if (!workspace || !board) return <div>loading</div>;
 
     return (
       <div className="board-app flex">
         <WorkspaceNav
+          onChangeView={this.onChangeView}
           board={board}
           workspace={workspace}
           onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
           <BoardHeader
+            onChangeView={this.onChangeView}
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
@@ -108,6 +117,7 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
+            isViewChange={isViewChange}
           onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
