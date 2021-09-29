@@ -23,6 +23,7 @@ import {
   loadWorkspaceByBoardId,
   editWorkspace,
 } from '../store/actions/workspace.actions';
+import { ItemDetails } from './ItemDetails';
 
 
 export class _BoardDetails extends React.Component {
@@ -98,7 +99,7 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const { workspace, board, groups, changeView, isViewChange} = this.props;
+    const { workspace, board, groups, changeView, isViewChange, item} = this.props;
     if (!workspace || !board) return <div>loading</div>;
 
     return (
@@ -126,6 +127,7 @@ export class _BoardDetails extends React.Component {
             board={board}
             onBlur={this.onBlur}
           />
+        {item && <ItemDetails item={item}/>}
 
         </div>
       </div>
@@ -140,6 +142,7 @@ function mapStateToProps(state) {
     groups: state.groupModule.groups,
     board: state.boardModule.board,
     users: state.userModule.users,
+    item: state.itemModule.item,
     user: state.userModule.user,
     isViewChange: state.boardModule.isViewChange
   };

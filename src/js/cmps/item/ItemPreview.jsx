@@ -5,6 +5,7 @@ import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { FaCaretDown } from 'react-icons/fa';
 
 import { toggleMenu } from '../../store/actions/board.actions';
+import { loadItem } from '../../store/actions/item.actions';
 
 import { ItemColumn } from './ItemColumn';
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ function _ItemPreview({
   onRemoveItem,
   toggleMenus,
   toggleMenu,
+  loadItem
 }) {
   return (
     <div className="item-preview flex">
@@ -53,9 +55,9 @@ function _ItemPreview({
         }}
       >
         <div className="item-title-text">{item.title}</div>
-        <Link to={`/board/${board._id}/item/${item.id}`}>
-          <AddUpdate />
-        </Link>
+          <AddUpdate onClick={() => {
+            loadItem(board._id,item.id)
+          }}/>
       </div>
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
@@ -76,7 +78,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = { toggleMenu };
+const mapDispatchToProps = { 
+  toggleMenu,
+  loadItem
+};
 
 export const ItemPreview = connect(
   mapStateToProps,
