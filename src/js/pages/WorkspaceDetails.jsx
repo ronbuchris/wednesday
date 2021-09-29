@@ -6,7 +6,7 @@ import { WorkspaceHeader } from '../cmps/workspace/WorkspaceHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 
 import { loadWorkspace } from '../store/actions/workspace.actions';
-import { loadBoard } from '../store/actions/board.actions';
+import { loadBoard, changeView } from '../store/actions/board.actions';
 
 export class _WorkspaceDetails extends Component {
   state = {
@@ -33,14 +33,14 @@ export class _WorkspaceDetails extends Component {
   }
 
   render() {
-    const { workspace, board} = this.props;
+    const { workspace, board, changeView} = this.props;
     if (!workspace) return <div className="">loading</div>;
     return (
       <div className="workspace-app flex">
-        <WorkspaceNav board={board} workspace={workspace} />
+        <WorkspaceNav board={board} workspace={workspace} changeView={changeView}/>
         <div className="workspace-details">
           <WorkspaceHeader workspace={workspace} onBlur={this.onBlur} handleChange={this.handleChange}/>
-          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen}/>
+          <WorkspaceContent workspace={workspace} onBlur={this.onBlur} isBoardsOpen={this.state.isBoardsOpen} isMembersOpen={this.state.isMembersOpen} changeView={changeView}/>
         </div>
       </div>
     );
@@ -58,7 +58,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadWorkspace,
-  loadBoard
+  loadBoard,
+  changeView
 };
 
 export const WorkspaceDetails = connect(

@@ -1,11 +1,13 @@
 const initialState = {
     item: null,
-    items: []
+    items: [],
+    statuses:{}
 }
 
 export function itemReducer(state = initialState, action) {
     var newState = state
     var items
+    var statuses
     switch (action.type) {
         case 'SET_ITEMS':
             newState = { ...state, items: action.items }
@@ -19,6 +21,9 @@ export function itemReducer(state = initialState, action) {
         case 'UPDATE_ITEM':
             items = state.items.map(item => (item.id === action.item.id) ? action.item : item)
             newState = { ...state, items }
+            break
+        case 'GET_STATUS':
+            newState = { ...state, statuses: action.statuses }
             break
         case 'REMOVE_ITEM':
             const lastRemovedItem = state.items.find(item => item._id === action.itemId)

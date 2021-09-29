@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
-export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen}) {
+export function WorkspaceContent({ workspace, isBoardsOpen, isMembersOpen, changeView}) {
   return (
     <div className="workspace-content">
       {isBoardsOpen && <div>
       {workspace.boards.map((board) => {
         return (
           <Link key={board._id} to={`/board/${board._id}`}>
+            <div onClick={() => {
+              changeView(false)
+            }}>
             {board.title}
+            </div>
           </Link>
         );
       })}

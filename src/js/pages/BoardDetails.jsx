@@ -11,6 +11,7 @@ import {
   loadBoard,
   editBoard,
   removeBoard,
+  changeView
 } from '../store/actions/board.actions';
 import {
   editGroup,
@@ -22,6 +23,7 @@ import {
   loadWorkspaceByBoardId,
   editWorkspace,
 } from '../store/actions/workspace.actions';
+
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -96,18 +98,20 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const { workspace, board, groups } = this.props;
+    const { workspace, board, groups, changeView, isViewChange} = this.props;
     if (!workspace || !board) return <div>loading</div>;
 
     return (
       <div className="board-app flex">
         <WorkspaceNav
+          changeView={changeView}
           board={board}
           workspace={workspace}
           onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
           <BoardHeader
+            changeView={changeView}
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
@@ -115,12 +119,14 @@ export class _BoardDetails extends React.Component {
             onBlur={this.onBlur}
           />
           <BoardContent
+          isViewChange={isViewChange}
           onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
             groups={groups}
             board={board}
             onBlur={this.onBlur}
           />
+
         </div>
       </div>
     );
@@ -135,6 +141,7 @@ function mapStateToProps(state) {
     board: state.boardModule.board,
     users: state.userModule.users,
     user: state.userModule.user,
+    isViewChange: state.boardModule.isViewChange
   };
 }
 
@@ -153,6 +160,7 @@ const mapDispatchToProps = {
   //item
   createItem,
   saveItem,
+  changeView
 };
 
 export const BoardDetails = connect(
@@ -160,10 +168,3 @@ export const BoardDetails = connect(
   mapDispatchToProps
 )(_BoardDetails);
 
-//IF-NEED
-
-//   const boardId = await this.props.match.params.boardId;
-//   if(!prevProps.workspace || !workspace )return;
-//   // if(!workspace.boards.includes(boardId))return;
-//   const boardIdx = await workspace.boards.findIndex(board => board._id === boardId);
-//   if(boardIdx === -1)return;

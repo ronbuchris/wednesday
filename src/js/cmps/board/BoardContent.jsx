@@ -1,13 +1,15 @@
 import { Component } from 'react';
 import { GroupPreview } from '../group/GroupPreview';
+import { Dashboard } from './Dashboard';
 
 export class BoardContent extends Component {
   render() {
-    const { board, onBlur, onAddItem, groups,onEditGroup } = this.props;
+    const { board, onBlur, onAddItem, groups, onEditGroup, isViewChange } = this.props;
     if (!groups.length) return <div className="">No groups to show</div>;
     return (
       <div className="board-content">
-        {groups.map((group) => {;
+        {isViewChange && <Dashboard board={board}/>}
+        {!isViewChange && groups.map((group) => {;
           return (
             <GroupPreview
             onEditGroup={onEditGroup}

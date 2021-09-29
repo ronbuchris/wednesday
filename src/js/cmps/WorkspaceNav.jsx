@@ -19,6 +19,7 @@ import {
   addBoard,
   loadBoard,
   toggleMenu,
+  changeView,
 } from '../store/actions/board.actions';
 
 import { BoardList } from './board/BoardList';
@@ -67,6 +68,7 @@ class _WorkspaceNav extends Component {
       onRemoveBoard,
       toggleMenu,
       toggleMenus,
+      changeView,
     } = this.props;
     const { isHovered } = this.state;
     if (!workspaces.length || !workspace) return <div>loading</div>;
@@ -130,6 +132,7 @@ class _WorkspaceNav extends Component {
                 boardId={board ? board._id : workspace.boards[0]}
                 workspace={workspace}
                 onRemoveBoard={onRemoveBoard}
+                changeView={changeView}
               />
             </div>
           </>
@@ -161,6 +164,7 @@ const mapDispatchToProps = {
   editWorkspace,
   createBoard,
   toggleMenu,
+  changeView,
 };
 export const WorkspaceNav = connect(
   mapStateToProps,

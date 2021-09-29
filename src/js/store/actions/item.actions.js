@@ -32,6 +32,22 @@ export function onPost(update, user, item, workspace) {
     }
 }
 
+export function loadStatuses(board) {
+    return async dispatch => {
+        try {
+            const statuses = itemService.getStatuses(board)
+            console.log(statuses);
+            dispatch({
+                type: 'GET_STATUS',
+                statuses
+            })
+        
+    } catch (err) {
+        console.log('Cannot search item', err)
+    }
+}
+}
+
 export function onSetSearch(board, searchBy) {
     return async (dispatch) => {
         // const groups = groupService.query(board, {searchBy})

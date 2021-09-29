@@ -4,7 +4,13 @@ import Board from 'monday-ui-react-core/dist/icons/Board';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 
-export function BoardPreview({ boardIdx, workspace, boardId, onRemoveBoard }) {
+export function BoardPreview({
+  boardIdx,
+  workspace,
+  boardId,
+  onRemoveBoard,
+  changeView,
+}) {
   const board = workspace.boards[boardIdx];
   return (
     <Link to={`/board/${board._id}`}>
@@ -12,6 +18,9 @@ export function BoardPreview({ boardIdx, workspace, boardId, onRemoveBoard }) {
         className={`${
           board._id === boardId && 'selected'
         } br4 menu-button-wrapper flex align-center space-between`}
+        onClick={() => {
+          changeView(false);
+        }}
       >
         <div className="board-title flex align-center">
           <Board />

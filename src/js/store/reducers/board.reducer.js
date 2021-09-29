@@ -1,7 +1,7 @@
 const initialState = {
     board: null,
     boards:[],
-
+    isViewChange:false
 }
 
 export function boardReducer(state = initialState, action) {
@@ -12,6 +12,9 @@ export function boardReducer(state = initialState, action) {
             break
         case 'ADD_BOARD':
             newState = { ...state, boards:[...state.boards, action.board] }
+            break
+        case 'CHANGE_VIEW':
+            newState = { ...state, isViewChange: action.isViewChange}
             break
         
         default:
