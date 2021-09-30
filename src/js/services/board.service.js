@@ -108,11 +108,10 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace,board,result,groupId){
-    console.log(`result1111`, result)
     const startIdx=result.source.index
     const endIdx=result.destination ? result.destination.index : 0
     if(result.type === "group"){
-        const [group]=board.groups.splice(board.groups[startIdx],1)
+        const [group]=board.groups.splice(startIdx,1)
         board.groups.splice(endIdx,0,group)
     }
     if(result.type === "item"){
