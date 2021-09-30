@@ -8,9 +8,14 @@
     padding: 8px 16px;
     gap:5px;
     height: 40px;
+    &:hover {
+      // border-bottom: 2px solid $primary-color;
+      box-shadow: 0 3px 0px 0px $primary-color;
+      
+    }
     &.active {
-      border-bottom: 2px solid $primary-color;
-      // box-shadow: 0 0px 0px 0px $primary-color;
+      box-shadow: 0 3px 0px 0px $primary-color;
+      // border-bottom: 2px solid $primary-color;
     }
   }
 }

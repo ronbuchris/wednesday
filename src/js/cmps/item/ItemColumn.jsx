@@ -8,6 +8,7 @@ export function ItemColumn({
   board,
   group,
   item,
+  workspace
 }) {
   const renderSwitch = (column) => {
     switch (column.type) {
@@ -29,6 +30,7 @@ export function ItemColumn({
             </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
+                workspace={workspace}
                 toggleMenus={toggleMenus}
                 onEditItem={onEditItem}
                 toggleMenu={toggleMenu}
@@ -62,7 +64,6 @@ export function ItemColumn({
         );
 
       default:
-        return 'foo';
     }
   };
 

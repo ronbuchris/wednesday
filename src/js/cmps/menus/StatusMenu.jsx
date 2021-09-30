@@ -8,13 +8,14 @@ export function StatusMenu({
   board,
   group,
   item,
+  workspace
 }) {
   const [isEdit, setIsEdit] = useState(false);
 
-  const onChangeStatus = (item, group, label, type) => {
-    const columnIdx = item.columns.findIndex((column) => column.type === type);
-    const newItem = item.columns.splice(columnIdx, 1, label);
-
+  const onChangeStatus = (item, group,column, label) => {
+    const columnIdx = item.columns.findIndex((currColumn) => currColumn.type === column.type);
+    item.columns[columnIdx].label = label
+    const newItem = {... item}
     onEditItem(newItem, group);
   };
 
@@ -33,7 +34,7 @@ export function StatusMenu({
               style={{ backgroundColor: label.color }}
               onClick={(ev) => {
                 ev.stopPropagation();
-                onChangeStatus(item, group, label);
+                onChangeStatus(item, group, board.columns[statusIdx()], label);
                 toggleMenu(toggleMenus);
               }}
             >
