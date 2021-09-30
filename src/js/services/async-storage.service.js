@@ -625,6 +625,15 @@ const gUsers = [
 
     },
     {
+        _id: 'guest',
+        fullname: 'guest',
+        username: 'guest',
+        password: '123',
+        img: `https://robohash.org/guest`,
+        workspaces: ['w101', 'w102']
+
+    },
+    {
         _id: 'u102',
         fullname: 'On Chetrit',
         username: 'on',
