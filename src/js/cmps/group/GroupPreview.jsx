@@ -76,7 +76,7 @@ class _GroupPreview extends React.Component {
         <Droppable type="item" droppableId={group.id}>
           {(provided) => (
             <div
-              className="item-list"
+              className="item-list flex column"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -121,6 +121,10 @@ class _GroupPreview extends React.Component {
               this.clearState();
             }}
           >
+            <div
+              className="indicator"
+              style={{ backgroundColor: group.style.color, opacity: 0.5 }}
+            ></div>
             <input
               type="text"
               dir="auto"

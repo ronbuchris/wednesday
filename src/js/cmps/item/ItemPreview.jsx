@@ -22,7 +22,7 @@ function _ItemPreview({
   board,
   group,
   item,
-  workspace
+  workspace,
 }) {
   return (
     <div className="item-preview flex">
@@ -58,12 +58,14 @@ function _ItemPreview({
         }}
       >
         <div className="item-title-text">{item.title}</div>
+        <div className="add-update-btn-wrapper flex align-center">
         <AddUpdate
-          className="add-update"
+          className="add-update-btn"
           onClick={() => {
             loadItem(board._id, item.id);
           }}
-        />
+          />
+          </div>
       </div>
       <div className="item-column-list flex">
         {item.columns.map((column, idx) => {
@@ -82,6 +84,7 @@ function _ItemPreview({
           );
         })}
       </div>
+      <div className="space-item"></div>
       <div className="indicator"></div>
     </div>
   );
@@ -103,4 +106,3 @@ export const ItemPreview = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_ItemPreview);
-

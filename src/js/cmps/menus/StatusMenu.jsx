@@ -11,10 +11,12 @@ export function StatusMenu({
 }) {
   const [isEdit, setIsEdit] = useState(false);
 
-  const onChangeStatus = (item, group,column, label) => {
-    const columnIdx = item.columns.findIndex((currColumn) => currColumn.type === column.type);
-    item.columns[columnIdx].label = label
-    const newItem = {... item}
+  const onChangeStatus = (item, group, column, label) => {
+    const columnIdx = item.columns.findIndex(
+      (currColumn) => currColumn.type === column.type
+    );
+    item.columns[columnIdx].label = label;
+    const newItem = { ...item };
     onEditItem(newItem, group);
   };
 
