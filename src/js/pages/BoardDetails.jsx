@@ -85,12 +85,10 @@ export class _BoardDetails extends React.Component {
   };
 
   //Groups Functions
-  onEditGroup = (group, groupId,newBoard) => {
-    console.log(`newBoard`, newBoard)
+  onEditGroup = (group, groupId, newBoard, Duplicate) => {
     const { workspace, user, board, editGroup } = this.props;
     const boardToEdit= newBoard ? newBoard :board;
-    console.log(`boardToEdit`, boardToEdit)
-    editGroup(workspace, boardToEdit, group, user, groupId);
+    editGroup(workspace, boardToEdit, group, user, groupId, Duplicate);
   };
 
   //Items Functions
