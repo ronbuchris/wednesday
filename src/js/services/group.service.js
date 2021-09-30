@@ -15,7 +15,7 @@ function query(board) {
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId) {
     if (groupId) {
-        const newGroup = createGroup(user)
+        const newGroup = createGroup(user,board)
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
         board.groups.splice(groupIdx+1, 0, newGroup);
     } else if (group.id) {

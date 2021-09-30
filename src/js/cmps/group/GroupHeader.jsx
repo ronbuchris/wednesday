@@ -58,6 +58,7 @@ export class _GroupHeader extends React.Component {
         </div>
         {toggleMenus.groupMenu === group.id && (
           <GroupMenu
+          board={board}
             toggleMenus={toggleMenus}
             toggleMenu={toggleMenu}
             changeGroupColor={this.changeGroupColor}
