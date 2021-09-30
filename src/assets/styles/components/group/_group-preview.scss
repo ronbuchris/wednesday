@@ -122,6 +122,14 @@
       .item-column-list{
         .date{
           position: relative;
+          .date-border{
+            padding: 5px;
+            .date-col{
+              &:hover{
+                outline:1px dashed $wolf-color;
+              }
+            }
+          }
         }
         >*:last-child{
           .date-menu{

@@ -13,7 +13,7 @@ export class DatePicker extends React.Component {
     const day= date.getDate();
     const year=date.getFullYear();
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-    const printDate=`${months[month]} ${day<10 ? '0'+day : day}`
+    const printDate=`${year} ${months[month]} ${day<10 ? '0'+day : day}`
     const columnIdx = item.columns.findIndex(
       (currColumn) => currColumn.type === 'date'
     );
