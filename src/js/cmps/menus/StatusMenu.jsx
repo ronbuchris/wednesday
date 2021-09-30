@@ -8,7 +8,6 @@ export function StatusMenu({
   board,
   group,
   item,
-  workspace
 }) {
   const [isEdit, setIsEdit] = useState(false);
 
