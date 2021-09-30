@@ -2,3 +2,15 @@
   width: 32px;
   height: 32px;
 }
+.view-container{
+  gap: 5px;
+  .table-view{
+    padding: 8px 16px;
+    gap:5px;
+    height: 40px;
+    &.active {
+      border-bottom: 2px solid $primary-color;
+      // box-shadow: 0 0px 0px 0px $primary-color;
+    }
+  }
+}
