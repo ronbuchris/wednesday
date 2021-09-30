@@ -75,6 +75,17 @@
         }
       }
 
+      .item-column-list{
+        .date{
+          position: relative;
+        }
+        >*:last-child{
+          .date-menu{
+            right:113%;
+          }
+        }
+      }
+
       &:hover {
         background-color: $ui-grey-color;
 

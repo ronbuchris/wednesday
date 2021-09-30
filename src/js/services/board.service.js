@@ -87,7 +87,14 @@ export function createBoard(user, users, title) {
                         color: " #fdab3d"
                     }
                 ]
-            }
+            },
+            {
+                "id": makeId(),
+                "type": "date",
+                "title": "Date",
+                "width": 140,
+                "date":''
+            },
 
         ],
         groups: groups,

@@ -140,6 +140,12 @@
   top: 90%;
   right: -105%;
 }
+.date-menu{
+  position: absolute;
+  z-index:10;
+  right: 50%;
+  transform: translateX(50%);
+}
 
 .status {
   // z-index: 10;

@@ -59,6 +59,7 @@ function _ItemPreview({
       >
         <div className="item-title-text">{item.title}</div>
         <AddUpdate
+          className="add-update"
           onClick={() => {
             loadItem(board._id, item.id);
           }}
@@ -102,3 +103,4 @@ export const ItemPreview = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_ItemPreview);
+

@@ -9,6 +9,7 @@ const initialState = {
         boardMenu: false,
         itemMenu: false,
         colorMenu: false,
+        dateMenu:false,
         isWorkspaceModal: false,
     }
 }

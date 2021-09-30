@@ -38,7 +38,7 @@ function _BoardHeader({ board, onBlur, onAddItem, onEditGroup, changeView, isVie
         onBlur={(ev) => {
           onBlur(ev.target.innerText, board.description, board, 'boardDesc');
         }}
-      >
+        >
         {board.description}
       </div>
       <div className="view-container flex align-center">
