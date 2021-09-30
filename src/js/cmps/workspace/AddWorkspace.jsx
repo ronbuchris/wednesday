@@ -16,10 +16,9 @@ class _AddWorkspace extends React.Component {
   };
 
   onAddWorkspace = async (ev) => {
-    const { user, addWorkspace, workspace, history } = this.props;
+    const { user, addWorkspace } = this.props;
     const { title } = this.state;
     await addWorkspace(user, title);
-    history.push(`/workspace/${workspace._id}`);
   };
 
   render() {

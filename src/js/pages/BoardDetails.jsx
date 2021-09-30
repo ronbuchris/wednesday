@@ -61,6 +61,7 @@ export class _BoardDetails extends React.Component {
       case 'item':
         this.onEditItem(newType, group);
         break;
+        default:
       // case 'column':
       //   this.onEditColumn(newType);
       //   break;
@@ -84,9 +85,9 @@ export class _BoardDetails extends React.Component {
   };
 
   //Groups Functions
-  onEditGroup = (group) => {
+  onEditGroup = (group, groupId) => {
     const { workspace, user, board, editGroup } = this.props;
-    editGroup(workspace, board, group, user);
+    editGroup(workspace, board, group, user, groupId);
   };
 
   //Items Functions

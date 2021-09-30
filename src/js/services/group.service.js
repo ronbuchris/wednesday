@@ -13,8 +13,12 @@ function query(board) {
 }
 
 //EDIT-ADD GROUP
-function save(workspace, board, group, user) {
-    if (group.id) {
+function save(workspace, board, group, user, groupId) {
+    if (groupId) {
+        const newGroup = createGroup(user)
+        const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
+        board.groups.splice(groupIdx+1, 0, newGroup);
+    } else if (group.id) {
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
         board.groups.splice(groupIdx, 1, group);
     } else {

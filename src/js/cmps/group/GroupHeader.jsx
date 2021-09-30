@@ -30,7 +30,7 @@ export class _GroupHeader extends React.Component {
   };
 
   render() {
-    const { board, group, onBlur, onRemoveGroup, toggleMenus, toggleMenu, provided } =
+    const { board, group, onBlur, onRemoveGroup, toggleMenus, toggleMenu, provided, onEditGroup } =
       this.props;
     const { isHover, isColor } = this.state;
     return (
@@ -60,6 +60,7 @@ export class _GroupHeader extends React.Component {
             toggleMenu={toggleMenu}
             changeGroupColor={this.changeGroupColor}
             group={group}
+            onEditGroup={onEditGroup}
             isColor={isColor}
             onRemoveGroup={onRemoveGroup}
             colorPicker={this.colorPicker}

@@ -1,4 +1,3 @@
-import { FaAngleRight } from 'react-icons/fa';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 
 export function ItemMenu({ item, onRemoveItem, toggleMenus, toggleMenu }) {

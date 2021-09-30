@@ -1,4 +1,3 @@
-import { useState } from 'react';
 export function StatusMenu({
   changeStatus,
   toggleMenus,
@@ -6,8 +5,6 @@ export function StatusMenu({
   board,
   item,
 }) {
-  const [isEdit, setEdit] = useState(false);
-
   return (
     <div className="status-menu">
       <div className="labels-list">

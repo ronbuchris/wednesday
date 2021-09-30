@@ -6,7 +6,7 @@ import { toggleMenu } from '../store/actions/board.actions';
 class _WorkspaceMenu extends React.Component {
 
   render(){
-    const { workspaces, toggleMenu, toggleMenus, addWorkspace} =this.props
+    const { workspaces, toggleMenu, toggleMenus} =this.props
     return (
       <div className="workspace-menu br8">
       <div className="list-category">My workspaces</div>
