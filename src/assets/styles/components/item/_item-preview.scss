@@ -33,8 +33,17 @@
   border-radius: 8px;
   border: 1px solid;
 }
-.add-update{
-  color:$wolf-color;
-  width: 24px;
-  height: 24px;
+.add-update-btn-wrapper{
+height: 100%;
+
+&:hover{
+  color:$primary-color;
+}
+  .add-update-btn{
+    color:$wolf-color;
+    width: 24px;
+    height: 24px;
+    transition: color 0.05s;
+    
+  }
 }
