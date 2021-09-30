@@ -58,6 +58,7 @@ function _ItemPreview({
       >
         <div className="item-title-text">{item.title}</div>
         <AddUpdate
+          className="add-update-btn"
           onClick={() => {
             loadItem(board._id, item.id);
           }}
@@ -79,6 +80,7 @@ function _ItemPreview({
           );
         })}
       </div>
+      <div className="space-item"></div>
       <div className="indicator"></div>
     </div>
   );

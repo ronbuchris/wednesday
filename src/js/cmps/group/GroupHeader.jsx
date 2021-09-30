@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { FaCaretDown } from 'react-icons/fa';
 import Drag from 'monday-ui-react-core/dist/icons/Drag';
+import Add from 'monday-ui-react-core/dist/icons/Add';
 import { toggleMenu } from '../../store/actions/board.actions';
 import { GroupMenu } from '../menus/GroupMenu';
 import { GroupColumn } from './GroupColumn';
@@ -65,7 +66,7 @@ export class _GroupHeader extends React.Component {
         </div>
         {toggleMenus.groupMenu === group.id && (
           <GroupMenu
-          board={board}
+            board={board}
             toggleMenus={toggleMenus}
             toggleMenu={toggleMenu}
             changeGroupColor={this.changeGroupColor}
@@ -76,9 +77,7 @@ export class _GroupHeader extends React.Component {
             colorPicker={this.colorPicker}
           />
         )}
-        <div className="drag-btn btn" {...provided.dragHandleProps}>
-          <Drag />
-        </div>
+
         <div
           onMouseEnter={() => this.onHover(true, group.id)}
           onMouseLeave={() => this.onHover(false, group.id)}
@@ -90,6 +89,9 @@ export class _GroupHeader extends React.Component {
             onBlur(ev.target.innerText, group.title, group, 'group');
           }}
         >
+          <div className="drag-btn btn" {...provided.dragHandleProps}>
+            <Drag />
+          </div>
           {group.title}
         </div>
         <Droppable
@@ -112,6 +114,11 @@ export class _GroupHeader extends React.Component {
             </div>
           )}
         </Droppable>
+        <div className="add-column flex align-center justify-center">
+          <div className="plus-btn flex align-center justify-center btn">
+            <Add />
+          </div>
+        </div>
       </div>
     );
   }

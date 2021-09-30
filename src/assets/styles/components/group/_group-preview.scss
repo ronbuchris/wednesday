@@ -36,22 +36,66 @@
     .group-title {
       flex: 1;
       outline: none;
+
+      &:hover {
+        border-right: 4px solid $ui-grey-color;
+        .drag-btn {
+          display: flex;
+        }
+      }
     }
 
     .group-column-list {
       display: flex;
 
       .group-column-header {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: default;
+        height: 100%;
+
+        &:hover {
+          background-color: $ui-grey-color;
+
+          .drag-btn {
+            display: flex;
+          }
+        }
+      }
+    }
+
+    .add-column {
+      flex: 0 0 38px;
+      border-radius: 50%;
+      width: 30px;
+      height: 100%;
+
+      .plus-btn {
+        border-radius: 50%;
+        border: 1px solid $clr1;
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s ease, color 0.1s ease;
+
+        .open {
+          transform: rotate(45deg);
+        }
+
+        &:hover {
+          color: $primary-color;
+          border: 1px solid $primary-color;
+        }
+
+        svg {
+          height: 16px;
+        }
       }
     }
   }
 
   .item-list {
-    display: flex;
-    flex-direction: column;
     background-color: $clr6;
 
     .item-preview {
@@ -90,9 +134,23 @@
         flex: 1 0;
         outline: none;
 
+        .add-update-btn {
+          transition: color 0.3s;
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+
         .item-title-text {
           flex: 1;
           padding-left: 10px;
+        }
+
+        &:hover {
+          .item-title-text {
+            color: $primary-color;
+          }
         }
       }
     }
@@ -121,6 +179,12 @@
     outline: none;
     height: 35px;
     border-bottom: 1px solid $ui-grey-color;
+
+    &:hover {
+      .indicator {
+        opacity: 1;
+      }
+    }
 
     .item-add-input {
       border: none;
@@ -168,4 +232,14 @@
   border-right: 1px solid;
   border-right-color: $clr7;
   position: relative;
+}
+
+.space-item {
+  flex: 0 0 30px;
+  background-color: $clr6;
+}
+
+.space-item {
+  flex: 0 0 30px;
+  background-color: $clr6;
 }

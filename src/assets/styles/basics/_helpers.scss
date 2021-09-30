@@ -12,6 +12,19 @@
   cursor: pointer;
 }
 
+.drag-btn {
+  position: absolute;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  left: 3px;
+  display: none;
+
+  svg {
+    height: 18px;
+  }
+}
+
 // Font Sizes
 .fs12 {
   font-size: rem(12px);
