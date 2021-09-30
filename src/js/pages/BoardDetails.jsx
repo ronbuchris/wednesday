@@ -12,6 +12,7 @@ import {
   editBoard,
   removeBoard,
   changeView,
+  toggleMenu,
 } from '../store/actions/board.actions';
 import {
   editGroup,
@@ -25,6 +26,7 @@ import {
   loadWorkspace,
 } from '../store/actions/workspace.actions';
 import { ItemDetails } from './ItemDetails';
+import { Screen } from './Screen';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -100,13 +102,30 @@ export class _BoardDetails extends React.Component {
     saveItem(item, user, workspace, group);
   };
 
-  render() {
-    const { workspace, board, groups, changeView, isViewChange, item } =
-      this.props;
-    if (!workspace || !board) return <div>loading</div>;
+  isMenuOpen = () => {
+    const { toggleMenus } = this.props;
+    for (const menu in toggleMenus) {
+      console.log(`menu`, menu);
+    }
+  };
 
+  render() {
+    const {
+      workspace,
+      board,
+      groups,
+      changeView,
+      isViewChange,
+      item,
+      toggleMenus,
+    } = this.props;
+    if (!workspace || !board) return <div>loading</div>;
+    console.log(`this.isMenuOpen`, this.isMenuOpen());
     return (
       <div className="board-app flex">
+        {toggleMenus.workspaceMenu ||
+          toggleMenus.boardMenu ||
+          (toggleMenus.groupMenu && <Screen toggleMenus={toggleMenus} />)}
         <WorkspaceNav
           changeView={changeView}
           workspace={workspace}
@@ -139,6 +158,7 @@ export class _BoardDetails extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    toggleMenus: state.workspaceModule.toggleMenus,
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
     groups: state.groupModule.groups,
@@ -151,6 +171,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  toggleMenu,
   //workspace
   loadWorkspaceByBoardId,
   editWorkspace,

@@ -95,6 +95,40 @@
 .group-menu {
   top: 80%;
   left: -30px;
+
+  .change-group-color {
+    gap: 5px;
+
+    .group-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+  }
+  .color-pallete {
+    position: absolute;
+    box-shadow: 0 4px 17px 6px #0000001a;
+    background-color: $clr7;
+    top: 80%;
+    height: 114px;
+    width: 140px;
+
+    .colors {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 8px;
+      gap: 6px;
+    }
+
+    .group-color-item {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
 }
 
 .item-menu {
@@ -109,11 +143,26 @@
 
 //COLUMNS MENUS
 .status-menu {
+  z-index: 10px;
+  position: absolute;
+  // left: 50%;
+  // top: 100%;
   width: 144px;
-  padding: 16px;
-
+  height: 264px;
+  box-shadow: 0 4px 17px 6px #0000001a;
   .labels-list {
+    padding: 16px;
     .label {
+    }
+  }
+
+  .edit-label {
+    background-color: $clr7;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $clr7;
     }
   }
 }

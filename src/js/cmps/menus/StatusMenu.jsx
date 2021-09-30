@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Edit from 'monday-ui-react-core/dist/icons/Edit';
+
 export function StatusMenu({
   changeStatus,
   toggleMenus,
@@ -6,7 +8,7 @@ export function StatusMenu({
   board,
   item,
 }) {
-  const [isEdit, setEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   return (
     <div className="status-menu">
@@ -14,6 +16,7 @@ export function StatusMenu({
         {board.columns[1].labels.map((label) => {
           return (
             <div
+              key={label.color}
               className="label"
               style={{ backgroundColor: label.color }}
               onClick={(ev) => {
@@ -26,6 +29,17 @@ export function StatusMenu({
             </div>
           );
         })}
+      </div>
+      <div className="divider"></div>
+      <div
+        className="edit-label flex align-center justify-center btn"
+        onClick={(ev) => {
+          ev.stopPropagation();
+          setIsEdit(!isEdit);
+        }}
+      >
+        {!isEdit && <Edit />}
+        {isEdit ? 'Apply' : 'Add/Edit Labels'}
       </div>
     </div>
   );

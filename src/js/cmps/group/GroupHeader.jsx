@@ -87,7 +87,8 @@ export class _GroupHeader extends React.Component {
             );
           })}
         </div>
-        {toggleMenus.groupMenu && <Screen toggleMenus={toggleMenus} />}
+        {toggleMenus.groupMenu ||
+          (toggleMenus.statusMenu && <Screen toggleMenus={toggleMenus} />)}
       </div>
     );
   }

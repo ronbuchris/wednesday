@@ -33,60 +33,6 @@
       }
     }
 
-    .group-menu-modal {
-      position: absolute;
-      top: 80%;
-      width: 264px;
-      z-index: 10;
-      left: -30px;
-      box-shadow: 0 4px 17px 6px #0000001a;
-      background-color: $clr7;
-
-      .group-menu-section {
-        padding: 8px;
-
-        > * {
-          font-size: 14px;
-          padding: 4px 8px;
-        }
-
-        .change-group-color {
-          gap: 5px;
-
-          .group-color {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-          }
-        }
-      }
-
-      .color-pallete {
-        position: absolute;
-        box-shadow: 0 4px 17px 6px #0000001a;
-        background-color: $clr7;
-        top: 80%;
-        height: 114px;
-        width: 140px;
-
-        .colors {
-          display: flex;
-          flex-wrap: wrap;
-          padding: 8px;
-          gap: 6px;
-        }
-
-        .group-color-item {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          &:hover {
-            opacity: 0.6;
-          }
-        }
-      }
-    }
-
     .group-title {
       flex: 1;
       outline: none;
