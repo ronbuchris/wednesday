@@ -131,8 +131,11 @@ function dragAndDrop(workspace,board,result,groupId){
             })
         })
         board.columns.splice(endIdx,0,column)
+        const [cmpOrder] = board.cmpsOrder.splice(startIdx,1)
+       board.cmpsOrder.splice(endIdx,0,cmpOrder)
     }
     const newBoard={...board}
+    console.log(`newBoard`, newBoard)
     const newWorkspace = { ...workspace };
     return [newWorkspace,newBoard];
 }

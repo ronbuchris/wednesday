@@ -106,10 +106,10 @@ export function removeItem(workspace, group, itemId) {
     }
 }
 
-export function saveItem(item, user, workspace, group, addToTop) {
+export function saveItem(item, user, workspace, group, addToTop,board) {
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.save(item, group, workspace, user, addToTop)
+            const newWorkspace = itemService.save(item, group, workspace, user, addToTop,board)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
