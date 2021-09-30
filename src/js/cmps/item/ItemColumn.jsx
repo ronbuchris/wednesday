@@ -13,7 +13,7 @@ export function ItemColumn({
     switch (column.type) {
       case 'status':
         return (
-          <>
+          <div className="status">
             <div
               className="item-column status-col flex cell-cmp btn"
               onClick={(ev) => {
@@ -37,7 +37,7 @@ export function ItemColumn({
                 item={item}
               />
             )}
-          </>
+          </div>
         );
 
       case 'member':

@@ -1,7 +1,10 @@
+.item-column {
+  height: 100%;
+}
+
 .member-col {
   align-items: center;
   justify-content: center;
-  z-index: 10px;
 
   .profile-icon {
     height: 30px;
@@ -16,7 +19,6 @@
   align-items: center;
   justify-content: center;
   color: $clr7;
-  z-index: 10px;
 
   &:hover {
     opacity: 0.7;

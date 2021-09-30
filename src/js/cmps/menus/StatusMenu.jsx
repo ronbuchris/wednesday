@@ -18,14 +18,18 @@ export function StatusMenu({
     onEditItem(newItem, group);
   };
 
+  const statusIdx = () => {
+    return board.columns.findIndex((column) => column.type === 'status');
+  };
+
   return (
     <div className="status-menu flex column space-between">
-      <div className="labels-list full">
-        {board.columns[1].labels.map((label) => {
+      <div className="labels-list full flex column align-center">
+        {board.columns[statusIdx()].labels.map((label) => {
           return (
             <div
               key={label.color}
-              className="label"
+              className="label flex align-center justify-center"
               style={{ backgroundColor: label.color }}
               onClick={(ev) => {
                 ev.stopPropagation();

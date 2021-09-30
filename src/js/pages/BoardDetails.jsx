@@ -40,9 +40,7 @@ export class _BoardDetails extends React.Component {
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
       this.props.loadBoard(workspace, boardId);
-    } else if (!workspace.boards.length) {
-      this.props.loadWorkspace(workspace._id);
-    }
+    } 
   }
 
   onBlur = (newTxt, pevTxt, type, strType, group = null) => {

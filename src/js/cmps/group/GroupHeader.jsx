@@ -1,10 +1,12 @@
 // import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { FaCaretDown } from 'react-icons/fa';
 import Drag from 'monday-ui-react-core/dist/icons/Drag';
 import { toggleMenu } from '../../store/actions/board.actions';
 import { GroupMenu } from '../menus/GroupMenu';
+import { GroupColumn } from './GroupColumn';
 
 export class _GroupHeader extends React.Component {
   state = {
@@ -89,19 +91,26 @@ export class _GroupHeader extends React.Component {
         >
           {group.title}
         </div>
-        <div className="group-column-list flex">
-          {board.columns.map((column) => {
-            return (
-              <div
-                className="group-column-header"
-                key={column.id}
-                style={{ minWidth: column.width }}
-              >
-                {column.title}
-              </div>
-            );
-          })}
-        </div>
+        <Droppable
+          droppableId="all-columns"
+          direction="horizontal"
+          type="column"
+        >
+          {(provided) => (
+            <div
+              className="group-column-list flex"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {board.columns.map((column, index) => {
+                return (
+                  <GroupColumn index={index} key={column.id} column={column} />
+                );
+              })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
       </div>
     );
   }

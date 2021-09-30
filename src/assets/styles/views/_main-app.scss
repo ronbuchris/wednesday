@@ -143,29 +143,37 @@
 
 .status {
   // z-index: 10;
-  background-color: $clr2;
+  // background-color: $clr2;
 }
 //COLUMNS MENUS
 .status-menu {
+  height: 100%;
+  width: 100%;
   position: absolute;
-  // left: 50%;
   top: 100%;
   width: 144px;
   height: 264px;
   box-shadow: 0 4px 17px 6px #0000001a;
-  z-index: 10px;
+  z-index: 10;
   background-color: $clr7;
 
   .labels-list {
     padding: 16px;
+    gap: 8px;
 
-    // .label {
-    // }
+    .label {
+      color: $clr7;
+      font-size: 13px;
+      width: 112px;
+      height: 32px;
+    }
   }
 
   .edit-label {
     background-color: $clr7;
     color: $primary-color;
+    font-size: 13px;
+    height: 41px;
 
     &:hover {
       background-color: $primary-color;
@@ -200,4 +208,17 @@
   .dashboard {
     width: 600px;
   }
+}
+
+.sing-guest {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  background-color: $positive-color;
+  letter-spacing: 0.02857em;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  color: #fff;
+  font-size: 0.875rem;
 }
