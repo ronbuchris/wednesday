@@ -65,21 +65,24 @@ export function ItemColumn({
         );
       case 'date':
         return (
-          <div className="date">
-          <div
-            className="item-column date-col flex cell-cmp btn"
-            style={{
-              minWidth: board.columns[0].width,
-            }}
+          <div className="date btn"
             onClick={(ev) => {
               ev.stopPropagation();
               toggleMenu(toggleMenus, 'dateMenu', item.id);
-            }}
+            }}>
+            <div className="date-border"
             >
-          {column.date}
+              <div
+                className="item-column date-col flex align-center justify-center cell-cmp btn"
+                style={{
+                  minWidth: board.columns[0].width,
+                }}
+              >
+                {column.date.substr(4)}
 
-          </div>
-          {toggleMenus.dateMenu === item.id && (
+              </div>
+            </div>
+            {toggleMenus.dateMenu === item.id && (
               <DatePicker
                 workspace={workspace}
                 toggleMenus={toggleMenus}
@@ -90,7 +93,7 @@ export function ItemColumn({
                 item={item}
               />
             )}
-            </div>
+          </div>
         );
 
       default:
