@@ -59,12 +59,12 @@ function remove(workspace, group, itemId) {
 
 }
 
-function save(item, group, workspace, user, addToTop) {
+function save(item, group, workspace, user, addToTop, board) {
     if (item.id) {
         const itemIdx = group.items.findIndex(currItem => currItem.id === item.id);
         group.items.splice(itemIdx, 1, item);
     } else {
-        const newItem = createItem(item, user)
+        const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
     const newWorkspace = { ...workspace };
@@ -72,30 +72,30 @@ function save(item, group, workspace, user, addToTop) {
 }
 
 
-export function createItem(title, user) {
+export function createItem(title, user, board) {
     return {
         id: makeId(),
-        title,
-        columns: [
-            {
-                type: "member",
-                members: [
-                    {
-                        _id: "u101",
-                        fullname: "Adir Cohen",
-                        img: `https://robohash.org/adir`,
-                    }
-                ]
-            },
-            {
-                type: "status",
-                label: {
-                    title: "",
-                    color: "#c4c4c4"
-                }
+        title, 
+        columns: _addCmpsOrder(board),
+        //     {
+        //         type: "member",
+        //         members: [
+        //             {
+        //                 _id: "u101",
+        //                 fullname: "Adir Cohen",
+        //                 img: `https://robohash.org/adir`,
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         type: "status",
+        //         label: {
+        //             title: "",
+        //             color: "#c4c4c4"
+        //         }
 
-            },
-        ],
+        //     },
+        // ],
         creator: {
             _id: user._id,
             fullname: user.fullname,
@@ -103,6 +103,36 @@ export function createItem(title, user) {
         },
         createdAt: Date.now(),
     }
+}
+
+function _addCmpsOrder(board) {
+    console.log(`objboardboardboardboardect`, board.cmpsOrder)
+    const columns = []
+    const members = {
+        type: "member",
+        members: [
+            {
+                _id: "u101",
+                fullname: "Adir Cohen",
+                img: `https://robohash.org/adir`,
+            }
+        ]
+    }
+    const status = {
+        type: "status",
+        label: {
+            title: "",
+            color: "#c4c4c4"
+        }
+    }
+
+    board.cmpsOrder.forEach((cmpOrder) => {
+        if (cmpOrder === "member") columns.push(members)
+        if (cmpOrder === "status") columns.push(status)
+    })
+console.log(`columns`, columns)
+    return columns
+
 }
 
 

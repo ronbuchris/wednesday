@@ -15,14 +15,14 @@ function query(board) {
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId) {
     if (groupId) {
-        const newGroup = createGroup(user)
+        const newGroup = createGroup(user,board)
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
         board.groups.splice(groupIdx+1, 0, newGroup);
     } else if (group.id) {
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
         board.groups.splice(groupIdx, 1, group);
     } else {
-        const newGroup = createGroup(user)
+        const newGroup = createGroup(user,board)
         board.groups.unshift(newGroup)
     }
     const newWorkspace = { ...workspace };
@@ -36,10 +36,10 @@ function removeGroup(workspace, board, groupId) {
     return returnedWorkspace
 }
 
-export function createGroup(user, itemCount = 1) {
+export function createGroup(user,board, itemCount = 1) {
     const items = []
     for (var i = 0; i < itemCount; i++) {
-        const item = createItem("New Item", user)
+        const item = createItem("New Item", user,board)
         items.push(item)
     }
     const group = {
