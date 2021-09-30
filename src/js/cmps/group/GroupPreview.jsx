@@ -56,16 +56,17 @@ class _GroupPreview extends React.Component {
     const { itemTitle, isFocused } = this.state;
     if (!group) return <div>loading</div>;
     return (
+      
       <div key={group.id} className="group-preview">
-        <GroupHeader
-        setCurrGroupId={setCurrGroupId}
-          provided={provided}
-          onEditGroup={onEditGroup}
-          group={group}
-          board={board}
-          onBlur={onBlur}
-          onRemoveGroup={this.onRemoveGroup}
-        />
+            <GroupHeader
+            setCurrGroupId={setCurrGroupId}
+            provided={provided}
+            onEditGroup={onEditGroup}
+            group={group}
+            board={board}
+            onBlur={onBlur}
+            onRemoveGroup={this.onRemoveGroup}
+            />  
         <Droppable type="item" droppableId={group.id}>
           {(provided) => (
             <div className="item-list" {...provided.droppableProps} ref={provided.innerRef}>

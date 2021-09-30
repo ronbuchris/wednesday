@@ -12,6 +12,7 @@ class _BoardContent extends Component {
   }
 
   handleOnDragEnd=(result)=>{
+    console.log(`result`, result)
     const {workspace,board}=this.props;
     this.props.dragAndDrop(workspace,board,result,this.state.currGroupId);
   }

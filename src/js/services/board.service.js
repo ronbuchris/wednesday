@@ -109,10 +109,7 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace,board,result,groupId){
-    console.log(`object`, workspace)
-    console.log(`object`, board)
-    console.log(`object`, result)
-    console.log(`object`, groupId)
+    console.log(`result1111`, result)
     const startIdx=result.source.index
     const endIdx=result.destination ? result.destination.index : 0
     if(result.type === "group"){
@@ -126,9 +123,19 @@ function dragAndDrop(workspace,board,result,groupId){
         const [item]=fromGroup.items.splice(startIdx,1)
         toGroup.items.splice(endIdx,0,item)
     }
-    
+    if(result.type==="column"){
+        const [column]=board.columns.splice(board.columns[startIdx],1)
+        board.groups.forEach((group)=>{
+            group.items.forEach(item=>{
+                const [column]=item.columns.splice(startIdx,1)
+                 item.columns.splice(endIdx,0,column)
+            })
+        })
+        board.columns.splice(endIdx,0,column)
+    }
+    const newBoard={...board}
     const newWorkspace = { ...workspace };
-    return newWorkspace
+    return [newWorkspace,newBoard];
 }
 
 function makeId(length = 6) {

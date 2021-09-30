@@ -110,10 +110,16 @@ export function dragAndDrop(workspace,board,result,groupId) {
     return async dispatch => {
         try {
             const newWorkspace=boardService.dragAndDrop(workspace,board,result,groupId)
-            await workspaceService.save(newWorkspace);
+            const workspaceToSave=newWorkspace[0]
+            await workspaceService.save(workspaceToSave);
+            const newBoard=newWorkspace[1]
             dispatch({
                 type: 'SET_WORKSPACE',
-                workspace:newWorkspace,
+                workspace:workspaceToSave,
+            })
+            dispatch({
+                type: 'SET_BOARD',
+                board:newBoard,
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)
