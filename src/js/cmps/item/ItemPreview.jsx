@@ -10,32 +10,27 @@ import { loadItem } from '../../store/actions/item.actions';
 import { ItemColumn } from './ItemColumn';
 import { connect } from 'react-redux';
 import { ItemMenu } from '../menus/ItemMenu';
-import { Screen } from '../../pages/Screen';
 
 function _ItemPreview({
-  item,
-  onBlur,
-  group,
-  board,
   onRemoveItem,
   toggleMenus,
+  onEditItem,
   toggleMenu,
   loadItem,
   provided,
+  onBlur,
+  board,
+  group,
+  item,
 }) {
   return (
-    <div
-      className="item-preview flex"
-      {...provided.droppableProps}
-      {...provided.draghandlerProps}
-      ref={provided.innerRef}
-    >
+    <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
-          item={item}
           onRemoveItem={onRemoveItem}
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
+          item={item}
         />
       )}
       <div className="item-menu-arrow flex align-center justify-center">
@@ -53,9 +48,10 @@ function _ItemPreview({
         style={{ backgroundColor: group.style.color }}
       ></div>
       <div
+        {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
-        contentEditable="true"
-        suppressContentEditableWarning={true}
+        // contentEditable="true"
+        // suppressContentEditableWarning={true}
         onBlur={(ev) => {
           onBlur(ev.target.innerText, item.title, item, 'item', group);
         }}
@@ -71,18 +67,19 @@ function _ItemPreview({
         {item.columns.map((column, idx) => {
           return (
             <ItemColumn
-              key={idx}
-              board={board}
-              column={column}
-              item={item}
               toggleMenus={toggleMenus}
+              onEditItem={onEditItem}
               toggleMenu={toggleMenu}
+              column={column}
+              board={board}
+              group={group}
+              item={item}
+              key={idx}
             />
           );
         })}
       </div>
       <div className="indicator"></div>
-      {toggleMenus.itemMenu && <Screen toggleMenus={toggleMenus} />}
     </div>
   );
 }

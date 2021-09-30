@@ -1,7 +1,6 @@
 import { BoardDetails } from './js/pages/BoardDetails';
 import { UserDetails } from './js/pages/UserDetails';
 import { WorkspaceDetails } from './js/pages/WorkspaceDetails';
-import { ItemDetails } from './js/pages/ItemDetails';
 
 const routesMainApp = [
     {

@@ -1,7 +1,6 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
-
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
@@ -51,43 +50,68 @@ class _GroupPreview extends React.Component {
   };
 
   render() {
-    const { group, onBlur, board, onAddItem, onEditGroup } = this.props;
+    const {
+      setCurrGroupId,
+      onEditGroup,
+      onEditItem,
+      onAddItem,
+      provided,
+      onBlur,
+      board,
+      group,
+    } = this.props;
     const { itemTitle, isFocused } = this.state;
     if (!group) return <div>loading</div>;
     return (
-      <div key={group.id} className="groups-dnd group-preview">
+      <div key={group.id} className="group-preview">
         <GroupHeader
-          onEditGroup={onEditGroup}
-          group={group}
-          board={board}
-          onBlur={onBlur}
           onRemoveGroup={this.onRemoveGroup}
+          setCurrGroupId={setCurrGroupId}
+          onEditGroup={onEditGroup}
+          provided={provided}
+          onBlur={onBlur}
+          board={board}
+          group={group}
         />
-        <DragDropContext>
-          <Droppable droppableId="items-dnd">
-            {(provided)=>(
-              <div className="items-dnd item-list" {...provided.droppableProps} ref={provided.innerRef}>
-          {group.items &&
-            group.items.map((item,index) => {
-              return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided)=>(
-                    <ItemPreview
-                    provided={provided}
-                    onBlur={onBlur}
-                    item={item}
-                    group={group}
-                    board={board}
-                    onRemoveItem={this.onRemoveItem}
-                    />
-                    )}
-                </Draggable>
-                );
-              })}
-        </div>
-              )}
-              </Droppable>
-              </DragDropContext>
+        <Droppable type="item" droppableId={group.id}>
+          {(provided) => (
+            <div
+              className="item-list"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {group.items &&
+                group.items.map((item, index) => {
+                  return (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          {...provided.draggableProps}
+                          ref={provided.innerRef}
+                        >
+                          <ItemPreview
+                            onRemoveItem={this.onRemoveItem}
+                            onEditItem={onEditItem}
+                            provided={provided}
+                            onBlur={onBlur}
+                            group={group}
+                            board={board}
+                            key={item.id}
+                            item={item}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
         <div>
           <form
             className="item-add"
@@ -96,7 +120,7 @@ class _GroupPreview extends React.Component {
               onAddItem(itemTitle, group);
               this.clearState();
             }}
-            >
+          >
             <input
               type="text"
               dir="auto"
@@ -107,16 +131,15 @@ class _GroupPreview extends React.Component {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onKeyUp={this.onKeyUp}
-              />
+            />
 
             {(isFocused || itemTitle) && (
               <button className="item-add-button">Add</button>
-              )}
+            )}
             <div className="indicator"></div>
           </form>
         </div>
       </div>
-
     );
   }
 }

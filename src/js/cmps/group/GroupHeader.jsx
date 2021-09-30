@@ -2,8 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FaCaretDown } from 'react-icons/fa';
+import Drag from 'monday-ui-react-core/dist/icons/Drag';
 import { toggleMenu } from '../../store/actions/board.actions';
-import { Screen } from '../../pages/Screen';
 import { GroupMenu } from '../menus/GroupMenu';
 
 export class _GroupHeader extends React.Component {
@@ -12,7 +12,8 @@ export class _GroupHeader extends React.Component {
     isColor: false,
   };
 
-  onHover = (bool) => {
+  onHover = (bool, groupId) => {
+    this.props.setCurrGroupId(groupId);
     this.setState({ isHover: bool });
   };
 
@@ -28,8 +29,16 @@ export class _GroupHeader extends React.Component {
   };
 
   render() {
-    const { board, group, onBlur, onRemoveGroup, toggleMenus, toggleMenu } =
-      this.props;
+    const {
+      board,
+      group,
+      onBlur,
+      onRemoveGroup,
+      toggleMenus,
+      toggleMenu,
+      provided,
+      onEditGroup,
+    } = this.props;
     const { isHover, isColor } = this.state;
     return (
       <div className="group-header flex">
@@ -58,12 +67,18 @@ export class _GroupHeader extends React.Component {
             toggleMenu={toggleMenu}
             changeGroupColor={this.changeGroupColor}
             group={group}
+            onEditGroup={onEditGroup}
             isColor={isColor}
             onRemoveGroup={onRemoveGroup}
             colorPicker={this.colorPicker}
           />
         )}
+        <div className="drag-btn btn" {...provided.dragHandleProps}>
+          <Drag />
+        </div>
         <div
+          onMouseEnter={() => this.onHover(true, group.id)}
+          onMouseLeave={() => this.onHover(false, group.id)}
           className="group-title flex align-center"
           style={{ color: group.style.color }}
           contentEditable="true"
@@ -87,8 +102,6 @@ export class _GroupHeader extends React.Component {
             );
           })}
         </div>
-        {toggleMenus.groupMenu ||
-          (toggleMenus.statusMenu && <Screen toggleMenus={toggleMenus} />)}
       </div>
     );
   }

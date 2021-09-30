@@ -16,10 +16,11 @@ export function setGroup(group) {
 }
 
 
-export function editGroup(workspace, board, group, user) {
+
+export function editGroup(workspace, board, group, user, groupId) {
     return async (dispatch) => {
         try {
-            const newWorkspace = groupService.save(workspace, board, group, user)
+            const newWorkspace = groupService.save(workspace, board, group, user, groupId)
             const newBoard = boardService.getById(newWorkspace, board._id)
             await workspaceService.save(newWorkspace)
             dispatch({

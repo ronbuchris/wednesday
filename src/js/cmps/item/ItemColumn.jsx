@@ -1,41 +1,43 @@
-import { Screen } from '../../pages/Screen';
 import { StatusMenu } from '../menus/StatusMenu';
 
 export function ItemColumn({
-  column,
-  board,
-  item,
   toggleMenus,
   toggleMenu,
-  changeStatus,
+  onEditItem,
+  column,
+  board,
+  group,
+  item,
 }) {
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':
         return (
-          <div
-            className="item-column status-col flex cell-cmp btn"
-            onClick={(ev) => {
-              ev.stopPropagation();
-              toggleMenu(toggleMenus, 'statusMenu', item.id);
-            }}
-            style={{
-              backgroundColor: column.label.color,
-              minWidth: board.columns[1].width,
-            }}
-          >
-            {column.label.title}
+          <>
+            <div
+              className="item-column status-col flex cell-cmp btn"
+              onClick={(ev) => {
+                ev.stopPropagation();
+                toggleMenu(toggleMenus, 'statusMenu', item.id);
+              }}
+              style={{
+                backgroundColor: column.label.color,
+                minWidth: board.columns[1].width,
+              }}
+            >
+              {column.label.title}
+            </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
-                item={item}
-                board={board}
                 toggleMenus={toggleMenus}
+                onEditItem={onEditItem}
                 toggleMenu={toggleMenu}
-                changeStatus={changeStatus}
+                board={board}
+                group={group}
+                item={item}
               />
             )}
-            {/* {toggleMenus.statusMenu && <Screen toggleMenus={toggleMenus} />} */}
-          </div>
+          </>
         );
 
       case 'member':

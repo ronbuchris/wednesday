@@ -51,7 +51,6 @@ export function addBoard(workspace, user) {
 
 export function changeView(isViewChange) {
     return async dispatch => {
-        console.log(isViewChange);
         try {
             dispatch({
                 type: 'CHANGE_VIEW',
@@ -78,7 +77,6 @@ export function removeBoard(workspace, boardId) {
 }
 
 export function editBoard(workspace, boardOrTitle, user, users) {
-    console.log('title',boardOrTitle);
     return async (dispatch) => {
         try {
             const newWorkspace = boardService.save(workspace, boardOrTitle, user, users)
@@ -98,10 +96,24 @@ export function editBoard(workspace, boardOrTitle, user, users) {
 export function toggleMenu(toggleMenus, menuToOpen, id) {
     return dispatch => {
         const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
-        console.log(`newToggleMenus`, newToggleMenus)
         dispatch({
             type: 'TOGGLE_MENU',
             toggleMenus: newToggleMenus
         })
+    }
+}
+
+export function dragAndDrop(workspace,board,result,groupId) {
+    return async dispatch => {
+        try {
+            const newWorkspace=boardService.dragAndDrop(workspace,board,result,groupId)
+            await workspaceService.save(newWorkspace);
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace:newWorkspace,
+            })
+        } catch (err) {
+            console.log('Cannot load workspaces', err)
+        }
     }
 }

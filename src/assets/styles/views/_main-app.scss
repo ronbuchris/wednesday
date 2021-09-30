@@ -141,19 +141,26 @@
   right: -105%;
 }
 
+.status {
+  // z-index: 10;
+  background-color: $clr2;
+}
 //COLUMNS MENUS
 .status-menu {
-  z-index: 10px;
   position: absolute;
   // left: 50%;
-  // top: 100%;
+  top: 100%;
   width: 144px;
   height: 264px;
   box-shadow: 0 4px 17px 6px #0000001a;
+  z-index: 10px;
+  background-color: $clr7;
+
   .labels-list {
     padding: 16px;
-    .label {
-    }
+
+    // .label {
+    // }
   }
 
   .edit-label {
@@ -179,4 +186,18 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.dashboard-preview {
+  .charts-list {
+    gap: 10px;
+    .chart-choice {
+      cursor: pointer;
+      &:hover {
+        color: #0073ea;
+      }
+    }
+  }
+  .dashboard {
+    width: 600px;
+  }
 }

@@ -63,6 +63,7 @@ export class _BoardDetails extends React.Component {
       case 'item':
         this.onEditItem(newType, group);
         break;
+      default:
       // case 'column':
       //   this.onEditColumn(newType);
       //   break;
@@ -86,9 +87,9 @@ export class _BoardDetails extends React.Component {
   };
 
   //Groups Functions
-  onEditGroup = (group) => {
+  onEditGroup = (group, groupId) => {
     const { workspace, user, board, editGroup } = this.props;
-    editGroup(workspace, board, group, user);
+    editGroup(workspace, board, group, user, groupId);
   };
 
   //Items Functions
@@ -104,9 +105,10 @@ export class _BoardDetails extends React.Component {
 
   isMenuOpen = () => {
     const { toggleMenus } = this.props;
-    for (const menu in toggleMenus) {
-      console.log(`menu`, menu);
+    for (const menu of Object.keys(toggleMenus)) {
+      if (toggleMenus[menu]) return true;
     }
+    return false;
   };
 
   render() {
@@ -120,34 +122,32 @@ export class _BoardDetails extends React.Component {
       toggleMenus,
     } = this.props;
     if (!workspace || !board) return <div>loading</div>;
-    console.log(`this.isMenuOpen`, this.isMenuOpen());
     return (
       <div className="board-app flex">
-        {toggleMenus.workspaceMenu ||
-          toggleMenus.boardMenu ||
-          (toggleMenus.groupMenu && <Screen toggleMenus={toggleMenus} />)}
+        {this.isMenuOpen() && <Screen toggleMenus={toggleMenus} />}
         <WorkspaceNav
+          onRemoveBoard={this.onRemoveBoard}
           changeView={changeView}
           workspace={workspace}
           board={board}
-          onRemoveBoard={this.onRemoveBoard}
         />
         <div className="board-details">
           <BoardHeader
-            changeView={changeView}
             onRemoveBoard={this.onRemoveBoard}
             onEditGroup={this.onEditGroup}
             onAddItem={this.onAddItem}
-            board={board}
+            changeView={changeView}
             onBlur={this.onBlur}
+            board={board}
           />
           <BoardContent
-            isViewChange={isViewChange}
             onEditGroup={this.onEditGroup}
+            onEditItem={this.onEditItem}
+            isViewChange={isViewChange}
             onAddItem={this.onAddItem}
+            onBlur={this.onBlur}
             groups={groups}
             board={board}
-            onBlur={this.onBlur}
           />
           {item && <ItemDetails item={item} />}
         </div>
@@ -159,6 +159,7 @@ export class _BoardDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
+    isViewChange: state.boardModule.isViewChange,
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
     groups: state.groupModule.groups,
@@ -166,7 +167,6 @@ function mapStateToProps(state) {
     users: state.userModule.users,
     item: state.itemModule.item,
     user: state.userModule.user,
-    isViewChange: state.boardModule.isViewChange,
   };
 }
 

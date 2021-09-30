@@ -2,17 +2,25 @@ import { useState } from 'react';
 import Edit from 'monday-ui-react-core/dist/icons/Edit';
 
 export function StatusMenu({
-  changeStatus,
   toggleMenus,
   toggleMenu,
+  onEditItem,
   board,
+  group,
   item,
 }) {
   const [isEdit, setIsEdit] = useState(false);
 
+  const onChangeStatus = (item, group, label, type) => {
+    const columnIdx = item.columns.findIndex((column) => column.type === type);
+    const newItem = item.columns.splice(columnIdx, 1, label);
+
+    onEditItem(newItem, group);
+  };
+
   return (
-    <div className="status-menu">
-      <div className="labels-list">
+    <div className="status-menu flex column space-between">
+      <div className="labels-list full">
         {board.columns[1].labels.map((label) => {
           return (
             <div
@@ -21,7 +29,7 @@ export function StatusMenu({
               style={{ backgroundColor: label.color }}
               onClick={(ev) => {
                 ev.stopPropagation();
-                changeStatus(item.id);
+                onChangeStatus(item, group, label);
                 toggleMenu(toggleMenus);
               }}
             >

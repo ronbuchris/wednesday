@@ -4,7 +4,6 @@ import Board from 'monday-ui-react-core/dist/icons/Board';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 import { BoardMenu } from '../menus/BoardMenu';
-import { Screen } from '../../pages/Screen';
 
 export function BoardPreview({
   boardIdx,
@@ -49,7 +48,6 @@ export function BoardPreview({
           toggleMenu={toggleMenu}
         />
       )}
-      {/* {toggleMenus.boardMenu && <Screen toggleMenus={toggleMenus} />} */}
     </div>
   );
 }

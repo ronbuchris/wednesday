@@ -10,6 +10,7 @@ export function GroupMenu({
   changeGroupColor,
   toggleMenus,
   toggleMenu,
+  onEditGroup
 }) {
   return (
     <div className="group-menu menu-modal br8">
@@ -20,7 +21,11 @@ export function GroupMenu({
       </div>
       <div className="divider"></div>
       <div className="menu-section">
-        <div className="btn header-btn">Add group</div>
+        <div className="btn header-btn" onClick={(ev)=> {
+          ev.stopPropagation();
+          toggleMenu(toggleMenus)
+          onEditGroup('New Group', group.id)
+        }}>Add group</div>
         <div className="btn flex space-between align-center header-btn">
           Duplicate this group <FaAngleRight />
         </div>
