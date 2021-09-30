@@ -242,7 +242,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["member","status", "date"]
+                "cmpsOrder": ["member", "status", "date"]
             },
             {
                 "_id": "b102",
@@ -357,7 +357,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["member","status", "date"]
+                "cmpsOrder": ["member", "status", "date"]
             }]
     },
     {
@@ -490,7 +490,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["member","status", "date"]
+                "cmpsOrder": ["member", "status", "date"]
             },
             {
                 "_id": "b202",
@@ -609,7 +609,7 @@ const gWorkspaces = [
                 ],
                 "activities": [],
                 // for monday
-                "cmpsOrder": ["member","status", "date"]
+                "cmpsOrder": ["member", "status", "date"]
             }]
     },
 ];

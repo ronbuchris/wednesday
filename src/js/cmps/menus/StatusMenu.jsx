@@ -29,7 +29,7 @@ export function StatusMenu({
           return (
             <div
               key={label.color}
-              className="label flex align-center justify-center"
+              className="label flex align-center justify-center btn"
               style={{ backgroundColor: label.color }}
               onClick={(ev) => {
                 ev.stopPropagation();
