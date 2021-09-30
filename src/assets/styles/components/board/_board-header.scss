@@ -9,10 +9,10 @@
     gap:5px;
     height: 40px;
     &:hover {
-      // border-bottom: 2px solid $primary-color;
-      box-shadow: 0 3px 0px 0px $primary-color;
-      
-    }
+    background-color: $ui-grey-color;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
     &.active {
       box-shadow: 0 3px 0px 0px $primary-color;
       // border-bottom: 2px solid $primary-color;
