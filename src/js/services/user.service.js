@@ -42,14 +42,18 @@ async function update(user) {
     return user;
 }
 
-async function login(userCred) {
+async function login(userCred, guest) {
     const users = await storageService.query(STORAGE_KEY)
-    const user = users.find(user => user.username === userCred.username)
+    if (guest) {
+        var user = users.find(user => user._id === 'guest')
+    }else {
+        var user = users.find(user => user.username === userCred.username)
+    }
+    if (user) return _saveLocalUser(user)
     // return _saveLocalUser(user)
 
     // const user = await httpService.post('auth/login', userCred)
     // socketService.emit('set-user-socket', user._id);
-    if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
     const user = await storageService.post(STORAGE_KEY, userCred)

@@ -6,6 +6,7 @@ export const workspaceService = { query, getById, remove, save, getByBoardId, ad
 
 async function query(user) {
     const workspaces = await storageService.query(STORAGE_KEY)
+    if (user._id === 'guest') return Promise.resolve(workspaces)
     const userWorkspaces = workspaces.filter(workspace => workspace.createdBy._id === user._id)
     workspaces.forEach(workspace => {
         workspace.members.forEach(member => {

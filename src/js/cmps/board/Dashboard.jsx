@@ -25,7 +25,6 @@ class _Dashboard extends React.Component {
         const statusToShow = Object.keys(statuses[0])
         const numbers = Object.values(statuses[0])
         const colors = Object.values(statuses[1])
-        console.log(chartType);
         const DynamicChart = (props) => {
             switch (chartType) {
                 case 'Pie':
@@ -50,19 +49,22 @@ class _Dashboard extends React.Component {
             ],
         };
         return (
-            <div>
-                <div>
-                    <p onClick={() => {
+            <div className="dashboard-preview flex column align-center">
+                <div className='charts-list flex'>
+                    <h3 className='chart-choice' onClick={() => {
                         this.changeChart('Pie')
-                    }}>Pie</p>
-                    <p onClick={() => {
+                    }}>Pie</h3>
+                    <h3 className='chart-choice' onClick={() => {
                         this.changeChart('Doughnut')
-                    }}>Doughnut</p>
-                    <p onClick={() => {
+                    }}>Doughnut</h3>
+                    <h3 className='chart-choice' onClick={() => {
                         this.changeChart('Bar')
-                    }}>Bar</p>
+                    }}>Bar</h3>
                 </div>
+                <div className="dashboard">
+
                 <DynamicChart data={data} />
+                </div>
             </div>
         )
     };

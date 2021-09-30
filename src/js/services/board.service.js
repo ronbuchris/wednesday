@@ -24,7 +24,6 @@ function save(workspace, boardOrTitle, user, users) {
 
     if (typeof boardOrTitle === 'string') {
         const newBoard = createBoard(user, users, boardOrTitle)
-        console.log(newBoard);
         workspace.boards.push(newBoard)
     } else {
         const boardIdx = workspace.boards.findIndex(currBoard => currBoard._id === boardOrTitle._id);

@@ -7,7 +7,6 @@ const initialState = {
 export function itemReducer(state = initialState, action) {
     var newState = state
     var items
-    var statuses
     switch (action.type) {
         case 'SET_ITEMS':
             newState = { ...state, items: action.items }
