@@ -108,6 +108,7 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace,board,result,groupId){
+    console.log(`result`, result)
     const startIdx=result.source.index
     const endIdx=result.destination ? result.destination.index : 0
     if(result.type === "group"){
@@ -122,7 +123,7 @@ function dragAndDrop(workspace,board,result,groupId){
         toGroup.items.splice(endIdx,0,item)
     }
     if(result.type==="column"){
-        const [column]=board.columns.splice(board.columns[startIdx],1)
+        const [column]=board.columns.splice(startIdx,1)
         board.groups.forEach((group)=>{
             group.items.forEach(item=>{
                 const [column]=item.columns.splice(startIdx,1)
@@ -134,7 +135,6 @@ function dragAndDrop(workspace,board,result,groupId){
        board.cmpsOrder.splice(endIdx,0,cmpOrder)
     }
     const newBoard={...board}
-    console.log(`newBoard`, newBoard)
     const newWorkspace = { ...workspace };
     return [newWorkspace,newBoard];
 }

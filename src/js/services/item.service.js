@@ -75,8 +75,27 @@ function save(item, group, workspace, user, addToTop, board) {
 export function createItem(title, user, board) {
     return {
         id: makeId(),
-        title,
-        columns:_addCmpsOrder(board),
+        title, 
+        columns: _addCmpsOrder(board),
+        //     {
+        //         type: "member",
+        //         members: [
+        //             {
+        //                 _id: "u101",
+        //                 fullname: "Adir Cohen",
+        //                 img: `https://robohash.org/adir`,
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         type: "status",
+        //         label: {
+        //             title: "",
+        //             color: "#c4c4c4"
+        //         }
+
+        //     },
+        // ],
         creator: {
             _id: user._id,
             fullname: user.fullname,
@@ -111,7 +130,7 @@ function _addCmpsOrder(board) {
         if (cmpOrder === "member") columns.push(members)
         if (cmpOrder === "status") columns.push(status)
     })
-
+console.log(`columns`, columns)
     return columns
 
 }
