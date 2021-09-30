@@ -22,6 +22,7 @@ function _ItemPreview({
   board,
   group,
   item,
+  workspace,
 }) {
   return (
     <div className="item-preview flex">
@@ -68,6 +69,7 @@ function _ItemPreview({
         {item.columns.map((column, idx) => {
           return (
             <ItemColumn
+              workspace={workspace}
               toggleMenus={toggleMenus}
               onEditItem={onEditItem}
               toggleMenu={toggleMenu}
@@ -89,6 +91,7 @@ function _ItemPreview({
 function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
+    workspace: state.workspaceModule.workspace,
   };
 }
 

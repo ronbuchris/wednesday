@@ -1,4 +1,5 @@
 import { StatusMenu } from '../menus/StatusMenu';
+import { DatePicker } from '../menus/DatePicker';
 
 export function ItemColumn({
   toggleMenus,
@@ -8,6 +9,7 @@ export function ItemColumn({
   board,
   group,
   item,
+  workspace
 }) {
   const renderSwitch = (column) => {
     switch (column.type) {
@@ -29,6 +31,7 @@ export function ItemColumn({
             </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
+                workspace={workspace}
                 toggleMenus={toggleMenus}
                 onEditItem={onEditItem}
                 toggleMenu={toggleMenu}
@@ -60,9 +63,37 @@ export function ItemColumn({
             })}
           </div>
         );
+      case 'date':
+        return (
+          <div className="date">
+          <div
+            className="item-column date-col flex cell-cmp btn"
+            style={{
+              minWidth: board.columns[0].width,
+            }}
+            onClick={(ev) => {
+              ev.stopPropagation();
+              toggleMenu(toggleMenus, 'dateMenu', item.id);
+            }}
+            >
+          {column.date}
+
+          </div>
+          {toggleMenus.dateMenu === item.id && (
+              <DatePicker
+                workspace={workspace}
+                toggleMenus={toggleMenus}
+                onEditItem={onEditItem}
+                toggleMenu={toggleMenu}
+                board={board}
+                group={group}
+                item={item}
+              />
+            )}
+            </div>
+        );
 
       default:
-        return 'foo';
     }
   };
 

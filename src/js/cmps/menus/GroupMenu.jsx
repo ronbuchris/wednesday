@@ -1,5 +1,6 @@
 import { FaAngleRight } from 'react-icons/fa';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
+import Duplicate from 'monday-ui-react-core/dist/icons/Duplicate';
 import { ColorPallete } from '../dynamic-cmps/ColorPallete';
 
 export function GroupMenu({
@@ -27,8 +28,13 @@ export function GroupMenu({
           toggleMenu(toggleMenus)
           onEditGroup('New Group', group.id,board)
         }}>Add group</div>
-        <div className="btn flex space-between align-center header-btn">
-          Duplicate this group <FaAngleRight />
+        <div className="btn flex align-center header-btn" onClick={(ev)=> {
+          ev.stopPropagation();
+          toggleMenu(toggleMenus)
+          onEditGroup(group, group.id, board, 'Duplicate')
+        }}>
+          <Duplicate/>
+          Duplicate this group
         </div>
         <div className="btn flex space-between align-center header-btn">
           Move group to board <FaAngleRight />
@@ -38,7 +44,7 @@ export function GroupMenu({
       <div className="menu-section">
         <div className="btn header-btn">Rename group</div>
         <div className="color-picker">
-          <div className="btn header-btn" onClick={colorPicker}>
+          <div className="btn header-btn flex align-center" onClick={colorPicker}>
             <div className="change-group-color flex align-center">
               <div
                 className="group-color"

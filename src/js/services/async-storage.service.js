@@ -80,7 +80,14 @@ const gWorkspaces = [
                                 color: "#fdab3d"
                             }
                         ]
-                    }
+                    },
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 140,
+                        "date":''
+                    },
 
                 ],
                 "groups": [
@@ -110,6 +117,10 @@ const gWorkspaces = [
                                             color: "#00c875"
                                         }
 
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
                                     },
                                 ],
                                 "updates": [
@@ -159,8 +170,13 @@ const gWorkspaces = [
                                             title: "Stuck",
                                             color: "#e2445c"
                                         }
-                                    }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -200,7 +216,12 @@ const gWorkspaces = [
                                         }
 
                                     },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -225,7 +246,12 @@ const gWorkspaces = [
                                             color: "#e2445c"
                                         }
                                     },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -297,7 +323,14 @@ const gWorkspaces = [
                                 color: "#fdab3d"
                             }
                         ]
-                    }
+                    },
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 140,
+                        "date":''
+                    },
                 ],
                 "groups": [
                     {
@@ -319,9 +352,13 @@ const gWorkspaces = [
                                             "title": "Done",
                                             "color": "#00c875"
                                         }
-                                    }
-                                    ,
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -339,8 +376,13 @@ const gWorkspaces = [
                                             title: "",
                                             color: "#c4c4c4"
                                         }
-                                    }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -430,7 +472,14 @@ const gWorkspaces = [
                                 color: "#fdab3d"
                             }
                         ]
-                    }
+                    },
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 140,
+                        "date":''
+                    },
 
                 ],
                 "groups": [
@@ -453,8 +502,13 @@ const gWorkspaces = [
                                             title: "Stuck",
                                             color: "#e2445c"
                                         }
-                                    }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418
                             },
                             {
@@ -472,8 +526,13 @@ const gWorkspaces = [
                                             color: "#00c875"
                                         }
 
-                                    }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -549,7 +608,14 @@ const gWorkspaces = [
                                 color: "#fdab3d"
                             }
                         ]
-                    }
+                    },
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 140,
+                        "date":''
+                    },
                 ],
                 "groups": [
                     {
@@ -571,8 +637,13 @@ const gWorkspaces = [
                                             title: "Working on it",
                                             color: "#fdab3d"
                                         }
-                                    }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -592,7 +663,12 @@ const gWorkspaces = [
                                         }
                                     }
                                     ,
+                                    {
+                                        "type": "date",
+                                        "date":''
+                                    },
                                 ],
+                                "updates":[],
                                 "createdAt": 1589983468418,
 
                             },
@@ -651,8 +727,8 @@ const gUsers = [
     },
 ]
 
-// _save('workspaceDB', gWorkspaces)
-// _save('userDB', gUsers)
+_save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {

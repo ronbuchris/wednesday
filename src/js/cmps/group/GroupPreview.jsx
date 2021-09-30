@@ -117,7 +117,7 @@ class _GroupPreview extends React.Component {
             className="item-add"
             onSubmit={(ev) => {
               ev.preventDefault();
-              onAddItem(itemTitle, group);
+              onAddItem(itemTitle, group,false,board);
               this.clearState();
             }}
           >

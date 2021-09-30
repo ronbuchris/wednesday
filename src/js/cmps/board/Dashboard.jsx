@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Doughnut, Pie, Bar } from 'react-chartjs-2';
+import { Doughnut, Pie, Bar, Line } from 'react-chartjs-2';
 import { loadStatuses } from '../../store/actions/item.actions'
 
 
@@ -33,6 +33,8 @@ class _Dashboard extends React.Component {
                     return <Doughnut {...props}/>;
                 case 'Bar':
                     return <Bar {...props}/>;
+                case 'Line':
+                    return <Line {...props}/>;
             }
         };
         if (!statusToShow || !numbers || !colors) return <div>loading</div>
@@ -60,6 +62,9 @@ class _Dashboard extends React.Component {
                     <h3 className='chart-choice' onClick={() => {
                         this.changeChart('Bar')
                     }}>Bar</h3>
+                    <h3 className='chart-choice' onClick={() => {
+                        this.changeChart('Line')
+                    }}>Line</h3>
                 </div>
                 <div className="dashboard">
 

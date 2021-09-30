@@ -1,5 +1,6 @@
 .item-column {
   height: 100%;
+
 }
 
 .member-col {
@@ -10,7 +11,8 @@
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    border: 1px solid $clr1;
+    border: 1px solid $wolf-color;
+    opacity: 0.8;
   }
 }
 
@@ -30,4 +32,9 @@
   height: 200px;
   border-radius: 8px;
   border: 1px solid;
+}
+.add-update{
+  color:$wolf-color;
+  width: 24px;
+  height: 24px;
 }

@@ -8,6 +8,7 @@ import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import Table from 'monday-ui-react-core/dist/icons/Table';
 import Dashboard from 'monday-ui-react-core/dist/icons/Dashboard';
 import Favorite from 'monday-ui-react-core/dist/icons/Favorite';
+import Chart from 'monday-ui-react-core/dist/icons/Chart';
 import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
@@ -37,7 +38,7 @@ function _BoardHeader({ board, onBlur, onAddItem, onEditGroup, changeView, isVie
         onBlur={(ev) => {
           onBlur(ev.target.innerText, board.description, board, 'boardDesc');
         }}
-      >
+        >
         {board.description}
       </div>
       <div className="view-container flex align-center">
@@ -48,7 +49,8 @@ function _BoardHeader({ board, onBlur, onAddItem, onEditGroup, changeView, isVie
         <div className={`flex align-center table-view btn ${isViewChange ? 'active':''}`} onClick={(ev) => {
           ev.preventDefault();
           changeView(true)
-        }}><Dashboard />Dashboard</div>
+        }}><Chart />Chart</div>
+        <div className='flex align-center table-view btn'><Dashboard />Dashboard</div>
         <div className='flex align-center table-view btn'><BsKanban />Kanban</div>
       </div>
       <div className="divider"></div>
