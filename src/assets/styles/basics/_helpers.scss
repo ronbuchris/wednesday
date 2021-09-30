@@ -14,7 +14,7 @@
 
 .drag-btn {
   position: absolute;
-  cursor: move;
+  cursor: move !important;
   display: flex;
   align-items: center;
   left: 3px;

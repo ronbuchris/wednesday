@@ -82,7 +82,7 @@ class _WorkspaceNav extends Component {
         onMouseLeave={this.handleHover}
       >
         <div
-          className={`collapse-button-component flex align-center justify-center ${
+          className={`collapse-button-component flex align-center justify-center btn ${
             (!isOpenNav || isHovered) && 'is-pinned'
           }`}
           onClick={() => toggleNav()}

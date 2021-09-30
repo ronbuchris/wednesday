@@ -117,7 +117,7 @@ class _GroupPreview extends React.Component {
             className="item-add"
             onSubmit={(ev) => {
               ev.preventDefault();
-              onAddItem(itemTitle, group,false,board);
+              onAddItem(itemTitle, group, false, board);
               this.clearState();
             }}
           >
@@ -138,7 +138,10 @@ class _GroupPreview extends React.Component {
             />
 
             {(isFocused || itemTitle) && (
-              <button className="item-add-button">Add</button>
+              <>
+                <button className="item-add-button">Add</button>
+                <div className="space-item"></div>
+              </>
             )}
             <div className="indicator"></div>
           </form>

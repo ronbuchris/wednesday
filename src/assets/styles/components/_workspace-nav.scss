@@ -12,6 +12,7 @@
   &.hovered {
     position: absolute;
     height: 100vh;
+    box-shadow: 0px 20px 6px $clr6;
   }
 
   select {
@@ -25,6 +26,8 @@
     background-color: $clr7;
     border-radius: 50%;
     border: 1px solid $ui-grey-color;
+    transition: right 0.3s;
+    z-index: 20;
 
     &.is-pinned {
       right: -14px;
@@ -65,7 +68,7 @@
       top: 120%;
       left: 0;
       z-index: 10;
-      
+
       .list-category {
         font-size: rem(14px);
         color: $clr3;

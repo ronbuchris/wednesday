@@ -140,9 +140,9 @@
   top: 90%;
   right: -105%;
 }
-.date-menu{
+.date-menu {
   position: absolute;
-  z-index:10;
+  z-index: 10;
   right: 50%;
   transform: translateX(50%);
 }
@@ -159,47 +159,45 @@
   z-index: 10;
   background-color: $clr7;
 
-  .status-menu-wrapper {
-    .labels-list {
-      padding: 16px;
-      gap: 8px;
+  .labels-list {
+    padding: 16px;
+    gap: 8px;
 
-      .label {
-        color: $clr7;
-        font-size: 13px;
-        width: 112px;
-        height: 32px;
-      }
-    }
-
-    .edit-label {
-      background-color: $clr7;
-      color: $primary-color;
+    .label {
+      color: $clr7;
       font-size: 13px;
-      height: 41px;
-
-      &:hover {
-        background-color: $primary-color;
-        color: $clr7;
-      }
+      width: 112px;
+      height: 32px;
     }
+  }
 
-    &:before {
-      right: 50%;
-      transform: translateX(50%);
-      border-width: 10px;
+  .edit-label {
+    background-color: $clr7;
+    color: $primary-color;
+    font-size: 13px;
+    height: 41px;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $clr7;
     }
-    &:before {
-      &:after {
-        content: ' ';
-        position: absolute;
-        border: solid transparent;
-        bottom: 100%;
-        border-color: rgba(225, 225, 225, 0);
-        pointer-events: none;
-        height: 0;
-        width: 0;
-      }
+  }
+
+  &:before {
+    right: 50%;
+    transform: translateX(50%);
+    border-width: 10px;
+  }
+  &:before {
+    &:after {
+      content: ' ';
+      position: absolute;
+      border: solid transparent;
+      bottom: 100%;
+      border-color: rgba(225, 225, 225, 0);
+      pointer-events: none;
+      height: 0;
+      width: 0;
     }
   }
 }

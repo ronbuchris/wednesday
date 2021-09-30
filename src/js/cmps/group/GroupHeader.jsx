@@ -17,7 +17,7 @@ export class _GroupHeader extends React.Component {
 
   onHover = (bool, groupId) => {
     this.props.setCurrGroupId(groupId);
-    this.setState({ isHover: bool });
+    if (!groupId) this.setState({ isHover: bool });
   };
 
   colorPicker = () => {
