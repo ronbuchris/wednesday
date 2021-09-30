@@ -36,7 +36,6 @@ export function loadStatuses(board) {
     return async dispatch => {
         try {
             const statuses = itemService.getStatuses(board)
-            console.log(statuses);
             dispatch({
                 type: 'GET_STATUS',
                 statuses
@@ -96,7 +95,6 @@ export function removeItem(workspace, group, itemId) {
     return async (dispatch) => {
         try {
             const newWorkspace = itemService.remove(workspace, group, itemId)
-            console.log(`newWorkspace`, newWorkspace)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

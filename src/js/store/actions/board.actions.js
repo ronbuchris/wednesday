@@ -51,7 +51,6 @@ export function addBoard(workspace, user) {
 
 export function changeView(isViewChange) {
     return async dispatch => {
-        console.log(isViewChange);
         try {
             dispatch({
                 type: 'CHANGE_VIEW',
@@ -78,7 +77,6 @@ export function removeBoard(workspace, boardId) {
 }
 
 export function editBoard(workspace, boardOrTitle, user, users) {
-    console.log('title',boardOrTitle);
     return async (dispatch) => {
         try {
             const newWorkspace = boardService.save(workspace, boardOrTitle, user, users)
@@ -98,7 +96,6 @@ export function editBoard(workspace, boardOrTitle, user, users) {
 export function toggleMenu(toggleMenus, menuToOpen, id) {
     return dispatch => {
         const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
-        console.log(`newToggleMenus`, newToggleMenus)
         dispatch({
             type: 'TOGGLE_MENU',
             toggleMenus: newToggleMenus

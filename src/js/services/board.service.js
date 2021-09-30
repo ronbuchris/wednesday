@@ -24,7 +24,6 @@ function save(workspace, boardOrTitle, user, users) {
 
     if (typeof boardOrTitle === 'string') {
         const newBoard = createBoard(user, users, boardOrTitle)
-        console.log(newBoard);
         workspace.boards.push(newBoard)
     } else {
         const boardIdx = workspace.boards.findIndex(currBoard => currBoard._id === boardOrTitle._id);
@@ -109,10 +108,6 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace,board,result,groupId){
-    console.log(`object`, workspace)
-    console.log(`object`, board)
-    console.log(`object`, result)
-    console.log(`object`, groupId)
     const startIdx=result.source.index
     const endIdx=result.destination ? result.destination.index : 0
     if(result.type === "group"){

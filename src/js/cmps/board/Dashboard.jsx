@@ -25,7 +25,6 @@ class _Dashboard extends React.Component {
         const statusToShow = Object.keys(statuses[0])
         const numbers = Object.values(statuses[0])
         const colors = Object.values(statuses[1])
-        console.log(chartType);
         const DynamicChart = (props) => {
             switch (chartType) {
                 case 'Pie':
