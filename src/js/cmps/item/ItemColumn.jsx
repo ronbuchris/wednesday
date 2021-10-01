@@ -9,8 +9,13 @@ export function ItemColumn({
   board,
   group,
   item,
-  workspace
+  workspace,
 }) {
+  const findIdx = (type) => {
+    const idx = board.cmpsOrder.findIndex((column) => column === type);
+    return idx;
+  };
+
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':
@@ -24,7 +29,7 @@ export function ItemColumn({
               }}
               style={{
                 backgroundColor: column.label.color,
-                minWidth: board.columns[1].width,
+                minWidth: board.columns[findIdx('status')].width,
               }}
             >
               {column.label.title}
@@ -48,7 +53,7 @@ export function ItemColumn({
           <div
             className="item-column member-col flex cell-cmp btn"
             style={{
-              minWidth: board.columns[0].width,
+              minWidth: board.columns[findIdx('member')].width,
             }}
           >
             {column.members.map((member) => {
@@ -65,21 +70,21 @@ export function ItemColumn({
         );
       case 'date':
         return (
-          <div className="date btn"
+          <div
+            className="date btn"
             onClick={(ev) => {
               ev.stopPropagation();
               toggleMenu(toggleMenus, 'dateMenu', item.id);
-            }}>
-            <div className="date-border"
-            >
+            }}
+          >
+            <div className="date-border">
               <div
                 className="item-column date-col flex align-center justify-center cell-cmp btn"
                 style={{
-                  minWidth: board.columns[0].width,
+                  minWidth: board.columns[findIdx('date')].width,
                 }}
               >
                 {column.date.substr(4)}
-
               </div>
             </div>
             {toggleMenus.dateMenu === item.id && (

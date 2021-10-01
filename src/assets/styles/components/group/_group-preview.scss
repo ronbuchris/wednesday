@@ -125,11 +125,11 @@
       .item-column-list {
         .date {
           position: relative;
-          .date-border{
+          .date-border {
             padding: 5px;
-            .date-col{
-              &:hover{
-                outline:1px dashed $wolf-color;
+            .date-col {
+              &:hover {
+                outline: 1px dashed $wolf-color;
               }
             }
           }
@@ -154,11 +154,8 @@
         align-items: center;
         padding: 0 10px 0 0;
         flex: 1 0;
-        outline: none;
 
         .add-update-btn {
-          transition: color 0.3s;
-
           &:hover {
             color: $primary-color;
           }
@@ -183,8 +180,11 @@
         }
 
         .item-title-text {
-          flex: 1;
           padding-left: 10px;
+          outline: none;
+          &:focus {
+            flex: 1;
+          }
         }
 
         &:hover {

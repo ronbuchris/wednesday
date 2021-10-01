@@ -51,13 +51,17 @@ function _ItemPreview({
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
-        contentEditable="true"
-        suppressContentEditableWarning={true}
-        onBlur={(ev) => {
-          onBlur(ev.target.innerText, item.title, item, 'item', group);
-        }}
       >
-        <div className="item-title-text">{item.title}</div>
+        <div
+          className="item-title-text"
+          contentEditable="true"
+          suppressContentEditableWarning={true}
+          onBlur={(ev) => {
+            onBlur(ev.target.innerText, item.title, item, 'item', group);
+          }}
+        >
+          {item.title}
+        </div>
         <div className="edit-title-btn br4">Edit</div>
         <div className="add-update-btn-wrapper flex align-center">
           <AddUpdate

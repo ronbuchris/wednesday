@@ -19,6 +19,7 @@ export function loadBoard(workspace, boardId) {
         }
     }
 }
+
 export function setBoard() {
     return async dispatch => {
         try {
@@ -32,6 +33,7 @@ export function setBoard() {
         }
     }
 }
+
 export function addBoard(workspace, user) {
 
     return async dispatch => {
@@ -47,8 +49,6 @@ export function addBoard(workspace, user) {
     }
 }
 
-
-
 export function changeView(isViewChange) {
     return async dispatch => {
         try {
@@ -61,6 +61,7 @@ export function changeView(isViewChange) {
         }
     }
 }
+
 export function removeBoard(workspace, boardId) {
     return async dispatch => {
         try {
@@ -92,7 +93,6 @@ export function editBoard(workspace, boardOrTitle, user, users) {
     }
 }
 
-
 export function toggleMenu(toggleMenus, menuToOpen, id) {
     return dispatch => {
         const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
@@ -103,20 +103,20 @@ export function toggleMenu(toggleMenus, menuToOpen, id) {
     }
 }
 
-export function dragAndDrop(workspace,board,result,groupId) {
+export function dragAndDrop(workspace, board, result, groupId) {
     return async dispatch => {
         try {
-            const newWorkspace=boardService.dragAndDrop(workspace,board,result,groupId)
-            const workspaceToSave=newWorkspace[0]
+            const newWorkspace = boardService.dragAndDrop(workspace, board, result, groupId)
+            const workspaceToSave = newWorkspace[0]
             await workspaceService.save(workspaceToSave);
-            const newBoard=newWorkspace[1]
+            const newBoard = newWorkspace[1]
             dispatch({
                 type: 'SET_WORKSPACE',
-                workspace:workspaceToSave,
+                workspace: workspaceToSave,
             })
             dispatch({
                 type: 'SET_BOARD',
-                board:newBoard,
+                board: newBoard,
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)

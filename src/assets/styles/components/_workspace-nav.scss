@@ -3,7 +3,7 @@
   width: 254px;
   border-inline-end: 1px solid $ui-grey-color;
   transition: width 0.3s;
-  z-index: 3;
+  // z-index: 3;
 
   &.close {
     width: 30px;
@@ -27,7 +27,7 @@
     border-radius: 50%;
     border: 1px solid $ui-grey-color;
     transition: right 0.3s;
-    z-index: 20;
+    z-index: 4;
 
     &.is-pinned {
       right: -14px;
@@ -57,24 +57,6 @@
     h2 {
       font-size: rem(16px);
       font-family: roboto-bold;
-    }
-
-    .workspace-menu {
-      position: absolute;
-      width: 280px;
-      background-color: $clr7;
-      padding: 12px;
-      box-shadow: 0 4px 17px 6px #0000001a;
-      top: 120%;
-      left: 0;
-      z-index: 10;
-
-      .list-category {
-        font-size: rem(14px);
-        color: $clr3;
-        cursor: default;
-        padding: 8px 0;
-      }
     }
   }
 

@@ -15,7 +15,6 @@ export function BoardMenu({ board, onRemoveBoard, toggleMenus, toggleMenu }) {
           <Delete />
           Delete
         </div>
-        <div className="btn header-btn">Archive</div>
       </div>
     </div>
   );

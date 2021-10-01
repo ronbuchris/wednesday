@@ -42,7 +42,7 @@ const gWorkspaces = [
                         "id": "column102",
                         "type": "member",
                         "title": "Owner",
-                        "width": 140,
+                        "width": 200,
                         "members": [
                             {
                                 "id": "_u102",
@@ -65,7 +65,7 @@ const gWorkspaces = [
                         "id": "column101",
                         "type": "status",
                         "title": "Status",
-                        "width": 140,
+                        "width": 130,
                         "labels": [
                             {
                                 title: "Done",
@@ -85,8 +85,8 @@ const gWorkspaces = [
                         "id": "column103",
                         "type": "date",
                         "title": "Date",
-                        "width": 140,
-                        "date":''
+                        "width": 170,
+                        "date": ''
                     },
 
                 ],
@@ -120,7 +120,7 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
                                 "updates": [
@@ -173,10 +173,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -218,10 +218,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -248,10 +248,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -329,7 +329,7 @@ const gWorkspaces = [
                         "type": "date",
                         "title": "Date",
                         "width": 140,
-                        "date":''
+                        "date": ''
                     },
                 ],
                 "groups": [
@@ -355,10 +355,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -379,10 +379,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -478,7 +478,7 @@ const gWorkspaces = [
                         "type": "date",
                         "title": "Date",
                         "width": 140,
-                        "date":''
+                        "date": ''
                     },
 
                 ],
@@ -505,10 +505,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418
                             },
                             {
@@ -529,10 +529,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -614,7 +614,7 @@ const gWorkspaces = [
                         "type": "date",
                         "title": "Date",
                         "width": 140,
-                        "date":''
+                        "date": ''
                     },
                 ],
                 "groups": [
@@ -640,10 +640,10 @@ const gWorkspaces = [
                                     },
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
@@ -665,10 +665,10 @@ const gWorkspaces = [
                                     ,
                                     {
                                         "type": "date",
-                                        "date":''
+                                        "date": ''
                                     },
                                 ],
-                                "updates":[],
+                                "updates": [],
                                 "createdAt": 1589983468418,
 
                             },
