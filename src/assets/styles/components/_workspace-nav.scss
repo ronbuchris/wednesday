@@ -57,6 +57,7 @@
     height: 40px;
     border: 1px solid $clr1;
     padding: 6px;
+    margin-bottom: 18px;
 
     h2 {
       font-size: rem(16px);
@@ -68,6 +69,10 @@
     height: 32px;
     gap: 5px;
     padding: 0 8px;
+
+    &.search {
+      margin-bottom: 14px;
+    }
 
     .board-title {
       gap: 5px;

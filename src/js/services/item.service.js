@@ -19,7 +19,6 @@ function getStatuses(board) {
     const statuses = {}
     const colors = {}
     const statusIdx = board.cmpsOrder.findIndex(cmpOrder => cmpOrder === 'status')
-    console.log(statusIdx);
     board.groups.forEach(group => {
         group.items.forEach(item => {
             const color = item.columns[statusIdx].label.color

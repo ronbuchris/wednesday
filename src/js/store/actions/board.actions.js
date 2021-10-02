@@ -94,7 +94,6 @@ export function editBoard(workspace, boardOrTitle, user, users) {
 }
 
 export function toggleMenu(toggleMenus, menuToOpen, id) {
-    console.log(`menuToOpen`, toggleMenus, menuToOpen, id)
     return dispatch => {
         const newToggleMenus = boardService.toggleMenu(toggleMenus, menuToOpen, id)
         dispatch({

@@ -16,7 +16,7 @@
     height: 100%;
     outline: none;
     height: 35px;
-    border-bottom: 1px solid $ui-grey-color;
+    padding-left: 30px;
 
     &:hover {
       .indicator {
@@ -26,8 +26,8 @@
 
     .item-add-input {
       border: none;
+      border-bottom: 1px solid $ui-grey-color;
       width: 100%;
-      background: transparent;
       padding: 5px 0 3px 20px;
       outline: none;
 

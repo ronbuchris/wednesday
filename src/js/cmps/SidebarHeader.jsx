@@ -20,11 +20,13 @@ class _SidebarHeader extends Component {
   };
   render() {
     const { user, workspace } = this.props;
-    if (!workspace ) return <div>loading...</div>;
-    const id = workspace.boards.length ? workspace.boards[0]._id : workspace._id;
+    if (!workspace) return <div>loading...</div>;
+    const id = workspace.boards.length
+      ? workspace.boards[0]._id
+      : workspace._id;
     const route = workspace.boards ? 'board' : 'workspace';
     return (
-      <div className="sidebar-container flex">
+      <div className="sidebar-container flex justify-center">
         <nav className="sidebar-icons flex space-between column align-center">
           <div className="flex column align-center">
             <img className="logo" src={logo} alt="" />

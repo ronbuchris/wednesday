@@ -26,6 +26,7 @@ class _FilterMenu extends Component {
 
   onFilterStatus = (status) => {
     const { filterByStatus, filterByGroupId } = this.state;
+    const { filterStatus, board } = this.props;
     if (filterByStatus.includes(status)) {
       const statusIdx = filterByStatus.findIndex((s) => s === status);
       filterByStatus.splice(statusIdx, 1);
@@ -34,11 +35,18 @@ class _FilterMenu extends Component {
       filterByStatus.push(status);
       this.setState({ filterByStatus });
     }
-    this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId);
+    filterStatus(board, filterByStatus, filterByGroupId);
   };
 
   clearFilter = () => {
-    this.setState({ filterByStatus: [], filterByGroupId: [] });
+    const { filterStatus, board } = this.props;
+    this.setState({ filterByStatus: [], filterByGroupId: [] }, () => {
+      filterStatus(
+        board,
+        this.state.filterByStatus,
+        this.state.filterByGroupId
+      );
+    });
   };
 
   render() {

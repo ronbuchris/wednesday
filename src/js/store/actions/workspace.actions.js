@@ -2,7 +2,6 @@ import { userService } from "../../services/user.service"
 import { workspaceService } from "../../services/workspace.service"
 
 export function loadWorkspaces(user) {
-    console.log('user from action',user);
     return async dispatch => {
         try {
             const workspaces = await workspaceService.query(user)

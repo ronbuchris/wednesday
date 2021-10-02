@@ -90,6 +90,7 @@ class _GroupPreview extends React.Component {
                     >
                       {(provided) => (
                         <div
+                          className="item-preview-container"
                           {...provided.draggableProps}
                           ref={provided.innerRef}
                         >
