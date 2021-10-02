@@ -15,10 +15,10 @@ export function loadItems(group) {
     }
 }
 
-export function onPost(update, user, item, workspace) {
+export function onPost(update, user, item, groups, workspace) {
     return async dispatch => {
         try {
-            const newWorkspace = itemService.onPost(update, user, item, workspace)
+            const newWorkspace = itemService.onPost(update, user, item, groups, workspace)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
@@ -62,10 +62,9 @@ export function onSetSearch(board, searchBy) {
     }
 }
 
-export function loadItem(boardId, itemId) {
-    return async (dispatch) => {
+export function loadItem(board, itemId) {
+    return (dispatch) => {
         try {
-            const board = await boardService.getBoardById(boardId)
             const item = itemService.getById(board, itemId)
             dispatch({
                 type: 'SET_ITEM',
@@ -106,10 +105,10 @@ export function removeItem(workspace, group, itemId) {
     }
 }
 
-export function saveItem(item, user, workspace, group, addToTop,board) {
+export function saveItem(item, user, workspace, group, addToTop, board, Duplicate) {
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.save(item, group, workspace, user, addToTop,board)
+            const newWorkspace = itemService.save(item, group, workspace, user, addToTop, board, Duplicate)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

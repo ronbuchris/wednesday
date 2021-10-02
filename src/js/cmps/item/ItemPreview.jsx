@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { FaCaretDown } from 'react-icons/fa';
@@ -16,6 +17,7 @@ function _ItemPreview({
   toggleMenus,
   onEditItem,
   toggleMenu,
+  onAddItem,
   loadItem,
   provided,
   onBlur,
@@ -23,11 +25,15 @@ function _ItemPreview({
   group,
   item,
   workspace,
+  history,
+  location,
 }) {
   return (
     <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
+          onAddItem={onAddItem}
+          group={group}
           onRemoveItem={onRemoveItem}
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
@@ -65,13 +71,15 @@ function _ItemPreview({
           </div>
           <div className="edit-title-btn br4">Edit</div>
         </div>
-        <div className="add-update-btn-wrapper flex align-center">
-          <AddUpdate
-            className="add-update-btn"
-            onClick={() => {
-              loadItem(board._id, item.id);
-            }}
-          />
+        <div className="edit-title-btn br4">Edit</div>
+        <div
+          className="add-update-btn-wrapper flex align-center"
+          onClick={() =>
+            // console.log(`this.props.history`, history)
+            history.push(location.pathname + `/item/${item.id}`)
+          }
+        >
+          <AddUpdate className="add-update-btn" />
         </div>
       </div>
       <div className="item-column-list flex">
@@ -109,7 +117,6 @@ const mapDispatchToProps = {
   loadItem,
 };
 
-export const ItemPreview = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_ItemPreview);
+export const ItemPreview = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(_ItemPreview)
+);

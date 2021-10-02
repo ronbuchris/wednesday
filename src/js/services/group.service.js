@@ -33,7 +33,7 @@ function save(workspace, board, group, user, groupId, Duplicate) {
 function duplicateGroup(group) {
     return {
         ...group,
-        title: `Duplicate ${group.title}`,
+        title: `Duplicate of ${group.title}`,
         id: makeId(),
         items: group.items.map(item => {
             return {

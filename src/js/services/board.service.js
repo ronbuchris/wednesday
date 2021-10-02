@@ -115,7 +115,6 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
 }
 
 function dragAndDrop(workspace, board, result, groupId) {
-    console.log(`result`, result)
     const startIdx = result.source.index
     const endIdx = result.destination ? result.destination.index : 0
     if (result.type === "group") {
