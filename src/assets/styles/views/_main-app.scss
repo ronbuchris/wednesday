@@ -45,22 +45,6 @@
   .board-details {
     flex: 1;
     overflow: auto;
-
-    .board-header {
-      padding: 16px 30px 0;
-
-      & h1 {
-        font-size: 32px;
-        letter-spacing: -0.2px;
-        line-height: 52px;
-        font-family: Roboto-bold, sans-serif;
-        color: $primary-text-color;
-      }
-    }
-
-    .board-content {
-      padding: 18px 30px 40px 48px;
-    }
   }
 }
 
@@ -73,7 +57,7 @@
   z-index: 5;
 
   &.dark {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #292f4cb3;
   }
 }
 //GLOVBAL MENUS
@@ -89,6 +73,24 @@
       font-size: 14px;
       padding: 4px 8px;
     }
+  }
+}
+
+.workspace-menu {
+  position: absolute;
+  width: 280px;
+  background-color: $clr7;
+  padding: 12px;
+  box-shadow: 0 4px 17px 6px #0000001a;
+  top: 120%;
+  left: 0;
+  z-index: 10;
+
+  .list-category {
+    font-size: rem(14px);
+    color: $clr3;
+    cursor: default;
+    padding: 8px 0;
   }
 }
 
@@ -140,9 +142,10 @@
   top: 90%;
   right: -105%;
 }
-.date-menu{
+
+.date-menu {
   position: absolute;
-  z-index:10;
+  z-index: 10;
   right: 50%;
   transform: translateX(50%);
 }
@@ -159,47 +162,45 @@
   z-index: 10;
   background-color: $clr7;
 
-  .status-menu-wrapper {
-    .labels-list {
-      padding: 16px;
-      gap: 8px;
+  .labels-list {
+    padding: 16px;
+    gap: 8px;
 
-      .label {
-        color: $clr7;
-        font-size: 13px;
-        width: 112px;
-        height: 32px;
-      }
-    }
-
-    .edit-label {
-      background-color: $clr7;
-      color: $primary-color;
+    .label {
+      color: $clr7;
       font-size: 13px;
-      height: 41px;
-
-      &:hover {
-        background-color: $primary-color;
-        color: $clr7;
-      }
+      width: 112px;
+      height: 32px;
     }
+  }
 
-    &:before {
-      right: 50%;
-      transform: translateX(50%);
-      border-width: 10px;
+  .edit-label {
+    background-color: $clr7;
+    color: $primary-color;
+    font-size: 13px;
+    height: 41px;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $clr7;
     }
-    &:before {
-      &:after {
-        content: ' ';
-        position: absolute;
-        border: solid transparent;
-        bottom: 100%;
-        border-color: rgba(225, 225, 225, 0);
-        pointer-events: none;
-        height: 0;
-        width: 0;
-      }
+  }
+
+  &:before {
+    right: 50%;
+    transform: translateX(50%);
+    border-width: 10px;
+  }
+  &:before {
+    &:after {
+      content: ' ';
+      position: absolute;
+      border: solid transparent;
+      bottom: 100%;
+      border-color: rgba(225, 225, 225, 0);
+      pointer-events: none;
+      height: 0;
+      width: 0;
     }
   }
 }
@@ -209,14 +210,63 @@
   background-color: $clr7;
   box-shadow: 0 4px 17px 6px #0000001a;
   width: 500px;
-  height: 510px;
+  height: 310px;
   padding: 32px;
-  text-align: center;
   z-index: 15;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  .close-modal {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    padding: 10px;
+  }
+
+  .create-workspace-title {
+    font-family: roboto-bold;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .workspace-title-input {
+    font-size: rem(16px);
+    padding: 8px 16px;
+    outline: none;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid $wolf-color;
+
+    .title-input {
+      input {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+
+  .new-workspace-container-btn {
+    font-size: rem(16px);
+    justify-content: flex-end;
+    margin-top: 16px;
+
+    > * {
+      padding: 8px 16px;
+    }
+
+    .cancel-btn {
+      margin-right: 8px;
+    }
+
+    .create-btn {
+      background-color: $primary-color;
+      color: $clr7;
+    }
+  }
 }
+
 .dashboard-preview {
   .charts-list {
     gap: 10px;
@@ -232,7 +282,7 @@
   }
 }
 
-.sing-guest {
+.sign-guest {
   width: 100%;
   height: 40px;
   border-radius: 4px;

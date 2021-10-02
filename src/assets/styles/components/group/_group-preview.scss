@@ -36,11 +36,14 @@
     .group-title {
       flex: 1;
       outline: none;
+      // transition: all 0.3s;
 
       &:hover {
         border-right: 4px solid $ui-grey-color;
+
         .drag-btn {
           display: flex;
+          position: relative;
         }
       }
     }
@@ -119,13 +122,21 @@
         }
       }
 
-      .item-column-list{
-        .date{
+      .item-column-list {
+        .date {
           position: relative;
+          .date-border {
+            padding: 5px;
+            .date-col {
+              &:hover {
+                outline: 1px dashed $wolf-color;
+              }
+            }
+          }
         }
-        >*:last-child{
-          .date-menu{
-            right:113%;
+        > *:last-child {
+          .date-menu {
+            right: 113%;
           }
         }
       }
@@ -143,24 +154,51 @@
         align-items: center;
         padding: 0 10px 0 0;
         flex: 1 0;
-        outline: none;
 
         .add-update-btn {
-          transition: color 0.3s;
-
           &:hover {
             color: $primary-color;
           }
         }
 
+        .edit-title-btn {
+          display: none;
+          color: $clr3;
+          background: transparent;
+          font-size: 13px;
+          height: 24px;
+          flex: initial;
+          margin-left: 8px;
+          padding-left: 8px;
+          padding-right: 8px;
+          line-height: 22px;
+          padding-top: 2px;
+
+          &:hover {
+            background-color: $clr6;
+          }
+        }
+
         .item-title-text {
-          flex: 1;
           padding-left: 10px;
+          outline: none;
+          &:focus {
+            flex: 1;
+          }
         }
 
         &:hover {
           .item-title-text {
             color: $primary-color;
+          }
+          .edit-title-btn {
+            display: block;
+
+            &:hover {
+              .item-title-text {
+                border: 1px solid $wolf-color;
+              }
+            }
           }
         }
       }

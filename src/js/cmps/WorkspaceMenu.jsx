@@ -4,42 +4,42 @@ import { Link } from 'react-router-dom';
 import { toggleMenu } from '../store/actions/board.actions';
 
 class _WorkspaceMenu extends React.Component {
-
-  render(){
-    const { workspaces, toggleMenu, toggleMenus} =this.props
+  render() {
+    const { workspaces, toggleMenu, toggleMenus } = this.props;
     return (
       <div className="workspace-menu br8">
-      <div className="list-category">My workspaces</div>
-      {workspaces.map((workspace) => {
-        return (
+        <div className="list-category">My workspaces</div>
+        {workspaces.map((workspace) => {
+          return (
+            <Link to={`/workspace/${workspace._id}`}>
+              <div
+                key={workspace._id}
+                className="workspace-option menu-button-wrapper flex align-center br4"
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  toggleMenu(toggleMenus);
+                }}
+              >
+                {workspace.name}
+              </div>
+            </Link>
+          );
+        })}
+        <div className="workspace-action">
           <div
-            key={workspace._id}
-            className="workspace-option menu-button-wrapper flex align-center br4"
+            className="add-workspace"
             onClick={(ev) => {
               ev.stopPropagation();
-              toggleMenu(toggleMenus);
+              toggleMenu(toggleMenus, 'isWorkspaceModal', true);
             }}
           >
-            <Link to={`/workspace/${workspace._id}`}>{workspace.name}</Link>
+            Add workspace
           </div>
-        );
-      })}
-      <div className="workspace-action">
-        <div className="add-workspace" onClick={(ev) =>{
-          ev.stopPropagation();
-          toggleMenu(toggleMenus,'isWorkspaceModal',true)
-        }}>
-          Add workspace
+          <div className="browse-all">Browse all</div>
         </div>
-        <div className="browse-all">
-          Browse all
-        </div>
-
       </div>
-
-    </div>
-  )
-}
+    );
+  }
 }
 
 function mapStateToProps(state) {

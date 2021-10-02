@@ -40,7 +40,7 @@ export class _BoardDetails extends React.Component {
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
       this.props.loadBoard(workspace, boardId);
-    } 
+    }
   }
 
   onBlur = (newTxt, pevTxt, type, strType, group = null) => {
@@ -87,14 +87,14 @@ export class _BoardDetails extends React.Component {
   //Groups Functions
   onEditGroup = (group, groupId, newBoard, Duplicate) => {
     const { workspace, user, board, editGroup } = this.props;
-    const boardToEdit= newBoard ? newBoard :board;
+    const boardToEdit = newBoard ? newBoard : board;
     editGroup(workspace, boardToEdit, group, user, groupId, Duplicate);
   };
 
   //Items Functions
-  onAddItem = (newItemData, group, addToTop = false,board) => {
+  onAddItem = (newItemData, group, addToTop = false, board) => {
     const { workspace, user, saveItem } = this.props;
-    saveItem(newItemData, user, workspace, group, addToTop,board);
+    saveItem(newItemData, user, workspace, group, addToTop, board);
   };
 
   onEditItem = (item, group) => {
@@ -112,13 +112,13 @@ export class _BoardDetails extends React.Component {
 
   render() {
     const {
-      workspace,
-      board,
-      groups,
-      changeView,
       isViewChange,
-      item,
       toggleMenus,
+      changeView,
+      workspace,
+      groups,
+      board,
+      item,
     } = this.props;
     if (!workspace || !board) return <div>loading</div>;
     return (

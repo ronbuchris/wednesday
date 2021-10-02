@@ -160,13 +160,16 @@ class _Login extends React.Component {
             >
               {isSignUp ? 'Sign Up' : 'Sign In'}
             </Button>
-            
-            <div className="sing-guest flex auto-center btn" onClick={(ev) =>{
-              ev.preventDefault();
-              this.onLoginGuest('guest')
-            }}>
-              <h3>Sing in as a Guest</h3>
-              </div>
+
+            <div
+              className="sign-guest flex auto-center btn"
+              onClick={(ev) => {
+                ev.preventDefault();
+                this.onLoginGuest('guest');
+              }}
+            >
+              <h3>Sign in as a Guest</h3>
+            </div>
             <Grid container>
               {/* <Grid item xs>
                 <Link href="#" variant="body2">

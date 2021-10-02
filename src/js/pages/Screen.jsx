@@ -4,7 +4,9 @@ import { toggleMenu } from '../store/actions/board.actions';
 export function _Screen({ toggleMenu, toggleMenus }) {
   return (
     <div
-      className={`screen ${toggleMenus.isWorkspaceModal && 'dark'}`}
+      className={`screen ${
+        toggleMenus.isWorkspaceModal || (toggleMenus.isBoardModal && 'dark')
+      }`}
       onClick={() => {
         toggleMenu(toggleMenus);
       }}

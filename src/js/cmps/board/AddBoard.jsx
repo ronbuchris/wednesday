@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { addWorkspace } from '../../store/actions/workspace.actions';
+import { editBoard } from '../../store/actions/board.actions';
 import Close from 'monday-ui-react-core/dist/icons/Close';
 
-class _AddWorkspace extends React.Component {
+class _AddBoard extends React.Component {
   state = {
     title: '',
   };
@@ -16,10 +16,10 @@ class _AddWorkspace extends React.Component {
     this.setState({ title: value });
   };
 
-  onAddWorkspace = async () => {
-    const { user, addWorkspace } = this.props;
+  onAddBoard = async () => {
+    const { workspace, user, editBoard, users } = this.props;
     const { title } = this.state;
-    await addWorkspace(user, title);
+    editBoard(workspace, title, user, users);
   };
 
   render() {
@@ -37,16 +37,22 @@ class _AddWorkspace extends React.Component {
             <Close />
           </div>
         </div>
-        <div className="create-workspace-title">Create Workspace</div>
+        <div className="create-workspace-title">Create Board</div>
         <div className="add-workspace-input-wrapper">
-          <div className="workspace-new-title-name">Workspace name</div>
+          <div className="workspace-new-title-name">Board name</div>
           <div className="workspace-title-input">
-            <form className="title-input" onSubmit={this.onAddWorkspace}>
+            <form
+              className="title-input"
+              onSubmit={(ev) => {
+                ev.preventDefault();
+                this.onAddBoard();
+              }}
+            >
               <input
                 name="title"
                 id="title"
                 type="text"
-                placeholder="New Workspace"
+                placeholder="New Board"
                 value={title}
                 onChange={this.handleChange}
               />
@@ -66,11 +72,11 @@ class _AddWorkspace extends React.Component {
             className="create-btn br4"
             onClick={(ev) => {
               ev.stopPropagation();
-              this.onAddWorkspace();
+              this.onAddBoard();
               toggleMenu(toggleMenus);
             }}
           >
-            Create Workspace
+            Create Board
           </div>
         </div>
       </div>
@@ -82,15 +88,13 @@ function mapStateToProps(state) {
   return {
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
+    users: state.userModule.users,
     user: state.userModule.user,
   };
 }
 
 const mapDispatchToProps = {
-  addWorkspace,
+  editBoard,
 };
 
-export const AddWorkspace = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_AddWorkspace);
+export const AddBoard = connect(mapStateToProps, mapDispatchToProps)(_AddBoard);

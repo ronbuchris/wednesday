@@ -29,7 +29,7 @@ export class BoardActions extends Component {
             className="add item-add flex align-center btn"
             onClick={(ev) => {
               ev.preventDefault();
-              onAddItem('New Item', board.groups[0], true,board);
+              onAddItem('New Item', board.groups[0], true, board);
             }}
           >
             New Item
@@ -44,24 +44,21 @@ export class BoardActions extends Component {
             New group
           </div>
         </div>
-        <div className="board-filter-search header-btn">
+        <div className="header-btn">
           <BoardSearch board={board} />
         </div>
-        <div
-          className="board-filter-filter header-btn"
-          onClick={this.toggleFilter}
-        >
+        <div className="header-btn" onClick={this.toggleFilter}>
           <Filter />
           <span>Filter</span>
         </div>
         {isFilter && <BoardFilter board={board} />}
         <p>
-          Person:
           <Person />
+          Person
         </p>
         <p onClick={this.toggleSort}>
-          Sort:
           <Sort />
+          Sort
         </p>
         {isSort && <BoardSort board={board} />}
       </div>

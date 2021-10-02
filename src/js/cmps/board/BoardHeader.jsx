@@ -12,46 +12,85 @@ import Chart from 'monday-ui-react-core/dist/icons/Chart';
 import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
-function _BoardHeader({ board, onBlur, onAddItem, onEditGroup, changeView, isViewChange }) {
+function _BoardHeader({
+  board,
+  onBlur,
+  onAddItem,
+  onEditGroup,
+  changeView,
+  isViewChange,
+}) {
   return (
     <div className="board-header flex column">
       <div className="board-header-top flex align-center">
-        <div
-          className="full"
-          contentEditable="true"
-          suppressContentEditableWarning={true}
-          onBlur={(ev) => {
-            onBlur(ev.target.innerText, board.title, board, 'board');
-          }}
-        >
-          <h1>{board.title}<Info /><Favorite /></h1>
+        <div className="board-header-left flex">
+          <div className="board-name-hd flex">
+            <div
+              className="board-header-title"
+              contentEditable="true"
+              suppressContentEditableWarning={true}
+              onBlur={(ev) => {
+                onBlur(ev.target.innerText, board.title, board, 'board');
+              }}
+            >
+              <div>{board.title}</div>
+            </div>
+            <div className="header-btn toggle-desc btn">
+              <Info />
+            </div>
+
+            <div className="header-btn add-favorite btn">
+              <Favorite />
+            </div>
+          </div>
         </div>
         <div className="menu-btn header-btn flex align-center justify-center btn br4">
           <Menu />
         </div>
       </div>
-      <div className="delete-board">
-      </div>
       <div
+        className="board-desc"
         contentEditable="true"
         suppressContentEditableWarning={true}
         onBlur={(ev) => {
           onBlur(ev.target.innerText, board.description, board, 'boardDesc');
         }}
-        >
+      >
         {board.description}
       </div>
       <div className="view-container flex align-center">
-        <div className={`flex align-center table-view btn ${!isViewChange ?'active':'' }`} onClick={(ev) => {
-          ev.preventDefault();
-          changeView(false)
-        }}><Table />Main Table</div>
-        <div className={`flex align-center table-view btn ${isViewChange ? 'active':''}`} onClick={(ev) => {
-          ev.preventDefault();
-          changeView(true)
-        }}><Chart />Chart</div>
-        <div className='flex align-center table-view btn'><Dashboard />Dashboard</div>
-        <div className='flex align-center table-view btn'><BsKanban />Kanban</div>
+        <div
+          className={`flex align-center table-view btn ${
+            !isViewChange ? 'active' : ''
+          }`}
+          onClick={(ev) => {
+            ev.preventDefault();
+            changeView(false);
+          }}
+        >
+          <Table />
+          Main Table
+        </div>
+        <div
+          className={`flex align-center table-view btn ${
+            isViewChange ? 'active' : ''
+          }`}
+          onClick={(ev) => {
+            ev.preventDefault();
+            changeView(true);
+          }}
+        >
+          <Chart />
+          Chart
+        </div>
+        <div className="flex align-center table-view btn">
+          <Dashboard />
+          Dashboard
+        </div>
+        <div className="flex align-center table-view btn">
+          <BsKanban />
+          Kanban
+        </div>
       </div>
       <div className="divider"></div>
       <BoardActions
@@ -69,9 +108,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 export const BoardHeader = connect(
   mapStateToProps,
   mapDispatchToProps
