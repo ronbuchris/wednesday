@@ -16,24 +16,6 @@ function getById(board, itemId) {
 }
 
 function getStatuses(board) {
-    // define object
-    // push the key 
-    /*
-    {
-        Done: {
-            count: 2,
-            color: green
-        },
-        Stuck: {
-            count: 3,
-            color: red
-        },
-        Working on it: {
-            count: 1,
-            color: orange
-        }
-    }
-    */
     const statuses = {}
     const colors = {}
     const statusIdx = board.cmpsOrder.findIndex(cmpOrder => cmpOrder === 'status')
@@ -51,23 +33,15 @@ function getStatuses(board) {
     })
     return [statuses, colors]
 }
-// Done: {
-//     count:2, 
-//     color: green
-// }
+
 function onPost(update, user, item, groups, workspace) {
-    console.log('update',update);
-    console.log('user', user);
-    console.log('item', item);
-    console.log('groups', groups);
-    console.log('workspace', workspace);
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
     const group = groups.find(group => {
         return group.items.find(gItem => gItem.id === item.id)
     })
     const itemIdx = group.items.findIndex(gItem => gItem.id === item.id)
-    const newItem = {...item}
+    const newItem = { ...item }
     group.items.splice(itemIdx, 1, newItem)
     const newWorkspace = { ...workspace };
     return newWorkspace
@@ -108,9 +82,9 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
     if (Duplicate || item.id) {
         const newItem = Duplicate ? duplicateItem(item) : item
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
-        : group.items.splice(itemIdx, 1, item)
+            : group.items.splice(itemIdx, 1, item)
     }
-     else {
+    else {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
