@@ -15,7 +15,7 @@ class _WorkspaceMenu extends React.Component {
           <div className="list-category">My workspaces</div>
           {workspaces.map((workspace) => {
             return (
-              <Link key={workspace} to={`/workspace/${workspace._id}`}>
+              <Link key={workspace._id} to={`/workspace/${workspace._id}`}>
                 <div
                   key={workspace._id}
                   className="workspace-option menu-button-wrapper flex align-center br4"

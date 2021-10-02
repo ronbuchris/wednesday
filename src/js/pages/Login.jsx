@@ -30,7 +30,10 @@ class _Login extends React.Component {
     },
     isSignup: false,
   };
+  componentDidMount() {
+    document.title = `Mondus Login`
 
+  }
   handleChange = ({ target }) => {
     const field = target.name;
     if (!field) return;

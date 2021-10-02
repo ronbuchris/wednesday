@@ -16,7 +16,6 @@ import {
   editWorkspace,
 } from '../store/actions/workspace.actions';
 import {
-  addBoard,
   loadBoard,
   toggleMenu,
   changeView,
@@ -26,6 +25,7 @@ import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
 import { AddWorkspace } from './workspace/AddWorkspace';
 import { AddBoard } from './board/AddBoard';
+import { AddMember } from './menus/AddMember';
 
 class _WorkspaceNav extends Component {
   state = {
@@ -119,7 +119,7 @@ class _WorkspaceNav extends Component {
               <Filter />
               <span>Filter</span>
             </button>
-            <button className="flex menu-button-wrapper align-center">
+            <button className="flex menu-button-wrapper align-center search">
               <Search />
               <span>Search</span>
             </button>
@@ -139,6 +139,9 @@ class _WorkspaceNav extends Component {
         )}
         {toggleMenus.isBoardModal && (
           <AddBoard toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
+        )}
+        {toggleMenus.isMemberModal && (
+          <AddMember toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
         )}
       </div>
     );
@@ -160,7 +163,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadWorkspaces,
   loadWorkspace,
-  addBoard,
   toggleNav,
   loadBoard,
   editWorkspace,

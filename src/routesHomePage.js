@@ -9,7 +9,7 @@ const routesHomePage = [
     {
         path: '/',
         component: HomePage,
-    }
+    },
 ]
 
 export default routesHomePage;

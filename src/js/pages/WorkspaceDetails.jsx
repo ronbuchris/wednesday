@@ -22,6 +22,7 @@ export class _WorkspaceDetails extends Component {
     await this.props.loadWorkspace(workspaceId);
     const { workspace } = this.props;
     this.props.loadBoard(workspace, workspace[0]);
+    document.title = `Mondus - Workspaces`
   }
 
   async componentDidUpdate(prevProps, prevState) {

@@ -41,7 +41,7 @@ function _BoardActions({
       </div>
       <BoardSearch board={board} />
       <div
-        className="btn-search flex br4 btn"
+        className="btn-search flex br4 btn  align-center justify-center"
         onClick={() => {
           toggleMenu(toggleMenus, 'filterMenu', true);
         }}
@@ -52,12 +52,12 @@ function _BoardActions({
         </div>
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
       </div>
-      <div className="btn-search flex br4 btn">
+      <div className="btn-search flex br4 btn  align-center justify-center">
         <Person />
         Person
       </div>
       <div
-        className="btn-search flex br4 btn"
+        className="btn-search flex br4 btn  align-center justify-center"
         // onClick={() => toggleMenu(toggleMenus, 'filterMenu', true)}
       >
         <Sort />

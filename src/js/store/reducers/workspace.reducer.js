@@ -16,6 +16,7 @@ const initialState = {
         isWorkspaceModal: false,
         userDetailsModal:false,
         activityLogModal: false,
+        isMemberModal: false
     }
 }
 

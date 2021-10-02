@@ -16,7 +16,7 @@
     height: 100%;
     outline: none;
     height: 35px;
-    border-bottom: 1px solid $ui-grey-color;
+    padding-left: 30px;
 
     &:hover {
       .indicator {
@@ -26,8 +26,8 @@
 
     .item-add-input {
       border: none;
+      border-bottom: 1px solid $ui-grey-color;
       width: 100%;
-      background: transparent;
       padding: 5px 0 3px 20px;
       outline: none;
 
@@ -47,6 +47,46 @@
       &:hover {
         background-color: $primary-hover-color;
       }
+    }
+  }
+
+  .group-footer {
+    height: 40px;
+    padding-left: 30px;
+
+    .empty-cell-cmp {
+      height: 100%;
+      flex: 1;
+    }
+
+    .status-footer {
+      height: 100%;
+      background-color: $clr6;
+      border-radius: 0 0 4px 4px;
+
+      .battery-container {
+        height: 100%;
+        width: 100%;
+        margin: 0 8px 0 8px;
+        transition: all 0.2s ease-in-out;
+
+        .battery-status {
+          height: 24px;
+          &:hover {
+            height: 30px;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+
+    .empty-footer-column {
+      height: 100%;
+    }
+
+    .empty-cell-end {
+      height: 100%;
+      width: 40px;
     }
   }
 }

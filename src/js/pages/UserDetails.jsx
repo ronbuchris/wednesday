@@ -9,6 +9,7 @@ class _UserDetails extends Component {
   componentDidMount() {
     const {userId} = this.props.match.params;
     this.props.getById(userId)
+    document.title = `Mondus - ${this.props.user.fullname}`
   }
 
   componentDidUpdate(prevProps, prevState) {

@@ -4,20 +4,24 @@
 
   .sidebar-container {
     background-color: $clr1;
+    width: 66px;
 
     .logo {
       width: 30px;
-      margin: 8px;
+      margin: 13px 0;
+      line-height: 1;
+      font-size: 14px;
     }
     .nav-icon {
       width: 25px;
       height: 25px;
       color: $clr7;
-      margin: 10px;
+      margin: 11px;
     }
 
     .user-profile {
       width: 50px;
+      margin-bottom: 16px;
     }
   }
 
@@ -39,7 +43,7 @@
 
   .workspace-nav {
     background-color: $clr6;
-    padding: 16px;
+    padding: 12px 16px;
   }
 
   .board-details {
@@ -60,6 +64,7 @@
     background-color: #292f4cb3;
   }
 }
+
 .dashboard-preview {
   .charts-list {
     gap: 10px;

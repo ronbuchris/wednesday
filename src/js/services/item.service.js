@@ -56,6 +56,11 @@ function getStatuses(board) {
 //     color: green
 // }
 function onPost(update, user, item, groups, workspace) {
+    console.log('update',update);
+    console.log('user', user);
+    console.log('item', item);
+    console.log('groups', groups);
+    console.log('workspace', workspace);
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
     const group = groups.find(group => {
@@ -105,9 +110,6 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
         : group.items.splice(itemIdx, 1, item)
     }
-    // if (item.id) {
-    //     group.items.splice(itemIdx, 1, item);
-    // }
      else {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)

@@ -58,25 +58,27 @@ function _ItemPreview({
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
       >
-        <div
-          className="item-title-text"
-          contentEditable="true"
-          suppressContentEditableWarning={true}
-          onBlur={(ev) => {
-            onBlur(ev.target.innerText, item.title, item, 'item', group);
-          }}
-        >
-          {item.title}
+        <div className="title flex align-center">
+          <div
+            className="item-title-text"
+            contentEditable="true"
+            suppressContentEditableWarning={true}
+            onBlur={(ev) => {
+              onBlur(ev.target.innerText, item.title, item, 'item', group);
+            }}
+          >
+            {item.title}
+          </div>
+          <div className="edit-title-btn br4">Edit</div>
         </div>
-        <div className="edit-title-btn br4">Edit</div>
-        <div className="add-update-btn-wrapper flex align-center"             
-        onClick={() =>
-              // console.log(`this.props.history`, history)
-              history.push(location.pathname + `/item/${item.id}`)
-            }>
-          <AddUpdate
-            className="add-update-btn"
-          />
+        <div
+          className="add-update-btn-wrapper flex align-center"
+          onClick={() =>
+            // console.log(`this.props.history`, history)
+            history.push(location.pathname + `/item/${item.id}`)
+          }
+        >
+          <AddUpdate className="add-update-btn" />
         </div>
       </div>
       <div className="item-column-list flex">
@@ -114,7 +116,6 @@ const mapDispatchToProps = {
   loadItem,
 };
 
-export const ItemPreview = withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_ItemPreview));
+export const ItemPreview = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(_ItemPreview)
+);

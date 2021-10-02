@@ -1,55 +1,56 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { loadStatuses } from '../../store/actions/item.actions'
 
+export function StatusFooter({ board, group, column }) {
+  const getStatusMap = () => {
+    const statusIdx = board.cmpsOrder.findIndex(
+      (cmpOrder) => cmpOrder === 'status'
+    );
 
-
-class _StatusFooter extends React.Component {
-    state ={
-        statuses: []
-    }
-    componentDidMount() {
-        const { loadStatuses, board} = this.props
-        loadStatuses(board)
-        // this.statusesFooter()
-    }
-
-    statusesFooter = () => {
-        const { statuses} = this.props
-        const numbers = Object.values(statuses[0])
-        const colors = Object.values(statuses[1])
-        let sum = 0
-        for (let i = 0; i< numbers.length; i++) {
-            sum += numbers[i]
+    let statusToShow = [];
+    const statusMap = group.items.reduce(
+      (acc, item) => {
+        acc.totalCount++;
+        const title = item.columns[statusIdx].label.title;
+        const color = item.columns[statusIdx].label.color;
+        if (acc[title]) {
+          acc[title].count++;
+        } else {
+          statusToShow.push(title);
+          acc[title] = {};
+          acc[title].count = 1;
+          acc[title].color = color;
         }
-        const percent = []
-        for (let i = 0; i < numbers.length; i++) {
-            const pres = ((numbers[i] / sum).toFixed(2)) * 100
-            percent.push(pres)
-        }
-    }
-    render() {
-        const { board, group, column, statuses, loadStatuses} = this.props
-        // console.log(statuses);
-        return (
-            <div style={{minWidth: column.width }} className="status-footer">
-            
-        </div>
-    )
-}
-}
+        acc.statusToShow = statusToShow;
+        return acc;
+      },
+      { totalCount: 0 }
+    );
+    console.log(`statusMap`, statusMap);
+    return statusMap;
+  };
 
-function mapStateToProps(state) {
-    return {
-        statuses: state.itemModule.statuses,
-    };
+  const statusMap = getStatusMap();
+
+  return (
+    <div style={{ minWidth: column.width }} className="status-footer flex">
+          <div className="battery-container flex align-center">
+        {statusMap.statusToShow.map((status) => {
+          return (
+            <div
+              key={status}
+                className="battery-status tooltip"
+              style={{
+                width:
+                  (statusMap[status].count / statusMap.totalCount) * 100 + '%',
+                backgroundColor: statusMap[status].color,
+              }}
+            >
+                  <span class="tooltiptext">{`${status} ${statusMap[status].count}/${statusMap.totalCount} ${(statusMap[status].count / statusMap.totalCount * 100).toFixed(1)}%`}
+                      </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
-
-const mapDispatchToProps = {
-    loadStatuses
-};
-
-export const StatusFooter = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(_StatusFooter);

@@ -12,6 +12,7 @@ import LogOut from 'monday-ui-react-core/dist/icons/LogOut';
 
 import logo from '../../assets/img/logo/logo.png';
 import { onLogout } from '../store/actions/user.actions';
+import { toggleMenu } from '../store/actions/board.actions';
 
 class _SidebarHeader extends Component {
   logout = async () => {
@@ -19,12 +20,14 @@ class _SidebarHeader extends Component {
     this.props.history.push('/');
   };
   render() {
-    const { user, workspace } = this.props;
-    if (!workspace ) return <div>loading...</div>;
-    const id = workspace.boards.length ? workspace.boards[0]._id : workspace._id;
+    const { user, workspace, toggleMenus, toggleMenu } = this.props;
+    if (!workspace) return <div>loading...</div>;
+    const id = workspace.boards.length
+      ? workspace.boards[0]._id
+      : workspace._id;
     const route = workspace.boards ? 'board' : 'workspace';
     return (
-      <div className="sidebar-container flex">
+      <div className="sidebar-container flex justify-center">
         <nav className="sidebar-icons flex space-between column align-center">
           <div className="flex column align-center">
             <img className="logo" src={logo} alt="" />
@@ -36,7 +39,13 @@ class _SidebarHeader extends Component {
             <MyWeek className="nav-icon MyWeek" />
           </div>
           <div className="flex column align-center">
-            <Invite className="nav-icon Invite" />
+            <button
+              onClick={() => {
+                toggleMenu(toggleMenus, 'isMemberModal', true);
+              }}
+            >
+              <Invite className="nav-icon Invite" />
+            </button>
             <Help className="nav-icon Help" />
             <button onClick={this.logout}>
               <LogOut className="nav-icon logout" />
@@ -53,6 +62,7 @@ class _SidebarHeader extends Component {
 
 function mapStateToProps(state) {
   return {
+    toggleMenus: state.workspaceModule.toggleMenus,
     workspace: state.workspaceModule.workspace,
     user: state.userModule.user,
   };
@@ -60,6 +70,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   onLogout,
+  toggleMenu,
 };
 
 const __SidebarHeader = connect(

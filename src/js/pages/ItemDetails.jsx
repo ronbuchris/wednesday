@@ -7,12 +7,15 @@ import { loadBoard } from '../store/actions/board.actions';
 import { loadWorkspaceByBoardId } from '../store/actions/workspace.actions';
 import { ItemUpdates } from '../cmps/item/ItemUpdates';
 import { PostUpdate } from '../cmps/item/PostUpdate';
-import { itemService } from '../services/item.service';
 
 class _ItemDetails extends Component {
 
-componentDidMount() {
+async componentDidMount() {
+  const { loadBoard, match, workspace,board} =this.props
+  const {boardId} = match.params
+  await loadBoard(workspace, boardId)
   this.loadItem()
+  document.title = `${board.title} - ${this.props.item.title}`
 }
 
 onCloseItem = () => {
@@ -28,6 +31,7 @@ loadItem =  () => {
 
   onPost = (update) => {
     const { user, workspace, onPost, item, groups} =this.props;
+    console.log(groups);
     onPost(update, user, item, groups, workspace);
     
   };
@@ -49,6 +53,7 @@ function mapStateToProps(state) {
   return {
     user: state.userModule.user,
     board: state.boardModule.board,
+    groups: state.groupModule.groups,
     workspace: state.workspaceModule.workspace,
     item: state.itemModule.item,
   };

@@ -49,6 +49,7 @@ function duplicateGroup(group) {
         items: group.items.map(item => {
             return {
                 ...item, id: makeId(),
+                updates: [],
                 columns: item.columns.map(column => {
                     return { ...column }
                 })

@@ -78,6 +78,10 @@ const gWorkspaces = [
                             {
                                 title: "Working on it",
                                 color: "#fdab3d"
+                            },
+                            {
+                                title: "",
+                                color: "#c4c4c4"
                             }
                         ]
                     },

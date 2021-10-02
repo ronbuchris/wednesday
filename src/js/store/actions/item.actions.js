@@ -106,7 +106,6 @@ export function removeItem(workspace, group, itemId) {
 }
 
 export function saveItem(item, user, workspace, group, addToTop, board, Duplicate) {
-    console.log('Duplicate',Duplicate);
     return async (dispatch) => {
         try {
             const newWorkspace = itemService.save(item, group, workspace, user, addToTop, board, Duplicate)
