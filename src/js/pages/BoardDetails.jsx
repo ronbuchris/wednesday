@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
+import { ItemDetails } from './ItemDetails';
 
 import { createItem } from '../services/item.service';
 
@@ -25,7 +27,6 @@ import {
   editWorkspace,
   loadWorkspace,
 } from '../store/actions/workspace.actions';
-import { ItemDetails } from './ItemDetails';
 import { Screen } from './Screen';
 
 export class _BoardDetails extends React.Component {
@@ -148,7 +149,7 @@ export class _BoardDetails extends React.Component {
             groups={groups}
             board={board}
           />
-          {item && <ItemDetails item={item} groups={groups}/>}
+        <Route path="/board/:boardId/item/:itemId" component={ItemDetails} />
         </div>
       </div>
     );
