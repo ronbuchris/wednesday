@@ -99,7 +99,6 @@ function _BoardHeader({
       <BoardActions
         onEditGroup={onEditGroup}
         toggleMenus={toggleMenus}
-        toggleMenu={toggleMenu}
         onAddItem={onAddItem}
         board={board}
       />

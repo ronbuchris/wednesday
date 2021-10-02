@@ -108,8 +108,7 @@ class _WorkspaceNav extends Component {
             </div>
             <button
               className="flex menu-button-wrapper align-center"
-              onClick={(ev) => {
-                ev.stopPropagation();
+              onClick={() => {
                 toggleMenu(toggleMenus, 'isBoardModal', true);
               }}
             >

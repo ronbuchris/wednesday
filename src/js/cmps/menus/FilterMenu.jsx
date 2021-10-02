@@ -36,17 +36,33 @@ class _FilterMenu extends Component {
     }
     this.props.filterStatus(this.props.board, filterByStatus, filterByGroupId);
   };
+
+  clearFilter = () => {
+    this.setState({ filterByStatus: [], filterByGroupId: [] });
+  };
+
   render() {
     const { board } = this.props;
+    const { filterByGroupId, filterByStatus } = this.state;
     return (
       <div className="menu-modal filter-menu">
         <div className="filter-menu-header flex align-center space-between">
           Quick filters
-          <div className="clear-filter">Clear all</div>
+          <div className="clear-filter" onClick={this.clearFilter}>
+            Clear all
+          </div>
         </div>
         <div className="filter-options flex">
-          <GroupFilter groups={board.groups} onFilter={this.onFilter} />
-          <StatusFilter board={board} onFilterStatus={this.onFilterStatus} />
+          <GroupFilter
+            groups={board.groups}
+            onFilter={this.onFilter}
+            filterByGroupId={filterByGroupId}
+          />
+          <StatusFilter
+            board={board}
+            onFilterStatus={this.onFilterStatus}
+            filterByStatus={filterByStatus}
+          />
         </div>
       </div>
     );
