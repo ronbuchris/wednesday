@@ -16,25 +16,45 @@ function getById(board, itemId) {
 }
 
 function getStatuses(board) {
+    // define object
+    // push the key 
+    /*
+    {
+        Done: {
+            count: 2,
+            color: green
+        },
+        Stuck: {
+            count: 3,
+            color: red
+        },
+        Working on it: {
+            count: 1,
+            color: orange
+        }
+    }
+    */
     const statuses = {}
     const colors = {}
     const statusIdx = board.cmpsOrder.findIndex(cmpOrder => cmpOrder === 'status')
-    console.log(statusIdx);
     board.groups.forEach(group => {
         group.items.forEach(item => {
             const color = item.columns[statusIdx].label.color
             const status = item.columns[statusIdx].label.title === '' ? 'No Status' : item.columns[statusIdx].label.title
-            if (statuses[status]) {
-                statuses[status]++
+            if (statuses.status) {
+                statuses.count++
             } else {
-                colors[status] = color
-                statuses[status] = 1
+                statuses.count = 1
+                colors.color = color
             }
         })
     })
     return [statuses, colors]
 }
-
+// Done: {
+//     count:2, 
+//     color: green
+// }
 function onPost(update, user, item, workspace) {
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
