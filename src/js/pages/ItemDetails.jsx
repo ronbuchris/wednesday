@@ -10,11 +10,12 @@ import { PostUpdate } from '../cmps/item/PostUpdate';
 
 class _ItemDetails extends Component {
 
-componentDidMount() {
-  const { loadBoard, match, workspace} =this.props
+async componentDidMount() {
+  const { loadBoard, match, workspace,board} =this.props
   const {boardId} = match.params
-  loadBoard(workspace, boardId)
+  await loadBoard(workspace, boardId)
   this.loadItem()
+  document.title = `${board.title} - ${this.props.item.title}`
 }
 
 onCloseItem = () => {
