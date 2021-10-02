@@ -3,12 +3,12 @@ import { Login } from './js/pages/Login';
 
 const routesHomePage = [
     {
-        path: '/',
-        component: HomePage,
-    },
-    {
         path: '/login',
         component: Login,
+    },
+    {
+        path: '/',
+        component: HomePage,
     }
 ]
 

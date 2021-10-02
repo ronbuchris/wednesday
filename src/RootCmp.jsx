@@ -13,7 +13,7 @@ class _RootCmp extends React.Component {
     const routes = this.props.user ? routesMainApp : routesHomePage;
     const header = this.props.user ? <SidebarHeader /> : <MainHeader />;
     return (
-      <div className={`app-container ${this.props.user && 'flex'}`}>
+      <div className={`app-container ${this.props.user && 'flex'}`} >
         {header}
         <main>
           <Switch>

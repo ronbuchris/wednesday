@@ -1,6 +1,6 @@
 // import React from 'react';
 import React from 'react';
-
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import { BoardActions } from './BoardActions';
@@ -23,6 +23,8 @@ function _BoardHeader({
   toggleMenus,
   onEditGroup,
   isViewChange,
+  history,
+  location
 }) {
   return (
     <div className="board-header flex column">
@@ -48,8 +50,16 @@ function _BoardHeader({
             </div>
           </div>
         </div>
-        <div className="menu-btn header-btn flex align-center justify-center btn br4">
-          <Menu />
+        <div className="header right-side flex align-center justify-center">
+          <div className="board-activity btn" 
+          onClick={() =>{
+            history.push(location.pathname + `/activity_log`)
+          }}>
+            activity
+          </div>
+          <div className="menu-btn header-btn btn br4">
+            <Menu />
+          </div>
         </div>
       </div>
       <div
@@ -64,9 +74,8 @@ function _BoardHeader({
       </div>
       <div className="view-container flex align-center">
         <div
-          className={`flex align-center table-view btn ${
-            !isViewChange ? 'active' : ''
-          }`}
+          className={`flex align-center table-view btn ${!isViewChange ? 'active' : ''
+            }`}
           onClick={(ev) => {
             ev.preventDefault();
             changeView(false);
@@ -76,9 +85,8 @@ function _BoardHeader({
           Main Table
         </div>
         <div
-          className={`flex align-center table-view btn ${
-            isViewChange ? 'active' : ''
-          }`}
+          className={`flex align-center table-view btn ${isViewChange ? 'active' : ''
+            }`}
           onClick={(ev) => {
             ev.preventDefault();
             changeView(true);
@@ -115,7 +123,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = { toggleMenu };
-export const BoardHeader = connect(
+export const BoardHeader = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(_BoardHeader);
+)(_BoardHeader));
