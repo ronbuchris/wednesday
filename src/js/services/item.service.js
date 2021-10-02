@@ -55,9 +55,15 @@ function getStatuses(board) {
 //     count:2, 
 //     color: green
 // }
-function onPost(update, user, item, workspace) {
+function onPost(update, user, item, groups, workspace) {
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
+    const group = groups.find(group => {
+        return group.items.find(gItem => gItem.id === item.id)
+    })
+    const itemIdx = group.items.findIndex(gItem => gItem.id === item.id)
+    const newItem = {...item}
+    group.items.splice(itemIdx, 1, newItem)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }

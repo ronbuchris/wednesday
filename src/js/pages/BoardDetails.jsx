@@ -148,7 +148,7 @@ export class _BoardDetails extends React.Component {
             groups={groups}
             board={board}
           />
-          {item && <ItemDetails item={item} />}
+          {item && <ItemDetails item={item} groups={groups}/>}
         </div>
       </div>
     );

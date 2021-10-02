@@ -9,8 +9,8 @@ import { PostUpdate } from '../cmps/item/PostUpdate';
 
 class _ItemDetails extends Component {
   onPost = (update) => {
-    const { user, workspace,onPost,item} =this.props;
-    onPost(update, user, item, workspace);
+    const { user, workspace, onPost, item, groups} =this.props;
+    onPost(update, user, item, groups, workspace);
     
   };
 

@@ -15,10 +15,10 @@ export function loadItems(group) {
     }
 }
 
-export function onPost(update, user, item, workspace) {
+export function onPost(update, user, item, groups, workspace) {
     return async dispatch => {
         try {
-            const newWorkspace = itemService.onPost(update, user, item, workspace)
+            const newWorkspace = itemService.onPost(update, user, item, groups, workspace)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
