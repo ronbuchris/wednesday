@@ -104,7 +104,6 @@ export function createBoard(user, users, title) {
 }
 
 function toggleMenu(toggleMenus, menuToOpen, id) {
-    console.log(`toggleMenus`, toggleMenus)
     for (let menu of Object.keys(toggleMenus)) {
         toggleMenus[menu] = false
     }

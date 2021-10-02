@@ -32,8 +32,7 @@ export function BoardPreview({
       </Link>
       <div
         className="hover-display flex align-center btn"
-        onClick={(ev) => {
-          ev.stopPropagation();
+        onClick={() => {
           toggleMenu(toggleMenus, 'boardMenu', board._id);
         }}
       >
