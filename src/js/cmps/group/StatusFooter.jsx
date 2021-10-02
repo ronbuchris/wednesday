@@ -33,18 +33,21 @@ export function StatusFooter({ board, group, column }) {
 
   return (
     <div style={{ minWidth: column.width }} className="status-footer flex">
-      <div className="battery-container flex align-center">
+          <div className="battery-container flex align-center">
         {statusMap.statusToShow.map((status) => {
           return (
             <div
               key={status}
-              className="battery-status"
+                className="battery-status tooltip"
               style={{
                 width:
                   (statusMap[status].count / statusMap.totalCount) * 100 + '%',
                 backgroundColor: statusMap[status].color,
               }}
-            ></div>
+            >
+                  <span class="tooltiptext">{`${status} ${statusMap[status].count}/${statusMap.totalCount} ${(statusMap[status].count / statusMap.totalCount * 100).toFixed(1)}%`}
+                      </span>
+            </div>
           );
         })}
       </div>
