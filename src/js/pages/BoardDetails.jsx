@@ -28,6 +28,7 @@ import {
   loadWorkspace,
 } from '../store/actions/workspace.actions';
 import { Screen } from './Screen';
+import { ActivityLog } from './ActivityLog';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -152,6 +153,7 @@ export class _BoardDetails extends React.Component {
             board={board}
           />
         <Route path="/board/:boardId/item/:itemId" component={ItemDetails} />
+        <Route path="/board/:boardId/activity_log" component={ActivityLog} />
         </div>
       </div>
     );

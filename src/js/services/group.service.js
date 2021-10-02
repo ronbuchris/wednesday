@@ -14,6 +14,17 @@ function query(board) {
 
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId, Duplicate) {
+    const activity ={
+        id:makeId(),
+        createdAt:Date.now(),
+        activity:'add group',
+        createdBy:{
+            _id:user._id,
+            fullname:user.fullname,
+            img: user.img
+        }
+    }
+    board.activities.push(activity)
     const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
     if (Duplicate || groupId) {
         const newGroup = Duplicate ? duplicateGroup(group) : createGroup(user, board)

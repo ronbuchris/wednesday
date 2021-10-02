@@ -401,7 +401,38 @@ const gWorkspaces = [
                     },
 
                 ],
-                "activities": [],
+                "activities": [
+                    {
+                        id:'ac101',
+                        createdAt:1589983468418,
+                        activity:'removed item',
+                        createdBy:{
+                            "_id": "u103",
+                            "fullname": "Ron Buchris",
+                            "img": "http://some-img"
+                        }
+                    },
+                    {
+                        id:'ac102',
+                        createdAt:1589983468418,
+                        activity:'removed item',
+                        createdBy:{
+                            "_id": "u102",
+                            "fullname": "On Chetrit",
+                            "img": "http://some-img"
+                        }
+                    },
+                    {
+                        id:'ac103',
+                        createdAt:1589983468418,
+                        activity:'removed item',
+                        createdBy:{
+                            "_id": "u101",
+                            "fullname": "Adir Cohen",
+                            "img": "http://some-img"
+                        }
+                    },
+                ],
                 // for monday
                 "cmpsOrder": ["member", "status", "date"]
             }]
