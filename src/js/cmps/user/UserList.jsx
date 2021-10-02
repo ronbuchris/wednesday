@@ -1,6 +1,6 @@
 
 
-function UserList({users}){
+export function UserList({users}){
         return (
             <div>
                 {users.map(user => {
