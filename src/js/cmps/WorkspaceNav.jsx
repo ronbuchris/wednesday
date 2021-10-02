@@ -92,7 +92,13 @@ class _WorkspaceNav extends Component {
                 toggleMenu(toggleMenus, 'workspaceMenu', workspace._id);
               }}
             >
-              <div className="workspace-title">
+              <div className="workspace-title flex align-center">
+                <div
+                  className="workspace-icon large flex align-center justify-center"
+                  // style={{ backgroundColor: }}
+                >
+                  {workspace.name?.substring(0, 1)}
+                </div>
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />

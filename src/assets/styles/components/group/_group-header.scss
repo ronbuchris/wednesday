@@ -1,0 +1,95 @@
+.group-header {
+  position: relative;
+  height: 36px;
+
+  .group-arrow {
+    display: flex;
+    flex: 0 0 30px;
+    justify-content: center;
+    max-width: 30px;
+    padding-bottom: 1px;
+    align-items: center;
+    position: absolute;
+    left: -30px;
+    height: 36px;
+
+    .group-menu-button {
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      border: 1px solid;
+      color: $clr7;
+
+      &:hover {
+        background-color: $clr7;
+      }
+    }
+  }
+
+  .group-title {
+    flex: 1;
+    outline: none;
+    // transition: all 0.3s;
+
+    &:hover {
+      border-right: 4px solid $ui-grey-color;
+
+      .drag-btn {
+        display: flex;
+        position: relative;
+      }
+    }
+  }
+
+  .group-column-list {
+    display: flex;
+
+    .group-column-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      height: 100%;
+
+      &:hover {
+        background-color: $ui-grey-color;
+
+        .drag-btn {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .add-column {
+    flex: 0 0 40px;
+    border-radius: 50%;
+    height: 100%;
+
+    .plus-btn {
+      border-radius: 50%;
+      border: 1px solid $clr1;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease, color 0.1s ease;
+
+      .open {
+        transform: rotate(45deg);
+      }
+
+      &:hover {
+        color: $primary-color;
+        border: 1px solid $primary-color;
+      }
+
+      svg {
+        height: 16px;
+      }
+    }
+  }
+}

@@ -3,8 +3,8 @@ import { Component } from 'react';
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
-import { BoardFilter } from './BoardFilter';
-import { BoardSort } from './BoardSort';
+import { FilterMenu } from '../menus/FilterMenu';
+import { SortMenu } from '../menus/SortMenu';
 import { BoardSearch } from './BoardSearch';
 
 export class BoardActions extends Component {
@@ -21,7 +21,8 @@ export class BoardActions extends Component {
   };
   render() {
     const { isFilter, isSort } = this.state;
-    const { board, onAddItem, onEditGroup } = this.props;
+    const { board, onAddItem, onEditGroup, toggleMenu, toggleMenus } =
+      this.props;
     return (
       <div className="actions-container flex">
         <div className="add-action flex">
@@ -44,23 +45,31 @@ export class BoardActions extends Component {
             New group
           </div>
         </div>
-        <div className="header-btn">
-          <BoardSearch board={board} />
+        <BoardSearch board={board} />
+        <div
+          className="btn-search flex br4 btn"
+          // onClick={this.toggleFilter}
+          onClick={() => toggleMenu(toggleMenus, 'filterMenu')}
+        >
+          <div className="">
+            <Filter />
+            <span>Filter</span>
+          </div>
+          {toggleMenus.filterMenu && <FilterMenu board={board} />}
         </div>
-        <div className="header-btn" onClick={this.toggleFilter}>
-          <Filter />
-          <span>Filter</span>
-        </div>
-        {isFilter && <BoardFilter board={board} />}
-        <p>
+        <div className="btn-search flex br4 btn">
           <Person />
           Person
-        </p>
-        <p onClick={this.toggleSort}>
+        </div>
+        <div
+          className="btn-search flex br4 btn"
+          onClick={this.toggleSort}
+          onClick={() => toggleMenu(toggleMenus, 'filterMenu', true)}
+        >
           <Sort />
           Sort
-        </p>
-        {isSort && <BoardSort board={board} />}
+        </div>
+        {isSort && <SortMenu board={board} />}
       </div>
     );
   }

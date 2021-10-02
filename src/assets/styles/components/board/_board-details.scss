@@ -1,7 +1,6 @@
 .board-details {
   .board-header {
     padding: 16px 30px 0;
-    font-size: 24px;
 
     .board-header-left {
       flex: 1 0;
@@ -18,6 +17,7 @@
         overflow: hidden;
 
         .board-header-title {
+          font-size: 24px;
           outline: none;
 
           &:hover {
@@ -39,7 +39,6 @@
       }
     }
     .board-desc {
-      font-size: rem(14px);
       color: $clr3;
       outline: none;
 

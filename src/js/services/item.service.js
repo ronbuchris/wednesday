@@ -90,7 +90,7 @@ export function createItem(title, user, board) {
             fullname: user.fullname,
             img: user.img
         },
-        updates:[],
+        updates: [],
         createdAt: Date.now(),
     }
 }
@@ -115,9 +115,9 @@ function _addCmpsOrder(cmpsOrder) {
         }
     }
 
-    const date ={
-        "type": "date",
-        "date": ''
+    const date = {
+        type: "date",
+        date: ''
     }
 
     cmpsOrder.forEach((cmpOrder) => {
@@ -125,7 +125,6 @@ function _addCmpsOrder(cmpsOrder) {
         if (cmpOrder === "status") columns.push(status)
         if (cmpOrder === "date") columns.push(date)
     })
-    console.log(`columns`, columns)
     return columns
 
 }
