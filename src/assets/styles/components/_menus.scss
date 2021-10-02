@@ -116,10 +116,9 @@
 .filter-menu {
   padding: 16px 24px 24px;
   max-width: 600px;
-  min-width: 400px;
   font-size: 14px;
-  top: 110%;
-
+  top: 120%;
+  left: 0;
   .filter-menu-header {
     margin-bottom: 16px;
   }
@@ -172,11 +171,23 @@
   width: 100%;
   position: absolute;
   top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 144px;
   height: 264px;
   box-shadow: 0 4px 17px 6px #0000001a;
   z-index: 10;
   background-color: $clr7;
+
+  &:hover {
+    .item-preview {
+      background-color: #fff !important;
+    }
+
+    .item-menu-arrow {
+      display: none !important;
+    }
+  }
 
   .labels-list {
     padding: 16px;

@@ -68,10 +68,11 @@
         height: 100%;
         width: 100%;
         margin: 0 8px 0 8px;
-        transition: all 0.2s ease-in-out;
 
         .battery-status {
+          position: relative;
           height: 24px;
+          transition: all 0.1s ease-in-out;
           &:hover {
             height: 30px;
             border-radius: 2px;
