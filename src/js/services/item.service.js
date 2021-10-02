@@ -7,6 +7,8 @@ export const itemService = {
     getStatuses
 }
 
+const gCmpsOrder = ["member", "status", "date"]
+
 function getById(board, itemId) {
     const group = board.groups.find(group => group.items.find(item => item.id === itemId));
     const item = group.items.find(item => item.id === itemId)
@@ -73,10 +75,11 @@ function save(item, group, workspace, user, addToTop, board) {
 
 
 export function createItem(title, user, board) {
+    const cmpOrder = board.cmpsOrder ? board.cmpsOrder : gCmpsOrder
     return {
         id: makeId(),
         title,
-        columns: _addCmpsOrder(board),
+        columns: _addCmpsOrder(cmpOrder),
         creator: {
             _id: user._id,
             fullname: user.fullname,
@@ -87,8 +90,7 @@ export function createItem(title, user, board) {
     }
 }
 
-function _addCmpsOrder(board) {
-    console.log(`objboardboardboardboardect`, board.cmpsOrder)
+function _addCmpsOrder(cmpsOrder) {
     const columns = []
     const members = {
         type: "member",
@@ -113,7 +115,7 @@ function _addCmpsOrder(board) {
         "date": ''
     }
 
-    board.cmpsOrder.forEach((cmpOrder) => {
+    cmpsOrder.forEach((cmpOrder) => {
         if (cmpOrder === "member") columns.push(members)
         if (cmpOrder === "status") columns.push(status)
         if (cmpOrder === "date") columns.push(date)
