@@ -41,11 +41,11 @@ function getStatuses(board) {
         group.items.forEach(item => {
             const color = item.columns[statusIdx].label.color
             const status = item.columns[statusIdx].label.title === '' ? 'No Status' : item.columns[statusIdx].label.title
-            if (statuses.status) {
-                statuses.count++
+            if (statuses[status]) {
+                statuses[status]++
             } else {
-                statuses.count = 1
-                colors.color = color
+                colors[status] = color
+                statuses[status] = 1
             }
         })
     })
