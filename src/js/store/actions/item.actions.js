@@ -15,10 +15,10 @@ export function loadItems(group) {
     }
 }
 
-export function onPost(update, user, item, workspace) {
+export function onPost(update, user, item, groups, workspace) {
     return async dispatch => {
         try {
-            const newWorkspace = itemService.onPost(update, user, item, workspace)
+            const newWorkspace = itemService.onPost(update, user, item, groups, workspace)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
@@ -105,10 +105,11 @@ export function removeItem(workspace, group, itemId) {
     }
 }
 
-export function saveItem(item, user, workspace, group, addToTop,board) {
+export function saveItem(item, user, workspace, group, addToTop, board, Duplicate) {
+    console.log('Duplicate',Duplicate);
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.save(item, group, workspace, user, addToTop,board)
+            const newWorkspace = itemService.save(item, group, workspace, user, addToTop, board, Duplicate)
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',

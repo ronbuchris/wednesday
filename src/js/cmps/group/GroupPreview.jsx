@@ -4,6 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
+import { GroupFooter } from './GroupFooter';
 import { removeItem } from '../../store/actions/item.actions';
 
 class _GroupPreview extends React.Component {
@@ -96,6 +97,7 @@ class _GroupPreview extends React.Component {
                           <ItemPreview
                             onRemoveItem={this.onRemoveItem}
                             onEditItem={onEditItem}
+                            onAddItem={onAddItem}
                             provided={provided}
                             onBlur={onBlur}
                             group={group}
@@ -145,6 +147,7 @@ class _GroupPreview extends React.Component {
             )}
             <div className="indicator"></div>
           </form>
+          <GroupFooter board={board} group={group}/>
         </div>
       </div>
     );

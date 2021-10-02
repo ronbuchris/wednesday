@@ -13,6 +13,7 @@ import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
 import { toggleMenu } from '../../store/actions/board.actions';
+import { UserList } from '../user/UserList';
 
 function _BoardHeader({
   board,
