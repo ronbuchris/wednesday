@@ -18,10 +18,7 @@ function getById(board, itemId) {
 function getStatuses(board) {
     const statuses = {}
     const colors = {}
-    const statusIdx = board.cmpsOrder.findIndex(cmpOrder => {
-        console.log(cmpOrder);
-        return cmpOrder === 'status'
-    })
+    const statusIdx = board.cmpsOrder.findIndex(cmpOrder => cmpOrder === 'status')
     console.log(statusIdx);
     board.groups.forEach(group => {
         group.items.forEach(item => {
