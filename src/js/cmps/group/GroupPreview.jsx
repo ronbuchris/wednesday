@@ -97,6 +97,7 @@ class _GroupPreview extends React.Component {
                           <ItemPreview
                             onRemoveItem={this.onRemoveItem}
                             onEditItem={onEditItem}
+                            onAddItem={onAddItem}
                             provided={provided}
                             onBlur={onBlur}
                             group={group}

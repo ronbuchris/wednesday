@@ -16,6 +16,7 @@ function _ItemPreview({
   toggleMenus,
   onEditItem,
   toggleMenu,
+  onAddItem,
   loadItem,
   provided,
   onBlur,
@@ -28,6 +29,8 @@ function _ItemPreview({
     <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
+          onAddItem={onAddItem}
+          group={group}
           onRemoveItem={onRemoveItem}
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}

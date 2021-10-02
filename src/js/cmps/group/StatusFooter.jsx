@@ -16,7 +16,6 @@ class _StatusFooter extends React.Component {
 
     statusesFooter = () => {
         const { statuses} = this.props
-        console.log(statuses);
         const numbers = Object.values(statuses[0])
         const colors = Object.values(statuses[1])
         let sum = 0
@@ -28,8 +27,6 @@ class _StatusFooter extends React.Component {
             const pres = ((numbers[i] / sum).toFixed(2)) * 100
             percent.push(pres)
         }
-        console.log('percent', percent);
-        console.log('sum', sum);
     }
     render() {
         const { board, group, column, statuses, loadStatuses} = this.props

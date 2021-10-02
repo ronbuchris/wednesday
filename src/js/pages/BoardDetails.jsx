@@ -92,9 +92,9 @@ export class _BoardDetails extends React.Component {
   };
 
   //Items Functions
-  onAddItem = (newItemData, group, addToTop = false, board) => {
+  onAddItem = (newItemData, group, addToTop = false, board, Duplicate) => {
     const { workspace, user, saveItem } = this.props;
-    saveItem(newItemData, user, workspace, group, addToTop, board);
+    saveItem(newItemData, user, workspace, group, addToTop, board, Duplicate);
   };
 
   onEditItem = (item, group) => {

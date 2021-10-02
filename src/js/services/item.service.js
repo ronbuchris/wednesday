@@ -89,11 +89,26 @@ function remove(workspace, group, itemId) {
 
 }
 
-function save(item, group, workspace, user, addToTop, board) {
-    if (item.id) {
-        const itemIdx = group.items.findIndex(currItem => currItem.id === item.id);
-        group.items.splice(itemIdx, 1, item);
-    } else {
+function duplicateItem(item) {
+    return {
+        ...item,
+        title: `${item.title} (copy)`,
+        id: makeId(),
+        updates: []
+    }
+}
+
+function save(item, group, workspace, user, addToTop, board, Duplicate) {
+    const itemIdx = group.items.findIndex(currItem => currItem.id === item.id);
+    if (Duplicate || item.id) {
+        const newItem = Duplicate ? duplicateItem(item) : item
+        Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
+        : group.items.splice(itemIdx, 1, item)
+    }
+    // if (item.id) {
+    //     group.items.splice(itemIdx, 1, item);
+    // }
+     else {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
