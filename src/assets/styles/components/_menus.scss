@@ -221,7 +221,7 @@
   }
 }
 
-.add-workspace-modal {
+.add-modal {
   position: fixed;
   background-color: $clr7;
   box-shadow: 0 4px 17px 6px #0000001a;
@@ -237,17 +237,17 @@
     position: absolute;
     right: 16px;
     top: 16px;
-    padding: 10px;
+    padding: 4px 8px;
   }
 
-  .create-workspace-title {
+  .create-title {
     font-family: roboto-bold;
     font-size: 32px;
     font-weight: 500;
     margin-bottom: 16px;
   }
 
-  .workspace-title-input {
+  .title-input-container {
     font-size: rem(16px);
     padding: 8px 16px;
     outline: none;
@@ -263,7 +263,7 @@
     }
   }
 
-  .new-workspace-container-btn {
+  .new-container-btn {
     font-size: rem(16px);
     justify-content: flex-end;
     margin-top: 16px;

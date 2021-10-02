@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { withRouter } from 'react-router';
 
 import { editBoard } from '../../store/actions/board.actions';
 import Close from 'monday-ui-react-core/dist/icons/Close';
 
-class _AddBoard extends React.Component {
+class _AddMember extends React.Component {
   state = {
     title: '',
   };
@@ -18,11 +17,10 @@ class _AddBoard extends React.Component {
     this.setState({ title: value });
   };
 
-  onAddBoard = async () => {
-    const { workspace, user, editBoard, users, history } = this.props;
+  onAddMember = async () => {
+    const { workspace, user, editBoard, users } = this.props;
     const { title } = this.state;
-    await editBoard(workspace, title, user, users);
-    history.push(`/board/${workspace.boards[workspace.boards.length - 1]._id}`);
+    editBoard(workspace, title, user, users);
   };
 
   render() {
@@ -31,7 +29,7 @@ class _AddBoard extends React.Component {
     return (
       <div className="add-modal flex column space-evenly br8">
         <div
-          className="btn"
+          className="close-add-workspace btn"
           onClick={() => {
             toggleMenu(toggleMenus);
           }}
@@ -40,16 +38,15 @@ class _AddBoard extends React.Component {
             <Close />
           </div>
         </div>
-        <div className="create-title">Create Board</div>
+        <div className="create-title">Invite new members</div>
         <div>
-          <div>Board name</div>
+          <div>invite with username</div>
           <div className="title-input-container">
             <form
               className="title-input"
               onSubmit={(ev) => {
                 ev.preventDefault();
-                this.onAddBoard();
-                toggleMenu(toggleMenus);
+                this.onAddMember();
               }}
             >
               <input
@@ -76,11 +73,11 @@ class _AddBoard extends React.Component {
             className="create-btn br4"
             onClick={(ev) => {
               ev.stopPropagation();
-              this.onAddBoard();
+              this.onAddMember();
               toggleMenu(toggleMenus);
             }}
           >
-            Create Board
+            Invite
           </div>
         </div>
       </div>
@@ -101,6 +98,7 @@ const mapDispatchToProps = {
   editBoard,
 };
 
-export const AddBoard = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(_AddBoard)
-);
+export const AddMember = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_AddMember);

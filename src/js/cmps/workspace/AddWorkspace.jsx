@@ -26,7 +26,7 @@ class _AddWorkspace extends React.Component {
     const { title } = this.state;
     const { toggleMenus, toggleMenu } = this.props;
     return (
-      <div className="add-workspace-modal flex column space-evenly br8">
+      <div className="add-modal flex column space-evenly br8">
         <div
           className="close-add-workspace btn"
           onClick={() => {
@@ -37,11 +37,18 @@ class _AddWorkspace extends React.Component {
             <Close />
           </div>
         </div>
-        <div className="create-workspace-title">Create Workspace</div>
-        <div className="add-workspace-input-wrapper">
-          <div className="workspace-new-title-name">Workspace name</div>
-          <div className="workspace-title-input">
-            <form className="title-input" onSubmit={this.onAddWorkspace}>
+        <div className="create-title">Create Workspace</div>
+        <div>
+          <div>Workspace name</div>
+          <div className="title-input-container">
+            <form
+              className="title-input"
+              onSubmit={(ev) => {
+                ev.preventDefault();
+                this.onAddWorkspace();
+                toggleMenu(toggleMenus);
+              }}
+            >
               <input
                 name="title"
                 id="title"
@@ -53,7 +60,7 @@ class _AddWorkspace extends React.Component {
             </form>
           </div>
         </div>
-        <div className="new-workspace-container-btn flex">
+        <div className="new-container-btn flex">
           <div
             className="cancel-btn header-btn"
             onClick={() => {

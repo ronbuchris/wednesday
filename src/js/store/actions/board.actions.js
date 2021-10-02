@@ -20,35 +20,6 @@ export function loadBoard(workspace, boardId) {
     }
 }
 
-export function setBoard() {
-    return async dispatch => {
-        try {
-            const board = null
-            dispatch({
-                type: 'SET_BOARD',
-                board
-            })
-        } catch (err) {
-            console.log('Cannot load workspaces', err)
-        }
-    }
-}
-
-export function addBoard(workspace, user) {
-
-    return async dispatch => {
-        try {
-            const board = await boardService.addBoard(workspace, user)
-            dispatch({
-                type: 'ADD_BOARD',
-                board
-            })
-        } catch (err) {
-            console.log('Cannot load workspaces', err)
-        }
-    }
-}
-
 export function changeView(isViewChange) {
     return async dispatch => {
         try {

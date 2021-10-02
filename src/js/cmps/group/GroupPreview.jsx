@@ -148,8 +148,8 @@ class _GroupPreview extends React.Component {
             )}
             <div className="indicator"></div>
           </form>
-          <GroupFooter board={board} group={group}/>
         </div>
+        <GroupFooter board={board} group={group} />
       </div>
     );
   }

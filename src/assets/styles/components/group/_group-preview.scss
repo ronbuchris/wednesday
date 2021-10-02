@@ -49,6 +49,46 @@
       }
     }
   }
+
+  .group-footer {
+    height: 40px;
+    padding-left: 30px;
+
+    .empty-cell-cmp {
+      height: 100%;
+      flex: 1;
+    }
+
+    .status-footer {
+      height: 100%;
+      background-color: $clr6;
+      border-radius: 0 0 4px 4px;
+
+      .battery-container {
+        height: 100%;
+        width: 100%;
+        margin: 0 8px 0 8px;
+        transition: all 0.2s ease-in-out;
+
+        .battery-status {
+          height: 24px;
+          &:hover {
+            height: 30px;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+
+    .empty-footer-column {
+      height: 100%;
+    }
+
+    .empty-cell-end {
+      height: 100%;
+      width: 40px;
+    }
+  }
 }
 
 .indicator {

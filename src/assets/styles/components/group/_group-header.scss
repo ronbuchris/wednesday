@@ -70,13 +70,19 @@
     flex: 0 0 40px;
     border-radius: 50%;
     height: 100%;
+    color: $clr2;
 
     .plus-btn {
       border-radius: 50%;
       border: 1px solid $clr1;
-      width: 20px;
-      height: 20px;
-      transition: transform 0.2s ease, color 0.1s ease;
+      width: 18px;
+      height: 18px;
+      color: $clr2;
+
+      .icon {
+        color: $clr2;
+        transition: transform 0.2s ease, color 0.1s ease;
+      }
 
       .open {
         transform: rotate(45deg);
@@ -85,6 +91,10 @@
       &:hover {
         color: $primary-color;
         border: 1px solid $primary-color;
+
+        .icon {
+          color: $primary-color;
+        }
       }
 
       svg {

@@ -3,7 +3,12 @@ import { toggleMenu } from '../store/actions/board.actions';
 
 export function _Screen({ toggleMenu, toggleMenus }) {
   const darkScreen = () => {
-    if (toggleMenus.isWorkspaceModal || toggleMenus.isBoardModal) return true;
+    if (
+      toggleMenus.isWorkspaceModal ||
+      toggleMenus.isBoardModal ||
+      toggleMenus.isMemberModal
+    )
+      return true;
     return false;
   };
 

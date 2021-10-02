@@ -85,7 +85,7 @@
           background-color: $clr6;
 
           .item-title-text {
-            outline: 1px solid $primary-color;
+            border: 1px solid $primary-color;
           }
         }
       }
@@ -93,6 +93,8 @@
       .item-title-text {
         padding-left: 10px;
         outline: none;
+        border: 1px solid transparent;
+
         &:focus {
           flex: 1;
         }

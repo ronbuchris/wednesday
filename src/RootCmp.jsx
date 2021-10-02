@@ -10,10 +10,11 @@ import routesMainApp from './routesMainApp';
 
 class _RootCmp extends React.Component {
   render() {
-    const routes = this.props.user ? routesMainApp : routesHomePage;
-    const header = this.props.user ? <SidebarHeader /> : <MainHeader />;
+    const { user } = this.props;
+    const routes = user ? routesMainApp : routesHomePage;
+    const header = user ? <SidebarHeader /> : <MainHeader />;
     return (
-      <div className={`app-container ${this.props.user && 'flex'}`}>
+      <div className={`app-container ${user && 'flex'}`}>
         {header}
         <main>
           <Switch>

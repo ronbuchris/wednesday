@@ -14,6 +14,7 @@ const initialState = {
         sortMenu: false,
         isBoardModal: false,
         isWorkspaceModal: false,
+        isMemberModal: false
     }
 }
 
