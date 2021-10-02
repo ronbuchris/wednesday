@@ -19,23 +19,21 @@ export class PostUpdate extends Component {
   onPost = (ev) => {
     ev.preventDefault();
     this.props.onPost(this.state.update);
-    this.setState({update: {txt:''}})
+    this.setState({ update: { txt: '' } });
   };
 
   render() {
     const { txt } = this.state.update;
     return (
       <form className="" onSubmit={this.onPost}>
-        <div className="input-filter">
-          <input
-            name="txt"
-            id="txt"
-            type="textarea"
-            placeholder="Write an update"
-            value={txt}
-            onChange={this.handleChange}
-          />
-        </div>
+        <input
+          name="txt"
+          id="txt"
+          type="textarea"
+          placeholder="Write an update"
+          value={txt}
+          onChange={this.handleChange}
+        />
         <button>Add update</button>
       </form>
     );

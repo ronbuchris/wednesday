@@ -82,13 +82,12 @@ export function createItem(title, user, board) {
             fullname: user.fullname,
             img: user.img
         },
-        updates:[],
+        updates: [],
         createdAt: Date.now(),
     }
 }
 
 function _addCmpsOrder(board) {
-    console.log(`objboardboardboardboardect`, board.cmpsOrder)
     const columns = []
     const members = {
         type: "member",
@@ -108,9 +107,9 @@ function _addCmpsOrder(board) {
         }
     }
 
-    const date ={
-        "type": "date",
-        "date": ''
+    const date = {
+        type: "date",
+        date: ''
     }
 
     board.cmpsOrder.forEach((cmpOrder) => {
@@ -118,7 +117,6 @@ function _addCmpsOrder(board) {
         if (cmpOrder === "status") columns.push(status)
         if (cmpOrder === "date") columns.push(date)
     })
-    console.log(`columns`, columns)
     return columns
 
 }

@@ -3,7 +3,7 @@
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 
-export const boardService = { getById, save, getBoardById, remove, toggleMenu,dragAndDrop }
+export const boardService = { getById, save, getBoardById, remove, toggleMenu, dragAndDrop }
 const STORAGE_KEY = 'workspaceDB'
 
 function getById(workspace, boardId) {
@@ -93,7 +93,7 @@ export function createBoard(user, users, title) {
                 "type": "date",
                 "title": "Date",
                 "width": 140,
-                "date":''
+                "date": ''
             },
 
         ],
@@ -104,6 +104,7 @@ export function createBoard(user, users, title) {
 }
 
 function toggleMenu(toggleMenus, menuToOpen, id) {
+    console.log(`toggleMenus`, toggleMenus)
     for (let menu of Object.keys(toggleMenus)) {
         toggleMenus[menu] = false
     }
@@ -114,36 +115,36 @@ function toggleMenu(toggleMenus, menuToOpen, id) {
     return newMenu
 }
 
-function dragAndDrop(workspace,board,result,groupId){
+function dragAndDrop(workspace, board, result, groupId) {
     console.log(`result`, result)
-    const startIdx=result.source.index
-    const endIdx=result.destination ? result.destination.index : 0
-    if(result.type === "group"){
-        const [group]=board.groups.splice(startIdx,1)
-        board.groups.splice(endIdx,0,group)
+    const startIdx = result.source.index
+    const endIdx = result.destination ? result.destination.index : 0
+    if (result.type === "group") {
+        const [group] = board.groups.splice(startIdx, 1)
+        board.groups.splice(endIdx, 0, group)
     }
-    if(result.type === "item"){
-        const destination= result.destination ? result.destination.droppableId : groupId
-        const fromGroup=board.groups.find(group =>group.id===result.source.droppableId)
-        const toGroup=board.groups.find(group =>group.id===destination)
-        const [item]=fromGroup.items.splice(startIdx,1)
-        toGroup.items.splice(endIdx,0,item)
+    if (result.type === "item") {
+        const destination = result.destination ? result.destination.droppableId : groupId
+        const fromGroup = board.groups.find(group => group.id === result.source.droppableId)
+        const toGroup = board.groups.find(group => group.id === destination)
+        const [item] = fromGroup.items.splice(startIdx, 1)
+        toGroup.items.splice(endIdx, 0, item)
     }
-    if(result.type==="column"){
-        const [column]=board.columns.splice(startIdx,1)
-        board.groups.forEach((group)=>{
-            group.items.forEach(item=>{
-                const [column]=item.columns.splice(startIdx,1)
-                 item.columns.splice(endIdx,0,column)
+    if (result.type === "column") {
+        const [column] = board.columns.splice(startIdx, 1)
+        board.groups.forEach((group) => {
+            group.items.forEach(item => {
+                const [column] = item.columns.splice(startIdx, 1)
+                item.columns.splice(endIdx, 0, column)
             })
         })
-        board.columns.splice(endIdx,0,column)
-        const [cmpOrder] = board.cmpsOrder.splice(startIdx,1)
-       board.cmpsOrder.splice(endIdx,0,cmpOrder)
+        board.columns.splice(endIdx, 0, column)
+        const [cmpOrder] = board.cmpsOrder.splice(startIdx, 1)
+        board.cmpsOrder.splice(endIdx, 0, cmpOrder)
     }
-    const newBoard={...board}
+    const newBoard = { ...board }
     const newWorkspace = { ...workspace };
-    return [newWorkspace,newBoard];
+    return [newWorkspace, newBoard];
 }
 
 function makeId(length = 6) {

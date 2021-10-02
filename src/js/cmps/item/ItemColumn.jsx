@@ -71,7 +71,7 @@ export function ItemColumn({
       case 'date':
         return (
           <div
-            className="date btn"
+            className="date btn cell-cmp"
             onClick={(ev) => {
               ev.stopPropagation();
               toggleMenu(toggleMenus, 'dateMenu', item.id);
@@ -79,9 +79,9 @@ export function ItemColumn({
           >
             <div className="date-border">
               <div
-                className="item-column date-col flex align-center justify-center cell-cmp btn"
+                className="item-column date-col flex align-center justify-center btn"
                 style={{
-                  minWidth: board.columns[findIdx('date')].width,
+                  minWidth: board.columns[findIdx('date')].width - 10,
                 }}
               >
                 {column.date.substr(4)}

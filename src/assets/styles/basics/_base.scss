@@ -6,6 +6,7 @@ html {
   font-family: roboto, sans-serif;
   line-height: 1.75;
   color: $primary-text-color;
+  font-size: 14px;
 }
 
 body {
@@ -27,6 +28,11 @@ h6 {
   font-weight: 400;
   margin: 0;
   font-family: roboto, sans-serif;
+}
+
+h3 {
+  font-weight: 500;
+  margin: 10px 0 10px 0;
 }
 
 a {

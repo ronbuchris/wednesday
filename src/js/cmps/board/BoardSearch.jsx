@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import Search from 'monday-ui-react-core/dist/icons/Search';
 import { onSetSearch } from '../../store/actions/item.actions';
 
 class _BoardSearch extends Component {
@@ -8,6 +9,7 @@ class _BoardSearch extends Component {
       itemTitle: '',
     },
   };
+
   handleChange = (ev) => {
     ev.preventDefault();
     const field = ev.target.name;
@@ -29,18 +31,18 @@ class _BoardSearch extends Component {
   render() {
     const { itemTitle } = this.state.searchBy;
     return (
-      <form className="" onSubmit={this.onSearch}>
-        <div className="input-filter">
-          <input
-            name="itemTitle"
-            id="itemTitle"
-            type="text"
-            placeholder="Search"
-            value={itemTitle}
-            onChange={this.handleChange}
-          />
-        </div>
-      </form>
+      <div className="btn-search flex br4 align-center justify-center">
+        <Search />
+        <input
+          className="input-search"
+          name="itemTitle"
+          id="itemTitle"
+          type="text"
+          placeholder="Search"
+          value={itemTitle}
+          onChange={this.handleChange}
+        />
+      </div>
     );
   }
 }

@@ -45,10 +45,10 @@ export class _WorkspaceDetails extends Component {
     return (
       <div className="workspace-app flex">
         <WorkspaceNav
+          removeBoard={removeBoard}
           changeView={changeView}
           workspace={workspace}
           board={board}
-          removeBoard={removeBoard}
         />
         <div className="workspace-details">
           <WorkspaceHeader

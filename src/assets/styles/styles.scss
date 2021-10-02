@@ -14,6 +14,7 @@
 @import 'components/main-header.scss';
 @import 'components/sidebar-header.scss';
 @import 'components/workspace-nav.scss';
+@import 'components/menus.scss';
 
 // Components/Board
 @import 'components/board/board-actions.scss';
@@ -24,6 +25,7 @@
 
 // Components/Group
 @import 'components/group/group-preview.scss';
+@import 'components/group/group-header.scss';
 
 // Components/Item
 @import 'components/item/item-list.scss';

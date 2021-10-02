@@ -12,12 +12,15 @@ import Chart from 'monday-ui-react-core/dist/icons/Chart';
 import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
+import { toggleMenu } from '../../store/actions/board.actions';
+
 function _BoardHeader({
   board,
   onBlur,
   onAddItem,
-  onEditGroup,
   changeView,
+  toggleMenus,
+  onEditGroup,
   isViewChange,
 }) {
   return (
@@ -95,6 +98,8 @@ function _BoardHeader({
       <div className="divider"></div>
       <BoardActions
         onEditGroup={onEditGroup}
+        toggleMenus={toggleMenus}
+        toggleMenu={toggleMenu}
         onAddItem={onAddItem}
         board={board}
       />
@@ -105,10 +110,11 @@ function _BoardHeader({
 function mapStateToProps(state) {
   return {
     isViewChange: state.boardModule.isViewChange,
+    toggleMenus: state.workspaceModule.toggleMenus,
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { toggleMenu };
 export const BoardHeader = connect(
   mapStateToProps,
   mapDispatchToProps
