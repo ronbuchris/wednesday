@@ -110,9 +110,6 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
         : group.items.splice(itemIdx, 1, item)
     }
-    // if (item.id) {
-    //     group.items.splice(itemIdx, 1, item);
-    // }
      else {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
