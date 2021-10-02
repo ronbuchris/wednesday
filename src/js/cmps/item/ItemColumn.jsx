@@ -26,20 +26,20 @@ export function ItemColumn({
                 backgroundColor: column.label.color,
                 minWidth: board.columns[1].width,
               }}
-            >
+              >
               {column.label.title}
             </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
-                workspace={workspace}
-                toggleMenus={toggleMenus}
-                onEditItem={onEditItem}
-                toggleMenu={toggleMenu}
-                board={board}
-                group={group}
-                item={item}
+              workspace={workspace}
+              toggleMenus={toggleMenus}
+              onEditItem={onEditItem}
+              toggleMenu={toggleMenu}
+              board={board}
+              group={group}
+              item={item}
               />
-            )}
+              )}
           </div>
         );
 
