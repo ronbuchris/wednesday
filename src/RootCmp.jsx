@@ -22,6 +22,7 @@ class _RootCmp extends React.Component {
                 key={route.path}
                 component={route.component}
                 path={route.path}
+                title={route.title}
               />
             ))}
           </Switch>

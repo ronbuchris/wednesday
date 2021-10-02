@@ -1,6 +1,9 @@
 import React from 'react'
 
 export class HomePage extends React.Component {
+    componentDidMount() {
+        document.title = `Welcome to Mundos!`
+    }
     render(){
 
         return (
