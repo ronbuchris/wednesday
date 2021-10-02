@@ -56,6 +56,11 @@ function getStatuses(board) {
 //     color: green
 // }
 function onPost(update, user, item, groups, workspace) {
+    console.log('update',update);
+    console.log('user', user);
+    console.log('item', item);
+    console.log('groups', groups);
+    console.log('workspace', workspace);
     const newUpdate = createUpdate(update.txt, user)
     item.updates.unshift(newUpdate)
     const group = groups.find(group => {
