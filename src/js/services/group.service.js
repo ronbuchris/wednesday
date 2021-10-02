@@ -16,35 +16,40 @@ function query(board) {
 function save(workspace, board, group, user, groupId, Duplicate) {
     const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
     if (Duplicate || groupId) {
-        const newGroup = Duplicate ? {
-            ...group, title: `Duplicate ${group.title}`, id: makeId(),
-            items: group.items.map(item =>{
-                return {...item,id:makeId(),}
-            })}:createGroup(user, board)
-        board.groups.splice(groupIdx+1, 0, newGroup);
+        const newGroup = Duplicate ? duplicateGroup(group) : createGroup(user, board)
+        board.groups.splice(groupIdx + 1, 0, newGroup);
     }
     else if (group.id) {
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
         board.groups.splice(groupIdx, 1, group);
     } else {
-        const newGroup = createGroup(user,board)
+        const newGroup = createGroup(user, board)
         board.groups.unshift(newGroup)
     }
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
 
-function removeGroup(workspace, board, groupId) {
-    const groupIdx = board.groups.findIndex(group => group.id === groupId);
-    board.groups.splice(groupIdx, 1)
-    const returnedWorkspace = { ...workspace }
-    return returnedWorkspace
+function duplicateGroup(group) {
+    return {
+        ...group,
+        title: `Duplicate ${group.title}`,
+        id: makeId(),
+        items: group.items.map(item => {
+            return {
+                ...item, id: makeId(),
+                columns: item.columns.map(column => {
+                    return { ...column }
+                })
+            }
+        })
+    }
 }
 
-export function createGroup(user,board, itemCount = 1) {
+export function createGroup(user, board, itemCount = 1) {
     const items = []
     for (var i = 0; i < itemCount; i++) {
-        const item = createItem("New Item", user,board)
+        const item = createItem("New Item", user, board)
         items.push(item)
     }
     const group = {
@@ -56,10 +61,17 @@ export function createGroup(user,board, itemCount = 1) {
                 luminosity: 'dark',
                 format: 'rgba',
                 alpha: 0.9
-             }),
+            }),
         }
     }
     return group
+}
+
+function removeGroup(workspace, board, groupId) {
+    const groupIdx = board.groups.findIndex(group => group.id === groupId);
+    board.groups.splice(groupIdx, 1)
+    const returnedWorkspace = { ...workspace }
+    return returnedWorkspace
 }
 
 function makeId(length = 6) {

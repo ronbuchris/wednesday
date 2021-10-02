@@ -7,6 +7,8 @@ export const itemService = {
     getStatuses
 }
 
+const gCmpsOrder = ["member", "status", "date"]
+
 function getById(board, itemId) {
     const group = board.groups.find(group => group.items.find(item => item.id === itemId));
     const item = group.items.find(item => item.id === itemId)
@@ -16,10 +18,12 @@ function getById(board, itemId) {
 function getStatuses(board) {
     const statuses = {}
     const colors = {}
+    const statusIdx = board.cmpsOrder.findIndex(cmpOrder => cmpOrder === 'status')
+    console.log(statusIdx);
     board.groups.forEach(group => {
         group.items.forEach(item => {
-            const color = item.columns[1].label.color
-            const status = item.columns[1].label.title === '' ? 'No Status' : item.columns[1].label.title
+            const color = item.columns[statusIdx].label.color
+            const status = item.columns[statusIdx].label.title === '' ? 'No Status' : item.columns[statusIdx].label.title
             if (statuses[status]) {
                 statuses[status]++
             } else {
@@ -73,22 +77,22 @@ function save(item, group, workspace, user, addToTop, board) {
 
 
 export function createItem(title, user, board) {
+    const cmpOrder = board.cmpsOrder ? board.cmpsOrder : gCmpsOrder
     return {
         id: makeId(),
         title,
-        columns: _addCmpsOrder(board),
+        columns: _addCmpsOrder(cmpOrder),
         creator: {
             _id: user._id,
             fullname: user.fullname,
             img: user.img
         },
-        updates:[],
+        updates: [],
         createdAt: Date.now(),
     }
 }
 
-function _addCmpsOrder(board) {
-    console.log(`objboardboardboardboardect`, board.cmpsOrder)
+function _addCmpsOrder(cmpsOrder) {
     const columns = []
     const members = {
         type: "member",
@@ -108,17 +112,16 @@ function _addCmpsOrder(board) {
         }
     }
 
-    const date ={
-        "type": "date",
-        "date": ''
+    const date = {
+        type: "date",
+        date: ''
     }
 
-    board.cmpsOrder.forEach((cmpOrder) => {
+    cmpsOrder.forEach((cmpOrder) => {
         if (cmpOrder === "member") columns.push(members)
         if (cmpOrder === "status") columns.push(status)
         if (cmpOrder === "date") columns.push(date)
     })
-    console.log(`columns`, columns)
     return columns
 
 }

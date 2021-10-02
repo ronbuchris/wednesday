@@ -2,17 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Board from 'monday-ui-react-core/dist/icons/Board';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
-import Delete from 'monday-ui-react-core/dist/icons/Delete';
 import { BoardMenu } from '../menus/BoardMenu';
 
 export function BoardPreview({
-  boardIdx,
-  workspace,
-  boardId,
   onRemoveBoard,
-  changeView,
   toggleMenus,
+  changeView,
   toggleMenu,
+  workspace,
+  boardIdx,
+  boardId,
 }) {
   const board = workspace.boards[boardIdx];
   if (!board) return <div></div>;

@@ -45,22 +45,6 @@
   .board-details {
     flex: 1;
     overflow: auto;
-
-    .board-header {
-      padding: 16px 30px 0;
-
-      & h1 {
-        font-size: 32px;
-        letter-spacing: -0.2px;
-        line-height: 52px;
-        font-family: Roboto-bold, sans-serif;
-        color: $primary-text-color;
-      }
-    }
-
-    .board-content {
-      padding: 18px 30px 40px 48px;
-    }
   }
 }
 
@@ -73,149 +57,8 @@
   z-index: 5;
 
   &.dark {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #292f4cb3;
   }
-}
-//GLOVBAL MENUS
-.menu-modal {
-  position: absolute;
-  width: 264px;
-  z-index: 10;
-  box-shadow: 0 4px 17px 6px #0000001a;
-  background-color: $clr7;
-  .menu-section {
-    padding: 8px;
-    > * {
-      font-size: 14px;
-      padding: 4px 8px;
-    }
-  }
-}
-
-.group-menu {
-  top: 80%;
-  left: -30px;
-
-  .change-group-color {
-    gap: 5px;
-
-    .group-color {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-    }
-  }
-  .color-pallete {
-    position: absolute;
-    box-shadow: 0 4px 17px 6px #0000001a;
-    background-color: $clr7;
-    top: 80%;
-    height: 114px;
-    width: 140px;
-
-    .colors {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 8px;
-      gap: 6px;
-    }
-
-    .group-color-item {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      &:hover {
-        opacity: 0.6;
-      }
-    }
-  }
-}
-
-.item-menu {
-  top: 30px;
-  left: -25px;
-}
-
-.board-menu {
-  top: 90%;
-  right: -105%;
-}
-.date-menu{
-  position: absolute;
-  z-index:10;
-  right: 50%;
-  transform: translateX(50%);
-}
-
-//COLUMNS MENUS
-.status-menu {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 100%;
-  width: 144px;
-  height: 264px;
-  box-shadow: 0 4px 17px 6px #0000001a;
-  z-index: 10;
-  background-color: $clr7;
-
-  .status-menu-wrapper {
-    .labels-list {
-      padding: 16px;
-      gap: 8px;
-
-      .label {
-        color: $clr7;
-        font-size: 13px;
-        width: 112px;
-        height: 32px;
-      }
-    }
-
-    .edit-label {
-      background-color: $clr7;
-      color: $primary-color;
-      font-size: 13px;
-      height: 41px;
-
-      &:hover {
-        background-color: $primary-color;
-        color: $clr7;
-      }
-    }
-
-    &:before {
-      right: 50%;
-      transform: translateX(50%);
-      border-width: 10px;
-    }
-    &:before {
-      &:after {
-        content: ' ';
-        position: absolute;
-        border: solid transparent;
-        bottom: 100%;
-        border-color: rgba(225, 225, 225, 0);
-        pointer-events: none;
-        height: 0;
-        width: 0;
-      }
-    }
-  }
-}
-
-.add-workspace-modal {
-  position: fixed;
-  background-color: $clr7;
-  box-shadow: 0 4px 17px 6px #0000001a;
-  width: 500px;
-  height: 510px;
-  padding: 32px;
-  text-align: center;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .dashboard-preview {
   .charts-list {
@@ -232,7 +75,7 @@
   }
 }
 
-.sing-guest {
+.sign-guest {
   width: 100%;
   height: 40px;
   border-radius: 4px;

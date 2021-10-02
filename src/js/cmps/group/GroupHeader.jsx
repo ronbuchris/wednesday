@@ -17,7 +17,7 @@ export class _GroupHeader extends React.Component {
 
   onHover = (bool, groupId) => {
     this.props.setCurrGroupId(groupId);
-    this.setState({ isHover: bool });
+    if (!groupId) this.setState({ isHover: bool });
   };
 
   colorPicker = () => {
@@ -66,22 +66,22 @@ export class _GroupHeader extends React.Component {
         </div>
         {toggleMenus.groupMenu === group.id && (
           <GroupMenu
-            board={board}
-            toggleMenus={toggleMenus}
-            toggleMenu={toggleMenu}
-            changeGroupColor={this.changeGroupColor}
             group={group}
-            onEditGroup={onEditGroup}
+            board={board}
             isColor={isColor}
+            toggleMenu={toggleMenu}
+            toggleMenus={toggleMenus}
+            onEditGroup={onEditGroup}
             onRemoveGroup={onRemoveGroup}
             colorPicker={this.colorPicker}
+            changeGroupColor={this.changeGroupColor}
           />
         )}
 
         <div
           onMouseEnter={() => this.onHover(true, group.id)}
           onMouseLeave={() => this.onHover(false, group.id)}
-          className="group-title flex align-center"
+          className="group-title flex align-center fs18"
           style={{ color: group.style.color }}
           contentEditable="true"
           suppressContentEditableWarning={true}

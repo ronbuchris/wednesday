@@ -1,6 +1,6 @@
 .actions-container {
   padding: 16px 0;
-
+  font-size: 14px;
   .add-action {
     height: 32px;
     margin-right: 14px;
@@ -22,6 +22,46 @@
         border-radius: 0 4px 4px 0;
         border-left: 1px solid $primary-hover-color;
       }
+    }
+  }
+}
+
+.btn-search {
+  position: relative;
+  width: 5.625rem;
+  padding: 3px 10px;
+  transition: width 0.4s;
+  color: $clr2;
+
+  .input-search {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: $clr2;
+
+    // &::placeholder {
+    //   color: rgb(50, 51, 56);
+    // }
+  }
+  &:hover {
+    .input-search {
+      background-color: $ui-grey-color;
+    }
+    background-color: $ui-grey-color;
+  }
+  // &.searching {
+  &:focus {
+    position: relative;
+    width: 11.875rem;
+    background-color: white;
+    border: 1px solid rgb(0, 133, 255);
+    &:hover {
+      .input-search {
+        background-color: white;
+      }
+    }
+    .input-search:hover {
+      background-color: white;
     }
   }
 }

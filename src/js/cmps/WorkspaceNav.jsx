@@ -24,13 +24,12 @@ import {
 
 import { BoardList } from './board/BoardList';
 import { WorkspaceMenu } from './WorkspaceMenu';
-import { createBoard } from '../services/board.service';
 import { AddWorkspace } from './workspace/AddWorkspace';
+import { AddBoard } from './board/AddBoard';
 
 class _WorkspaceNav extends Component {
   state = {
     isHovered: false,
-    // isOpenMenu: false,
   };
 
   componentDidMount() {
@@ -40,16 +39,6 @@ class _WorkspaceNav extends Component {
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);
-  };
-
-  onAddBoard = () => {
-    const { workspace, user, editWorkspace, users } = this.props;
-    const newBoard = createBoard(user, users);
-    const newWorkspace = {
-      ...workspace,
-      boards: [...workspace.boards, newBoard],
-    };
-    editWorkspace(newWorkspace);
   };
 
   handleHover = () => {
@@ -82,7 +71,7 @@ class _WorkspaceNav extends Component {
         onMouseLeave={this.handleHover}
       >
         <div
-          className={`collapse-button-component flex align-center justify-center ${
+          className={`collapse-button-component flex align-center justify-center btn ${
             (!isOpenNav || isHovered) && 'is-pinned'
           }`}
           onClick={() => toggleNav()}
@@ -103,7 +92,13 @@ class _WorkspaceNav extends Component {
                 toggleMenu(toggleMenus, 'workspaceMenu', workspace._id);
               }}
             >
-              <div className="workspace-title">
+              <div className="workspace-title flex align-center">
+                <div
+                  className="workspace-icon large flex align-center justify-center"
+                  // style={{ backgroundColor: }}
+                >
+                  {workspace.name?.substring(0, 1)}
+                </div>
                 <h2>{workspace.name}</h2>
               </div>
               <DropdownChevronDown />
@@ -113,7 +108,10 @@ class _WorkspaceNav extends Component {
             </div>
             <button
               className="flex menu-button-wrapper align-center"
-              onClick={this.onAddBoard}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                toggleMenu(toggleMenus, 'isBoardModal', true);
+              }}
             >
               <Add />
               <span>Add</span>
@@ -127,20 +125,21 @@ class _WorkspaceNav extends Component {
               <span>Search</span>
             </button>
             <div className="divider"></div>
-            <div className="board-list">
-              <BoardList
-                boardId={board ? board._id : workspace.boards[0]}
-                workspace={workspace}
-                onRemoveBoard={onRemoveBoard}
-                changeView={changeView}
-                toggleMenus={toggleMenus}
-                toggleMenu={toggleMenu}
-              />
-            </div>
+            <BoardList
+              boardId={board ? board._id : workspace.boards[0]}
+              workspace={workspace}
+              onRemoveBoard={onRemoveBoard}
+              changeView={changeView}
+              toggleMenus={toggleMenus}
+              toggleMenu={toggleMenu}
+            />
           </>
         )}
         {toggleMenus.isWorkspaceModal && (
           <AddWorkspace toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
+        )}
+        {toggleMenus.isBoardModal && (
+          <AddBoard toggleMenus={toggleMenus} toggleMenu={toggleMenu} />
         )}
       </div>
     );
@@ -166,7 +165,6 @@ const mapDispatchToProps = {
   toggleNav,
   loadBoard,
   editWorkspace,
-  createBoard,
   toggleMenu,
   changeView,
 };

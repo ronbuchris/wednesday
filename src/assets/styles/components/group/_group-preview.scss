@@ -2,194 +2,13 @@
   margin-bottom: 50px;
 
   .group-header {
-    position: relative;
     height: 36px;
-
-    .group-arrow {
-      display: flex;
-      flex: 0 0 30px;
-      justify-content: center;
-      max-width: 30px;
-      padding-bottom: 1px;
-      align-items: center;
-      position: absolute;
-      left: -30px;
-      height: 36px;
-
-      .group-menu-button {
-        border-radius: 50%;
-        width: 16px;
-        height: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        border: 1px solid;
-        color: $clr7;
-
-        &:hover {
-          background-color: $clr7;
-        }
-      }
-    }
-
-    .group-title {
-      flex: 1;
-      outline: none;
-
-      &:hover {
-        border-right: 4px solid $ui-grey-color;
-        .drag-btn {
-          display: flex;
-        }
-      }
-    }
-
-    .group-column-list {
-      display: flex;
-
-      .group-column-header {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: default;
-        height: 100%;
-
-        &:hover {
-          background-color: $ui-grey-color;
-
-          .drag-btn {
-            display: flex;
-          }
-        }
-      }
-    }
-
-    .add-column {
-      flex: 0 0 38px;
-      border-radius: 50%;
-      width: 30px;
-      height: 100%;
-
-      .plus-btn {
-        border-radius: 50%;
-        border: 1px solid $clr1;
-        width: 20px;
-        height: 20px;
-        transition: transform 0.2s ease, color 0.1s ease;
-
-        .open {
-          transform: rotate(45deg);
-        }
-
-        &:hover {
-          color: $primary-color;
-          border: 1px solid $primary-color;
-        }
-
-        svg {
-          height: 16px;
-        }
-      }
-    }
-  }
-
-  .item-list {
-    background-color: $clr6;
-
-    .item-preview {
-      background-color: inherit;
-      border-bottom: 1px solid $clr7;
-      height: 36px;
-      position: relative;
-
-      .item-menu-arrow {
-        display: none;
-        position: absolute;
-        width: 30px;
-        left: -30px;
-        height: 100%;
-
-        .item-menu-button {
-          width: 18px;
-          height: 18px;
-          background-color: $ui-grey-color;
-          font-size: 15px;
-        }
-      }
-
-      .item-column-list{
-        .date{
-          position: relative;
-          .date-border{
-            padding: 5px;
-            .date-col{
-              &:hover{
-                outline:1px dashed $wolf-color;
-              }
-            }
-          }
-        }
-        >*:last-child{
-          .date-menu{
-            right:113%;
-          }
-        }
-      }
-
-      &:hover {
-        background-color: $ui-grey-color;
-
-        .item-menu-arrow {
-          display: flex;
-        }
-      }
-
-      .item-title {
-        display: flex;
-        align-items: center;
-        padding: 0 10px 0 0;
-        flex: 1 0;
-        outline: none;
-
-        .add-update-btn {
-          transition: color 0.3s;
-
-          &:hover {
-            color: $primary-color;
-          }
-        }
-
-        .item-title-text {
-          flex: 1;
-          padding-left: 10px;
-        }
-
-        &:hover {
-          .item-title-text {
-            color: $primary-color;
-          }
-        }
-      }
-    }
   }
 
   .item-menu-modal {
-    position: absolute;
     top: 80%;
-    width: 264px;
-    z-index: 10;
-    left: -30px;
     box-shadow: 0 4px 17px 6px #0000001a;
     background-color: $clr7;
-    .item-menu-section {
-      padding: 8px;
-      > * {
-        font-size: 14px;
-        padding: 4px 8px;
-      }
-    }
   }
 
   .item-add {
@@ -243,7 +62,7 @@
 }
 
 .cell-cmp {
-  overflow: hidden;
+  // overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 13px;
