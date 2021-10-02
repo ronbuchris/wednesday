@@ -133,15 +133,34 @@
   .column-option {
     width: 150px;
 
+    &:not(:first-child) {
+      margin-left: 16px;
+    }
     .title {
     }
 
     .option-container {
-      .filter-item {
-        align-items: center;
-        padding: 0 12px;
-        margin-right: 4px;
-        height: 32px;
+    }
+    .filter-item {
+      align-items: center;
+      padding: 0 12px;
+      margin: 6px 4px 0 0;
+      height: 32px;
+      background-color: $clr6;
+
+      &:hover {
+        background-color: $ui-grey-color;
+      }
+
+      &.filter {
+        background-color: $clr5;
+      }
+
+      .color-div {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
       }
     }
   }
