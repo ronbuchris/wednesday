@@ -20,7 +20,6 @@ class _RootCmp extends React.Component {
             {routes.map((route) => (
               <Route
                 key={route.path}
-                exact
                 component={route.component}
                 path={route.path}
               />

@@ -47,3 +47,34 @@ height: 100%;
     
   }
 }
+
+.fold{
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-width: 0;
+  border-style: solid;
+  background: inherit;
+  filter: brightness(115%);
+  display: block;
+  border-color: transparent #fff transparent #fff;
+  -webkit-transition: border-width 0.3s ease-out;
+  -moz-transition: border-width 0.3s ease-out;
+  -ms-transition: border-width 0.3s ease-out;
+  -o-transition: border-width 0.3s ease-out;
+  transition: border-width 0.3s ease-out;
+}
+
+.status{
+  color: #fff;
+  position: relative;
+  &.fill{
+    &:hover {
+      .fold{
+        border-width: 0px 13px 13px 0px;
+      }
+    }
+  }
+}

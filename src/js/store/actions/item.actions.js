@@ -62,10 +62,9 @@ export function onSetSearch(board, searchBy) {
     }
 }
 
-export function loadItem(boardId, itemId) {
-    return async (dispatch) => {
+export function loadItem(board, itemId) {
+    return (dispatch) => {
         try {
-            const board = await boardService.getBoardById(boardId)
             const item = itemService.getById(board, itemId)
             dispatch({
                 type: 'SET_ITEM',

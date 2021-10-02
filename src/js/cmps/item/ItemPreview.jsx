@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { FaCaretDown } from 'react-icons/fa';
@@ -23,6 +24,8 @@ function _ItemPreview({
   group,
   item,
   workspace,
+  history,
+  location,
 }) {
   return (
     <div className="item-preview flex">
@@ -63,12 +66,13 @@ function _ItemPreview({
           {item.title}
         </div>
         <div className="edit-title-btn br4">Edit</div>
-        <div className="add-update-btn-wrapper flex align-center">
+        <div className="add-update-btn-wrapper flex align-center"             
+        onClick={() =>
+              // console.log(`this.props.history`, history)
+              history.push(location.pathname + `/item/${item.id}`)
+            }>
           <AddUpdate
             className="add-update-btn"
-            onClick={() => {
-              loadItem(board._id, item.id);
-            }}
           />
         </div>
       </div>
@@ -107,7 +111,7 @@ const mapDispatchToProps = {
   loadItem,
 };
 
-export const ItemPreview = connect(
+export const ItemPreview = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(_ItemPreview);
+)(_ItemPreview));
