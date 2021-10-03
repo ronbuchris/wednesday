@@ -1,3 +1,4 @@
+import { makeId } from '../services/util.service'
 import { createItem } from './item.service'
 var randomColor = require('randomcolor');
 
@@ -67,13 +68,13 @@ function query(board, ActionBy ={}) {
 
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId, Duplicate) {
-    const activity ={
-        id:makeId(),
-        createdAt:Date.now(),
-        activity:'add group',
-        createdBy:{
-            _id:user._id,
-            fullname:user.fullname,
+    const activity = {
+        id: makeId(),
+        createdAt: Date.now(),
+        activity: 'add group',
+        createdBy: {
+            _id: user._id,
+            fullname: user.fullname,
             img: user.img
         }
     }
@@ -135,19 +136,6 @@ export function createGroup(user, board, itemCount = 1) {
 function removeGroup(workspace, board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
     board.groups.splice(groupIdx, 1)
-    const returnedWorkspace = { ...workspace }
-    return returnedWorkspace
+    const newWorkspace = { ...workspace };
+    return newWorkspace
 }
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
-}
-
