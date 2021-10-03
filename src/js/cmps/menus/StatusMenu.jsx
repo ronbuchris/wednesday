@@ -27,12 +27,20 @@ export function _StatusMenu({
     saveLabel(workspace, board, columnIdx, color);
   };
 
-  // const onEditLabel = (columnIdx, label, type) => {
-  //   if (type === 'color') {
-  //     label;
-  //   }
-  //   saveLabel(workspace, board, columnIdx, label);
-  // };
+  const onEditLabel = (columnIdx, value, labelIdx, type) => {
+    switch (type) {
+      case 'color':
+        board.columns[columnIdx].labels[labelIdx].color = value;
+        break;
+      case 'title':
+        board.columns[columnIdx].labels[labelIdx].title = value;
+        break;
+    }
+    console.log(`labelIdx`, labelIdx);
+    const label = board.columns[columnIdx].labels[labelIdx];
+
+    saveLabel(workspace, board, columnIdx, label, labelIdx);
+  };
 
   const onRemoveLabel = (labelIdx, columnIdx) => {
     removeLabel(labelIdx, board, columnIdx, workspace);
@@ -147,6 +155,7 @@ export function _StatusMenu({
           hoverColor={hoverColor}
           onAddLabel={onAddLabel}
           statusIdx={statusIdx}
+          onEditLabel={onEditLabel}
         />
       )}
       <div className="divider"></div>
