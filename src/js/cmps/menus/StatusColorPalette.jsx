@@ -5,6 +5,7 @@ export function StatusColorPalette({
   hoverColor,
   onAddLabel,
   statusIdx,
+  onEditLabel
 }) {
   return (
     <div className="status-cange-color flex align-center justify-center">
