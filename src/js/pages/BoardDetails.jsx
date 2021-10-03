@@ -7,8 +7,6 @@ import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
 import { ItemDetails } from './ItemDetails';
 
-import { createItem } from '../services/item.service';
-
 import {
   loadBoard,
   editBoard,
@@ -35,15 +33,15 @@ export class _BoardDetails extends React.Component {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
-    document.title = `${this.props.board.title}`
+    document.title = `${this.props.board.title}`;
   }
-  
+
   async componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
     if (prevProps.match.params.boardId !== boardId) {
       await this.props.loadBoard(workspace, boardId);
-      document.title = `${this.props.board.title}`
+      document.title = `${this.props.board.title}`;
     }
   }
 
@@ -152,8 +150,8 @@ export class _BoardDetails extends React.Component {
             groups={groups}
             board={board}
           />
-        <Route path="/board/:boardId/item/:itemId" component={ItemDetails} />
-        <Route path="/board/:boardId/activity_log" component={ActivityLog} />
+          <Route path="/board/:boardId/item/:itemId" component={ItemDetails} />
+          <Route path="/board/:boardId/activity_log" component={ActivityLog} />
         </div>
       </div>
     );
@@ -189,7 +187,6 @@ const mapDispatchToProps = {
   editGroup,
   setGroup,
   //item
-  createItem,
   saveItem,
   changeView,
 };

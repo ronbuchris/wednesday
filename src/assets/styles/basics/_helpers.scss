@@ -135,40 +135,31 @@
   }
 }
 // Title
+
 .tooltip {
   position: relative;
   display: inline-block;
-}
-.tooltip {
-  .tooltiptext {
-  visibility: hidden;
-  background-color: $mud-color;
-  color: #fff;
-  padding: 5px 0;
-  border-radius: 6px;
-  text-align: center;
-  position: absolute;
-  z-index: 1;
-  width: 170px;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -60px;
-  }
-}
-
-.tooltip{
-  &:hover { 
+  &:hover {
     .tooltiptext {
       visibility: visible;
     }
   }
-}
-
-.tooltip {
-  .tooltiptext{
+  .tooltiptext {
+    position: absolute;
+    visibility: hidden;
+    background-color: $mud-color;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 6px;
+    text-align: center;
+    z-index: 1;
+    width: 170px;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
     &::after {
-      content: " ";
       position: absolute;
+      content: ' ';
       top: 100%;
       left: 50%;
       margin-left: -5px;
@@ -178,7 +169,7 @@
     }
   }
 }
-  
+
 // Media helpers
 
 .square-ratio {

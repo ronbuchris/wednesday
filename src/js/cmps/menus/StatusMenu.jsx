@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Edit from 'monday-ui-react-core/dist/icons/Edit';
+import { StatusColorPalette } from './StatusColorPalette';
 
 export function StatusMenu({
   toggleMenus,
@@ -44,6 +45,7 @@ export function StatusMenu({
           );
         })}
       </div>
+      {isEdit && <StatusColorPalette />}
       <div className="divider"></div>
       <div
         className="edit-label flex align-center justify-center btn"
