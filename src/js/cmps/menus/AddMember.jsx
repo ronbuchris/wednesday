@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { editBoard } from '../../store/actions/board.actions';
+import { saveItem } from '../../store/actions/item.actions';
 import Close from 'monday-ui-react-core/dist/icons/Close';
 
 class _AddMember extends React.Component {
   state = {
     title: '',
+    memberId: ''
   };
 
   handleChange = (ev) => {
@@ -16,16 +17,30 @@ class _AddMember extends React.Component {
     const value = ev.target.value;
     this.setState({ title: value });
   };
+  findUser = (userId) => {
+    const { workspace} = this.props;
+    const user = workspace.createdBy._id === userId ? workspace.createdBy : 
+      workspace.members.find(member => member._id === userId)
+      return user
+  }
 
-  onAddMember = async () => {
-    const { workspace, user, editBoard, users } = this.props;
-    const { title } = this.state;
-    editBoard(workspace, title, user, users);
+  onAddMember = () => {
+    const {memberId} = this.state
+    const { workspace, item, saveItem } = this.props;
+    const columnIdx = item.columns.findIndex(column => column.type === 'member')
+    const user = this.findUser(memberId)
+    item.columns[columnIdx].members.push(user)
+    console.log(user);
+    const newItem = {...item}
+    saveItem(newItem, user, workspace, null, false, null, null)
   };
+  onSetMember = (memberId) => {
+    this.setState({ memberId })
+  }
 
   render() {
     const { title } = this.state;
-    const { toggleMenus, toggleMenu } = this.props;
+    const { toggleMenus, toggleMenu, workspace } = this.props;
     return (
       <div className="add-modal flex column space-evenly br8">
         <div
@@ -34,11 +49,24 @@ class _AddMember extends React.Component {
             toggleMenu(toggleMenus);
           }}
         >
-          <div className="close-modal header-btn flex align-center">
+          <div className="close-modal header-btn flex align-center" >
             <Close />
           </div>
         </div>
         <div className="create-title">Invite new members</div>
+        <div>
+          <p onClick={() => {
+            this.onSetMember(workspace.createdBy._id)
+          }}>{workspace.createdBy.fullname}</p>
+
+          {workspace.members.map(member => {
+            return <div key={member._id} className='flex'>
+              <p onClick={() => {
+                this.onSetMember(member._id)
+              }}>{member.fullname}</p>
+            </div>
+          })}
+        </div>
         <div>
           <div>invite with username</div>
           <div className="title-input-container">
@@ -53,7 +81,7 @@ class _AddMember extends React.Component {
                 name="title"
                 id="title"
                 type="text"
-                placeholder="New Board"
+                placeholder='Enter a user name'
                 value={title}
                 onChange={this.handleChange}
               />
@@ -95,7 +123,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  editBoard,
+  saveItem,
 };
 
 export const AddMember = connect(
