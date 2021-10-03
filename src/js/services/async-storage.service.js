@@ -19,11 +19,13 @@ const gWorkspaces = [
         "createdBy": {
             "_id": "u101",
             "fullname": "Adir Cohen",
+            img: `https://robohash.org/adir`,
         },
         "members": [
             {
                 "_id": "u102",
                 "fullname": "On Chetrit",
+                img: `https://robohash.org/on`,
             }
         ],
         "boards": [
@@ -278,6 +280,7 @@ const gWorkspaces = [
                 "createdBy": {
                     "_id": "u101",
                     "fullname": "Adir Cohen",
+                    img: `https://robohash.org/adir`,
                 },
                 "style": {},
                 "columns": [
@@ -432,11 +435,13 @@ const gWorkspaces = [
         "createdBy": {
             "_id": "u101",
             "fullname": "Adir Cohen",
+            img: `https://robohash.org/adir`,
         },
         "members": [
             {
                 "_id": "u103",
                 "fullname": "Ron Buchris",
+                img: `https://robohash.org/ron`,
             }
         ],
         "boards": [
@@ -571,8 +576,8 @@ const gWorkspaces = [
                 "description": "desc-board",
                 "createdBy": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
-                    "img": "http://some-img"
+                    "fullname": "Adir Cohen",
+                    img: `https://robohash.org/adir`,
                 },
                 "style": {},
                 "columns": [
@@ -731,8 +736,8 @@ const gUsers = [
     },
 ]
 
-_save('workspaceDB', gWorkspaces)
-_save('userDB', gUsers)
+// _save('workspaceDB', gWorkspaces)
+// _save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {

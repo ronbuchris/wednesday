@@ -6,6 +6,7 @@ export function StatusColorPalette({
   onAddLabel,
   onEditLabel,
   statusIdx,
+  onEditLabel
 }) {
   return (
     <div className="status-cange-color flex align-center justify-center">
