@@ -40,16 +40,16 @@ export function loadStatuses(board) {
                 type: 'GET_STATUS',
                 statuses
             })
-        
-    } catch (err) {
-        console.log('Cannot search item', err)
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
     }
-}
 }
 
 export function onSetSearch(board, searchBy) {
     return (dispatch) => {
-        const groups = groupService.query(board, {searchBy})
+        const groups = groupService.query(board, { searchBy })
         try {
             dispatch({
                 type: 'SET_GROUPS',
@@ -88,7 +88,7 @@ export function loadItem(board, itemId) {
 //         }
 //     }
 // }
-export function onSortItemTitle(board, {sortType}) {
+export function onSortItemTitle(board, { sortType }) {
     return (dispatch) => {
         try {
             const groups = groupService.query(board, { sortType })
@@ -126,10 +126,8 @@ export function saveItem(item, user, workspace, group, addToTop, board, Duplicat
                 type: 'EDIT_WORKSPACE',
                 workspace: newWorkspace,
             })
-
-
         } catch (err) {
             console.log('Cannot add item', err)
         }
     }
-} 
+}

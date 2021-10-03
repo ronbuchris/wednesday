@@ -39,9 +39,7 @@ export function ItemColumn({
             </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
-                toggleMenus={toggleMenus}
                 onEditItem={onEditItem}
-                toggleMenu={toggleMenu}
                 workspace={workspace}
                 board={board}
                 group={group}

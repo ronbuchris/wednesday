@@ -1,3 +1,4 @@
+import { makeId } from '../services/util.service'
 
 
 import { storageService } from "./async-storage.service"
@@ -73,14 +74,17 @@ export function createBoard(user, users, title) {
                 width: 140,
                 labels: [
                     {
+                        id: makeId(),
                         title: "Done",
                         color: "#00c875"
                     },
                     {
+                        id: makeId(),
                         title: "Stuck",
                         color: "#e2445c"
                     },
                     {
+                        id: makeId(),
                         title: "Working on it",
                         color: " #fdab3d"
                     }
@@ -141,16 +145,4 @@ function dragAndDrop(workspace, board, result, groupId) {
     const newBoard = { ...board }
     const newWorkspace = { ...workspace };
     return [newWorkspace, newBoard];
-}
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
 }

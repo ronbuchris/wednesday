@@ -136,9 +136,13 @@
       margin-left: 16px;
     }
     .title {
+      color: $clr3;
     }
 
     .option-container {
+      margin-top: 8px;
+      max-height: 208px;
+      overflow-y: auto;
     }
     .filter-item {
       align-items: center;
@@ -167,17 +171,20 @@
 
 //COLUMNS MENUS
 .status-menu {
-  height: 100%;
-  width: 100%;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
   width: 144px;
-  height: 264px;
+  // height: 264px;
   box-shadow: 0 4px 17px 6px #0000001a;
   z-index: 10;
   background-color: $clr7;
+  transition: height 0.15s ease;
+
+  // &.editing {
+  //   height: 473px;
+  // }
 
   .status-cange-color {
     width: 100%;
@@ -189,7 +196,7 @@
       height: 20px;
       border-radius: 50%;
       border: 1px solid #fff;
-      margin: 5px;
+      margin: 3px;
       transition: transform 0.15s ease;
 
       &:hover {
@@ -200,14 +207,108 @@
   }
 
   .labels-list {
-    padding: 16px;
+    padding: 16px 0;
     gap: 8px;
+    flex: 1 0 auto;
+    flex-wrap: wrap;
 
     .label {
       color: $clr7;
       font-size: 13px;
       width: 112px;
       height: 32px;
+    }
+
+    .color-option-editing {
+      line-height: 32px;
+      border-radius: 2px;
+
+      &:hover {
+        .delete-label {
+          visibility: visible;
+        }
+
+        .drag {
+          visibility: visible;
+          color: $clr2;
+        }
+
+        .drop-hover {
+          display: block;
+        }
+      }
+
+      .drag {
+        cursor: move;
+        flex: 0 0 12px;
+        visibility: hidden;
+      }
+
+      .input-wrapper {
+        border-radius: 2px;
+        height: 32px;
+        width: 104px;
+        flex: 0 0 104px;
+        transition: background-color 0.1s;
+
+        .color-box {
+          flex: 0 0 16px;
+          height: 100%;
+          width: 16px;
+          border-radius: 2px 0 0 2px;
+          border-width: 1px 0 1px 1px;
+          transition: background-color 0.1s;
+
+          .drop-hover {
+            display: none;
+          }
+        }
+        .label-input {
+          color: $clr2;
+          padding: 0 4px 0 8px;
+          border: none;
+          width: 88px;
+          border-radius: 0 2px 2px 0;
+          transition: background-color 0.1s;
+          background-color: $clr6;
+          // background-color: transparent;
+          font-size: 12px;
+          cursor: text;
+        }
+      }
+      .delete-label {
+        visibility: hidden;
+
+        &:hover {
+          .delete-icon {
+            color: $primary-color;
+            border: 1px solid;
+            border-color: $primary-color;
+          }
+        }
+
+        .delete-icon {
+          color: $clr2;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          border-color: $clr2;
+        }
+      }
+    }
+    .add-label-placeholder {
+      font-size: 12px;
+      border-radius: 2px;
+      width: 104px;
+      height: 32px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      transition: background-color 0.2s ease-in;
+      color: #c4c4c4;
+      border: dashed 1px #c4c4c4;
+      margin: 0 12px;
     }
   }
 
