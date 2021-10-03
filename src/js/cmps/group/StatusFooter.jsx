@@ -2,10 +2,7 @@ import React from 'react';
 
 export function StatusFooter({ board, group, column }) {
   const getStatusMap = () => {
-    const statusIdx = board.cmpsOrder.findIndex(
-      (cmpOrder) => cmpOrder === 'status'
-    );
-
+    const statusIdx = board.columns.findIndex((cmpOrder) => cmpOrder.type === 'status');
     let statusToShow = [];
     const statusMap = group.items.reduce(
       (acc, item) => {
