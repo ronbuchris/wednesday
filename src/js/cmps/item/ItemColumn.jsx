@@ -88,7 +88,7 @@ export function ItemColumn({
             })}
            <div className="add-member-modal">
               {toggleMenus.isMemberModal && (
-                <AddMember toggleMenus={toggleMenus} toggleMenu={toggleMenu} item={item}/>
+                <AddMember toggleMenus={toggleMenus} toggleMenu={toggleMenu} group={group} item={item}/>
               )}
              </div>
           </div>

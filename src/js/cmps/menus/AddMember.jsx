@@ -26,13 +26,13 @@ class _AddMember extends React.Component {
 
   onAddMember = () => {
     const {memberId} = this.state
-    const { workspace, item, saveItem } = this.props;
+    const { workspace, item, saveItem, group} = this.props;
     const columnIdx = item.columns.findIndex(column => column.type === 'member')
     const user = this.findUser(memberId)
     item.columns[columnIdx].members.push(user)
     console.log(user);
     const newItem = {...item}
-    saveItem(newItem, user, workspace, null, false, null, null)
+    saveItem(newItem, user, workspace, group, false, null, null)
   };
   onSetMember = (memberId) => {
     this.setState({ memberId })
