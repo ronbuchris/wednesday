@@ -15,13 +15,20 @@ export function groupReducer(state = initialState, action) {
                 if (action.searchBy) {
                     return {
                         ...group, items: group.items.filter(item => {
-                            return item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase())
-                        })
-                    }
+                            const group = item.title.toLowerCase().includes(action.searchBy.itemTitle.toLowerCase()) 
+                            return group
+                    })
                 }
-
-            })
-            newState = { ...state, groups }
+            }
+        })
+        groups = groups.filter((group,idx) => {
+            if (group.items.length) {
+                return group
+            } else {
+                groups.splice(idx, 1)
+            }
+        })
+        newState = { ...state, groups }
             break
         case 'SORT_ITEMS':
             groups = action.board.groups.map(group => {
@@ -55,16 +62,20 @@ export function groupReducer(state = initialState, action) {
                         }
                     })
                 }
-
+                groups = groups.filter((group, idx) => {
+                    if (group.items.length) {
+                        return group
+                    } else {
+                        groups.splice(idx, 1)
+                    }
+                })
                 newState = { ...state.groups, groups }
                 break
             } else {
                 newState = { ...state, groups: action.board.groups }
                 break
             }
-
         case 'SET_GROUPS':
-            groups = action.groups.length ? action.groups : action.board.groups
             newState = { ...state, groups: action.groups }
             break
         case 'ADD_GROUP':

@@ -1,4 +1,3 @@
-import { boardService } from "../../services/board.service";
 import { itemService } from "../../services/item.service";
 import { workspaceService } from '../../services/workspace.service'
 

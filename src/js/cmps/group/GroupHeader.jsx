@@ -1,7 +1,7 @@
 // import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable} from 'react-beautiful-dnd';
 import { FaCaretDown } from 'react-icons/fa';
 import Drag from 'monday-ui-react-core/dist/icons/Drag';
 import Add from 'monday-ui-react-core/dist/icons/Add';
