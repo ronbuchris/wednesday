@@ -105,6 +105,8 @@ export function createItem(title, user, board) {
         },
         updates: [],
         createdAt: Date.now(),
+        activities: [],
+        isSelected:false,
     }
 }
 
