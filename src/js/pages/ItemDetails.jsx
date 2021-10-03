@@ -16,7 +16,6 @@ import Drag from 'monday-ui-react-core/dist/icons/Drag';
 class _ItemDetails extends Component {
   state = {
     toggleNav: true,
-    
   }
 
   async componentDidMount() {
