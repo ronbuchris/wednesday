@@ -350,8 +350,8 @@
       .board-logs{
         width: 100%;
         flex:1;
-        height: inherit;
-        overflow: scroll;
+        height: 100%;
+        overflow: auto;
         .single-activity{
           width: 100%;
           padding:8px 0;
