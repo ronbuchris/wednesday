@@ -9,8 +9,61 @@ export const groupService = {
     save
 }
 
-function query(board) {
-    return board.groups
+function query(board, ActionBy ={}) {
+    var groups = []
+    if(ActionBy) {
+        if(ActionBy.searchBy?.itemTitle) {
+            groups = board.groups.map(group => {
+                return {...group, items: group.items.filter(item => {
+                        return item.title.toLowerCase().includes(ActionBy.searchBy.itemTitle.toLowerCase())
+                    })
+                }
+            })
+        } else {
+            groups = board.groups
+        }
+        if (ActionBy?.sortType) {
+            groups = board.groups.map(group => {
+                return {...group, items: group.items.sort((a, b) => {
+                    if (ActionBy.sortType === 'A-Z') {
+                            return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                        } else if (ActionBy.sortType === 'Z-A') {
+                            if (a.title.toLowerCase() > b.title.toLowerCase())
+                                return -1;
+                            if (a.title.toLowerCase() < b.title.toLowerCase())
+                                return 1;
+                            return 0;
+                        }
+                    })
+                }
+            })
+        }
+        if (ActionBy.groupsIds || ActionBy.statuses ) {
+            groups = board.groups.filter(group => {
+                return ActionBy.groupsIds.includes(group.id)
+            })
+            if (ActionBy?.statuses?.length) {
+                const statusIdx = board.cmpsOrder.findIndex((cmpOrder) => cmpOrder === 'status');
+                const groupsToFilter = groups?.length ? groups : board.groups
+                groups = groupsToFilter.map(group => {
+                    return {...group, items: group.items.filter(item => {
+                        return ActionBy.statuses.includes(item.columns[statusIdx].label.title)
+                    })
+                }
+            })
+        }
+        }
+    }
+    groups = groups.filter((group, idx) => {
+        if (group.items?.length) {
+            return group
+        } else {
+            groups.splice(idx, 1)
+        }
+    })
+    const { searchBy, statuses, groupsIds } = ActionBy
+    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length) ? groups : board.groups
+    return groupsToReturn
 }
 
 //EDIT-ADD GROUP

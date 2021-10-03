@@ -15,7 +15,7 @@ export function GroupFilter({ groups, onFilter, filterByGroupId }) {
                 isFilter(group.id) ? 'filter' : ''
               }`}
               onClick={() => {
-                onFilter(group.id);
+                onFilter(group.id, '', true);
               }}
             >
               <div className="flex align-center">

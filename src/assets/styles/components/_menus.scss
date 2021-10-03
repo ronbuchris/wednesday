@@ -416,9 +416,32 @@
   box-shadow: 0 4px 17px 6px #0000001a;
   background-color: $clr7;
   z-index: 10;
-  &.activity-log-panel {
+  &.item-activity,
+  &.activity-log-panel
+  {
     flex-wrap: nowrap;
     padding: 28px;
+    .slide-panel-resizer{
+      position: absolute;
+      background-color: #f5f6f8;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      width: 14px;
+      opacity: 0;
+      transition: opacity .15s ease;
+      cursor: col-resize;
+      z-index: 10;
+      &:hover{
+        opacity: 1;
+        .drag-resizer{
+          position: absolute;
+          top: 50%;
+          margin-top: -22px;
+          left: -3px;
+        }
+      }
+    }
     .activity-log-header {
       .activity-title {
         font-weight: 700;
@@ -443,7 +466,7 @@
     }
     .activity-log-wrapper {
       height: 100%;
-      .board-log-filter {
+      .log-filter {
         margin-top: 24px;
         margin-bottom: 16px;
         .drop-down-filter {
@@ -470,12 +493,11 @@
           }
         }
       }
-      .board-logs {
+      .logs {
         width: 100%;
-        flex: 1;
-        height: inherit;
-        overflow: scroll;
-        .single-activity {
+        flex:1;
+        height: 100%;
+        .single-activity{
           width: 100%;
           padding: 8px 0;
           .activity-box {

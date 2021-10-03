@@ -15,6 +15,7 @@ async function query(user) {
             }
         })
     });
+    //   return httpService.get(`workspace`)
     return Promise.resolve(userWorkspaces)
 }
 
@@ -24,25 +25,19 @@ function getById(workspaceId) {
 }
 
 function remove(workspaceId) {
+    // return httpService.delete(`workspace/${workspaceId}`)
     return storageService.remove(STORAGE_KEY, workspaceId)
 }
 
 function save(workspace) {
     if (workspace._id) {
+        //   const editWorkspace = await httpService.put(workspace)
         return storageService.put(STORAGE_KEY, workspace)
     } else {
+        //   const addedWorkspace = await httpService.post(`workspace`, workspace)
         // workspace.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, workspace)
     }
-}
-
-function getBoardIdx(boards, boardId) {
-    return Promise.resolve(
-        boards.findIndex(
-            (board) => board._id === boardId
-        )
-    );
-
 }
 
 async function getByBoardId(boardId) {

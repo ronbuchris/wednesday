@@ -3,33 +3,22 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { toggleMenu } from '../store/actions/board.actions'
 import Close from 'monday-ui-react-core/dist/icons/Close';
-import Time from 'monday-ui-react-core/dist/icons/Time';
-import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
+import { ActivityLogTab } from '../cmps/dynamic-cmps/ActivityLogTab';
+import { ActivityUpdateTab } from '../cmps/dynamic-cmps/ActivityUpdateTab';
 
 class _ActivityLog extends Component {
     state = {
-        logTxt: '',
+        toggleNav: true,
     };
 
-
-    handleChange = (ev) => {
-        ev.preventDefault();
-        const field = ev.target.name;
-        if (!field) return;
-        const value = ev.target.value;
-        this.setState(
-            ({ [field]: value }),
-            () => {
-                this.props.onSetSearch(this.props.board, this.state.logTxt);
-            }
-        );
-    };
-
+    onToggle = (bool) => {
+        this.setState({ toggleNav: bool });
+      }
 
 
 
     render() {
-        const { logTxt } = this.state
+        const {toggleNav } = this.state
         const { toggleMenu, toggleMenus, board } = this.props
         return (
             <div className="activity-log-panel slide-panel flex column">
@@ -45,52 +34,23 @@ class _ActivityLog extends Component {
                         {board.title} Log
                     </div>
                     <div className="tabs-wrapper flex">
-                        <div className="activity-tab btn is-selected">Activity</div>
-                        <div className="last-viewed-tab btn">Last Viewed</div>
-                        <div className="updates-tab btn">Updates</div>
+                        <div className={`activity-tab btn ${toggleNav && "is-selected"}`}
+                            onClick={(ev) => {
+                                ev.preventDefault();
+                                this.onToggle(true);
+                            }}
+                        >Activity</div>
+                        <div className={`updates-tab btn ${!toggleNav && "is-selected"}`}
+                            onClick={(ev) => {
+                                ev.preventDefault();
+                                this.onToggle(false);
+                            }}
+                        >Updates</div>
                     </div>
 
                 </div>
-                <div className="activity-log-wrapper">
-                    <div className="board-log-filter flex align-center">
-                        <div className="drop-down-filter btn flex align-center br4">
-                            <div>
-                            Filter Log
-                            </div>
-                            <div className="dropdown-chevron">
-                             <DropdownChevronDown />
-                            </div>
-                        </div>
-                        <div className="activity-log-input-filter">
-                            <input
-                            className="input-filter-log"
-                                name="search-log"
-                                id="search-log"
-                                type="text"
-                                placeholder="Filter by name"
-                                value={logTxt}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
+                            {toggleNav?<ActivityLogTab board={board}/>:<ActivityUpdateTab board={board}/>}
 
-                    <div className="board-logs flex column">
-                            {board.activities.map(activity=>{
-                                return(
-                                    <div className="single-activity flex align-center column">
-                                    <div className="activity-box flex align-center space-between">
-                                <div className="activity-time"><Time/>17m</div>
-                                <div className="activity-member">{activity.createdBy.fullname}</div>
-                                <div className="activity-activity">{activity.activity}</div>
-                            </div>
-                                <div className="divider"></div>
-                        </div>
-                                    )
-                            })}
-
-
-                    </div>
-                </div>
             </div>
         );
     }

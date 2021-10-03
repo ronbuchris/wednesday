@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterGroups, filterStatus } from '../../store/actions/group.actions';
+import { filterGroups} from '../../store/actions/group.actions';
 import { GroupFilter } from '../group/GroupFilter';
 import { StatusFilter } from '../item/StatusFilter';
 
@@ -10,41 +10,29 @@ class _FilterMenu extends Component {
     filterByStatus: [],
   };
 
-  onFilter = (groupId) => {
+  onFilter = (groupId, status, bool) => {
     const { filterByGroupId, filterByStatus } = this.state;
-    const { board } = this.props;
-    if (filterByGroupId.includes(groupId)) {
-      const groupIdIdx = filterByGroupId.findIndex((g) => g === groupId);
-      filterByGroupId.splice(groupIdIdx, 1);
-      this.setState({ filterByGroupId: filterByGroupId });
+    const { board, filterGroups } = this.props;
+    const filter = bool ? filterByGroupId : filterByStatus
+    const object = bool ? groupId : status
+    if (filter.includes(object)) {
+      const objectIdx = filter.findIndex((g) => g === object);
+      filter.splice(objectIdx, 1);
+      this.setState({ filter });
     } else {
-      filterByGroupId.push(groupId);
-      this.setState({ filterByGroupId: filterByGroupId });
+      filter.push(object);
+      this.setState({ filter});
     }
-    this.props.filterGroups(board, filterByGroupId, filterByStatus);
-  };
-
-  onFilterStatus = (status) => {
-    const { filterByStatus, filterByGroupId } = this.state;
-    const { filterStatus, board } = this.props;
-    if (filterByStatus.includes(status)) {
-      const statusIdx = filterByStatus.findIndex((s) => s === status);
-      filterByStatus.splice(statusIdx, 1);
-      this.setState({ filterByStatus });
-    } else {
-      filterByStatus.push(status);
-      this.setState({ filterByStatus });
-    }
-    filterStatus(board, filterByStatus, filterByGroupId);
+    filterGroups(board, this.state.filterByGroupId, this.state.filterByStatus);
   };
 
   clearFilter = () => {
-    const { filterStatus, board } = this.props;
+    const { filterGroups, board } = this.props;
     this.setState({ filterByStatus: [], filterByGroupId: [] }, () => {
-      filterStatus(
+      filterGroups(
         board,
+        this.state.filterByGroupId,
         this.state.filterByStatus,
-        this.state.filterByGroupId
       );
     });
   };
@@ -68,7 +56,7 @@ class _FilterMenu extends Component {
           />
           <StatusFilter
             board={board}
-            onFilterStatus={this.onFilterStatus}
+            onFilterStatus={this.onFilter}
             filterByStatus={filterByStatus}
           />
         </div>
@@ -86,7 +74,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   filterGroups,
-  filterStatus,
 };
 export const FilterMenu = connect(
   mapStateToProps,

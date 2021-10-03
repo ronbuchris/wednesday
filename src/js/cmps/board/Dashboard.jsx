@@ -35,6 +35,8 @@ class _Dashboard extends React.Component {
                     return <Bar {...props}/>;
                 case 'Line':
                     return <Line {...props}/>;
+                default:
+                    return
             }
         };
         if (!statusToShow || !numbers || !colors) return <div>loading</div>

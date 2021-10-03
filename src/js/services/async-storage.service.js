@@ -41,25 +41,9 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 200,
-                        "members": [
-                            {
-                                "id": "_u102",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "user101",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "user103",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
+                        "members": []
                     },
                     {
                         "id": "column101",
@@ -159,6 +143,8 @@ const gWorkspaces = [
                                     "fullname": "Adir Cohen",
                                     "img": `https://robohash.org/adir`
                                 },
+                                "activities": [],
+                                "isSelected":false,
                             },
                             {
                                 "id": "c102",
@@ -186,6 +172,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -231,6 +219,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -261,6 +251,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -292,25 +284,9 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 140,
-                        "members": [
-                            {
-                                "_id": "u102",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "u101",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "u103",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
+                        "members": []
                     },
                     {
                         "id": "column101",
@@ -371,6 +347,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -395,6 +373,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -475,25 +455,9 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 140,
-                        "members": [
-                            {
-                                "id": "_u102",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "user101",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "_id": "user103",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
+                        "members": []
                     },
                     {
                         "id": "column101",
@@ -554,7 +518,9 @@ const gWorkspaces = [
                                     },
                                 ],
                                 "updates": [],
-                                "createdAt": 1589983468418
+                                "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
                             },
                             {
                                 "id": "c202",
@@ -579,6 +545,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -612,26 +580,10 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "pos": 2,
                         "width": 140,
-                        "members": [
-                            {
-                                "id": "user101",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "user102",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "user103",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
+                        "members": []
                     },
                     {
                         "id": "column101",
@@ -693,6 +645,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -718,6 +672,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -775,8 +731,8 @@ const gUsers = [
     },
 ]
 
-// _save('workspaceDB', gWorkspaces)
-// _save('userDB', gUsers)
+_save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {

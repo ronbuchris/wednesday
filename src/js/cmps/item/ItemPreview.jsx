@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';

@@ -18,7 +18,7 @@ export function StatusFilter({ board, onFilterStatus, filterByStatus }) {
               }`}
               key={label.color}
               onClick={() => {
-                onFilterStatus(label.title);
+                onFilterStatus('',label.title, false);
               }}
             >
               <div className="flex align-center">

@@ -85,8 +85,7 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         const newItem = Duplicate ? duplicateItem(item) : item
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
             : group.items.splice(itemIdx, 1, item)
-    }
-    else {
+    } else {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
@@ -108,6 +107,8 @@ export function createItem(title, user, board) {
         },
         updates: [],
         createdAt: Date.now(),
+        activities: [],
+        isSelected:false,
     }
 }
 
@@ -115,13 +116,7 @@ function _addCmpsOrder(cmpsOrder) {
     const columns = []
     const members = {
         type: "member",
-        members: [
-            {
-                _id: "u101",
-                fullname: "Adir Cohen",
-                img: `https://robohash.org/adir`,
-            }
-        ]
+        members: []
     }
     const status = {
         type: "status",
