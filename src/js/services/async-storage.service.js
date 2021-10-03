@@ -155,6 +155,8 @@ const gWorkspaces = [
                                     "fullname": "Adir Cohen",
                                     "img": `https://robohash.org/adir`
                                 },
+                                "activities": [],
+                                "isSelected":false,
                             },
                             {
                                 "id": "c102",
@@ -182,6 +184,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -227,6 +231,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -257,6 +263,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -364,6 +372,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -388,6 +398,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -544,7 +556,9 @@ const gWorkspaces = [
                                     },
                                 ],
                                 "updates": [],
-                                "createdAt": 1589983468418
+                                "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
                             },
                             {
                                 "id": "c202",
@@ -569,6 +583,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
@@ -680,6 +696,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                             {
@@ -705,6 +723,8 @@ const gWorkspaces = [
                                 ],
                                 "updates": [],
                                 "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false,
 
                             },
                         ],
