@@ -114,13 +114,7 @@ function _addCmpsOrder(cmpsOrder) {
     const columns = []
     const members = {
         type: "member",
-        members: [
-            {
-                _id: "u101",
-                fullname: "Adir Cohen",
-                img: `https://robohash.org/adir`,
-            }
-        ]
+        members: []
     }
     const status = {
         type: "status",

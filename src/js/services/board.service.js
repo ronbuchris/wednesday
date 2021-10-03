@@ -41,7 +41,6 @@ function remove(workspace, boardId) {
 }
 
 export function createBoard(user, users, title) {
-    const members = users.map(user => { return { "_id": user._id, "fullname": user.fullname, "img": user.img } })
     const groups = [];
     for (let i = 0; i < 3; i++) {
         const group = createGroup(user, i + 1)
@@ -52,7 +51,6 @@ export function createBoard(user, users, title) {
         title,
         createdAt: Date.now(),
         description: "Click to add description",
-        members,
         createdBy: {
             _id: user._id,
             fullname: user.fullname,
@@ -65,7 +63,7 @@ export function createBoard(user, users, title) {
                 title: "Person",
                 pos: 1,
                 width: 140,
-                members
+                members:[]
             },
             {
                 id: makeId(),

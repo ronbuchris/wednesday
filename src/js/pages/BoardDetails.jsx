@@ -33,7 +33,7 @@ export class _BoardDetails extends React.Component {
     const boardId = this.props.match.params.boardId;
     await this.props.loadWorkspaceByBoardId(boardId);
     await this.props.loadBoard(this.props.workspace, boardId);
-    document.title = `${this.props.board.title}`;
+    // document.title = `${this.props.board.title}`;
   }
 
   async componentDidUpdate(prevProps, prevState) {

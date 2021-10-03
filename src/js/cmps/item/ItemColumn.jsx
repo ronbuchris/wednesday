@@ -52,6 +52,7 @@ export function ItemColumn({
         );
 
       case 'member':
+        if (column.members) return
         return (
           <div
             className="item-column member-col flex cell-cmp btn"
