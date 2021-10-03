@@ -15,8 +15,6 @@ export function setGroup(group) {
     }
 }
 
-
-
 export function editGroup(workspace, board, group, user, groupId, Duplicate) {
     return async (dispatch) => {
         try {
@@ -54,27 +52,10 @@ export function loadGroups(board) {
 export function filterGroups(board, groupsIds, statuses) {
     return async dispatch => {
         try {
-
+            const groups = groupService.query(board, { groupsIds, statuses})
             dispatch({
-                type: 'SET_FILTER',
-                groupsIds,
-                statuses,
-                board
-            })
-        } catch (err) {
-            console.log('Cannot load workspaces', err)
-        }
-    }
-}
-
-export function filterStatus(board, statuses, groupsIds) {
-    return async dispatch => {
-        try {
-            dispatch({
-                type: 'SET_FILTER',
-                board,
-                statuses,
-                groupsIds
+                type: 'SET_GROUPS',
+                groups
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)

@@ -1,3 +1,4 @@
+import { groupService } from "../../services/group.service";
 import { itemService } from "../../services/item.service";
 import { workspaceService } from '../../services/workspace.service'
 
@@ -47,13 +48,12 @@ export function loadStatuses(board) {
 }
 
 export function onSetSearch(board, searchBy) {
-    return async (dispatch) => {
-        // const groups = groupService.query(board, {searchBy})
+    return (dispatch) => {
+        const groups = groupService.query(board, {searchBy})
         try {
             dispatch({
-                type: 'SET_SEARCH',
-                board,
-                searchBy
+                type: 'SET_GROUPS',
+                groups
             })
         } catch (err) {
             console.log('Cannot search item', err)
@@ -75,13 +75,26 @@ export function loadItem(board, itemId) {
     }
 }
 
-export function onSortItemTitle(board, sortType) {
-    return async (dispatch) => {
+// export function onSortItemTitle(board, sortType) {
+//     return async (dispatch) => {
+//         try {
+//             dispatch({
+//                 type: 'SORT_ITEMS',
+//                 board,
+//                 sortType
+//             })
+//         } catch (err) {
+//             console.log('Cannot sort item', err)
+//         }
+//     }
+// }
+export function onSortItemTitle(board, {sortType}) {
+    return (dispatch) => {
         try {
+            const groups = groupService.query(board, { sortType })
             dispatch({
-                type: 'SORT_ITEMS',
-                board,
-                sortType
+                type: 'SET_GROUPS',
+                groups
             })
         } catch (err) {
             console.log('Cannot sort item', err)
