@@ -18,6 +18,8 @@ function query(board, ActionBy ={}) {
                     })
                 }
             })
+        } else {
+            groups = board.groups
         }
         if (ActionBy?.sortType) {
             groups = board.groups.map(group => {
