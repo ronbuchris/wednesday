@@ -14,7 +14,6 @@
   }
   .item-preview {
     background-color: $clr6;
-    border-bottom: 1px solid $ui-grey-color;
     margin-bottom: 1px;
     height: 36px;
     position: relative;
@@ -37,6 +36,7 @@
     .item-column-list {
       .date {
         position: relative;
+        border-bottom: 1px solid $ui-grey-color;
 
         .date-border {
           padding: 5px;
@@ -60,6 +60,7 @@
       align-items: center;
       padding: 0 10px 0 0;
       flex: 1 0;
+      border-bottom: 1px solid $ui-grey-color;
       cursor: pointer;
 
       .add-update-btn {

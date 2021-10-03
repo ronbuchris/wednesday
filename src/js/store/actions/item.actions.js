@@ -1,4 +1,3 @@
-import { boardService } from "../../services/board.service";
 import { itemService } from "../../services/item.service";
 import { workspaceService } from '../../services/workspace.service'
 
@@ -40,11 +39,11 @@ export function loadStatuses(board) {
                 type: 'GET_STATUS',
                 statuses
             })
-        
-    } catch (err) {
-        console.log('Cannot search item', err)
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
     }
-}
 }
 
 export function onSetSearch(board, searchBy) {
@@ -114,10 +113,8 @@ export function saveItem(item, user, workspace, group, addToTop, board, Duplicat
                 type: 'EDIT_WORKSPACE',
                 workspace: newWorkspace,
             })
-
-
         } catch (err) {
             console.log('Cannot add item', err)
         }
     }
-} 
+}

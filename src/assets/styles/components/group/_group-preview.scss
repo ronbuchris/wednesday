@@ -27,6 +27,7 @@
     .item-add-input {
       border: none;
       border-bottom: 1px solid $ui-grey-color;
+      border-top: 1px solid $ui-grey-color;
       width: 100%;
       padding: 5px 0 3px 20px;
       outline: none;
@@ -116,9 +117,5 @@
 .space-item {
   flex: 0 0 30px;
   background-color: $clr6;
-}
-
-.space-item {
-  flex: 0 0 30px;
-  background-color: $clr6;
+  border-bottom: 1px solid $ui-grey-color;
 }

@@ -1,3 +1,5 @@
+import { makeId } from '../services/util.service'
+
 export const itemService = {
     save,
     remove,
@@ -124,6 +126,7 @@ function _addCmpsOrder(cmpsOrder) {
     const status = {
         type: "status",
         label: {
+            id: 'label1',
             title: "",
             color: "#c4c4c4"
         }
@@ -141,17 +144,4 @@ function _addCmpsOrder(cmpsOrder) {
     })
     return columns
 
-}
-
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
 }

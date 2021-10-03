@@ -68,18 +68,22 @@ const gWorkspaces = [
                         "width": 130,
                         "labels": [
                             {
+                                id: 'label1',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
+                                id: 'label2',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
+                                id: 'label3',
                                 title: "Working on it",
                                 color: "#fdab3d"
                             },
                             {
+                                id: 'label4',
                                 title: "",
                                 color: "#c4c4c4"
                             }
@@ -315,14 +319,17 @@ const gWorkspaces = [
                         "width": 140,
                         "labels": [
                             {
+                                id: 'label5',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
+                                id: 'label6',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
+                                id: 'label7',
                                 title: "Working on it",
                                 color: "#fdab3d"
                             }
@@ -403,30 +410,30 @@ const gWorkspaces = [
                 ],
                 "activities": [
                     {
-                        id:'ac101',
-                        createdAt:1589983468418,
-                        activity:'removed item',
-                        createdBy:{
+                        id: 'ac101',
+                        createdAt: 1589983468418,
+                        activity: 'removed item',
+                        createdBy: {
                             "_id": "u103",
                             "fullname": "Ron Buchris",
                             "img": "http://some-img"
                         }
                     },
                     {
-                        id:'ac102',
-                        createdAt:1589983468418,
-                        activity:'removed item',
-                        createdBy:{
+                        id: 'ac102',
+                        createdAt: 1589983468418,
+                        activity: 'removed item',
+                        createdBy: {
                             "_id": "u102",
                             "fullname": "On Chetrit",
                             "img": "http://some-img"
                         }
                     },
                     {
-                        id:'ac103',
-                        createdAt:1589983468418,
-                        activity:'removed item',
-                        createdBy:{
+                        id: 'ac103',
+                        createdAt: 1589983468418,
+                        activity: 'removed item',
+                        createdBy: {
                             "_id": "u101",
                             "fullname": "Adir Cohen",
                             "img": "http://some-img"
@@ -495,14 +502,17 @@ const gWorkspaces = [
                         "width": 140,
                         "labels": [
                             {
+                                id: 'label8',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
+                                id: 'label9',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
+                                id: 'label10',
                                 title: "Working on it",
                                 color: "#fdab3d"
                             }
@@ -631,14 +641,17 @@ const gWorkspaces = [
                         "width": 140,
                         "labels": [
                             {
+                                id: 'label11',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
+                                id: 'label12',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
+                                id: 'label13',
                                 title: "Working on it",
                                 color: "#fdab3d"
                             }

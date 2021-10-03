@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service';
-import { boardService } from './board.service';
+import { makeId } from '../services/util.service'
 const STORAGE_KEY = 'workspaceDB'
 
 export const workspaceService = { query, getById, remove, save, getByBoardId, addNewWorkspace }
@@ -78,16 +78,4 @@ function createWorkspace(user, title) {
         members: [],
         boards: []
     }
-}
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
 }

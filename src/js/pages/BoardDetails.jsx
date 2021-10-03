@@ -67,6 +67,9 @@ export class _BoardDetails extends React.Component {
       // case 'column':
       //   this.onEditColumn(newType);
       //   break;
+      // case 'label':
+      //   this.onEditLabel(newType);
+      //   break;
     }
   };
 
@@ -91,6 +94,12 @@ export class _BoardDetails extends React.Component {
     const { workspace, user, board, editGroup } = this.props;
     const boardToEdit = newBoard ? newBoard : board;
     editGroup(workspace, boardToEdit, group, user, groupId, Duplicate);
+  };
+
+  //Labels Functions
+  onEditLabel = (label, groupId, newBoard) => {
+    const { workspace, user, board, editGroup } = this.props;
+    // saveLabel(workspace, board, user, groupId);
   };
 
   //Items Functions
