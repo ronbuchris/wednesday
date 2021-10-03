@@ -14,7 +14,7 @@ async function query(user) {
             }
         })
     });
-    //   return httpService.get(`review${queryStr}`)
+    //   return httpService.get(`workspace`)
     return Promise.resolve(userWorkspaces)
 }
 
