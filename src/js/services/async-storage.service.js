@@ -41,7 +41,7 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 200,
                         "members": [
                             {
@@ -296,7 +296,7 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 140,
                         "members": [
                             {
@@ -480,7 +480,7 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "width": 140,
                         "members": [
                             {
@@ -618,7 +618,7 @@ const gWorkspaces = [
                     {
                         "id": "column102",
                         "type": "member",
-                        "title": "Owner",
+                        "title": "Person",
                         "pos": 2,
                         "width": 140,
                         "members": [
