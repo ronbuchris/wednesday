@@ -120,7 +120,6 @@ export class _BoardDetails extends React.Component {
       workspace,
       groups,
       board,
-      item,
     } = this.props;
     if (!workspace || !board) return <div>loading</div>;
     return (

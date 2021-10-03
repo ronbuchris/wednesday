@@ -25,7 +25,6 @@ export function StatusFooter({ board, group, column }) {
       },
       { totalCount: 0 }
     );
-    console.log(`statusMap`, statusMap);
     return statusMap;
   };
 
@@ -45,7 +44,7 @@ export function StatusFooter({ board, group, column }) {
                 backgroundColor: statusMap[status].color,
               }}
             >
-              <span class="tooltiptext">
+              <span className="tooltiptext">
                 {`${status} ${statusMap[status].count}/${
                   statusMap.totalCount
                 } ${(
