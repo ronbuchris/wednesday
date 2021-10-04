@@ -12,47 +12,47 @@ export const storageService = {
 
 const gWorkspaces = [
     {
-        "_id": "w101",
-        "name": "Workspace-1",
-        "description": "desc-workspace",
-        "createdAt": 1489983468418,
-        "createdBy": {
-            "_id": "u101",
-            "fullname": "Adir Cohen",
+        _id: "w101",
+        name: "Workspace-1",
+        description: "desc-workspace",
+        createdAt: 1489983468418,
+        createdBy: {
+            _id: "u101",
+            fullname: "Adir Cohen",
             img: `https://robohash.org/adir`,
         },
-        "members": [
+        members: [
             {
-                "_id": "u102",
-                "fullname": "On Chetrit",
+                _id: "u102",
+                fullname: "On Chetrit",
                 img: `https://robohash.org/on`,
             }
         ],
-        "boards": [
+        boards: [
             {
-                "_id": "b101",
-                "title": "Board 1",
-                "createdAt": 1589983468418,
-                "description": "desc board",
-                "createdBy": {
-                    "_id": "u101",
-                    "fullname": "Abi Abambi",
-                    "img": "http://some-img"
+                _id: "b101",
+                title: "Board 1",
+                createdAt: 1589983468418,
+                description: "desc board",
+                createdBy: {
+                    _id: "u101",
+                    fullname: "Abi Abambi",
+                    img: "http://some-img"
                 },
-                "columns": [
+                columns: [
                     {
-                        "id": "column102",
-                        "type": "member",
-                        "title": "Person",
-                        "width": 200,
-                        "members": []
+                        id: "column102",
+                        type: "member",
+                        title: "Person",
+                        width: 200,
+                        members: []
                     },
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "Status",
-                        "width": 130,
-                        "labels": [
+                        id: "column101",
+                        type: "status",
+                        title: "Status",
+                        width: 130,
+                        labels: [
                             {
                                 id: 'label1',
                                 title: "Done",
@@ -76,48 +76,49 @@ const gWorkspaces = [
                         ]
                     },
                     {
-                        "id": "column103",
-                        "type": "date",
-                        "title": "Date",
-                        "width": 170,
-                        "date": ''
+                        id: "column103",
+                        type: "date",
+                        title: "Date",
+                        width: 170,
+                        date: ''
                     },
 
                 ],
-                "groups": [
+                groups: [
                     {
 
-                        "id": "g101",
-                        "title": "Group 1",
-                        "items": [
+                        id: "g101",
+                        title: "Group 1",
+                        items: [
                             {
-                                "id": "c101",
-                                "title": "Punch adir in the nutz",
-                                "columns": [
+                                id: "c101",
+                                title: "Punch adir in the nutz",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": [
+                                        type: "member",
+                                        members: [
                                             {
-                                                "_id": "u102",
-                                                "fullname": "On Chetrit",
-                                                "img": `https://robohash.org/on`,
+                                                _id: "u102",
+                                                fullname: "On Chetrit",
+                                                img: `https://robohash.org/on`,
                                             }
                                         ]
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label1',
                                             title: "Done",
                                             color: "#00c875"
                                         }
 
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [
+                                updates: [
                                     {
                                         id: 'update101',
                                         txt: 'first update!',
@@ -139,48 +140,49 @@ const gWorkspaces = [
                                         createAt: 1589989468418
                                     }
                                 ],
-                                "createdAt": 1589983468418,
-                                "creator": {
-                                    "_id": "us101",
-                                    "fullname": "Adir Cohen",
-                                    "img": `https://robohash.org/adir`
+                                createdAt: 1589983468418,
+                                creator: {
+                                    _id: "us101",
+                                    fullname: "Adir Cohen",
+                                    img: `https://robohash.org/adir`
                                 },
-                                "activities": [],
-                                "isSelected":false,
+                                activities: [],
+                                isSelected: false,
                             },
                             {
-                                "id": "c102",
-                                "title": "This also demo data",
-                                "columns": [
+                                id: "c102",
+                                title: "This also demo data",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": [{
+                                        type: "member",
+                                        members: [{
                                             _id: 'u101',
                                             fullname: 'Adir Cohen',
                                             img: `https://robohash.org/adir`
                                         }]
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label2',
                                             title: "Stuck",
                                             color: "#e2445c"
                                         }
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                         ],
-                        "style": {
-                            "color": randomColor({
+                        style: {
+                            color: randomColor({
                                 luminosity: 'dark',
                                 format: 'rgba',
                                 alpha: 0.9
@@ -189,40 +191,41 @@ const gWorkspaces = [
                     },
                     {
 
-                        "id": "g401",
-                        "title": "Group 2",
-                        "items": [
+                        id: "g401",
+                        title: "Group 2",
+                        items: [
                             {
-                                "id": "c501",
-                                "title": "Replace logo",
-                                "columns": [
+                                id: "c501",
+                                title: "Replace logo",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": [
+                                        type: "member",
+                                        members: [
                                             {
-                                                "_id": "u101",
-                                                "fullname": "Adir Cohen",
-                                                "img": `https://robohash.org/adir`,
+                                                _id: "u101",
+                                                fullname: "Adir Cohen",
+                                                img: `https://robohash.org/adir`,
                                             }
                                         ]
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label1',
                                             title: "Done",
                                             color: "#00c875"
                                         }
 
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                             {
@@ -242,6 +245,7 @@ const gWorkspaces = [
                                     {
                                         "type": "status",
                                         "label": {
+                                            id: 'label2',
                                             title: "Stuck",
                                             color: "#e2445c"
                                         }
@@ -254,12 +258,12 @@ const gWorkspaces = [
                                 "updates": [],
                                 "createdAt": 1589983468418,
                                 "activities": [],
-                                "isSelected":false,
+                                "isSelected": false,
 
                             },
                         ],
-                        "style": {
-                            "color": randomColor({
+                        style: {
+                            color: randomColor({
                                 luminosity: 'dark',
                                 format: 'rgba',
                                 alpha: 0.9
@@ -268,35 +272,35 @@ const gWorkspaces = [
                     },
 
                 ],
-                "activities": [],
+                activities: [],
                 // for monday
-                "cmpsOrder": ["member", "status", "date"]
+                cmpsOrder: ["member", "status", "date"]
             },
             {
-                "_id": "b102",
-                "title": "board-2",
-                "createdAt": 1589983468418,
-                "description": "desc-board",
-                "createdBy": {
-                    "_id": "u101",
-                    "fullname": "Adir Cohen",
+                _id: "b102",
+                title: "board-2",
+                createdAt: 1589983468418,
+                description: "desc-board",
+                createdBy: {
+                    _id: "u101",
+                    fullname: "Adir Cohen",
                     img: `https://robohash.org/adir`,
                 },
-                "style": {},
-                "columns": [
+                style: {},
+                columns: [
                     {
-                        "id": "column102",
-                        "type": "member",
-                        "title": "Person",
-                        "width": 140,
-                        "members": []
+                        id: "column102",
+                        type: "member",
+                        title: "Person",
+                        width: 140,
+                        members: []
                     },
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "Status",
-                        "width": 140,
-                        "labels": [
+                        id: "column101",
+                        type: "status",
+                        title: "Status",
+                        width: 140,
+                        labels: [
                             {
                                 id: 'label5',
                                 title: "Done",
@@ -311,78 +315,85 @@ const gWorkspaces = [
                                 id: 'label7',
                                 title: "Working on it",
                                 color: "#fdab3d"
+                            },
+                            {
+                                id: 'label8',
+                                title: "",
+                                color: "#c4c4c4"
                             }
                         ]
                     },
                     {
-                        "id": "column103",
-                        "type": "date",
-                        "title": "Date",
-                        "width": 140,
-                        "date": ''
+                        id: "column103",
+                        type: "date",
+                        title: "Date",
+                        width: 140,
+                        date: ''
                     },
                 ],
-                "groups": [
+                groups: [
                     {
 
-                        "id": "g102",
-                        "title": "Group 2",
-                        "items": [
+                        id: "g102",
+                        title: "Group 2",
+                        items: [
                             {
-                                "id": "c103",
-                                "title": "Replace",
-                                "columns": [
+                                id: "c103",
+                                title: "Replace",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
-                                            "title": "Done",
-                                            "color": "#00c875"
+                                        type: "status",
+                                        label: {
+                                            id: 'label5',
+                                            title: "Done",
+                                            color: "#00c875"
                                         }
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                             {
-                                "id": "c104",
-                                "title": "Replace",
-                                "columns": [
+                                id: "c104",
+                                title: "Replace",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label8',
                                             title: "",
                                             color: "#c4c4c4"
                                         }
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                         ],
-                        "style": {
-                            "color": randomColor({
+                        style: {
+                            color: randomColor({
                                 luminosity: 'dark',
                                 format: 'rgba',
                                 alpha: 0.9
@@ -391,15 +402,15 @@ const gWorkspaces = [
                     },
 
                 ],
-                "activities": [
+                activities: [
                     {
                         id: 'ac101',
                         createdAt: 1589983468418,
                         activity: 'removed item',
                         createdBy: {
-                            "_id": "u103",
-                            "fullname": "Ron Buchris",
-                            "img": "http://some-img"
+                            _id: "u103",
+                            fullname: "Ron Buchris",
+                            img: "http://some-img"
                         }
                     },
                     {
@@ -407,9 +418,9 @@ const gWorkspaces = [
                         createdAt: 1589983468418,
                         activity: 'removed item',
                         createdBy: {
-                            "_id": "u102",
-                            "fullname": "On Chetrit",
-                            "img": "http://some-img"
+                            _id: "u102",
+                            fullname: "On Chetrit",
+                            img: "http://some-img"
                         }
                     },
                     {
@@ -417,146 +428,153 @@ const gWorkspaces = [
                         createdAt: 1589983468418,
                         activity: 'removed item',
                         createdBy: {
-                            "_id": "u101",
-                            "fullname": "Adir Cohen",
-                            "img": "http://some-img"
+                            _id: "u101",
+                            fullname: "Adir Cohen",
+                            img: "http://some-img"
                         }
                     },
                 ],
                 // for monday
-                "cmpsOrder": ["member", "status", "date"]
+                cmpsOrder: ["member", "status", "date"]
             }]
     },
     {
-        "_id": "w102",
-        "name": "Workspace-2",
-        "description": "desc-workspace-2",
-        "createdAt": 1489983468418,
-        "createdBy": {
-            "_id": "u101",
-            "fullname": "Adir Cohen",
+        _id: "w102",
+        name: "Workspace-2",
+        description: "desc-workspace-2",
+        createdAt: 1489983468418,
+        createdBy: {
+            _id: "u101",
+            fullname: "Adir Cohen",
             img: `https://robohash.org/adir`,
         },
-        "members": [
+        members: [
             {
-                "_id": "u103",
-                "fullname": "Ron Buchris",
+                _id: "u103",
+                fullname: "Ron Buchris",
                 img: `https://robohash.org/ron`,
             }
         ],
-        "boards": [
+        boards: [
             {
-                "_id": "b201",
-                "title": "board-3",
-                "createdAt": 1589983468418,
-                "description": "desc-board-2",
-                "createdBy": {
-                    "_id": "u101",
-                    "fullname": "Abi Abambi",
-                    "img": "http://some-img"
+                _id: "b201",
+                title: "board-3",
+                createdAt: 1589983468418,
+                description: "desc-board-2",
+                createdBy: {
+                    _id: "u101",
+                    fullname: "Abi Abambi",
+                    img: "http://some-img"
                 },
-                "style": {},
-                "columns": [
+                style: {},
+                columns: [
                     {
-                        "id": "column102",
-                        "type": "member",
-                        "title": "Person",
-                        "width": 140,
-                        "members": []
+                        id: "column102",
+                        type: "member",
+                        title: "Person",
+                        width: 140,
+                        members: []
                     },
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "Status",
-                        "width": 140,
-                        "labels": [
+                        id: "column101",
+                        type: "status",
+                        title: "Status",
+                        width: 140,
+                        labels: [
                             {
-                                id: 'label8',
+                                id: 'label9',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
-                                id: 'label9',
+                                id: 'label10',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
-                                id: 'label10',
+                                id: 'label11',
                                 title: "Working on it",
                                 color: "#fdab3d"
+                            },
+                            {
+                                id: 'label12',
+                                title: "",
+                                color: "#c4c4c4"
                             }
                         ]
                     },
                     {
-                        "id": "column103",
-                        "type": "date",
-                        "title": "Date",
-                        "width": 140,
-                        "date": ''
+                        id: "column103",
+                        type: "date",
+                        title: "Date",
+                        width: 140,
+                        date: ''
                     },
 
                 ],
-                "groups": [
+                groups: [
                     {
 
-                        "id": "g201",
-                        "title": "Group 3",
-                        "items": [
+                        id: "g201",
+                        title: "Group 3",
+                        items: [
                             {
-                                "id": "c201",
-                                "title": "Replace logo",
-                                "columns": [
+                                id: "c201",
+                                title: "Replace logo",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label10',
                                             title: "Stuck",
                                             color: "#e2445c"
                                         }
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
                             },
                             {
-                                "id": "c202",
-                                "title": "Replace logo",
-                                "columns": [
+                                id: "c202",
+                                title: "Replace logo",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
                                         type: "status",
                                         label: {
+                                            id: 'label9',
                                             title: "Done",
                                             color: "#00c875"
                                         }
 
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                         ],
-                        "style": {
-                            "color": randomColor({
+                        style: {
+                            color: randomColor({
                                 luminosity: 'dark',
                                 format: 'rgba',
                                 alpha: 0.9
@@ -565,125 +583,127 @@ const gWorkspaces = [
                     },
 
                 ],
-                "activities": [],
+                activities: [],
                 // for monday
-                "cmpsOrder": ["member", "status", "date"]
+                cmpsOrder: ["member", "status", "date"]
             },
             {
-                "_id": "b202",
-                "title": "board-4",
-                "createdAt": 1589983468418,
-                "description": "desc-board",
-                "createdBy": {
-                    "_id": "u101",
-                    "fullname": "Adir Cohen",
+                _id: "b202",
+                title: "board-4",
+                createdAt: 1589983468418,
+                description: "desc-board",
+                createdBy: {
+                    _id: "u101",
+                    fullname: "Adir Cohen",
                     img: `https://robohash.org/adir`,
                 },
-                "style": {},
-                "columns": [
+                style: {},
+                columns: [
 
                     {
-                        "id": "column102",
-                        "type": "member",
-                        "title": "Person",
-                        "pos": 2,
-                        "width": 140,
-                        "members": []
+                        id: "column102",
+                        type: "member",
+                        title: "Person",
+                        pos: 2,
+                        width: 140,
+                        members: []
                     },
                     {
-                        "id": "column101",
-                        "type": "status",
-                        "title": "Status",
-                        "pos": 1,
-                        "width": 140,
-                        "labels": [
+                        id: "column101",
+                        type: "status",
+                        title: "Status",
+                        pos: 1,
+                        width: 140,
+                        labels: [
                             {
-                                id: 'label11',
+                                id: 'label13',
                                 title: "Done",
                                 color: "#00c875"
                             },
                             {
-                                id: 'label12',
+                                id: 'label14',
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
                             {
-                                id: 'label13',
+                                id: 'label15',
                                 title: "Working on it",
                                 color: "#fdab3d"
                             }
                         ]
                     },
                     {
-                        "id": "column103",
-                        "type": "date",
-                        "title": "Date",
-                        "width": 140,
-                        "date": ''
+                        id: "column103",
+                        type: "date",
+                        title: "Date",
+                        width: 140,
+                        date: ''
                     },
                 ],
-                "groups": [
+                groups: [
                     {
 
-                        "id": "g302",
-                        "title": "Group 4",
-                        "items": [
+                        id: "g302",
+                        title: "Group 4",
+                        items: [
                             {
-                                "id": "c303",
-                                "title": "Replace",
-                                "columns": [
+                                id: "c303",
+                                title: "Replace",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label15',
                                             title: "Working on it",
                                             color: "#fdab3d"
                                         }
                                     },
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                             {
-                                "id": "c304",
-                                "title": "Replace",
-                                "columns": [
+                                id: "c304",
+                                title: "Replace",
+                                columns: [
                                     {
-                                        "type": "member",
-                                        "members": []
+                                        type: "member",
+                                        members: []
                                     },
                                     {
-                                        "type": "status",
-                                        "label": {
+                                        type: "status",
+                                        label: {
+                                            id: 'label15',
                                             title: "Working on it",
                                             color: "#fdab3d"
                                         }
                                     }
                                     ,
                                     {
-                                        "type": "date",
-                                        "date": ''
+                                        type: "date",
+                                        date: ''
                                     },
                                 ],
-                                "updates": [],
-                                "createdAt": 1589983468418,
-                                "activities": [],
-                                "isSelected":false,
+                                updates: [],
+                                createdAt: 1589983468418,
+                                activities: [],
+                                isSelected: false,
 
                             },
                         ],
-                        "style": {
-                            "color": randomColor({
+                        style: {
+                            color: randomColor({
                                 luminosity: 'dark',
                                 format: 'rgba',
                                 alpha: 0.9
@@ -692,9 +712,9 @@ const gWorkspaces = [
                     },
 
                 ],
-                "activities": [],
+                activities: [],
                 // for monday
-                "cmpsOrder": ["member", "status", "date"]
+                cmpsOrder: ["member", "status", "date"]
             }]
     },
 ];
@@ -736,8 +756,8 @@ const gUsers = [
     },
 ]
 
-// _save('workspaceDB', gWorkspaces)
-// _save('userDB', gUsers)
+_save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {

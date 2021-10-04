@@ -169,6 +169,42 @@
   }
 }
 
+.sort-menu {
+  width: 432px;
+  padding: 20px 16px 30px;
+  top: 120%;
+  left: 0;
+  cursor: default;
+
+  .sort-content {
+    padding-top: 16px;
+    // height: 40px;
+
+    > * {
+      height: 40px;
+      border: 1px solid $wolf-color;
+      padding: 0 16px;
+
+      &:hover {
+        border-color: $clr2;
+      }
+    }
+
+    .sort-by {
+      margin-right: 8px;
+      flex: 0 1 60%;
+
+      .sort-by-text {
+        padding-left: 16px;
+      }
+    }
+
+    .sort-order {
+      flex: 1;
+    }
+  }
+}
+
 //COLUMNS MENUS
 .status-menu {
   position: absolute;
@@ -257,7 +293,7 @@
           width: 16px;
           border-radius: 2px 0 0 2px;
           border-width: 1px 0 1px 1px;
-          transition: background-color 0.1s;
+          transition: background-color 0.03s;
 
           .drop-hover {
             display: none;

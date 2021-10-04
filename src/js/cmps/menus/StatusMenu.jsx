@@ -27,24 +27,31 @@ export function _StatusMenu({
     saveLabel(workspace, board, columnIdx, color);
   };
 
-  const onEditLabel = (columnIdx, value, labelIdx, type) => {
+  const onEditLabel = (columnIdx, value, labelIdx, type, prevTxt) => {
+    if (value === prevTxt) return;
+    const label = board.columns[columnIdx].labels[labelIdx];
+    const prevColor = label.color;
     switch (type) {
       case 'color':
-        board.columns[columnIdx].labels[labelIdx].color = value;
+        label.color = value;
         break;
       case 'title':
-        board.columns[columnIdx].labels[labelIdx].title = value;
+        label.title = value;
         break;
     }
-    console.log(`labelIdx`, labelIdx);
-    const label = board.columns[columnIdx].labels[labelIdx];
-
-    saveLabel(workspace, board, columnIdx, label, labelIdx);
+    saveLabel(workspace, board, columnIdx, label, labelIdx, prevColor);
   };
 
   const onRemoveLabel = (labelIdx, columnIdx) => {
     removeLabel(labelIdx, board, columnIdx, workspace);
   };
+
+  // const onBlur = (newTxt, pevTxt, label, labelIdx, columnIdx) => {
+  //   const currLabel = board.columns[columnIdx].labels[labelIdx];
+  //   if (newTxt === pevTxt) return;
+  //   const newLabel = { ...label, title: newTxt };
+  //   saveLabel(workspace, board, columnIdx);
+  // };
 
   const onChangeStatus = (item, group, column, label) => {
     const columnIdx = item.columns.findIndex(
@@ -67,7 +74,7 @@ export function _StatusMenu({
       <div className="labels-list full flex column align-center">
         {board.columns[statusIdx()].labels.map((label, idx) => {
           return isEdit ? (
-            <div className="color-option-editing flex">
+            <div key={label.id} className="color-option-editing flex">
               <div className="drag flex align-center">
                 <Drag />
               </div>
@@ -98,6 +105,17 @@ export function _StatusMenu({
                 </div>
                 <div
                   className="label-input"
+                  contentEditable="true"
+                  suppressContentEditableWarning={true}
+                  onBlur={(ev) =>
+                    onEditLabel(
+                      statusIdx(),
+                      ev.target.innerText,
+                      idx,
+                      statusIdx(),
+                      label.title
+                    )
+                  }
                   style={{
                     backgroundColor:
                       hoverColor?.idx === idx ? hoverColor?.color : '#f5f6f8',
@@ -139,6 +157,7 @@ export function _StatusMenu({
                 hoverColor?.idx || hoverColor?.idx === 0
                   ? '#fff'
                   : hoverColor?.color,
+              color: hoverColor?.color ? '#fff' : '#c4c4c4',
             }}
             className="add-label-placeholder flex align-center justify-center btn"
             onClick={() => {

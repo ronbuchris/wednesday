@@ -3,9 +3,38 @@
 }
 
 .member-col {
+  position: relative;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid $ui-grey-color;
+
+  &:hover {
+    .add-member {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .add-member {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    background-color: $primary-color;
+
+    svg {
+      width: 13px;
+      height: 13px;
+      path {
+        fill: #fff;
+      }
+    }
+  }
 
   .profile-icon {
     height: 30px;

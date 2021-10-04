@@ -8,6 +8,7 @@ class _BoardSearch extends Component {
     searchBy: {
       itemTitle: '',
     },
+    isSearch: false,
   };
 
   handleChange = (ev) => {
@@ -31,7 +32,11 @@ class _BoardSearch extends Component {
   render() {
     const { itemTitle } = this.state.searchBy;
     return (
-      <div className="btn-search flex br4 align-center justify-center">
+      <div
+        className={`btn-search search flex br4 align-center justify-center ${
+          this.state.isSearch ? 'searching' : ''
+        }`}
+      >
         <Search />
         <input
           className="input-search"
@@ -41,6 +46,12 @@ class _BoardSearch extends Component {
           placeholder="Search"
           value={itemTitle}
           onChange={this.handleChange}
+          onBlur={(e) => {
+            this.setState({ isSearch: false });
+          }}
+          onFocus={(e) => {
+            this.setState({ isSearch: true });
+          }}
         />
       </div>
     );

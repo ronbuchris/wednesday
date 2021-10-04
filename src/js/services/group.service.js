@@ -13,44 +13,19 @@ function query(board, ActionBy ={}) {
     var groups = []
     if(ActionBy) {
         if(ActionBy.searchBy?.itemTitle) {
-            groups = board.groups.map(group => {
-                return {...group, items: group.items.filter(item => {
-                        return item.title.toLowerCase().includes(ActionBy.searchBy.itemTitle.toLowerCase())
-                    })
-                }
-            })
+            groups = searchItem(board, ActionBy)
         } else {
             groups = board.groups
         }
         if (ActionBy?.sortType) {
-            groups = board.groups.map(group => {
-                return {...group, items: group.items.sort((a, b) => {
-                    if (ActionBy.sortType === 'A-Z') {
-                            return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                        } else if (ActionBy.sortType === 'Z-A') {
-                            if (a.title.toLowerCase() > b.title.toLowerCase())
-                                return -1;
-                            if (a.title.toLowerCase() < b.title.toLowerCase())
-                                return 1;
-                            return 0;
-                        }
-                    })
-                }
-            })
+            groups = sortGroups(board, ActionBy)
         }
         if (ActionBy.groupsIds || ActionBy.statuses ) {
-            groups = board.groups.filter(group => {
-                return ActionBy.groupsIds.includes(group.id)
-            })
+            groups = filterGroups(board, ActionBy)
             if (ActionBy?.statuses?.length) {
                 const statusIdx = board.cmpsOrder.findIndex((cmpOrder) => cmpOrder === 'status');
                 const groupsToFilter = groups?.length ? groups : board.groups
-                groups = groupsToFilter.map(group => {
-                    return {...group, items: group.items.filter(item => {
-                        return ActionBy.statuses.includes(item.columns[statusIdx].label.title)
-                    })
-                }
-            })
+                groups = filterStatus(ActionBy, groupsToFilter, statusIdx)
         }
         }
     }
@@ -64,6 +39,57 @@ function query(board, ActionBy ={}) {
     const { searchBy, statuses, groupsIds } = ActionBy
     const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length) ? groups : board.groups
     return groupsToReturn
+}
+
+
+// Filter/Sort/Search
+function searchItem(board, ActionBy){
+    var groups = []
+    groups=board.groups.map(group => {
+        return {
+            ...group, items: group.items.filter(item => {
+                return item.title.toLowerCase().includes(ActionBy.searchBy.itemTitle.toLowerCase())
+            })
+        }
+    })
+    return groups
+}
+function sortGroups(board, ActionBy) {
+    var groups = []
+    groups = board.groups.map(group => {
+        return {
+            ...group, items: group.items.sort((a, b) => {
+                if (ActionBy.sortType === 'A-Z') {
+                    return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                } else if (ActionBy.sortType === 'Z-A') {
+                    if (a.title.toLowerCase() > b.title.toLowerCase())
+                        return -1;
+                    if (a.title.toLowerCase() < b.title.toLowerCase())
+                        return 1;
+                    return 0;
+                }
+            })
+        }
+    })
+    return groups
+}
+function filterGroups(board, ActionBy) {
+    var groups = []
+    groups = board.groups.filter(group => {
+        return ActionBy.groupsIds.includes(group.id)
+    })
+    return groups
+}
+function filterStatus(ActionBy, groupsToFilter, statusIdx) {
+    var groups = []
+    groups = groupsToFilter.map(group => {
+        return {
+            ...group, items: group.items.filter(item => {
+                return ActionBy.statuses.includes(item.columns[statusIdx].label.title)
+            })
+        }
+    })
+    return groups
 }
 
 //EDIT-ADD GROUP
