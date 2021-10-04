@@ -20,9 +20,9 @@ export function queryColors() {
     return gColors
 }
 
-function save(workspace, board, columnIdx, label = null) {
+function save(workspace, board, columnIdx, label = null, labelIdx) {
     if (label?.id) {
-        const labelIdx = board.columns[columnIdx].labels.findIndex(currLabel => currLabel.id === label.id)
+        // const labelIdx = board.columns[columnIdx].labels.findIndex(currLabel => currLabel.id === label.id)
         board.columns[columnIdx].labels.splice(labelIdx, 1, label)
     } else {
         const newLabel = createLabel(label)

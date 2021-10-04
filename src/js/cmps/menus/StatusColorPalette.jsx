@@ -4,6 +4,7 @@ export function StatusColorPalette({
   setColor,
   hoverColor,
   onAddLabel,
+  onEditLabel,
   statusIdx,
   onEditLabel
 }) {
@@ -24,7 +25,7 @@ export function StatusColorPalette({
             }
             onClick={() => {
               hoverColor.idx
-                ? onEditLabel(statusIdx(), color)
+                ? onEditLabel(statusIdx(), color, hoverColor.idx, 'color')
                 : onAddLabel(statusIdx(), color);
             }}
             className="color-icon btn"
