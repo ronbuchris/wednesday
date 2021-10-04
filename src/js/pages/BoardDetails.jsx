@@ -24,14 +24,22 @@ import {
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
+  loadWorkspaces,
 } from '../store/actions/workspace.actions';
+import{getLoggedinUser} from '../store/actions/user.actions'
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
 
 export class _BoardDetails extends React.Component {
+
   async componentDidMount() {
+    const {getLoggedinUser,loadWorkspaces,loadWorkspaceByBoardId} = this.props;
     const boardId = this.props.match.params.boardId;
-    await this.props.loadWorkspaceByBoardId(boardId);
+    if(!this.props.workspaces?.length){
+      await getLoggedinUser()
+      await loadWorkspaces(this.props.user)
+    }
+    await loadWorkspaceByBoardId(boardId,this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     // document.title = `${this.props.board.title}`;
   }
@@ -183,6 +191,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   toggleMenu,
   //workspace
+  loadWorkspaces,
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
@@ -197,6 +206,8 @@ const mapDispatchToProps = {
   //item
   saveItem,
   changeView,
+  //USER
+  getLoggedinUser
 };
 
 export const BoardDetails = connect(

@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service'
+import {httpService} from './http.service';
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 // var gWatchedUser = null;
 const STORAGE_KEY = 'userDB'
@@ -43,18 +44,21 @@ async function update(user) {
 }
 
 async function login(userCred, guest) {
-    const users = await storageService.query(STORAGE_KEY)
-    if (guest) {
-        var user = users.find(user => user._id === 'guest')
-    }else {
-        var user = users.find(user => user.username === userCred.username)
-    }
-    if (user) return _saveLocalUser(user)
-    // return _saveLocalUser(user)
-
-    // const user = await httpService.post('auth/login', userCred)
+    console.log(`userCred`, userCred)
+    // const users = await storageService.query(STORAGE_KEY)
+    // if (guest) {
+    //     var user = users.find(user => user._id === 'guest')
+    // }else {
+    //     var user = users.find(user => user.username === userCred.username)
+    // }
+    // if (user) return _saveLocalUser(user)
+    
+    const user = await httpService.post('auth/login', userCred)
+    return _saveLocalUser(user)
     // socketService.emit('set-user-socket', user._id);
 }
+
+
 async function signup(userCred) {
     const user = await storageService.post(STORAGE_KEY, userCred)
     // const user = await httpService.post('auth/signup', userCred)

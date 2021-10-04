@@ -69,3 +69,16 @@ export function loadUsers() {
         }
     }
 }
+export function getLoggedinUser() {
+    return async dispatch => {
+        try {
+            const user = userService.getLoggedinUser()
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
+        } catch (err) {
+            console.log('Cannot load users', err)
+        }
+    }
+}
