@@ -6,13 +6,14 @@ export function StatusColorPalette({
   onAddLabel,
   onEditLabel,
   statusIdx,
-  // onEditLabel
+  onEditLabel
 }) {
   return (
     <div className="status-cange-color flex align-center justify-center">
       {queryColors().map((color) => {
         return (
           <div
+            key={color}
             onMouseOver={() => {
               setColor((prevState) => {
                 return { ...prevState, color };
@@ -24,9 +25,12 @@ export function StatusColorPalette({
               })
             }
             onClick={() => {
-              hoverColor.idx
+              hoverColor.idx || hoverColor.idx === 0
                 ? onEditLabel(statusIdx(), color, hoverColor.idx, 'color')
                 : onAddLabel(statusIdx(), color);
+              setColor((prevState) => {
+                return { ...prevState, idx: null };
+              });
             }}
             className="color-icon btn"
             style={{ backgroundColor: color }}

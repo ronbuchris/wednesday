@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import { FilterMenu } from '../menus/FilterMenu';
 import { SortMenu } from '../menus/SortMenu';
@@ -46,24 +47,25 @@ function _BoardActions({
           toggleMenu(toggleMenus, 'filterMenu', true);
         }}
       >
-        <div className="">
-          <Filter />
-          <span>Filter</span>
-        </div>
+        <Filter className="w32" />
+        <span>Filter</span>
+        <IoIosArrowDown className="w32" />
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
       </div>
       <div className="btn-search flex br4 btn  align-center justify-center">
-        <Person />
-        Person
+        <Person className="w32" />
+        <span>Person</span>
+        <IoIosArrowDown className="w32" />
       </div>
       <div
         className="btn-search flex br4 btn  align-center justify-center"
-        // onClick={() => toggleMenu(toggleMenus, 'filterMenu', true)}
+        onClick={() => toggleMenu(toggleMenus, 'sortMenu', true)}
       >
-        <Sort />
-        Sort
+        <Sort className="w32" />
+        <span>Sort</span>
+        <IoIosArrowDown className="w32" />
+        {toggleMenus.sortMenu && <SortMenu board={board} />}
       </div>
-      {toggleMenus.sortMenu && <SortMenu board={board} />}
     </div>
   );
 }

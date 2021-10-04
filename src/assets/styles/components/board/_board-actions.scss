@@ -28,10 +28,18 @@
 
 .btn-search {
   position: relative;
-  width: 5.625rem;
-  padding: 3px 10px;
+  // width: 95px;
   transition: width 0.4s;
   color: $clr2;
+  margin-right: 6px;
+
+  &.search {
+    width: 90px;
+  }
+
+  .w32 {
+    width: 32px;
+  }
 
   .input-search {
     width: 100%;
@@ -39,9 +47,9 @@
     outline: none;
     color: $clr2;
 
-    // &::placeholder {
-    //   color: rgb(50, 51, 56);
-    // }
+    &::placeholder {
+      color: rgb(50, 51, 56);
+    }
   }
   &:hover {
     .input-search {
@@ -49,8 +57,9 @@
     }
     background-color: $ui-grey-color;
   }
-  // &.searching {
-  &:focus {
+
+  &.searching {
+    // &:focus {
     position: relative;
     width: 11.875rem;
     background-color: white;
