@@ -12,9 +12,10 @@ const initialState = {
         dateMenu: false,
         filterMenu: false,
         sortMenu: false,
+        personMenu: false,
         isBoardModal: false,
         isWorkspaceModal: false,
-        userDetailsModal:false,
+        userDetailsModal: false,
         activityLogModal: false,
         isMemberModal: false
     }

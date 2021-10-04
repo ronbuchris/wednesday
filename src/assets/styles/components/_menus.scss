@@ -205,6 +205,79 @@
   }
 }
 
+.person-menu {
+  width: 264px;
+  top: 100%;
+  left: 0;
+
+  .search-person {
+    height: 34px;
+    width: 100%;
+  }
+  .item-member-list {
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .member-box {
+      margin: 4px;
+      height: 22px;
+      background-color: $clr5;
+      border-radius: 24px;
+      font-size: rem(12px);
+
+      .user-wrapper {
+        img {
+          width: 22px;
+          margin-right: 4px;
+          border-radius: 50%;
+        }
+      }
+
+      .clear-btn {
+        background-color: inherit;
+        height: 16px;
+        width: 16px;
+        font-size: 8px;
+        border-radius: 100%;
+        cursor: pointer;
+        margin-left: 4px;
+        margin-right: 2px;
+        flex-shrink: 0;
+
+        &:hover {
+          background-color: #fff;
+        }
+        svg {
+          height: 8px;
+        }
+      }
+    }
+  }
+
+  .member-list {
+    height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 34px;
+    font-size: 13px;
+    position: relative;
+    padding-left: 38px;
+
+    .add-member-box {
+      padding: 4px 8px;
+
+      .img-user {
+        img {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+  }
+}
+
 //COLUMNS MENUS
 .status-menu {
   position: absolute;
@@ -548,4 +621,3 @@
     }
   }
 }
-
