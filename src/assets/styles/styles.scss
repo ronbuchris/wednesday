@@ -28,10 +28,12 @@
 @import 'components/group/group-header.scss';
 
 // Components/Item
+@import 'components/item/item-details.scss';
 @import 'components/item/item-list.scss';
 @import 'components/item/item-preview.scss';
 
 //Views
+@import 'views/loader.scss';
 @import 'views/home-page.scss';
 @import 'views/login.scss';
 @import 'views/main-app.scss';

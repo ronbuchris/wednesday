@@ -27,6 +27,7 @@ export class PostUpdate extends Component {
     return (
       <form className="" onSubmit={this.onPost}>
         <input
+          className="update-input"
           name="txt"
           id="txt"
           type="textarea"
@@ -34,7 +35,7 @@ export class PostUpdate extends Component {
           value={txt}
           onChange={this.handleChange}
         />
-        <button>Add update</button>
+        <button>Update</button>
       </form>
     );
   }

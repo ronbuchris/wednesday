@@ -64,7 +64,7 @@ export function createBoard(user, users, title) {
                 title: "Person",
                 pos: 1,
                 width: 140,
-                members:[]
+                members: []
             },
             {
                 id: makeId(),
@@ -123,6 +123,13 @@ function dragAndDrop(workspace, board, result, groupId) {
         const [group] = board.groups.splice(startIdx, 1)
         board.groups.splice(endIdx, 0, group)
     }
+
+    if (result.type === "label") {
+        const columnIdx = board.columns.findIndex((column) => column.type === 'status');
+        const [label] = board.columns[columnIdx].labels.splice(startIdx, 1)
+        board.columns[columnIdx].labels.splice(endIdx, 0, label)
+    }
+
     if (result.type === "item") {
         const destination = result.destination ? result.destination.droppableId : groupId
         const fromGroup = board.groups.find(group => group.id === result.source.droppableId)
@@ -130,6 +137,7 @@ function dragAndDrop(workspace, board, result, groupId) {
         const [item] = fromGroup.items.splice(startIdx, 1)
         toGroup.items.splice(endIdx, 0, item)
     }
+
     if (result.type === "column") {
         const [column] = board.columns.splice(startIdx, 1)
         board.groups.forEach((group) => {

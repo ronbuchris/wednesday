@@ -21,7 +21,7 @@ class _SidebarHeader extends Component {
   };
   render() {
     const { user, workspace, toggleMenus, toggleMenu } = this.props;
-    if (!workspace) return <div>loading...</div>;
+    if (!workspace) return <div></div>;
     const id = workspace.boards.length
       ? workspace.boards[0]._id
       : workspace._id;

@@ -1,11 +1,9 @@
-import { useState } from 'react';
-
 import { FaPlus } from 'react-icons/fa';
-import { StatusMenu } from '../menus/StatusMenu';
-import { DatePicker } from '../menus/DatePicker';
-import { AddMember } from '../menus/AddMember';
+
 import user from '../../../assets/img/user.svg';
-import Add from 'monday-ui-react-core/dist/icons/Add';
+import { StatusMenu } from '../menus/StatusMenu';
+import { PersonMenu } from '../menus/PersonMenu';
+import { DatePicker } from '../menus/DatePicker';
 
 export function ItemColumn({
   toggleMenus,
@@ -62,7 +60,7 @@ export function ItemColumn({
           <div
             onClick={(ev) => {
               ev.preventDefault();
-              toggleMenu(toggleMenus, 'isMemberModal', true);
+              toggleMenu(toggleMenus, 'personMenu', item.id);
             }}
             className="item-column member-col flex cell-cmp btn"
             style={{
@@ -73,7 +71,11 @@ export function ItemColumn({
               <FaPlus className="plus" />
             </div>
             {!column.members.length && (
-              <img className="profile-icon" src={user} />
+              <img
+                className="profile-icon"
+                src={user}
+                alt="member-placeholder"
+              />
             )}
             {column.members &&
               column.members.map((member) => {
@@ -87,10 +89,12 @@ export function ItemColumn({
                 );
               })}
             <div className="add-member-modal">
-              {toggleMenus.isMemberModal && (
-                <AddMember
+              {toggleMenus.personMenu === item.id && (
+                <PersonMenu
                   toggleMenus={toggleMenus}
                   toggleMenu={toggleMenu}
+                  workspace={workspace}
+                  findIdx={findIdx}
                   group={group}
                   item={item}
                 />
