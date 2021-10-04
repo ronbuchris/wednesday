@@ -213,6 +213,15 @@
   .search-person {
     height: 34px;
     width: 100%;
+
+    input {
+      outline: none;
+      height: 100%;
+      width: 100%;
+      border: none;
+      padding: 8px;
+      background: transparent;
+    }
   }
   .item-member-list {
     justify-content: flex-start;
@@ -256,25 +265,51 @@
     }
   }
 
-  .member-list {
-    height: 34px;
+  .members-list {
+    // height: 34px;
     white-space: nowrap;
-    overflow: hidden;
-    line-height: 34px;
+    // overflow: hidden;
     font-size: 13px;
     position: relative;
-    padding-left: 38px;
+
+    .wrapper {
+      padding: 4px 8px;
+    }
 
     .add-member-box {
-      padding: 4px 8px;
+      line-height: 34px;
+      &:hover {
+        color: #fff;
+        background-color: $primary-color;
+      }
 
       .img-user {
         img {
+          margin-right: 5px;
           width: 26px;
           height: 26px;
         }
       }
     }
+  }
+
+  .invite {
+    color: $primary-color;
+    height: 50px;
+    padding: 8px;
+    // line-height: 34px;
+    &:hover {
+      color: #fff;
+      background-color: $primary-color;
+    }
+  }
+}
+
+.clear-filter {
+  padding: 3px 8px;
+
+  &:hover {
+    background-color: $ui-grey-color;
   }
 }
 
@@ -316,97 +351,101 @@
   }
 
   .labels-list {
-    padding: 16px 0;
-    gap: 8px;
-    flex: 1 0 auto;
-    flex-wrap: wrap;
+    .wrapper {
+      padding: 16px 0 8px;
+      flex: 1 0 auto;
+      flex-wrap: wrap;
+      gap: 8px;
 
-    .label {
-      color: $clr7;
-      font-size: 13px;
-      width: 112px;
-      height: 32px;
-    }
+      .label {
+        color: $clr7;
+        font-size: 13px;
+        width: 112px;
+        height: 32px;
+      }
 
-    .color-option-editing {
-      line-height: 32px;
-      border-radius: 2px;
+      .color-option-editing {
+        z-index: 15;
+        line-height: 32px;
+        border-radius: 2px;
 
-      &:hover {
-        .delete-label {
-          visibility: visible;
+        &:hover {
+          .delete-label {
+            visibility: visible;
+          }
+
+          .drag {
+            visibility: visible;
+            color: $clr2;
+          }
+
+          .drop-hover {
+            display: block;
+          }
         }
 
         .drag {
-          visibility: visible;
-          color: $clr2;
+          cursor: move;
+          flex: 0 0 12px;
+          visibility: hidden;
         }
 
-        .drop-hover {
-          display: block;
-        }
-      }
-
-      .drag {
-        cursor: move;
-        flex: 0 0 12px;
-        visibility: hidden;
-      }
-
-      .input-wrapper {
-        border-radius: 2px;
-        height: 32px;
-        width: 104px;
-        flex: 0 0 104px;
-        transition: background-color 0.1s;
-
-        .color-box {
-          flex: 0 0 16px;
-          height: 100%;
-          width: 16px;
-          border-radius: 2px 0 0 2px;
-          border-width: 1px 0 1px 1px;
-          transition: background-color 0.03s;
-
-          .drop-hover {
-            display: none;
-            z-index: 10;
-            color: $clr7;
-          }
-        }
-        .label-input {
-          color: $clr2;
-          padding: 0 4px 0 8px;
-          border: none;
-          width: 88px;
-          border-radius: 0 2px 2px 0;
+        .input-wrapper {
+          border-radius: 2px;
+          height: 32px;
+          width: 104px;
+          flex: 0 0 104px;
           transition: background-color 0.1s;
-          background-color: $clr6;
-          // background-color: transparent;
-          font-size: 12px;
-          cursor: text;
-        }
-      }
-      .delete-label {
-        visibility: hidden;
 
-        &:hover {
-          .delete-icon {
-            color: $primary-color;
-            border: 1px solid;
-            border-color: $primary-color;
+          .color-box {
+            flex: 0 0 16px;
+            height: 100%;
+            width: 16px;
+            border-radius: 2px 0 0 2px;
+            border-width: 1px 0 1px 1px;
+            transition: background-color 0.03s;
+
+            .drop-hover {
+              display: none;
+              z-index: 10;
+              color: $clr7;
+            }
+          }
+          .label-input {
+            color: $clr2;
+            padding: 0 4px 0 8px;
+            border: none;
+            width: 88px;
+            border-radius: 0 2px 2px 0;
+            transition: background-color 0.1s;
+            background-color: $clr6;
+            outline: none;
+            font-size: 12px;
+            cursor: text;
           }
         }
+        .delete-label {
+          visibility: hidden;
 
-        .delete-icon {
-          color: $clr2;
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          border-color: $clr2;
+          &:hover {
+            .delete-icon {
+              color: $primary-color;
+              border: 1px solid;
+              border-color: $primary-color;
+            }
+          }
+
+          .delete-icon {
+            color: $clr2;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border-color: $clr2;
+          }
         }
       }
     }
+
     .add-label-placeholder {
       font-size: 12px;
       border-radius: 2px;
@@ -419,11 +458,12 @@
       transition: background-color 0.2s ease-in;
       color: #c4c4c4;
       border: dashed 1px #c4c4c4;
-      margin: 0 12px;
+      margin-bottom: 12px;
     }
   }
 
   .edit-label {
+    width: 100%;
     background-color: $clr7;
     color: $primary-color;
     font-size: 13px;

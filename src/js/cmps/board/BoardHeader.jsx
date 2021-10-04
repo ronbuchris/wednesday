@@ -1,5 +1,5 @@
 // import React from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,6 @@ import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
 import { toggleMenu } from '../../store/actions/board.actions';
-import { UserList } from '../user/UserList';
 
 function _BoardHeader({
   board,
@@ -24,8 +23,9 @@ function _BoardHeader({
   onEditGroup,
   isViewChange,
   history,
-  location
+  location,
 }) {
+  // const []
   return (
     <div className="board-header flex column">
       <div className="board-header-top flex align-center">
@@ -51,13 +51,15 @@ function _BoardHeader({
           </div>
         </div>
         <div className="header right-side flex align-center justify-center">
-          <div className="board-activity btn" 
-          onClick={() =>{
-            history.push(location.pathname + `/activity_log`)
-          }}>
+          <div
+            className="board-activity btn header-btn"
+            onClick={() => {
+              history.push(location.pathname + `/activity_log`);
+            }}
+          >
             activity
           </div>
-          <div className="menu-btn header-btn btn br4">
+          <div className="menu-btn header-btn btn br4 flex align-center justify-center">
             <Menu />
           </div>
         </div>
@@ -74,8 +76,9 @@ function _BoardHeader({
       </div>
       <div className="view-container flex align-center">
         <div
-          className={`flex align-center table-view btn ${!isViewChange ? 'active' : ''
-            }`}
+          className={`flex align-center table-view btn ${
+            !isViewChange ? 'active' : ''
+          }`}
           onClick={(ev) => {
             ev.preventDefault();
             changeView(false);
@@ -85,8 +88,9 @@ function _BoardHeader({
           Main Table
         </div>
         <div
-          className={`flex align-center table-view btn ${isViewChange ? 'active' : ''
-            }`}
+          className={`flex align-center table-view btn ${
+            isViewChange ? 'active' : ''
+          }`}
           onClick={(ev) => {
             ev.preventDefault();
             changeView(true);
@@ -123,7 +127,6 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = { toggleMenu };
-export const BoardHeader = withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_BoardHeader));
+export const BoardHeader = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(_BoardHeader)
+);

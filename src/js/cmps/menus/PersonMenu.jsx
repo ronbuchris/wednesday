@@ -1,3 +1,4 @@
+import { BsEnvelope } from 'react-icons/bs';
 import Close from 'monday-ui-react-core/dist/icons/Close';
 export function PersonMenu({
   toggleMenus,
@@ -9,7 +10,9 @@ export function PersonMenu({
 }) {
   return (
     <div className="person-menu menu-modal flex column">
-      <div className="search-person"></div>
+      <div className="search-person">
+        <input type="text" placeholder="Enter name" />
+      </div>
       <div className="item-member-list flex">
         {item.columns[findIdx('member')].members.map((member) => {
           return (
@@ -26,23 +29,26 @@ export function PersonMenu({
         })}
       </div>
       <div className="divider"></div>
-      <div className="members-list br4 flex column">
+      <div className="members-list  flex column">
         {workspace.members.map((member) => {
           return (
-            <div className="add-member-box flex">
-              <div className="img-user">
-                <img src={member.img} alt="member-img" />
+            <div className="wrapper">
+              <div className="add-member-box br4 btn flex">
+                <div className="img-user">
+                  <img src={member.img} alt="member-img" />
+                </div>
+                <div className="fullname-user">{member.fullname}</div>
               </div>
-              <div className="fullname-user">{member.fullname}</div>
             </div>
           );
         })}
         <div
-          className="invite"
+          className="invite br4 flex align-center"
           onClick={() => {
             toggleMenu(toggleMenus, 'isMemberModal', true);
           }}
         >
+          <BsEnvelope />
           Invite a new member by username
         </div>
       </div>

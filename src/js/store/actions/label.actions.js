@@ -1,10 +1,10 @@
 import { labelService } from "../../services/label.service";
 import { workspaceService } from "../../services/workspace.service";
 
-export function saveLabel(workspace, board, columnIdx, label, labelIdx, prevColor) {
+export function saveLabel(workspace, board, columnIdx, label, labelIdx, prevColor, type) {
     return async dispatch => {
         try {
-            const newWorkspace = labelService.save(workspace, board, columnIdx, label, labelIdx, prevColor);
+            const newWorkspace = labelService.save(workspace, board, columnIdx, label, labelIdx, prevColor, type);
             console.log(`newWorkspace`, newWorkspace)
             await workspaceService.save(newWorkspace);
             dispatch({
