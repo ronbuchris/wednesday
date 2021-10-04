@@ -1,0 +1,32 @@
+[
+    {
+        "fullname": "Adir Cohen",
+        "username": "KaDaWa",
+        "password": "123",
+        "img": "https://robohash.org/adir",
+        "workspaces": ["615ac47ce6b3e62a1b02b128"]
+
+    },
+    {
+        "fullname": "guest",
+        "username": "guest",
+        "password": "123",
+        "img": "https://robohash.org/guest",
+        "workspaces": ["615ac47ce6b3e62a1b02b128"]
+
+    },
+    {
+        "fullname": "On Chetrit",
+        "username": "on",
+        "password": "123",
+        "img": "https://robohash.org/on",
+        "workspaces": ["615ac47ce6b3e62a1b02b128"]
+    },
+    {
+        "fullname": "Ron Buchris",
+        "username": "ron",
+        "password": "123",
+        "img": "https://robohash.org/ron",
+        "workspaces": ["615ac47ce6b3e62a1b02b128"]
+    }
+]

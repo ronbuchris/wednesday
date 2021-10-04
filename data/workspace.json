@@ -1,213 +1,328 @@
 [
     {
-        "_id": "workspace101",
         "name": "Workspace-1",
         "description": "desc-workspace",
         "createdAt": 1489983468418,
         "createdBy": {
-            "_id": "user101",
-            "fullname": "Adir Cohen"
+            "_id": "615ac07ee6b3e62a1b00edb5",
+            "fullname": "Adir Cohen",
+            "img": "https://robohash.org/adir"
         },
+        "members": [
+            {
+                "_id": "615ac07ee6b3e62a1b00edb7",
+                "fullname": "On Chetrit",
+                "img": "https://robohash.org/on"
+            },
+            {
+                "_id": "615ac07ee6b3e62a1b00edb8",
+                "fullname": "Ron Buchris",
+                "img": "https://robohash.org/ron"
+            }
+        ],
         "boards": [
             {
-                "_id": "board101",
-                "title": "board-1",
+                "_id": "b101",
+                "title": "Board 1",
+                "createdAt": 1589983468418,
+                "description": "desc board",
+                "createdBy":{
+                    "_id": "615ac07ee6b3e62a1b00edb8",
+                    "fullname": "Ron Buchris",
+                    "img": "https://robohash.org/ron"
+                },
+                "columns": [
+                    {
+                        "id": "column102",
+                        "type": "member",
+                        "title": "Person",
+                        "width": 200,
+                        "members": []
+                    },
+                    {
+                        "id": "column101",
+                        "type": "status",
+                        "title": "Status",
+                        "width": 130,
+                        "labels": [
+                            {
+                                "id": "label1",
+                                "title": "Done",
+                                "color": "#00c875"
+                            },
+                            {
+                                "id": "label2",
+                                "title": "Stuck",
+                                "color": "#e2445c"
+                            },
+                            {
+                                "id": "label3",
+                                "title": "Working on it",
+                                "color": "#fdab3d"
+                            },
+                            {
+                                "id": "label4",
+                                "title": "",
+                                "color": "#c4c4c4"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 170,
+                        "date": ""
+                    }
+
+                ],
+                "groups": [
+                    {
+
+                        "id": "g101",
+                        "title": "Group 1",
+                        "items": [
+                            {
+                                "id": "c101",
+                                "title": "Punch adir in the nutz",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u102",
+                                                "fullname": "On Chetrit",
+                                                "img": "https://robohash.org/on"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "#00c875"
+                                        }
+
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
+                                    }
+                                ],
+                                "updates": [
+                                    {
+                                        "id": "update101",
+                                        "txt": "first update!",
+                                        "createBy": {
+                                            "_id": "u101",
+                                            "fullname": "Adir Cohen",
+                                            "img": "https://robohash.org/adir"
+                                        },
+                                        "createAt": 1589983468418
+                                    },
+                                    {
+                                        "id": "update102",
+                                        "txt": "Sec update!",
+                                        "createBy": {
+                                            "_id": "u102",
+                                            "fullname": "On Chetrit",
+                                            "img": "https://robohash.org/on"
+                                        },
+                                        "createAt": 1589989468418
+                                    }
+                                ],
+                                "createdAt": 1589983468418,
+                                "creator": {
+                                    "_id": "615ac07ee6b3e62a1b00edb5",
+                                    "fullname": "Adir Cohen",
+                                    "img": "https://robohash.org/adir"
+                                },
+                                "activities": [],
+                                "isSelected":false
+                            },
+                            {
+                                "id": "c102",
+                                "title": "This also demo data",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [{
+                                            "_id": "u101",
+                                            "fullname": "Adir Cohen",
+                                            "img": "https://robohash.org/adir"
+                                        }]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Stuck",
+                                            "color": "#e2445c"
+                                        }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
+                                    }
+                                ],
+                                "updates": [],
+                                "createdAt": 1589983468418,
+                                "createdBy":             {
+                                    "_id": "615ac07ee6b3e62a1b00edb8",
+                                    "fullname": "Ron Buchris",
+                                    "img": "https://robohash.org/ron"
+                                },
+                                "activities": [],
+                                "isSelected":false
+
+                            }
+                        ],
+                        "style": {
+                            "color": "#1A893F"
+                        }
+                    },
+                    {
+
+                        "id": "g401",
+                        "title": "Group 2",
+                        "items": [
+                            {
+                                "id": "c501",
+                                "title": "Replace logo",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": "https://robohash.org/adir"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "#00c875"
+                                        }
+
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
+                                    }
+                                ],
+                                "updates": [],
+                                "createdAt": 1589983468418,
+                                "createdBy":             {
+                                    "_id": "615ac07ee6b3e62a1b00edb8",
+                                    "fullname": "Ron Buchris",
+                                    "img": "https://robohash.org/ron"
+                                },
+                                "activities": [],
+                                "isSelected":false
+
+                            },
+                            {
+                                "id": "c502",
+                                "title": "Replace logo",
+                                "columns": [
+                                    {
+                                        "type": "member",
+                                        "members": [
+                                            {
+                                                "_id": "u101",
+                                                "fullname": "Adir Cohen",
+                                                "img": "https://robohash.org/adir"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "status",
+                                        "label": {
+                                            "title": "Stuck",
+                                            "color": "#e2445c"
+                                        }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
+                                    }
+                                ],
+                                "updates": [],
+                                "createdAt": 1589983468418,
+                                "createdBy":             {
+                                    "_id": "615ac07ee6b3e62a1b00edb8",
+                                    "fullname": "Ron Buchris",
+                                    "img": "https://robohash.org/ron"
+                                },
+                                "activities": [],
+                                "isSelected":false
+
+                            }
+                        ],
+                        "style": {
+                            "color": "#234290"
+                        }
+                    }
+
+                ],
+                "activities": [],
+                "cmpsOrder": ["member", "status", "date"]
+            },
+            {
+                "_id": "b102",
+                "title": "board-2",
                 "createdAt": 1589983468418,
                 "description": "desc-board",
-                "createdBy": {
-                    "_id": "user101",
-                    "fullname": "Abi Abambi",
-                    "img": "http://some-img"
+                "createdBy":             {
+                    "_id": "615ac07ee6b3e62a1b00edb8",
+                    "fullname": "Ron Buchris",
+                    "img": "https://robohash.org/ron"
                 },
                 "style": {},
                 "columns": [
                     {
-                        "title": "status",
-                        "pos": 1,
-                        "width": "150",
-                        "type": "status",
-                        "labels": [
-                            {
-                                "title": "done",
-                                "bgcolor": "green"
-                            },
-                            {
-                                "title": "working on",
-                                "bgcolor": "yellow"
-                            },
-                            {
-                                "title": "stuck",
-                                "bgcolor": "red"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "priority",
-                        "pos": 2,
-                        "width": "150",
-                        "type": "status",
-                        "labels": [
-                            {
-                                "title": "done",
-                                "bgcolor": "green"
-                            },
-                            {
-                                "title": "working on",
-                                "bgcolor": "yellow"
-                            },
-                            {
-                                "title": "stuck",
-                                "bgcolor": "red"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Owner",
-                        "pos": 3,
-                        "width": "150",
+                        "id": "column102",
                         "type": "member",
-                        "members": [
-                            {
-                                "id": "user101",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "user101",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "user101",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
-                    }
-                ],
-                "groups": [
-                    {
-                        "id": "group101",
-                        "title": "Group 1",
-                        "color": "blue",
-                        "items": [
-                            {
-                                "id": "item101"
-                            }
-                        ],
-                        "pos": 1
-                    }
-                ],
-                "items": [
-                    {
-                        "id": "item101",
-                        "title": "Replace logo",
-                        "columns": [
-                            {
-                                "type": "member",
-                                "members": [
-                                    {
-                                        "_id": "user101",
-                                        "fullname": "Adir Cohen",
-                                        "img": "https://robohash.org/adir"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "status",
-                                "title": "done",
-                                "bgcolor": "green"
-                            }
-                        ],
-                        "boardId": "board101",
-                        "createdAt": 1589983468418,
-                        "creator": {
-                            "_id": "user101",
-                            "fullname": "Adir Cohen",
-                            "img": "https://robohash.org/adir"
-                        }
+                        "title": "Person",
+                        "width": 140,
+                        "members": []
                     },
                     {
-                        "id": "item102",
-                        "title": "Replace logo",
-                        "columns": [
-                            {
-                                "type": "member",
-                                "members": []
-                            },
-                            {
-                                "type": "status",
-                                "title": "warning",
-                                "bgcolor": "red"
-                            }
-                        ],
-                        "date": 1589983468418
-                    }
-                ],
-                "members": [
-                    {
-                        "_id": "user102",
-                        "fullname": "On Chetrit"
-                    }
-                ],
-                "activities": [],
-                "cmpsOrder": [
-                    "status",
-                    "member",
-                    "date"
-                ]
-            },
-            {
-                "_id": "board102",
-                "title": "board-2",
-                "createdAt": 1589983468418,
-                "description": "desc-board",
-                "createdBy": {
-                    "_id": "u101",
-                    "fullname": "Adir Cohen"
-                },
-                "style": {},
-                "columns": {
-                    "status": {
+                        "id": "column101",
                         "type": "status",
+                        "title": "Status",
+                        "width": 140,
                         "labels": [
                             {
-                                "title": "done",
-                                "bgcolor": "green"
+                                "id": "label5",
+                                "title": "Done",
+                                "color": "#00c875"
                             },
                             {
-                                "title": "working on",
-                                "bgcolor": "yellow"
+                                "id": "label6",
+                                "title": "Stuck",
+                                "color": "#e2445c"
                             },
                             {
-                                "title": "stuck",
-                                "bgcolor": "red"
+                                "id": "label7",
+                                "title": "Working on it",
+                                "color": "#fdab3d"
                             }
                         ]
                     },
-                    "owner": {
-                        "type": "people",
-                        "members": [
-                            {
-                                "id": "f101",
-                                "fullname": "On Chetrit",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "f101",
-                                "fullname": "Adir Cohen",
-                                "img": "http://some-img"
-                            },
-                            {
-                                "id": "f101",
-                                "fullname": "Ron Buchris",
-                                "img": "http://some-img"
-                            }
-                        ]
+                    {
+                        "id": "column103",
+                        "type": "date",
+                        "title": "Date",
+                        "width": 140,
+                        "date": ""
                     }
-                },
+                ],
                 "groups": [
                     {
+
                         "id": "g102",
                         "title": "Group 2",
                         "items": [
@@ -221,11 +336,21 @@
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green"
+                                        "label": {
+                                            "title": "Done",
+                                            "color": "#00c875"
+                                        }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
                                     }
                                 ],
-                                "date": 1589983468418
+                                "updates": [],
+                                "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false
+
                             },
                             {
                                 "id": "c104",
@@ -237,25 +362,62 @@
                                     },
                                     {
                                         "type": "status",
-                                        "title": "done",
-                                        "bgcolor": "green"
+                                        "label": {
+                                            "title": "",
+                                            "color": "#c4c4c4"
+                                        }
+                                    },
+                                    {
+                                        "type": "date",
+                                        "date": ""
                                     }
                                 ],
-                                "date": 1589983468418
+                                "updates": [],
+                                "createdAt": 1589983468418,
+                                "activities": [],
+                                "isSelected":false
+
                             }
                         ],
                         "style": {
-                            "color": "blue"
+                            "color":"#234290"
+                        }
+                    }
+
+                ],
+                "activities": [
+                    {
+                        "id": "ac101",
+                        "createdAt": 1589983468418,
+                        "activity": "removed item",
+                        "createdBy": {
+                            "_id": "u103",
+                            "fullname": "Ron Buchris",
+                            "img": "http://some-img"
+                        }
+                    },
+                    {
+                        "id": "ac102",
+                        "createdAt": 1589983468418,
+                        "activity": "removed item",
+                        "createdBy": {
+                            "_id": "u102",
+                            "fullname": "On Chetrit",
+                            "img": "http://some-img"
+                        }
+                    },
+                    {
+                        "id": "ac103",
+                        "createdAt": 1589983468418,
+                        "activity": "removed item",
+                        "createdBy": {
+                            "_id": "u101",
+                            "fullname": "Adir Cohen",
+                            "img": "http://some-img"
                         }
                     }
                 ],
-                "activities": [],
-                "cmpsOrder": [
-                    "status",
-                    "member",
-                    "date"
-                ]
-            }
-        ]
+                "cmpsOrder": ["member", "status", "date"]
+            }]
     }
 ]

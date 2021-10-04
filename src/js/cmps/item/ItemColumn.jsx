@@ -19,7 +19,7 @@ export function ItemColumn({
 }) {
 
   const [isHover,setIsHover] =useState(false)
-  // const [isAddMember,addMember] =useState(false)
+  const [isAddMember,addMember] =useState(false)
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
@@ -48,7 +48,9 @@ export function ItemColumn({
             </div>
             {toggleMenus.statusMenu === item.id && (
               <StatusMenu
+                toggleMenus={toggleMenus}
                 onEditItem={onEditItem}
+                toggleMenu={toggleMenu}
                 workspace={workspace}
                 board={board}
                 group={group}
@@ -63,7 +65,7 @@ export function ItemColumn({
           <div
           onClick={(ev) =>{
             ev.preventDefault();
-              toggleMenu(toggleMenus, 'isMemberModal', true)
+            addMember(!isAddMember)
           }}
           onMouseEnter={setIsHover.bind(this,true)}
           onMouseLeave={setIsHover.bind(this,false)}
@@ -87,9 +89,7 @@ export function ItemColumn({
               );
             })}
            <div className="add-member-modal">
-              {toggleMenus.isMemberModal && (
-                <AddMember toggleMenus={toggleMenus} toggleMenu={toggleMenu} group={group} item={item}/>
-              )}
+             {isAddMember&&<AddMember />}
              </div>
           </div>
         );
