@@ -6,6 +6,7 @@ import Close from 'monday-ui-react-core/dist/icons/Close';
 import { ActivityLogTab } from '../cmps/dynamic-cmps/ActivityLogTab';
 import { ActivityUpdateTab } from '../cmps/dynamic-cmps/ActivityUpdateTab';
 
+
 class _ActivityLog extends Component {
     state = {
         toggleNav: true,
@@ -49,8 +50,7 @@ class _ActivityLog extends Component {
                     </div>
 
                 </div>
-                            {toggleNav?<ActivityLogTab board={board}/>:<ActivityUpdateTab board={board}/>}
-
+                    {toggleNav?<ActivityLogTab board={board}/>:<ActivityUpdateTab board={board}/>}
             </div>
         );
     }

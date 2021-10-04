@@ -1,14 +1,15 @@
 import { Component } from 'react';
-
+import { BoardUpdatesList } from '../board/BoardUpdatesList';
+import { ItemUpdatesList } from '../item/ItemUpdatesList';
 export class ActivityUpdateTab extends Component{
-
     render(){
-        const { item, board } = this.props
+        const { item, board, onPost} = this.props
         if (!board && !item) return <div>loading</div>
-        const updates = item ? item.updates : board.updates;
-        if(!updates?.length) return <div>no updates yet</div>
         return (
-            <div>activity Update tab</div>
+            <div>
+                {item && <ItemUpdatesList item={item} onPost={onPost}/>}
+                {board && <BoardUpdatesList board={board}/>}
+            </div>
             )
         }
 }

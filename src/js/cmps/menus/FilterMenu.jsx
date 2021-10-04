@@ -38,7 +38,7 @@ class _FilterMenu extends Component {
   };
 
   render() {
-    const { board } = this.props;
+    const { board, groups } = this.props;
     const { filterByGroupId, filterByStatus } = this.state;
     return (
       <div className="menu-modal filter-menu">
@@ -50,7 +50,8 @@ class _FilterMenu extends Component {
         </div>
         <div className="filter-options flex">
           <GroupFilter
-            groups={board.groups}
+            board={board}
+            groups={groups}
             onFilter={this.onFilter}
             filterByGroupId={filterByGroupId}
           />
