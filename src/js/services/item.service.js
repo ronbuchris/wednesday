@@ -108,7 +108,7 @@ export function createItem(title, user, board) {
         updates: [],
         createdAt: Date.now(),
         activities: [],
-        isSelected:false,
+        isSelected: false,
     }
 }
 
@@ -121,7 +121,7 @@ function _addCmpsOrder(cmpsOrder) {
     const status = {
         type: "status",
         label: {
-            id: 'label1',
+            id: makeId(),
             title: "",
             color: "#c4c4c4"
         }

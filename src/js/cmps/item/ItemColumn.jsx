@@ -1,11 +1,11 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
+import { FaPlus } from 'react-icons/fa';
 import { StatusMenu } from '../menus/StatusMenu';
 import { DatePicker } from '../menus/DatePicker';
-import {AddMember} from '../menus/AddMember';
+import { AddMember } from '../menus/AddMember';
 import user from '../../../assets/img/user.svg';
-import AddSmall from 'monday-ui-react-core/dist/icons/AddSmall';
-
+import Add from 'monday-ui-react-core/dist/icons/Add';
 
 export function ItemColumn({
   toggleMenus,
@@ -17,9 +17,6 @@ export function ItemColumn({
   item,
   workspace,
 }) {
-
-  const [isHover,setIsHover] =useState(false)
-  // const [isAddMember,addMember] =useState(false)
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
@@ -61,36 +58,42 @@ export function ItemColumn({
       case 'member':
         return (
           <div
-          onClick={(ev) =>{
-            ev.preventDefault();
-              toggleMenu(toggleMenus, 'isMemberModal', true)
-          }}
-          onMouseEnter={setIsHover.bind(this,true)}
-          onMouseLeave={setIsHover.bind(this,false)}
+            onClick={(ev) => {
+              ev.preventDefault();
+              toggleMenu(toggleMenus, 'isMemberModal', true);
+            }}
             className="item-column member-col flex cell-cmp btn"
             style={{
               minWidth: board.columns[findIdx('member')].width,
             }}
           >
-            <div className='add-small'>
-            {isHover && <AddSmall/>}
+            <div className="add-member justify-center align-center">
+              <FaPlus className="plus" />
             </div>
-            {!column.members.length && <img className="profile-icon" src={user} /> }
-            {column.members && column.members.map((member) => {
-              return (
-                <img
-                  key={member._id}
-                  src={member.img}
-                  className="profile-icon"
-                  alt="member-img"
-                />
-              );
-            })}
-           <div className="add-member-modal">
+            {!column.members.length && (
+              <img className="profile-icon" src={user} />
+            )}
+            {column.members &&
+              column.members.map((member) => {
+                return (
+                  <img
+                    key={member._id}
+                    src={member.img}
+                    className="profile-icon"
+                    alt="member-img"
+                  />
+                );
+              })}
+            <div className="add-member-modal">
               {toggleMenus.isMemberModal && (
-                <AddMember toggleMenus={toggleMenus} toggleMenu={toggleMenu} group={group} item={item}/>
+                <AddMember
+                  toggleMenus={toggleMenus}
+                  toggleMenu={toggleMenu}
+                  group={group}
+                  item={item}
+                />
               )}
-             </div>
+            </div>
           </div>
         );
       case 'date':

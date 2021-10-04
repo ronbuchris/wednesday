@@ -7,7 +7,7 @@ export const labelService = {
 }
 
 const gColors = ["#ff5ac4", "#ff158a", "#bb3354", "#7f5347",
-    "#ff642e", "#fdab3d", "#ffcb00", "#cab641", "#9cd326",
+    "#ff642e", "#ffcb00", "#cab641", "#9cd326",
     "#037f4c", "#0086c0", "#579bfc", "#66ccff", "#a25ddc",
     "#784bd1", "#808080", "#333333", "#ff7575", "#faa1f1",
     "#ffadad", "#7e3b8a", "#9aadbd", "#68a1bd", "#225091",
@@ -20,10 +20,23 @@ export function queryColors() {
     return gColors
 }
 
-function save(workspace, board, columnIdx, label = null, labelIdx) {
+function save(workspace, board, columnIdx, label = null, labelIdx, prevColor) {
     if (label?.id) {
-        // const labelIdx = board.columns[columnIdx].labels.findIndex(currLabel => currLabel.id === label.id)
-        board.columns[columnIdx].labels.splice(labelIdx, 1, label)
+        // if (prevColor) {
+        //     gColors.push(prevColor);
+        // }
+        // prevColor && gColors.push(prevColor);
+        const prevColorIdx = gColors.findIndex(color => color === label.color);
+        console.log(`prevColorIdx`, prevColorIdx)
+        // board.columns[columnIdx].labels.splice(labelIdx, 1, label)
+        gColors.splice(prevColorIdx, 1, prevColor)
+        board.groups.forEach(group => {
+            return group.items.forEach(item => {
+                const currLabel = item.columns[columnIdx].label
+                if (currLabel.id === label.id) currLabel.color = label.color
+            })
+        })
+        // board.columns[columnIdx].labels[labelIdx].color = label.color
     } else {
         const newLabel = createLabel(label)
         board.columns[columnIdx].labels.push(newLabel)
