@@ -38,6 +38,7 @@ class _ItemDetails extends Component {
   };
 
   onPost = (update) => {
+    console.log(update);
     const { user, workspace, onPost, item, groups } = this.props;
     console.log(groups);
     onPost(update, user, item, groups, workspace);
@@ -84,11 +85,8 @@ class _ItemDetails extends Component {
               }}
               >Activity Log</div>
           </div>
-
-          {/* <PostUpdate onPost={this.onPost} />
-          <ItemUpdates updates={item.updates} /> */}
         </div>
-        {toggleNav ? <ActivityUpdateTab item={item} /> : <ActivityLogTab item={item} />}
+        {toggleNav ? <ActivityUpdateTab item={item} onPost={this.onPost}/> : <ActivityLogTab item={item} />}
       </div>
     );
   }

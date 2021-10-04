@@ -1,4 +1,4 @@
-export function GroupFilter({ groups, onFilter, filterByGroupId }) {
+export function GroupFilter({ board,groups, onFilter, filterByGroupId }) {
   const isFilter = (groupId) => {
     return filterByGroupId.includes(groupId);
   };
@@ -7,7 +7,7 @@ export function GroupFilter({ groups, onFilter, filterByGroupId }) {
     <div className="column-option">
       <div className="title">Group</div>
       <div className="options-container flex column">
-        {groups.map((group) => {
+        {board.groups.map((group) => {
           return (
             <div
               key={group.id}
