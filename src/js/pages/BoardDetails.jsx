@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
+import { eventBusService } from '../services/event-bus.service';
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
@@ -83,6 +84,7 @@ export class _BoardDetails extends React.Component {
     } else if (match.params.boardId === boardId) {
       this.props.history.push(`/board/${workspace.boards[0]._id}`);
     }
+    eventBusService.emit('user-msg', { txt: 'Board has removed', type: '' });
   };
 
   onEditBoard = (board) => {

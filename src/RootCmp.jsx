@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router';
 
 import { MainHeader } from './js/cmps/MainHeader';
 import { SidebarHeader } from './js/cmps/SidebarHeader';
+import { UserMsg } from './js/cmps/user-msg';
 
 import routesHomePage from './routesHomePage';
 import routesMainApp from './routesMainApp';
@@ -28,6 +29,7 @@ class _RootCmp extends React.Component {
             ))}
           </Switch>
         </main>
+        <UserMsg />
       </div>
     );
   }

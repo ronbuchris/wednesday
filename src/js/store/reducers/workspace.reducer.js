@@ -18,7 +18,8 @@ const initialState = {
         userDetailsModal: false,
         activityLogModal: false,
         isMemberModal: false
-    }
+    },
+    lastEditedWorkspace: null
 }
 
 export function workspaceReducer(state = initialState, action) {
@@ -35,6 +36,7 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, workspaces: [...state.workspaces, action.workspace] }
             break
         case 'EDIT_WORKSPACE':
+            const lastEditedWorkspace = action.workspace;
             workspaces = state.workspaces.map(workspace => (workspace._id === action.workspace._id) ? action.workspace : workspace)
             newState = { ...state, workspaces, workspace: action.workspace }
             break
@@ -42,6 +44,11 @@ export function workspaceReducer(state = initialState, action) {
             const lastRemovedWorkspace = state.workspaces.find(workspace => workspace._id === action.workspaceId)
             workspaces = state.workspaces.filter(workspace => workspace._id !== action.workspaceId)
             newState = { ...state, workspaces, lastRemovedWorkspace }
+            break
+        case 'UNDO_EDIT_WORKSPACE':
+            if (state.lastEditedWorkspace) {
+                newState = { ...state, workspace: { ...lastEditedWorkspace }, lastEditedWorkspace: null }
+            }
             break
         case 'TOGGLE_NAV':
             newState = { ...state, isOpenNav: !state.isOpenNav }
