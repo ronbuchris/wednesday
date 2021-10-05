@@ -48,7 +48,7 @@ class _BoardContent extends Component {
                       draggableId={group.id}
                       index={index}
                     >
-                      {(provided) => (
+                      {(provided,snapshot) => (
                         <div
                           {...provided.draggableProps}
                           ref={provided.innerRef}
@@ -59,6 +59,7 @@ class _BoardContent extends Component {
                             onEditItem={onEditItem}
                             onAddItem={onAddItem}
                             provided={provided}
+                            snapshot={snapshot}
                             groupIndex={index}
                             onBlur={onBlur}
                             key={group.id}

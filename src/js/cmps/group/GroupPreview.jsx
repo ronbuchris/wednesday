@@ -75,7 +75,7 @@ class _GroupPreview extends React.Component {
           group={group}
         />
         <Droppable type="item" droppableId={group.id}>
-          {(provided) => (
+          {(provided,snapshot) => (
             <div
               className="item-list flex column"
               {...provided.droppableProps}
@@ -100,6 +100,7 @@ class _GroupPreview extends React.Component {
                             onEditItem={onEditItem}
                             onAddItem={onAddItem}
                             provided={provided}
+                            snapshot={snapshot}
                             onBlur={onBlur}
                             group={group}
                             board={board}
