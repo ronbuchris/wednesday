@@ -41,7 +41,7 @@ class _FilterMenu extends Component {
     const { board, groups } = this.props;
     const { filterByGroupId, filterByStatus } = this.state;
     return (
-      <div className="menu-modal filter-menu">
+      <div className="menu-modal filter-menu fs14">
         <div className="filter-menu-header flex align-center space-between">
           Quick filters
           <div className="clear-filter br4" onClick={this.clearFilter}>

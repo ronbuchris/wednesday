@@ -18,6 +18,7 @@ class _Dashboard extends React.Component {
   render() {
     const { statuses } = this.props;
     const { chartType } = this.state;
+    if (!statuses.length) return <div>loading</div>;
     const statusToShow = Object.keys(statuses[0]);
     const numbers = Object.values(statuses[0]);
     const colors = Object.values(statuses[1]);

@@ -1,11 +1,13 @@
-// import { setState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
 import { onSortItemTitle } from '../../store/actions/item.actions';
 
 function _SortMenu({ onSortItemTitle, board }) {
-  // const [sortBy, setSortBy] = setState('Text');
-  // const [sortOrder, setSortOrder] = setState('ascending');
+  const [dropdownBy, setDropdownBy] = useState(false);
+  const [dropdownOrder, setDropdownOrder] = useState(false);
+  const [sortBy, setSortBy] = useState('Text');
+  const [sortOrder, setSortOrder] = useState('Ascending');
 
   // const onSort = (sortType) => {
   //   onSortItemTitle(board, sortType);
@@ -13,22 +15,68 @@ function _SortMenu({ onSortItemTitle, board }) {
 
   const resetSort = () => {};
 
+  const onSort = () => {
+    onSortItemTitle(sortBy, sortOrder);
+  };
+
+  const sortByArray = ['Text', 'Status'];
+
   return (
     <div className="menu-modal sort-menu ">
       <div className="menu-header flex align-center space-between">
         Sort by
-        <div className="clear-filter btn br4" onClick={resetSort}>
-          Reset sort
+        <div className="right flex">
+          <div className="clear-filter btn br4" onClick={resetSort}>
+            Reset sort
+          </div>
+          <div className="sort-btn br4 " onClick={onSort}>
+            Sort
+          </div>
         </div>
       </div>
       <div className="sort-content flex">
-        <div className="sort-by br4 btn flex align-center space-between">
-          <div className="sort-by-text">Text</div>
+        <div
+          className="sort-by br4 btn flex align-center space-between"
+          onClick={() => setDropdownBy(!dropdownBy)}
+        >
+          <div className="sort-by-text">{sortBy}</div>
           <IoIosArrowDown />
+          {dropdownBy && (
+            <div className="dropdown-sort br4">
+              {sortByArray.map((value) => (
+                <div
+                  className="sort-by-title br4"
+                  onClick={() => setSortBy(value)}
+                >
+                  {value}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-        <div className="sort-order btn br4 flex align-center space-between">
-          Ascending
+
+        <div
+          className="sort-order btn br4 flex align-center space-between"
+          onClick={() => setDropdownOrder(!dropdownOrder)}
+        >
+          {sortOrder}
           <IoIosArrowDown />
+          {dropdownOrder && (
+            <div className="dropdown-sort br4">
+              <div
+                className="sort-by-title br4"
+                onClick={() => setSortOrder('Ascending')}
+              >
+                Ascending
+              </div>
+              <div
+                className="sort-by-title br4"
+                onClick={() => setSortOrder('Descending')}
+              >
+                Descending
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {/* <h1

@@ -9,7 +9,6 @@
   .menu-section {
     padding: 8px;
     > * {
-      font-size: 14px;
       padding: 4px 8px;
     }
   }
@@ -116,7 +115,6 @@
 .filter-menu {
   padding: 16px 24px 24px;
   max-width: 600px;
-  font-size: 14px;
   top: 120%;
   left: 0;
   .filter-menu-header {
@@ -176,6 +174,13 @@
   left: 0;
   cursor: default;
 
+  .sort-btn {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background-color: $primary-color;
+    color: #fff;
+  }
+
   .sort-content {
     padding-top: 16px;
     // height: 40px;
@@ -193,14 +198,37 @@
     .sort-by {
       margin-right: 8px;
       flex: 0 1 60%;
+      position: relative;
+    }
+    .dropdown-sort {
+      padding: 8px;
+      box-shadow: 0 4px 17px 6px #0000001a;
+      position: absolute;
+      left: 0;
+      top: 120%;
+      background-color: $clr7;
+      width: 100%;
 
-      .sort-by-text {
-        padding-left: 16px;
+      .sort-by-title {
+        padding: 4px;
+
+        &:hover {
+          background-color: $ui-grey-color;
+        }
       }
     }
 
     .sort-order {
+      position: relative;
+    }
+
+    .sort-by-text {
+      padding-left: 16px;
+    }
+
+    .sort-order {
       flex: 1;
+      position: relative;
     }
   }
 }
@@ -234,7 +262,6 @@
       height: 22px;
       background-color: $clr5;
       border-radius: 24px;
-      font-size: rem(12px);
 
       .user-wrapper {
         img {
@@ -248,7 +275,7 @@
         background-color: inherit;
         height: 16px;
         width: 16px;
-        font-size: 8px;
+        font-size: rem(8px);
         border-radius: 100%;
         cursor: pointer;
         margin-left: 4px;
@@ -269,7 +296,6 @@
     // height: 34px;
     white-space: nowrap;
     // overflow: hidden;
-    font-size: 13px;
     position: relative;
 
     .wrapper {
@@ -278,6 +304,7 @@
 
     .add-member-box {
       line-height: 34px;
+      font-size: rem(13px);
       &:hover {
         color: #fff;
         background-color: $primary-color;
@@ -297,6 +324,7 @@
     color: $primary-color;
     height: 50px;
     padding: 8px;
+    font-size: rem(13px);
     // line-height: 34px;
     &:hover {
       color: #fff;
@@ -359,7 +387,7 @@
 
       .label {
         color: $clr7;
-        font-size: 13px;
+        font-size: rem(13px);
         width: 112px;
         height: 32px;
       }
@@ -397,6 +425,10 @@
           flex: 0 0 104px;
           transition: background-color 0.1s;
 
+          &.focus {
+            outline: 1px solid $primary-color;
+          }
+
           .color-box {
             flex: 0 0 16px;
             height: 100%;
@@ -420,7 +452,7 @@
             transition: background-color 0.1s;
             background-color: $clr6;
             outline: none;
-            font-size: 12px;
+            font-size: rem(12px);
             cursor: text;
           }
         }

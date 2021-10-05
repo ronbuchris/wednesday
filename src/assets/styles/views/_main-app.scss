@@ -1,5 +1,4 @@
 .app-container {
-  width: 100vw;
   height: 100vh;
 
   .sidebar-container {
@@ -48,7 +47,7 @@
 
   .board-details {
     flex: 1;
-    overflow: auto;
+    overflow-y: auto;
   }
 }
 

@@ -3,7 +3,6 @@
   width: 254px;
   border-inline-end: 1px solid $ui-grey-color;
   transition: width 0.3s;
-  // z-index: 3;
 
   .dropdown-header {
     height: 30px;
@@ -11,12 +10,6 @@
 
   &.close {
     width: 30px;
-  }
-
-  &.hovered {
-    position: absolute;
-    height: 100vh;
-    box-shadow: 0px 20px 6px $clr6;
   }
 
   select {
@@ -55,21 +48,27 @@
   .workspace-dropdown-button {
     position: relative;
     height: 40px;
+    width: 100%;
     border: 1px solid $clr1;
     padding: 6px;
     margin-bottom: 18px;
 
-    h2 {
-      font-size: 16px;
-      font-family: roboto-bold;
+    .workspace-title {
+      width: 100%;
+      h2 {
+        font-size: 16px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family: roboto-bold;
+      }
     }
   }
 
   .menu-button-wrapper {
-    font-size: 14px;
+    font-size: rem(14px);
     height: 32px;
     gap: 5px;
-    padding: 0 4px;
+    padding: 0 8px;
 
     &.search {
       margin-bottom: 14px;
@@ -77,6 +76,10 @@
 
     .board-title {
       gap: 5px;
+
+      svg {
+        color: $clr3;
+      }
     }
 
     .hover-display {

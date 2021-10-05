@@ -12,28 +12,36 @@ export function GroupMenu({
   toggleMenus,
   toggleMenu,
   onEditGroup,
-  board
+  board,
 }) {
   return (
     <div className="group-menu menu-modal br8">
-      <div className="menu-section">
+      <div className="menu-section fs14">
         <div className="btn header-btn">Collapse this group</div>
         <div className="btn header-btn">Collapse all Groups</div>
         <div className="btn header-btn">Select all items</div>
       </div>
       <div className="divider"></div>
-      <div className="menu-section">
-        <div className="btn header-btn" onClick={(ev)=> {
-          ev.stopPropagation();
-          toggleMenu(toggleMenus)
-          onEditGroup('New Group', group.id,board)
-        }}>Add group</div>
-        <div className="btn flex align-center header-btn" onClick={(ev)=> {
-          ev.stopPropagation();
-          toggleMenu(toggleMenus)
-          onEditGroup(group, group.id, board, 'Duplicate')
-        }}>
-          <Duplicate/>
+      <div className="menu-section fs14">
+        <div
+          className="btn header-btn"
+          onClick={(ev) => {
+            ev.stopPropagation();
+            toggleMenu(toggleMenus);
+            onEditGroup('New Group', group.id, board);
+          }}
+        >
+          Add group
+        </div>
+        <div
+          className="btn flex align-center header-btn"
+          onClick={(ev) => {
+            ev.stopPropagation();
+            toggleMenu(toggleMenus);
+            onEditGroup(group, group.id, board, 'Duplicate');
+          }}
+        >
+          <Duplicate />
           Duplicate this group
         </div>
         <div className="btn flex space-between align-center header-btn">
@@ -41,10 +49,13 @@ export function GroupMenu({
         </div>
       </div>
       <div className="divider"></div>
-      <div className="menu-section">
+      <div className="menu-section fs14">
         <div className="btn header-btn">Rename group</div>
         <div className="color-picker">
-          <div className="btn header-btn flex align-center" onClick={colorPicker}>
+          <div
+            className="btn header-btn flex align-center"
+            onClick={colorPicker}
+          >
             <div className="change-group-color flex align-center">
               <div
                 className="group-color"
@@ -66,7 +77,7 @@ export function GroupMenu({
         </div>
       </div>
       <div className="divider"></div>
-      <div className="menu-section">
+      <div className="menu-section fs14">
         <div
           className="btn flex align-center header-btn"
           onClick={(ev) => {

@@ -122,7 +122,7 @@ export function _StatusMenu({
                             <FiDroplet className="drop-hover" />
                           </div>
                           <div
-                            className="label-input"
+                            className="label-input text-cmp"
                             contentEditable="true"
                             suppressContentEditableWarning={true}
                             onBlur={(ev) =>

@@ -8,14 +8,19 @@ import Close from 'monday-ui-react-core/dist/icons/Close';
 class _AddBoard extends React.Component {
   state = {
     title: '',
+    isFocus: false,
   };
+
+  componentDidMount() {
+    this.searchInput.focus();
+  }
 
   handleChange = (ev) => {
     ev.preventDefault();
     const field = ev.target.name;
     if (!field) return;
     const value = ev.target.value;
-    this.setState({ title: value });
+    this.setState({ ...this.state, title: value });
   };
 
   onAddBoard = async () => {
@@ -26,7 +31,7 @@ class _AddBoard extends React.Component {
   };
 
   render() {
-    const { title } = this.state;
+    const { title, isFocus } = this.state;
     const { toggleMenus, toggleMenu } = this.props;
     return (
       <div className="add-modal flex column space-evenly br8">
@@ -43,7 +48,7 @@ class _AddBoard extends React.Component {
         <div className="create-title">Create Board</div>
         <div>
           <div>Board name</div>
-          <div className="title-input-container">
+          <div className={`title-input-container ${isFocus ? 'focused' : ''}`}>
             <form
               className="title-input"
               onSubmit={(ev) => {
@@ -53,12 +58,15 @@ class _AddBoard extends React.Component {
               }}
             >
               <input
+                ref={(inputEl) => (this.searchInput = inputEl)}
                 name="title"
                 id="title"
                 type="text"
                 placeholder="New Board"
                 value={title}
                 onChange={this.handleChange}
+                onBlur={() => this.setState({ ...this.state, isFocus: false })}
+                onFocus={() => this.setState({ ...this.state, isFocus: true })}
               />
             </form>
           </div>

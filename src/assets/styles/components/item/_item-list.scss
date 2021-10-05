@@ -17,6 +17,7 @@
     margin-bottom: 1px;
     height: 36px;
     position: relative;
+    font-size: rem(13px);
 
     .item-menu-arrow {
       display: none;
@@ -29,7 +30,7 @@
         width: 18px;
         height: 18px;
         background-color: $ui-grey-color;
-        font-size: 15px;
+        font-size: rem(15px);
       }
     }
 
@@ -73,7 +74,6 @@
         display: none;
         color: $clr3;
         background: transparent;
-        font-size: 13px;
         height: 24px;
         flex: initial;
         margin-left: 8px;

@@ -68,7 +68,9 @@ function _ItemPreview({
           >
             {item.title}
           </div>
-          <div className="edit-title-btn br4">Edit</div>
+          <div className="edit-title-btn br4" onClick={(ev) => {}}>
+            Edit
+          </div>
         </div>
         <div
           className="add-update-btn-wrapper flex align-center"

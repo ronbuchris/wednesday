@@ -62,12 +62,7 @@ class _WorkspaceNav extends Component {
     const { isHovered } = this.state;
     return (
       <div
-        className={`workspace-nav flex column ${
-          isOpenNav && !isHovered && 'close'
-        }
-      ${isOpenNav && isHovered && 'hovered'}`}
-        onMouseEnter={this.handleHover}
-        onMouseLeave={this.handleHover}
+        className={`workspace-nav flex column ${isOpenNav && 'close hovered'}`}
       >
         <div
           className={`collapse-button-component flex align-center justify-center btn ${
@@ -106,7 +101,7 @@ class _WorkspaceNav extends Component {
               )}
             </div>
             <button
-              className="flex menu-button-wrapper align-center"
+              className="flex menu-button-wrapper text-cmp align-center"
               onClick={() => {
                 toggleMenu(toggleMenus, 'isBoardModal', true);
               }}

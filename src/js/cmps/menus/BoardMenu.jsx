@@ -2,8 +2,8 @@ import Delete from 'monday-ui-react-core/dist/icons/Delete';
 
 export function BoardMenu({ board, onRemoveBoard, toggleMenus, toggleMenu }) {
   return (
-    <div className="board-menu menu-modal br8">
-      <div className="menu-section">
+    <div className="board-menu menu-modal">
+      <div className="menu-section fs14">
         <div
           className="btn flex align-center header-btn"
           onClick={(ev) => {

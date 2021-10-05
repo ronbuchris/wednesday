@@ -8,6 +8,10 @@ class _AddWorkspace extends React.Component {
     title: '',
   };
 
+  componentDidMount() {
+    this.searchInput.focus();
+  }
+
   handleChange = (ev) => {
     ev.preventDefault();
     const field = ev.target.name;
@@ -50,6 +54,7 @@ class _AddWorkspace extends React.Component {
               }}
             >
               <input
+                ref={(inputEl) => (this.searchInput = inputEl)}
                 name="title"
                 id="title"
                 type="text"
