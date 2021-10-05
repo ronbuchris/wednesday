@@ -11,7 +11,6 @@ export function groupReducer(state = initialState, action) {
             newState = { ...state, group: action.group }
             break
         case 'SET_GROUPS':
-            console.log('action',action.groups);
             newState = { ...state, groups: action.groups }
             break
         case 'ADD_GROUP':

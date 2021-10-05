@@ -36,9 +36,7 @@ class _ItemDetails extends Component {
   };
 
   onPost = (update) => {
-    console.log(update);
     const { user, workspace, onPost, item, groups } = this.props;
-    console.log(groups);
     onPost(update, user, item, groups, workspace);
   };
   onToggle = (bool) => {

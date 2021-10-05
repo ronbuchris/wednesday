@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
-
+// import { socketService } from '../services/socket.service';
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
@@ -37,6 +37,7 @@ export class _BoardDetails extends React.Component {
   async componentDidMount() {
     const {getLoggedinUser,loadWorkspaces,loadWorkspaceByBoardId} = this.props;
     const boardId = this.props.match.params.boardId;
+
     if(!this.props.workspaces?.length){
       await getLoggedinUser()
       await loadWorkspaces(this.props.user)
@@ -44,6 +45,11 @@ export class _BoardDetails extends React.Component {
     await loadWorkspaceByBoardId(boardId,this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     // document.title = `${this.props.board.title}`;
+    // socketService.setup()
+    // socketService.emit('connect board', this.props.board._id)
+    // socketService.on('board updated', workspace => {
+    //         this.props.editWorkspace(workspace)
+    // })
   }
 
   async componentDidUpdate(prevProps, prevState) {

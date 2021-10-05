@@ -53,7 +53,6 @@ class _Login extends React.Component {
     }
     const user = userService.getLoggedinUser();
     const workspaces = await this.props.loadWorkspaces(user);
-    console.log(`workspaces`, workspaces)
     this.props.loadUsers();
 
     //Open first board of first workspace

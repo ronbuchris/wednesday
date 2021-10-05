@@ -44,36 +44,36 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    // const users = await storageService.query(STORAGE_KEY)
+    const users = await storageService.query(STORAGE_KEY)
     // if (guest) {
     //     var user = users.find(user => user._id === 'guest')
     // }else {
-    //     var user = users.find(user => user.username === userCred.username)
+        var user = users.find(user => user.username === userCred.username)
     // }
-    // if (user) return _saveLocalUser(user)
-    if (userCred === 'guest') {
-        userCred = { username: userCred, password: userCred }
-    }
-    const user = await httpService.post('auth/login', userCred)
-    return _saveLocalUser(user)
+    if (user) return _saveLocalUser(user)
+    // if (userCred === 'guest') {
+    //     userCred = { username: userCred, password: userCred }
+    // }
+    // const user = await httpService.post('auth/login', userCred)
+    // return _saveLocalUser(user)
     // socketService.emit('set-user-socket', user._id);
 }
 
 
 async function signup(userCred) {
-    // const user = await storageService.post(STORAGE_KEY, userCred)
-    const user = await httpService.post('auth/signup', userCred)
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    const user = await storageService.post(STORAGE_KEY, userCred)
+    // const user = await httpService.post('auth/signup', userCred)
+    // sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     // socketService.emit('set-user-socket', user._id);
     return user;
 }
 
 
 async function logout() {
-    // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.emit('unset-user-socket');
-     await httpService.post('auth/logout')
-     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    //  await httpService.post('auth/logout')
+    //  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
 }
 
 function _saveLocalUser(user) {

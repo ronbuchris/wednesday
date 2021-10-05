@@ -75,7 +75,6 @@ function _ItemPreview({
         <div
           className="add-update-btn-wrapper flex align-center"
           onClick={() =>
-            // console.log(`this.props.history`, history)
             history.push(location.pathname + `/item/${item.id}`)
           }
         >

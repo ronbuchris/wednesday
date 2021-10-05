@@ -75,7 +75,6 @@ function sortGroups(board, ActionBy) {
             })
         }
     })
-    console.log(groups);
     return groups
 }
 function filterGroups(board, ActionBy) {
