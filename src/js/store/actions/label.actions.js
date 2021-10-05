@@ -5,7 +5,6 @@ export function saveLabel(workspace, board, columnIdx, label, labelIdx, prevColo
     return async dispatch => {
         try {
             const newWorkspace = labelService.save(workspace, board, columnIdx, label, labelIdx, prevColor, type);
-            console.log(`newWorkspace`, newWorkspace)
             await workspaceService.save(newWorkspace);
             dispatch({
                 type: 'EDIT_WORKSPACE',

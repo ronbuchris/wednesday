@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
-import { onSortItemTitle } from '../../store/actions/item.actions';
+import { onSort} from '../../store/actions/item.actions';
 
-function _SortMenu({ onSortItemTitle, board }) {
+function _SortMenu({ onSort, board }) {
   const [dropdownBy, setDropdownBy] = useState(false);
   const [dropdownOrder, setDropdownOrder] = useState(false);
   const [sortBy, setSortBy] = useState('Text');
@@ -15,11 +15,11 @@ function _SortMenu({ onSortItemTitle, board }) {
 
   const resetSort = () => {};
 
-  const onSort = () => {
-    onSortItemTitle(sortBy, sortOrder);
+  const onSetSort = () => {
+    onSort(board,{sortBy, sortOrder});
   };
 
-  const sortByArray = ['Text', 'Status'];
+  const sortByArray = ['Text', 'Status','Date'];
 
   return (
     <div className="menu-modal sort-menu ">
@@ -29,7 +29,7 @@ function _SortMenu({ onSortItemTitle, board }) {
           <div className="clear-filter btn br4" onClick={resetSort}>
             Reset sort
           </div>
-          <div className="sort-btn br4 " onClick={onSort}>
+          <div className="sort-btn br4 " onClick={onSetSort}>
             Sort
           </div>
         </div>
@@ -45,6 +45,7 @@ function _SortMenu({ onSortItemTitle, board }) {
             <div className="dropdown-sort br4">
               {sortByArray.map((value) => (
                 <div
+                  key={value}
                   className="sort-by-title br4"
                   onClick={() => setSortBy(value)}
                 >
@@ -79,26 +80,12 @@ function _SortMenu({ onSortItemTitle, board }) {
           )}
         </div>
       </div>
-      {/* <h1
-        onClick={() => {
-          onSort('A-Z');
-        }}
-      >
-        Sort A-Z
-      </h1>
-      <h1
-        onClick={() => {
-          onSort('Z-A');
-        }}
-      >
-        Sort Z-A
-      </h1> */}
     </div>
   );
 }
 
 const mapDispatchToProps = {
-  onSortItemTitle,
+  onSort,
 };
 
 export const SortMenu = connect(null, mapDispatchToProps)(_SortMenu);

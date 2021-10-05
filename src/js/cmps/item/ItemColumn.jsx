@@ -19,7 +19,26 @@ export function ItemColumn({
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
   };
-
+  const printDate = (timestamp) => {
+    const date = new Date(timestamp)
+    const month = date.getMonth();
+    const day = date.getDate();
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'June',
+      'July',
+      'Aug',
+      'Sept',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return `${months[month]} ${day < 10 ? '0' + day : day}`;
+  }
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':
@@ -118,7 +137,7 @@ export function ItemColumn({
                   minWidth: board.columns[findIdx('date')].width - 10,
                 }}
               >
-                {column.date.substr(4)}
+                {column.date && printDate(column.date)}
               </div>
             </div>
             {toggleMenus.dateMenu === item.id && (

@@ -17,9 +17,6 @@ function query(board, ActionBy ={}) {
         } else {
             groups = board.groups
         }
-        if (ActionBy?.sortType) {
-            groups = sortGroups(board, ActionBy)
-        }
         if (ActionBy.groupsIds || ActionBy.statuses ) {
             groups = filterGroups(board, ActionBy)
             if (ActionBy?.statuses?.length) {
@@ -28,16 +25,21 @@ function query(board, ActionBy ={}) {
                 groups = filterStatus(ActionBy, groupsToFilter, statusIdx)
         }
         }
-    }
-    groups = groups.filter((group, idx) => {
-        if (group.items?.length) {
-            return group
-        } else {
-            groups.splice(idx, 1)
+        if (ActionBy?.sortType) {
+            groups = sortGroups(board, ActionBy)
         }
-    })
-    const { searchBy, statuses, groupsIds } = ActionBy
-    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length) ? groups : board.groups
+    }
+    if (!ActionBy.sortType ) {
+        groups = groups.filter((group, idx) => {
+            if (group.items?.length) {
+                return group
+            } else {
+                groups.splice(idx, 1)
+            }
+        })
+    }
+    const { searchBy, statuses, groupsIds,sortType } = ActionBy
+    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortType ) ? groups : board.groups
     return groupsToReturn
 }
 
@@ -55,18 +57,33 @@ function searchItem(board, ActionBy){
     return groups
 }
 function sortGroups(board, ActionBy) {
+    const {sortBy,sortOrder} = ActionBy.sortType
     var groups = []
+    const statusIdx = board.columns.findIndex(column => column.type === 'status')
+    const dateIdx = board.columns.findIndex(column => column.type === 'date')
     groups = board.groups.map(group => {
         return {
             ...group, items: group.items.sort((a, b) => {
-                if (ActionBy.sortType === 'A-Z') {
-                    return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                } else if (ActionBy.sortType === 'Z-A') {
-                    if (a.title.toLowerCase() > b.title.toLowerCase())
-                        return -1;
-                    if (a.title.toLowerCase() < b.title.toLowerCase())
-                        return 1;
-                    return 0;
+                if (sortBy === 'Text') {
+                    if (sortOrder === 'Ascending') {
+                        return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                    } else {
+                        return b.title.toLowerCase().localeCompare(a.title.toLowerCase())
+                    }
+                }
+                if (sortBy === 'Status') {
+                    if (sortOrder === 'Ascending') {
+                        return a.columns[statusIdx].label.title.localeCompare(b.columns[statusIdx].label.title)
+                    } else {
+                        return b.columns[statusIdx].label.title.localeCompare(a.columns[statusIdx].label.title)
+                    }
+                }
+                if (sortBy === 'Date') {
+                    if (sortOrder === 'Ascending') {
+                        return a.columns[dateIdx].date - b.columns[dateIdx].date
+                    } else {
+                        return b.columns[dateIdx].date - a.columns[dateIdx].date
+                    }
                 }
             })
         }

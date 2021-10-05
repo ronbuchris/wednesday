@@ -6,31 +6,14 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 export class DatePicker extends React.Component {
   handleSelect = (date) => {
-    const { item, group, onEditItem } = this.props;
-    const month = date.getMonth();
-    const day = date.getDate();
-    const year = date.getFullYear();
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'June',
-      'July',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    const printDate = `${year} ${months[month]} ${day < 10 ? '0' + day : day}`;
+    const { item, group, onEditItem } = this.props; 
     const columnIdx = item.columns.findIndex(
       (currColumn) => currColumn.type === 'date'
     );
-    item.columns[columnIdx].date = printDate;
+    item.columns[columnIdx].date = date.getTime();
     const newItem = { ...item };
     onEditItem(newItem, group);
+    this.props.toggleMenu(this.props.toggleMenus)
   };
 
   render() {
