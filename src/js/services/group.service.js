@@ -26,7 +26,12 @@ function query(board, ActionBy = {}) {
             }
         }
         if (ActionBy?.sortStore) {
-            groups = sortGroups(board, ActionBy)
+            console.log(ActionBy.sortStore);
+            if (ActionBy.sortStore.sortBy === 'Select sort by') {
+                return board.groups
+            } else {
+                groups = sortGroups(board, ActionBy)
+            }
         }
     }
     if (!ActionBy.sortStore) {
@@ -42,7 +47,6 @@ function query(board, ActionBy = {}) {
     const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortStore) ? groups : board.groups
     return groupsToReturn
 }
-
 
 // Filter/Sort/Search
 function searchItem(board, ActionBy) {

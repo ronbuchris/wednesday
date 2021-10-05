@@ -5,7 +5,6 @@ const initialState = {
 
 export function groupReducer(state = initialState, action) {
     var newState = state
-    var groups
     switch (action.type) {
         case 'SET_GROUP':
             newState = { ...state, group: action.group }
