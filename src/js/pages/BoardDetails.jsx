@@ -138,6 +138,7 @@ export class _BoardDetails extends React.Component {
     }
     return false;
   };
+  
 
   render() {
     const { isViewChange, toggleMenus, changeView, workspace, groups, board } =

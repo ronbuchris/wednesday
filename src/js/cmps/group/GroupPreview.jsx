@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
+import { saveUndoWorkspace } from '../../store/actions/workspace.actions';
 import { GroupHeader } from './GroupHeader';
 import { GroupFooter } from './GroupFooter';
 import { removeItem } from '../../store/actions/item.actions';
@@ -41,7 +42,9 @@ class _GroupPreview extends React.Component {
   };
 
   onRemoveItem = (itemId) => {
-    const { workspace, group, removeItem } = this.props;
+    const { workspace, group, removeItem, saveUndoWorkspace } = this.props;
+    const undoWorkspace = JSON.parse(JSON.stringify(workspace))
+    saveUndoWorkspace(undoWorkspace)
     removeItem(workspace, group, itemId);
     eventBusService.emit('user-msg', { txt: 'Item has removed', type: '' });
   };
@@ -164,6 +167,7 @@ const mapDispatchToProps = {
   setGroup,
   removeGroup,
   removeItem,
+  saveUndoWorkspace
 };
 
 export const GroupPreview = connect(

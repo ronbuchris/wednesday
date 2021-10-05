@@ -16,6 +16,38 @@ export function loadWorkspaces(user) {
     }
 }
 
+export function undo(lastEditedWorkspace) {
+    return async dispatch => {
+        try {
+            const savedWorkspace = await workspaceService.save(lastEditedWorkspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: savedWorkspace
+            })
+            dispatch({
+                type: 'SET_WORKSPACE',
+                workspace: savedWorkspace
+            })
+        }
+        catch (err) {
+            console.log('Cannot save workspace', err)
+        }
+    }
+}
+export function saveUndoWorkspace(workspace) {
+    return async dispatch => {
+        try {
+            dispatch({
+                type: 'SET_UNDO_WORKSPACE',
+                lastEditedWorkspace: workspace
+            })
+        }
+        catch (err) {
+            console.log('Cannot save workspace', err)
+        }
+    }
+}
+
 export function loadWorkspace(workspaceId) {
     return async dispatch => {
         try {
@@ -34,7 +66,6 @@ export function loadWorkspaceByBoardId(boardId,workspaces) {
     return  dispatch => {
         try {
             const workspace =  workspaceService.getByBoardId(boardId,workspaces)
-            console.log(`workspace`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace
