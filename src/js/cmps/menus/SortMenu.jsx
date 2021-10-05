@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
-import { onSortItemTitle } from '../../store/actions/item.actions';
+import { onSort} from '../../store/actions/item.actions';
 
-function _SortMenu({ onSortItemTitle, board }) {
+function _SortMenu({ onSort, board }) {
   const [dropdownBy, setDropdownBy] = useState(false);
   const [dropdownOrder, setDropdownOrder] = useState(false);
   const [sortBy, setSortBy] = useState('Text');
@@ -15,8 +15,8 @@ function _SortMenu({ onSortItemTitle, board }) {
 
   const resetSort = () => {};
 
-  const onSort = () => {
-    onSortItemTitle(sortBy, sortOrder);
+  const onSetSort = () => {
+    onSort(board,{sortBy, sortOrder});
   };
 
   const sortByArray = ['Text', 'Status'];
@@ -29,7 +29,7 @@ function _SortMenu({ onSortItemTitle, board }) {
           <div className="clear-filter btn br4" onClick={resetSort}>
             Reset sort
           </div>
-          <div className="sort-btn br4 " onClick={onSort}>
+          <div className="sort-btn br4 " onClick={onSetSort}>
             Sort
           </div>
         </div>
@@ -98,7 +98,7 @@ function _SortMenu({ onSortItemTitle, board }) {
 }
 
 const mapDispatchToProps = {
-  onSortItemTitle,
+  onSort,
 };
 
 export const SortMenu = connect(null, mapDispatchToProps)(_SortMenu);
