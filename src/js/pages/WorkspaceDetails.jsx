@@ -11,6 +11,7 @@ import {
   removeBoard,
   changeView,
 } from '../store/actions/board.actions';
+import { Loader } from '../cmps/Loader';
 
 export class _WorkspaceDetails extends Component {
   state = {
@@ -42,7 +43,7 @@ export class _WorkspaceDetails extends Component {
 
   render() {
     const { workspace, board, changeView, removeBoard } = this.props;
-    if (!workspace) return <div className="">loading</div>;
+    if (!workspace) return <Loader/>
     return (
       <div className="workspace-app flex">
         <WorkspaceNav
