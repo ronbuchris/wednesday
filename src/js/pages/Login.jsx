@@ -43,26 +43,20 @@ class _Login extends React.Component {
     }));
   };
 
-  onLogin = async (ev) => {
+  onLogin = async (ev,guest) => {
     ev.preventDefault();
-    const { username, password } = this.state.credentials;
-    if (!username || !password) return;
-    await this.props.onLogin({ username, password }, null);
+    if(guest){
+      await this.props.onLogin(guest);
+    } else{
+      const { username, password } = this.state.credentials;
+      if (!username || !password) return;
+      await this.props.onLogin({ username, password }, null);
+    }
     const user = userService.getLoggedinUser();
     const workspaces = await this.props.loadWorkspaces(user);
     console.log(`workspaces`, workspaces)
     this.props.loadUsers();
 
-    //Open first board of first workspace
-    const boardId = workspaces[0].boards[0]._id;
-    // loadWorkspace(workspaces[0])
-    this.props.history.push(`/board/${boardId}`);
-  };
-  onLoginGuest = async (guest) => {
-    await this.props.onLogin({}, guest);
-    const user = userService.getLoggedinUser();
-    const workspaces = await this.props.loadWorkspaces(user);
-    this.props.loadUsers();
     //Open first board of first workspace
     const boardId = workspaces[0].boards[0]._id;
     // loadWorkspace(workspaces[0])
@@ -168,8 +162,7 @@ class _Login extends React.Component {
             <div
               className="sign-guest flex auto-center btn"
               onClick={(ev) => {
-                ev.preventDefault();
-                this.onLoginGuest('guest');
+                this.onLogin(ev,'guest');
               }}
             >
               <h3>Sign in as a Guest</h3>

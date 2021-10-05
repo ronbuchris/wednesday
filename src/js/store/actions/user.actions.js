@@ -1,9 +1,9 @@
 import { userService } from "../../services/user.service";
 
-export function onLogin(credentials, guest) {
+export function onLogin(credentials) {
     return async (dispatch) => {
         try {
-            const user = await userService.login(credentials, guest)
+            const user = await userService.login(credentials)
             dispatch({
                 type: 'SET_USER',
                 user

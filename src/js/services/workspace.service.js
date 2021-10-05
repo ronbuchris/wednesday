@@ -7,7 +7,7 @@ export const workspaceService = { query, getById, remove, save, getByBoardId, ad
 
 async function query(user) {
 
-   return await httpService.get(`workspace`,user._id)
+   return await httpService.get(`workspace`,user)
     
     // const workspaces = await storageService.query(STORAGE_KEY)
     // if (user._id === 'guest') return Promise.resolve(workspaces)

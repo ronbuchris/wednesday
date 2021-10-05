@@ -31,7 +31,6 @@ export function loadWorkspace(workspaceId) {
 }
 
 export function loadWorkspaceByBoardId(boardId,workspaces) {
-
     return  dispatch => {
         try {
             const workspace =  workspaceService.getByBoardId(boardId,workspaces)
