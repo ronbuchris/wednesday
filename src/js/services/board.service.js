@@ -101,7 +101,7 @@ export function createBoard(user, users, title) {
         ],
         groups: groups,
         activities: [],
-        cmpsOrder: ["status", "member", "date"]
+        cmpsOrder: ["member","status", "date"]
     }
 }
 
