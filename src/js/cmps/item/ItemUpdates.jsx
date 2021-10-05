@@ -1,18 +1,14 @@
-
-
-
-export function ItemUpdates({updates}) {
-    if (!updates) return <div>loading</div>
-    return (
-        <div>
-            {updates.map(update => {
-                return (
-                    <div key={update.id} className="update-card">
-                        <h1>{update.createBy.fullname}</h1>
-                       <p>{update.txt}</p> 
-                    </div>
-                )
-            })}
-        </div>
-    )
+export function ItemUpdates({ updates }) {
+  return (
+    <div>
+      {updates.map((update) => {
+        return (
+          <div key={update.id} className="update-card">
+            <h1>{update.createBy.fullname}</h1>
+            <p>{update.txt}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 }

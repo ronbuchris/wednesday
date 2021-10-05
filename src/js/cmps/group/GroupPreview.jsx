@@ -62,7 +62,6 @@ class _GroupPreview extends React.Component {
       group,
     } = this.props;
     const { itemTitle, isFocused } = this.state;
-    if (!group) return <div>loading</div>;
     return (
       <div key={group.id} className="group-preview">
         <GroupHeader
@@ -81,37 +80,31 @@ class _GroupPreview extends React.Component {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {group.items &&
-                group.items.map((item, index) => {
-                  return (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          className="item-preview-container"
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                        >
-                          <ItemPreview
-                            onRemoveItem={this.onRemoveItem}
-                            onEditItem={onEditItem}
-                            onAddItem={onAddItem}
-                            provided={provided}
-                            snapshot={snapshot}
-                            onBlur={onBlur}
-                            group={group}
-                            board={board}
-                            key={item.id}
-                            item={item}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  );
-                })}
+              {group?.items?.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided) => (
+                      <div
+                        className="item-preview-container"
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                      >
+                        <ItemPreview
+                          onRemoveItem={this.onRemoveItem}
+                          onEditItem={onEditItem}
+                          onAddItem={onAddItem}
+                          provided={provided}
+                          onBlur={onBlur}
+                          group={group}
+                          board={board}
+                          key={item.id}
+                          item={item}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
               {provided.placeholder}
             </div>
           )}

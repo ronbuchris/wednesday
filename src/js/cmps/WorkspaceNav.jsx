@@ -60,7 +60,6 @@ class _WorkspaceNav extends Component {
       changeView,
     } = this.props;
     const { isHovered } = this.state;
-    if (!workspaces.length || !workspace) return <div>loading</div>;
     return (
       <div
         className={`workspace-nav flex column ${

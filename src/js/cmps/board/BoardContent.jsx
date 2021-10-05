@@ -1,9 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { dragAndDrop } from '../../store/actions/board.actions';
+
 import { GroupPreview } from '../group/GroupPreview';
 import { Dashboard } from './Dashboard';
-import { dragAndDrop } from '../../store/actions/board.actions';
+import { NoResault } from '../NoResault';
 
 class _BoardContent extends Component {
   state = {
@@ -22,14 +25,14 @@ class _BoardContent extends Component {
   render() {
     const {
       board,
+      groups,
       onBlur,
       onAddItem,
-      groups,
+      onEditItem,
       onEditGroup,
       isViewChange,
-      onEditItem,
     } = this.props;
-    if (!groups.length) return <div className="">No groups to show</div>;
+    if (!groups.length) return <NoResault />;
     return (
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
         <Droppable type="group" droppableId="groups">

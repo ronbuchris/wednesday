@@ -27,6 +27,7 @@ import {
 } from '../store/actions/workspace.actions';
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
+import { Loader } from '../cmps/Loader';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -97,10 +98,10 @@ export class _BoardDetails extends React.Component {
   };
 
   //Labels Functions
-  onEditLabel = (label, groupId, newBoard) => {
-    const { workspace, user, board, editGroup } = this.props;
-    // saveLabel(workspace, board, user, groupId);
-  };
+  // onEditLabel = (label, groupId, newBoard) => {
+  //   const { workspace, user, board, editGroup } = this.props;
+
+  // };
 
   //Items Functions
   onAddItem = (newItemData, group, addToTop = false, board, Duplicate) => {
@@ -122,15 +123,9 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const {
-      isViewChange,
-      toggleMenus,
-      changeView,
-      workspace,
-      groups,
-      board,
-    } = this.props;
-    if (!workspace || !board) return <div>loading</div>;
+    const { isViewChange, toggleMenus, changeView, workspace, groups, board } =
+      this.props;
+    if (!workspace || !board) return <Loader />;
     return (
       <div className="board-app flex">
         {this.isMenuOpen() && <Screen toggleMenus={toggleMenus} />}

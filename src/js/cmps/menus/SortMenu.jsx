@@ -1,4 +1,4 @@
-import { Component, setState } from 'react';
+// import { setState } from 'react';
 import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
 import { onSortItemTitle } from '../../store/actions/item.actions';
@@ -6,9 +6,10 @@ import { onSortItemTitle } from '../../store/actions/item.actions';
 function _SortMenu({ onSortItemTitle, board }) {
   // const [sortBy, setSortBy] = setState('Text');
   // const [sortOrder, setSortOrder] = setState('ascending');
-  const onSort = (sortType) => {
-    onSortItemTitle(board, sortType);
-  };
+
+  // const onSort = (sortType) => {
+  //   onSortItemTitle(board, sortType);
+  // };
 
   const resetSort = () => {};
 
@@ -16,7 +17,7 @@ function _SortMenu({ onSortItemTitle, board }) {
     <div className="menu-modal sort-menu ">
       <div className="menu-header flex align-center space-between">
         Sort by
-        <div className="clear-filter" onClick={resetSort}>
+        <div className="clear-filter btn br4" onClick={resetSort}>
           Reset sort
         </div>
       </div>

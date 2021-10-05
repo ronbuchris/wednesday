@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterGroups} from '../../store/actions/group.actions';
+import { filterGroups } from '../../store/actions/group.actions';
 import { GroupFilter } from '../group/GroupFilter';
 import { StatusFilter } from '../item/StatusFilter';
 
@@ -13,15 +13,15 @@ class _FilterMenu extends Component {
   onFilter = (groupId, status, bool) => {
     const { filterByGroupId, filterByStatus } = this.state;
     const { board, filterGroups } = this.props;
-    const filter = bool ? filterByGroupId : filterByStatus
-    const object = bool ? groupId : status
+    const filter = bool ? filterByGroupId : filterByStatus;
+    const object = bool ? groupId : status;
     if (filter.includes(object)) {
       const objectIdx = filter.findIndex((g) => g === object);
       filter.splice(objectIdx, 1);
       this.setState({ filter });
     } else {
       filter.push(object);
-      this.setState({ filter});
+      this.setState({ filter });
     }
     filterGroups(board, this.state.filterByGroupId, this.state.filterByStatus);
   };
@@ -32,7 +32,7 @@ class _FilterMenu extends Component {
       filterGroups(
         board,
         this.state.filterByGroupId,
-        this.state.filterByStatus,
+        this.state.filterByStatus
       );
     });
   };
@@ -44,7 +44,7 @@ class _FilterMenu extends Component {
       <div className="menu-modal filter-menu">
         <div className="filter-menu-header flex align-center space-between">
           Quick filters
-          <div className="clear-filter" onClick={this.clearFilter}>
+          <div className="clear-filter br4" onClick={this.clearFilter}>
             Clear all
           </div>
         </div>

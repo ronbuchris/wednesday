@@ -20,23 +20,21 @@ export function queryColors() {
     return gColors
 }
 
-function save(workspace, board, columnIdx, label = null, labelIdx, prevColor) {
+function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, type) {
     if (label?.id) {
-        // if (prevColor) {
-        //     gColors.push(prevColor);
-        // }
-        // prevColor && gColors.push(prevColor);
-        const prevColorIdx = gColors.findIndex(color => color === label.color);
-        console.log(`prevColorIdx`, prevColorIdx)
-        // board.columns[columnIdx].labels.splice(labelIdx, 1, label)
-        gColors.splice(prevColorIdx, 1, prevColor)
+        if (type === "color") {
+            const prevColorIdx = gColors.findIndex(color => color === label.color);
+            console.log(`prevColorIdx`, prevColorIdx)
+            gColors.splice(prevColorIdx, 1, prevColor)
+        }
+
         board.groups.forEach(group => {
             return group.items.forEach(item => {
                 const currLabel = item.columns[columnIdx].label
-                if (currLabel.id === label.id) currLabel.color = label.color
+                console.log(`currLabel[type]`, currLabel[type])
+                if (currLabel.id === label.id) currLabel[type] = label[type]
             })
         })
-        // board.columns[columnIdx].labels[labelIdx].color = label.color
     } else {
         const newLabel = createLabel(label)
         board.columns[columnIdx].labels.push(newLabel)

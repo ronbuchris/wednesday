@@ -1,12 +1,9 @@
-import { useState } from 'react';
-
 import { FaPlus } from 'react-icons/fa';
+
+import user from '../../../assets/img/user.svg';
 import { StatusMenu } from '../menus/StatusMenu';
 import { PersonMenu } from '../menus/PersonMenu';
 import { DatePicker } from '../menus/DatePicker';
-import { AddMember } from '../menus/AddMember';
-import user from '../../../assets/img/user.svg';
-import Add from 'monday-ui-react-core/dist/icons/Add';
 
 export function ItemColumn({
   toggleMenus,
@@ -74,7 +71,11 @@ export function ItemColumn({
               <FaPlus className="plus" />
             </div>
             {!column.members.length && (
-              <img className="profile-icon" src={user} />
+              <img
+                className="profile-icon"
+                src={user}
+                alt="member-placeholder"
+              />
             )}
             {column.members &&
               column.members.map((member) => {
