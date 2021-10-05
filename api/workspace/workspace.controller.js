@@ -5,6 +5,7 @@ const logger = require('../../services/logger.service')
 async function getWorkspaces(req, res) {
   try {
     var queryParams = req.query;
+    console.log(`queryParams`, queryParams)
     const workspaces = await workspaceService.query(queryParams)
     res.json(workspaces);
   } catch (err) {
@@ -39,7 +40,6 @@ async function addWorkspace(req, res) {
 
 // PUT (Update workspace)
 async function updateWorkspace(req, res) {
-  console.log(`reqreqreqreqreqreq`, req)
   try {
     const workspace = req.body;
     const updatedWorkspace = await workspaceService.update(workspace)

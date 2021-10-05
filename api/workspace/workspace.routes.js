@@ -12,6 +12,5 @@ router.get('/:id', getWorkspaceById)
 router.post('/', requireAuth, addWorkspace)
 router.put('/:id', requireAuth, updateWorkspace)
 router.delete('/:id', requireAuth,removeWorkspace)
-router.delete('/:id', requireAuth,removeWorkspace)
 
 module.exports = router

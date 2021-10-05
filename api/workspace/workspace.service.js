@@ -2,10 +2,13 @@ const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 
-async function query(userId) {
+async function query(user) {
     try {
-        const criteria = _buildCriteria(userId)
-        // const sortCriteria = _buildSortCriteria(filterBy)
+        if(user.username==='guest'){
+            var criteria={}
+        }else{
+            var criteria = _buildCriteria(user._id)
+        }
         const collection = await dbService.getCollection('workspace')
         var workspaces = await collection.find(criteria).toArray()
         return workspaces
@@ -81,25 +84,17 @@ async function getLabels() {
         throw err
     }
 }
-function _buildSortCriteria(filterBy){
-    switch(filterBy.sortBy) {
-        case 'createdAt-first':return {createdAt:1}
-        case 'createdAt-last':return {createdAt:-1}
-        case 'name-a':return {name:1}
-        case 'name-z':return {name:-1}
-        default:return {}
-    }
-}
 
-function _buildCriteria(userId){
-    var criteria ={}
-    // const id= Object.values(filterBy).join
-    // console.log(`id`, id)
-    // criteria.members = { $in: [ObjectId(userId)] }
-    // criteria.createdBy = { $in: [ObjectId(userId)] }
-    // console.log(` criteria.createdBy`,  criteria.createdBy)
-    // criteria.$or=[{createdBy:userId},{members:userId}]
-    // console.log(`criteria`, criteria)
+function _buildCriteria(userId) {
+    var criteria = {}
+    criteria.$or = [
+        {
+            "createdBy._id" : userId
+        },
+        {
+            "members._id" : userId
+        }
+    ]
     return criteria;
 }
 

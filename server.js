@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
 const workspaceRoutes = require('./api/workspace/workspace.routes')
+// const {connectSockets} = require('./services/socket.service')
 
 // ASYNC SID
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
@@ -43,13 +44,14 @@ app.all('*', setupAsyncLocalStorage)
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/workspace', workspaceRoutes)
+// connectSockets(http, session)
 
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/workspace/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue-router to take it from there
-app.get('/**', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+// app.get('/**', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// })
 
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030
