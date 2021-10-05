@@ -90,6 +90,7 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
     const newWorkspace = { ...workspace };
+    console.log(newWorkspace);
     return newWorkspace
 }
 
