@@ -11,8 +11,7 @@ export const groupService = {
 
 function query(board, ActionBy = {}) {
     var groups = []
-    console.log(`ActionBy`, ActionBy)
-    if (ActionBy) {
+    if (ActionBy) {    
         if (ActionBy.searchBy?.itemTitle) {
             groups = searchItem(board, ActionBy)
         } else {
