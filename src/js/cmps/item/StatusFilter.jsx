@@ -1,10 +1,10 @@
-export function StatusFilter({ board, onFilterStatus, filterByStatus }) {
+export function StatusFilter({ board, onFilterStatus, statuses }) {
   const statusIdx = () => {
     return board.columns.findIndex((column) => column.type === 'status');
   };
 
   const isFilter = (label) => {
-    return filterByStatus.includes(label);
+    return statuses.includes(label);
   };
   return (
     <div className="column-option">
@@ -18,7 +18,7 @@ export function StatusFilter({ board, onFilterStatus, filterByStatus }) {
               }`}
               key={label.color}
               onClick={() => {
-                onFilterStatus('',label.title, false);
+                onFilterStatus('', label.title, false);
               }}
             >
               <div className="flex align-center">

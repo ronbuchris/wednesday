@@ -1,14 +1,12 @@
 const initialState = {
     board: null,
-    boards:[],
-    isViewChange:false,
-    isSorting: {
-        isSort: false,
-        sortBy: '',
-        sortOrder: ''
+    boards: [],
+    isViewChange: false,
+    sortStore: {
+        sortBy: 'Select sort by',
+        sortOrder: 'Ascending'
     },
-    isFiltering: {
-        isFilter: false,
+    filterStore: {
         groupsIds: [],
         statuses: []
     }
@@ -21,12 +19,18 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, board: action.board }
             break
         case 'ADD_BOARD':
-            newState = { ...state, boards:[...state.boards, action.board] }
+            newState = { ...state, boards: [...state.boards, action.board] }
             break
         case 'CHANGE_VIEW':
-            newState = { ...state, isViewChange: action.isViewChange}
+            newState = { ...state, isViewChange: action.isViewChange }
             break
-        
+        case 'FILTER':
+            newState = { ...state, filterStore: { ...action.filterStore } }
+            break
+        case 'SORT':
+            newState = { ...state, sortStore: { ...action.sortStore } }
+            break
+
         default:
     }
     return newState

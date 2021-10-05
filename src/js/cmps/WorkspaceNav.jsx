@@ -49,7 +49,6 @@ class _WorkspaceNav extends Component {
 
   render() {
     const {
-      workspaces,
       workspace,
       isOpenNav,
       toggleNav,

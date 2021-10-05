@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
-import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
 import { IoIosArrowDown } from 'react-icons/io';
 
@@ -17,6 +16,8 @@ function _BoardActions({
   toggleMenu,
   onEditGroup,
   toggleMenus,
+  filterStore,
+  sortStore,
 }) {
   return (
     <div className="actions-container flex">
@@ -42,7 +43,11 @@ function _BoardActions({
       </div>
       <BoardSearch board={board} />
       <div
-        className="btn-search flex br4 btn  align-center justify-center"
+        className={`btn-search flex br4 btn  align-center justify-center ${
+          filterStore.groupsIds.length || filterStore.statuses.length
+            ? 'active'
+            : ''
+        }`}
         onClick={() => {
           toggleMenu(toggleMenus, 'filterMenu', true);
         }}
@@ -52,26 +57,35 @@ function _BoardActions({
         <IoIosArrowDown className="w32" />
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
       </div>
-      <div className="btn-search flex br4 btn  align-center justify-center">
-        <Person className="w32" />
-        <span>Person</span>
-        <IoIosArrowDown className="w32" />
-      </div>
       <div
-        className="btn-search flex br4 btn  align-center justify-center"
+        className={`btn-search flex br4 btn  align-center justify-center ${
+          sortStore.sortBy !== 'Select sort by' ? 'active' : ''
+        }`}
         onClick={() => toggleMenu(toggleMenus, 'sortMenu', true)}
       >
         <Sort className="w32" />
         <span>Sort</span>
         <IoIosArrowDown className="w32" />
-        {toggleMenus.sortMenu && <SortMenu board={board} />}
+        {toggleMenus.sortMenu && (
+          <SortMenu board={board} toggleMenus={toggleMenus} />
+        )}
       </div>
     </div>
   );
+}
+
+function mapStateToProps(state) {
+  return {
+    filterStore: state.boardModule.filterStore,
+    sortStore: state.boardModule.sortStore,
+  };
 }
 
 const mapDispatchToProps = {
   toggleMenu,
 };
 
-export const BoardActions = connect(null, mapDispatchToProps)(_BoardActions);
+export const BoardActions = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardActions);

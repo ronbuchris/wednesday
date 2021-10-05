@@ -9,27 +9,32 @@ export const groupService = {
     save
 }
 
-function query(board, ActionBy ={}) {
+function query(board, ActionBy = {}) {
     var groups = []
-    if(ActionBy) {
-        if(ActionBy.searchBy?.itemTitle) {
+    if (ActionBy) {    
+        if (ActionBy.searchBy?.itemTitle) {
             groups = searchItem(board, ActionBy)
         } else {
             groups = board.groups
         }
-        if (ActionBy.groupsIds || ActionBy.statuses ) {
+        if (ActionBy.groupsIds || ActionBy.statuses) {
             groups = filterGroups(board, ActionBy)
             if (ActionBy?.statuses?.length) {
                 const statusIdx = board.cmpsOrder.findIndex((cmpOrder) => cmpOrder === 'status');
                 const groupsToFilter = groups?.length ? groups : board.groups
                 groups = filterStatus(ActionBy, groupsToFilter, statusIdx)
+            }
         }
-        }
-        if (ActionBy?.sortType) {
-            groups = sortGroups(board, ActionBy)
+        if (ActionBy?.sortStore) {
+            console.log(ActionBy.sortStore);
+            if (ActionBy.sortStore.sortBy === 'Select sort by') {
+                return board.groups
+            } else {
+                groups = sortGroups(board, ActionBy)
+            }
         }
     }
-    if (!ActionBy.sortType) {
+    if (!ActionBy.sortStore) {
         groups = groups.filter((group, idx) => {
             if (group.items?.length) {
                 return group
@@ -38,16 +43,15 @@ function query(board, ActionBy ={}) {
             }
         })
     }
-    const { searchBy, statuses, groupsIds,sortType } = ActionBy
-    const groupsToReturn = (searchBy.itemTitle !== '' || statuses?.length || groupsIds?.length || sortType ) ? groups : board.groups
+    const { searchBy, statuses, groupsIds, sortStore } = ActionBy
+    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortStore) ? groups : board.groups
     return groupsToReturn
 }
 
-
 // Filter/Sort/Search
-function searchItem(board, ActionBy){
+function searchItem(board, ActionBy) {
     var groups = []
-    groups=board.groups.map(group => {
+    groups = board.groups.map(group => {
         return {
             ...group, items: group.items.filter(item => {
                 return item.title.toLowerCase().includes(ActionBy.searchBy.itemTitle.toLowerCase())
@@ -57,19 +61,32 @@ function searchItem(board, ActionBy){
     return groups
 }
 function sortGroups(board, ActionBy) {
+    const { sortBy, sortOrder } = ActionBy.sortStore
     var groups = []
+    const statusIdx = board.columns.findIndex(column => column.type === 'status')
+    const dateIdx = board.columns.findIndex(column => column.type === 'date')
     groups = board.groups.map(group => {
         return {
             ...group, items: group.items.sort((a, b) => {
-                if (ActionBy.sortType.sortBy === 'Text') {
-                    if (ActionBy.sortType.sortOrder === 'Ascending') {
+                if (sortBy === 'Text') {
+                    if (sortOrder === 'Ascending') {
                         return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                    } else if (ActionBy.sortType.sortOrder === 'Descending') {
-                        if (a.title.toLowerCase() > b.title.toLowerCase())
-                        return -1;
-                        if (a.title.toLowerCase() < b.title.toLowerCase())
-                        return 1;
-                        return 0;
+                    } else {
+                        return b.title.toLowerCase().localeCompare(a.title.toLowerCase())
+                    }
+                }
+                if (sortBy === 'Status') {
+                    if (sortOrder === 'Ascending') {
+                        return a.columns[statusIdx].label.title.localeCompare(b.columns[statusIdx].label.title)
+                    } else {
+                        return b.columns[statusIdx].label.title.localeCompare(a.columns[statusIdx].label.title)
+                    }
+                }
+                if (sortBy === 'Date') {
+                    if (sortOrder === 'Ascending') {
+                        return a.columns[dateIdx].date - b.columns[dateIdx].date
+                    } else {
+                        return b.columns[dateIdx].date - a.columns[dateIdx].date
                     }
                 }
             })

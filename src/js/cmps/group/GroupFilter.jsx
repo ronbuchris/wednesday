@@ -1,6 +1,6 @@
-export function GroupFilter({ board,groups, onFilter, filterByGroupId }) {
+export function GroupFilter({ board, groups, onFilter, groupsIds }) {
   const isFilter = (groupId) => {
-    return filterByGroupId.includes(groupId);
+    return groupsIds.includes(groupId);
   };
 
   return (
