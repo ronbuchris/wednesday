@@ -76,6 +76,7 @@ export function loadItem(board, itemId) {
 }
 
 export function onSort(board,  sortType ) {
+    console.log(sortType);
     return (dispatch) => {
         try {
             const groups = groupService.query(board,  {sortType})

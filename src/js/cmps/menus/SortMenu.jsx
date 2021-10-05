@@ -45,6 +45,7 @@ function _SortMenu({ onSort, board }) {
             <div className="dropdown-sort br4">
               {sortByArray.map((value) => (
                 <div
+                  key={value}
                   className="sort-by-title br4"
                   onClick={() => setSortBy(value)}
                 >

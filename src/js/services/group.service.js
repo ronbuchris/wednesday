@@ -29,7 +29,7 @@ function query(board, ActionBy ={}) {
             groups = sortGroups(board, ActionBy)
         }
     }
-    if (!ActionBy.sortType) {
+    if (!ActionBy.sortType ) {
         groups = groups.filter((group, idx) => {
             if (group.items?.length) {
                 return group
@@ -39,7 +39,7 @@ function query(board, ActionBy ={}) {
         })
     }
     const { searchBy, statuses, groupsIds,sortType } = ActionBy
-    const groupsToReturn = (searchBy.itemTitle !== '' || statuses?.length || groupsIds?.length || sortType ) ? groups : board.groups
+    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortType ) ? groups : board.groups
     return groupsToReturn
 }
 
@@ -58,24 +58,27 @@ function searchItem(board, ActionBy){
 }
 function sortGroups(board, ActionBy) {
     var groups = []
+    const statusIdx = board.columns.findIndex(column => column.type === 'status')
     groups = board.groups.map(group => {
         return {
             ...group, items: group.items.sort((a, b) => {
                 if (ActionBy.sortType.sortBy === 'Text') {
                     if (ActionBy.sortType.sortOrder === 'Ascending') {
                         return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                    } else if (ActionBy.sortType.sortOrder === 'Descending') {
-                        if (a.title.toLowerCase() > b.title.toLowerCase())
-                        return -1;
-                        if (a.title.toLowerCase() < b.title.toLowerCase())
-                        return 1;
-                        return 0;
+                    } else {
+                        return b.title.toLowerCase().localeCompare(a.title.toLowerCase())
+                    }
+                }
+                if (ActionBy.sortType.sortBy === 'Status') {
+                    if (ActionBy.sortType.sortOrder === 'Ascending') {
+                        return a.columns[statusIdx].label.title.localeCompare(b.columns[statusIdx].label.title)
+                    } else {
+                        return b.columns[statusIdx].label.title.localeCompare(a.columns[statusIdx].label.title)
                     }
                 }
             })
         }
     })
-    console.log(groups);
     return groups
 }
 function filterGroups(board, ActionBy) {
