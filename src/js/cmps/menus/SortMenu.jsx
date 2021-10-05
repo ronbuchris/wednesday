@@ -19,7 +19,7 @@ function _SortMenu({ onSort, board }) {
     onSort(board,{sortBy, sortOrder});
   };
 
-  const sortByArray = ['Text', 'Status'];
+  const sortByArray = ['Text', 'Status','Date'];
 
   return (
     <div className="menu-modal sort-menu ">
@@ -80,20 +80,6 @@ function _SortMenu({ onSort, board }) {
           )}
         </div>
       </div>
-      {/* <h1
-        onClick={() => {
-          onSort('A-Z');
-        }}
-      >
-        Sort A-Z
-      </h1>
-      <h1
-        onClick={() => {
-          onSort('Z-A');
-        }}
-      >
-        Sort Z-A
-      </h1> */}
     </div>
   );
 }

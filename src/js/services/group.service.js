@@ -57,23 +57,32 @@ function searchItem(board, ActionBy){
     return groups
 }
 function sortGroups(board, ActionBy) {
+    const {sortBy,sortOrder} = ActionBy.sortType
     var groups = []
     const statusIdx = board.columns.findIndex(column => column.type === 'status')
+    const dateIdx = board.columns.findIndex(column => column.type === 'date')
     groups = board.groups.map(group => {
         return {
             ...group, items: group.items.sort((a, b) => {
-                if (ActionBy.sortType.sortBy === 'Text') {
-                    if (ActionBy.sortType.sortOrder === 'Ascending') {
+                if (sortBy === 'Text') {
+                    if (sortOrder === 'Ascending') {
                         return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
                     } else {
                         return b.title.toLowerCase().localeCompare(a.title.toLowerCase())
                     }
                 }
-                if (ActionBy.sortType.sortBy === 'Status') {
-                    if (ActionBy.sortType.sortOrder === 'Ascending') {
+                if (sortBy === 'Status') {
+                    if (sortOrder === 'Ascending') {
                         return a.columns[statusIdx].label.title.localeCompare(b.columns[statusIdx].label.title)
                     } else {
                         return b.columns[statusIdx].label.title.localeCompare(a.columns[statusIdx].label.title)
+                    }
+                }
+                if (sortBy === 'Date') {
+                    if (sortOrder === 'Ascending') {
+                        return a.columns[dateIdx].date - b.columns[dateIdx].date
+                    } else {
+                        return b.columns[dateIdx].date - a.columns[dateIdx].date
                     }
                 }
             })
