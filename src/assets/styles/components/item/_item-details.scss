@@ -16,6 +16,54 @@
         height: 40px;
       }
     }
+      .post-action{
+        height:42px;
+        border-top: 1px solid;
+    border-top-color: #e6e9ef;
+    justify-content: space-around;
+    align-items: center;
+        .like-post-wrapper{
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .like-post{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            border-radius: 4px;
+            font-size: 14px;
+            &:hover{
+              background-color: #e6e9ef;
+            }
+          }
+          
+        }
+        .reply-post-wrapper{
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .reply-post{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            border-radius: 4px;
+            font-size: 14px;
+            &:hover{
+              background-color: #e6e9ef;
+            }
+          }
+        }
+
+    }
+
   }
   .update-input {
     width: 100%;
@@ -31,4 +79,7 @@
     text-align: left;
     outline: none;
   }
+
+
+
 }

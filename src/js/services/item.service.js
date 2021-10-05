@@ -37,7 +37,7 @@ function getStatuses(board) {
 }
 
 function onPost(update, user, item, groups, workspace) {
-    const newUpdate = createUpdate(update.txt, user)
+    const newUpdate = createUpdate(update, user)
     item.updates.unshift(newUpdate)
     const group = groups.find(group => {
         return group.items.find(gItem => gItem.id === item.id)

@@ -36,6 +36,7 @@ function remove(workspaceId) {
 
 async function save(workspace) {
     if (workspace._id) {
+
         //   var updatedWorkspace = await httpService.put(`workspace/${workspace._id}`,workspace)
         return storageService.put(STORAGE_KEY, workspace)
     } else {
