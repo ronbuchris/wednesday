@@ -51,7 +51,7 @@ class _BoardContent extends Component {
                       draggableId={group.id}
                       index={index}
                     >
-                      {(provided,snapshot) => (
+                      {(provided, snapshot) => (
                         <div
                           {...provided.draggableProps}
                           ref={provided.innerRef}

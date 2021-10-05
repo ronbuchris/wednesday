@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { eventBusService } from '../services/event-bus.service';
 import CloseSmall from 'monday-ui-react-core/dist/icons/CloseSmall';
 import Check from 'monday-ui-react-core/dist/icons/Check';
-import {undo} from '../store/actions/workspace.actions'
+import { undo } from '../store/actions/workspace.actions';
 class _UserMsg extends React.Component {
   state = {
     msg: null,
@@ -31,7 +31,7 @@ class _UserMsg extends React.Component {
 
   render() {
     const { msg } = this.state;
-    const { lastEditedWorkspace} = this.props;
+    const { lastEditedWorkspace } = this.props;
     if (!msg) return <React.Fragment></React.Fragment>;
     return (
       <section className={`user-msg flex align-center`}>
@@ -40,9 +40,14 @@ class _UserMsg extends React.Component {
           {msg.txt}
           {msg.type}
         </div>
-        <div className="undo-btn br4" onClick={() => {
-          this.props.undo(lastEditedWorkspace);
-        }}>Undo</div>
+        <div
+          className="undo-btn btn br4"
+          onClick={() => {
+            this.props.undo(lastEditedWorkspace);
+          }}
+        >
+          Undo
+        </div>
         <button
           className="btn reset-btn align-center justify-center br4"
           onClick={this.onCloseMsg}
@@ -62,11 +67,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  undo
+  undo,
 };
 
-export const UserMsg = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(_UserMsg);
-
+export const UserMsg = connect(mapStateToProps, mapDispatchToProps)(_UserMsg);
