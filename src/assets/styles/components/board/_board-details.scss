@@ -56,7 +56,85 @@
     }
   }
 
-  .board-content {
+  .table-view-container {
+    width: 100%;
+    height: 100%;
     padding: 18px 30px 40px 18px;
+  }
+
+  .kanban-view {
+    flex: 1 0;
+    position: relative;
+    width: 100%;
+    overflow: auto;
+    color: $clr7;
+
+    .kanban-group {
+      width: 260px;
+      height: 100%;
+      padding: 0 4px 0 8px;
+
+      .group-box {
+        padding: 8px;
+        margin: 8px 4px 0 0;
+
+        .list-header {
+          padding-top: 12px;
+          font-size: rem(18px);
+          position: relative;
+
+          .drag-btn {
+            position: absolute;
+            left: 5px;
+          }
+
+          &:hover {
+            .drag-btn {
+              display: flex;
+              position: relative;
+            }
+          }
+        }
+        .kanban-list {
+          gap: 8px;
+          .item-preview-container {
+            padding: 8px;
+            background-color: $clr7;
+            color: $clr2;
+            min-height: 16px;
+            font-size: rem(13px);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+            .kanban-item {
+              word-break: break-word;
+              text-overflow: unset;
+              overflow: hidden;
+              display: -webkit-box;
+              white-space: break-spaces;
+              line-height: 19px;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+            }
+          }
+        }
+        .item-add {
+          padding: 4px 8px;
+          width: 260px;
+          height: 45px;
+          .item-add-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            &::placeholder {
+              color: $clr7;
+              // opacity: 1; /* Firefox */
+            }
+
+            &.is-focus {
+            }
+          }
+        }
+      }
+    }
   }
 }

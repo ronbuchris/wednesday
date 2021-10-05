@@ -138,10 +138,9 @@ export class _BoardDetails extends React.Component {
     }
     return false;
   };
-  
 
   render() {
-    const { isViewChange, toggleMenus, changeView, workspace, groups, board } =
+    const { currView, toggleMenus, changeView, workspace, groups, board } =
       this.props;
     if (!workspace || !board) return <Loader />;
     return (
@@ -165,9 +164,9 @@ export class _BoardDetails extends React.Component {
           <BoardContent
             onEditGroup={this.onEditGroup}
             onEditItem={this.onEditItem}
-            isViewChange={isViewChange}
             onAddItem={this.onAddItem}
             onBlur={this.onBlur}
+            currView={currView}
             groups={groups}
             board={board}
           />
@@ -182,9 +181,9 @@ export class _BoardDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
-    isViewChange: state.boardModule.isViewChange,
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
+    currView: state.boardModule.currView,
     groups: state.groupModule.groups,
     board: state.boardModule.board,
     users: state.userModule.users,

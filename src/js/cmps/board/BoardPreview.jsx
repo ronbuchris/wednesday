@@ -17,38 +17,37 @@ export function BoardPreview({
   if (!board) return <div></div>;
   return (
     <div>
-
-    <div
-      className={`${
-        board._id === boardId && 'selected'
-      } board-preview br4 menu-button-wrapper text-wrap flex align-center space-between`}
-      onClick={() => {
-        changeView(false);
-      }}
-      >
-      <Link to={`/board/${board._id}`} className="full">
-        <div className="board-title text-wrap flex align-center">
-          <Board />
-          <span className="text-cmp">{board.title}</span>
-        </div>
-      </Link>
       <div
-        className="hover-display flex align-center btn"
+        className={`${
+          board._id === boardId && 'selected'
+        } board-preview br4 menu-button-wrapper text-wrap flex align-center space-between`}
         onClick={() => {
-          toggleMenu(toggleMenus, 'boardMenu', board._id);
+          changeView('table');
         }}
+      >
+        <Link to={`/board/${board._id}`} className="full">
+          <div className="board-title text-wrap flex align-center">
+            <Board />
+            <span className="text-cmp">{board.title}</span>
+          </div>
+        </Link>
+        <div
+          className="hover-display flex align-center btn"
+          onClick={() => {
+            toggleMenu(toggleMenus, 'boardMenu', board._id);
+          }}
         >
-        <Menu />
+          <Menu />
+        </div>
       </div>
-    </div>
       {toggleMenus.boardMenu === board._id && (
         <BoardMenu
-        board={board}
-        onRemoveBoard={onRemoveBoard}
-        toggleMenus={toggleMenus}
-        toggleMenu={toggleMenu}
+          board={board}
+          onRemoveBoard={onRemoveBoard}
+          toggleMenus={toggleMenus}
+          toggleMenu={toggleMenu}
         />
-        )}
-        </div>
+      )}
+    </div>
   );
 }

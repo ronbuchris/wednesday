@@ -1,7 +1,7 @@
 const initialState = {
     board: null,
     boards: [],
-    isViewChange: false,
+    currView: 'table',
     sortStore: {
         sortBy: 'Select sort by',
         sortOrder: 'Ascending'
@@ -22,7 +22,7 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards: [...state.boards, action.board] }
             break
         case 'CHANGE_VIEW':
-            newState = { ...state, isViewChange: action.isViewChange }
+            newState = { ...state, currView: action.currView }
             break
         case 'FILTER':
             newState = { ...state, filterStore: { ...action.filterStore } }

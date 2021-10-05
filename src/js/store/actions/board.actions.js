@@ -20,12 +20,12 @@ export function loadBoard(workspace, boardId) {
     }
 }
 
-export function changeView(isViewChange) {
+export function changeView(currView) {
     return async dispatch => {
         try {
             dispatch({
                 type: 'CHANGE_VIEW',
-                isViewChange
+                currView
             })
         } catch (err) {
             console.log('Cannot REMOVE group', err)

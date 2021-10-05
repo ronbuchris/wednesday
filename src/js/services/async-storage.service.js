@@ -44,14 +44,14 @@ const gWorkspaces = [
                         id: "column102",
                         type: "member",
                         title: "Person",
-                        width: 200,
+                        width: 150,
                         members: []
                     },
                     {
                         id: "column101",
                         type: "status",
                         title: "Status",
-                        width: 130,
+                        width: 150,
                         labels: [
                             {
                                 id: 'label1',
@@ -79,9 +79,10 @@ const gWorkspaces = [
                         id: "column103",
                         type: "date",
                         title: "Date",
-                        width: 170,
+                        width: 150,
                         date: ''
                     },
+
 
                 ],
                 groups: [

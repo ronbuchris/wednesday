@@ -83,6 +83,7 @@ export function GroupMenu({
           onClick={(ev) => {
             ev.stopPropagation();
             onRemoveGroup(group.id);
+            toggleMenu(toggleMenus);
           }}
         >
           <Delete />

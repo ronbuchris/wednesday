@@ -20,7 +20,7 @@ export function ItemColumn({
     return idx;
   };
   const printDate = (timestamp) => {
-    const date = new Date(timestamp)
+    const date = new Date(timestamp);
     const month = date.getMonth();
     const day = date.getDate();
     const months = [
@@ -37,8 +37,10 @@ export function ItemColumn({
       'Nov',
       'Dec',
     ];
-    return `${Date.now() - timestamp > 0 ? '!': ''}${months[month]} ${day < 10 ? '0' + day : day}`;
-  }
+    return `${Date.now() - timestamp > 0 ? '!' : ''}${months[month]} ${
+      day < 10 ? '0' + day : day
+    }`;
+  };
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':
@@ -130,14 +132,21 @@ export function ItemColumn({
               toggleMenu(toggleMenus, 'dateMenu', item.id);
             }}
           >
-            <div className="date-border" style={{
-              backgroundColor: column.date && Date.now() - column.date > 0 ? '#e2445c' : ''
-              }}>
+            <div
+              className="date-border"
+              style={{
+                backgroundColor:
+                  column.date && Date.now() - column.date > 0 ? '#e2445c' : '',
+              }}
+            >
               <div
                 className="item-column date-col flex align-center justify-center btn"
                 style={{
                   minWidth: board.columns[findIdx('date')].width - 10,
-                  color: column.date && Date.now() - column.date > 0 ? '#fff' : '#323338'
+                  color:
+                    column.date && Date.now() - column.date > 0
+                      ? '#fff'
+                      : '#323338',
                 }}
               >
                 {column.date && printDate(column.date)}

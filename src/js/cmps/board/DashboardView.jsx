@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Doughnut, Pie, Bar, Line } from 'react-chartjs-2';
 import { loadStatuses } from '../../store/actions/item.actions';
 
-class _Dashboard extends React.Component {
+class _DashboardView extends React.Component {
   state = {
     chartType: 'Pie',
   };
@@ -104,7 +104,7 @@ const mapDispatchToProps = {
   loadStatuses,
 };
 
-export const Dashboard = connect(
+export const DashboardView = connect(
   mapStateToProps,
   mapDispatchToProps
-)(_Dashboard);
+)(_DashboardView);

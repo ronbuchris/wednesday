@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { dragAndDrop } from '../../store/actions/board.actions';
-
-import { GroupPreview } from '../group/GroupPreview';
-import { Dashboard } from './Dashboard';
 import { NoResault } from '../NoResault';
+import { DashboardView } from './DashboardView';
+import { TableView } from './TableView';
+import { KanbanView } from '../kanban/KanbanView';
 
 class _BoardContent extends Component {
   state = {
@@ -30,7 +30,7 @@ class _BoardContent extends Component {
       onAddItem,
       onEditItem,
       onEditGroup,
-      isViewChange,
+      currView,
     } = this.props;
     if (!groups.length) return <NoResault />;
     return (
@@ -42,38 +42,28 @@ class _BoardContent extends Component {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {isViewChange && <Dashboard board={board} />}
-              {!isViewChange &&
-                groups.map((group, index) => {
-                  return (
-                    <Draggable
-                      key={group.id}
-                      draggableId={group.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                        >
-                          <GroupPreview
-                            setCurrGroupId={this.setCurrGroupId}
-                            onEditGroup={onEditGroup}
-                            onEditItem={onEditItem}
-                            onAddItem={onAddItem}
-                            provided={provided}
-                            snapshot={snapshot}
-                            groupIndex={index}
-                            onBlur={onBlur}
-                            key={group.id}
-                            group={group}
-                            board={board}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  );
-                })}
+              {currView === 'chart' && <DashboardView board={board} />}
+              {currView === 'table' && (
+                <TableView
+                  setCurrGroupId={this.setCurrGroupId}
+                  onEditGroup={onEditGroup}
+                  onEditItem={onEditItem}
+                  onAddItem={onAddItem}
+                  onBlur={onBlur}
+                  groups={groups}
+                  board={board}
+                />
+              )}
+              {currView === 'kanban' && (
+                <KanbanView
+                  onEditGroup={onEditGroup}
+                  onEditItem={onEditItem}
+                  onAddItem={onAddItem}
+                  onBlur={onBlur}
+                  groups={groups}
+                  board={board}
+                />
+              )}
               {provided.placeholder}
             </div>
           )}

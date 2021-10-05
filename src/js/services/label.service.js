@@ -48,11 +48,11 @@ function remove(labelIdx, board, columnIdx, workspace) {
     return newWorkspace
 }
 
-function createLabel(color = null) {
+function createLabel(color = null, title = null) {
     const colorIdx = gColors.findIndex(currColor => currColor === color)
     return {
         id: makeId(),
-        title: '',
+        title: title || '',
         color: gColors.splice(color ? colorIdx : (Math.floor(Math.random() * gColors.length)), 1)[0]
     }
 }

@@ -21,7 +21,7 @@ function _BoardHeader({
   changeView,
   toggleMenus,
   onEditGroup,
-  isViewChange,
+  currView,
   history,
   location,
 }) {
@@ -77,11 +77,11 @@ function _BoardHeader({
       <div className="view-container flex align-center">
         <div
           className={`flex align-center table-view btn ${
-            !isViewChange ? 'active' : ''
+            currView === 'table' ? 'active' : ''
           }`}
           onClick={(ev) => {
             ev.preventDefault();
-            changeView(false);
+            changeView('table');
           }}
         >
           <Table />
@@ -89,21 +89,25 @@ function _BoardHeader({
         </div>
         <div
           className={`flex align-center table-view btn ${
-            isViewChange ? 'active' : ''
+            currView === 'chart' ? 'active' : ''
           }`}
           onClick={(ev) => {
             ev.preventDefault();
-            changeView(true);
+            changeView('chart');
           }}
         >
           <Chart />
           Chart
         </div>
-        <div className="flex align-center table-view btn">
-          <Dashboard />
-          Dashboard
-        </div>
-        <div className="flex align-center table-view btn">
+        <div
+          className={`flex align-center table-view btn ${
+            currView === 'kanban' ? 'active' : ''
+          }`}
+          onClick={(ev) => {
+            ev.preventDefault();
+            changeView('kanban');
+          }}
+        >
           <BsKanban />
           Kanban
         </div>
@@ -121,7 +125,7 @@ function _BoardHeader({
 
 function mapStateToProps(state) {
   return {
-    isViewChange: state.boardModule.isViewChange,
+    currView: state.boardModule.currView,
     toggleMenus: state.workspaceModule.toggleMenus,
   };
 }

@@ -16,26 +16,27 @@ function _ItemPreview({
   toggleMenus,
   onEditItem,
   toggleMenu,
+  workspace,
   onAddItem,
-  loadItem,
+  location,
   provided,
+  history,
   onBlur,
   board,
   group,
   item,
-  workspace,
-  history,
-  location,
 }) {
+  const onFocus = (itemId) => {};
+
   return (
     <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
         <ItemMenu
-          onAddItem={onAddItem}
-          group={group}
           onRemoveItem={onRemoveItem}
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
+          onAddItem={onAddItem}
+          group={group}
           item={item}
         />
       )}
@@ -68,7 +69,12 @@ function _ItemPreview({
           >
             {item.title}
           </div>
-          <div className="edit-title-btn br4" onClick={(ev) => {}}>
+          <div
+            className="edit-title-btn br4"
+            onClick={(ev) => {
+              onFocus(item.id);
+            }}
+          >
             Edit
           </div>
         </div>
@@ -83,10 +89,10 @@ function _ItemPreview({
         {item.columns.map((column, idx) => {
           return (
             <ItemColumn
-              workspace={workspace}
               toggleMenus={toggleMenus}
-              onEditItem={onEditItem}
               toggleMenu={toggleMenu}
+              onEditItem={onEditItem}
+              workspace={workspace}
               column={column}
               board={board}
               group={group}
