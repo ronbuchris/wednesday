@@ -94,7 +94,6 @@ function filterStatus(ActionBy, groupsToFilter, statusIdx) {
 
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId, Duplicate) {
-    console.log(board);
     const activity = {
         id: makeId(),
         createdAt: Date.now(),
