@@ -1,7 +1,17 @@
 const initialState = {
     board: null,
     boards:[],
-    isViewChange:false
+    isViewChange:false,
+    isSorting: {
+        isSort: false,
+        sortBy: '',
+        sortOrder: ''
+    },
+    isFiltering: {
+        isFilter: false,
+        groupsIds: [],
+        statuses: []
+    }
 }
 
 export function boardReducer(state = initialState, action) {

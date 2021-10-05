@@ -4,12 +4,16 @@ export function GroupColumn({ column, index }) {
   return (
     <Draggable draggableId={column.id} index={index}>
       {(provided) => (
-        <div {...provided.draggableProps} ref={provided.innerRef}>
+        <div {...provided.draggableProps}
+         ref={provided.innerRef}
+         >
           <div
             {...provided.dragHandleProps}
             className="group-column-header"
             key={column.id}
-            style={{ minWidth: column.width }}
+            style={{ 
+              minWidth: column.width,
+             }}
           >
             <div className="drag-btn">
               <Drag />
