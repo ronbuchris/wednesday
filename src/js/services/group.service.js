@@ -17,9 +17,6 @@ function query(board, ActionBy ={}) {
         } else {
             groups = board.groups
         }
-        if (ActionBy?.sortType) {
-            groups = sortGroups(board, ActionBy)
-        }
         if (ActionBy.groupsIds || ActionBy.statuses ) {
             groups = filterGroups(board, ActionBy)
             if (ActionBy?.statuses?.length) {
@@ -28,16 +25,21 @@ function query(board, ActionBy ={}) {
                 groups = filterStatus(ActionBy, groupsToFilter, statusIdx)
         }
         }
-    }
-    groups = groups.filter((group, idx) => {
-        if (group.items?.length) {
-            return group
-        } else {
-            groups.splice(idx, 1)
+        if (ActionBy?.sortType) {
+            groups = sortGroups(board, ActionBy)
         }
-    })
-    const { searchBy, statuses, groupsIds } = ActionBy
-    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length) ? groups : board.groups
+    }
+    if (!ActionBy.sortType) {
+        groups = groups.filter((group, idx) => {
+            if (group.items?.length) {
+                return group
+            } else {
+                groups.splice(idx, 1)
+            }
+        })
+    }
+    const { searchBy, statuses, groupsIds,sortType } = ActionBy
+    const groupsToReturn = (searchBy.itemTitle !== '' || statuses?.length || groupsIds?.length || sortType ) ? groups : board.groups
     return groupsToReturn
 }
 
@@ -59,18 +61,21 @@ function sortGroups(board, ActionBy) {
     groups = board.groups.map(group => {
         return {
             ...group, items: group.items.sort((a, b) => {
-                if (ActionBy.sortType === 'A-Z') {
-                    return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-                } else if (ActionBy.sortType === 'Z-A') {
-                    if (a.title.toLowerCase() > b.title.toLowerCase())
+                if (ActionBy.sortType.sortBy === 'Text') {
+                    if (ActionBy.sortType.sortOrder === 'Ascending') {
+                        return a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                    } else if (ActionBy.sortType.sortOrder === 'Descending') {
+                        if (a.title.toLowerCase() > b.title.toLowerCase())
                         return -1;
-                    if (a.title.toLowerCase() < b.title.toLowerCase())
+                        if (a.title.toLowerCase() < b.title.toLowerCase())
                         return 1;
-                    return 0;
+                        return 0;
+                    }
                 }
             })
         }
     })
+    console.log(groups);
     return groups
 }
 function filterGroups(board, ActionBy) {

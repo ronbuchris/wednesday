@@ -12,13 +12,8 @@
   cursor: pointer;
 }
 
-.text-cmp {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.focused {
+  border: 1px solid $primary-color;
 }
 
 .drag-btn {
@@ -73,6 +68,18 @@
   height: 1px;
   border-bottom: 1px solid $ui-grey-color;
   width: 100%;
+}
+
+//Text Ellipsis
+.text-cmp {
+  // width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-wrap {
+  overflow: hidden;
 }
 
 // flex helpers

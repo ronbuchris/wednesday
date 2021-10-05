@@ -1,7 +1,7 @@
 // import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Droppable} from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import { FaCaretDown } from 'react-icons/fa';
 import Drag from 'monday-ui-react-core/dist/icons/Drag';
 import Add from 'monday-ui-react-core/dist/icons/Add';
@@ -81,7 +81,7 @@ export class _GroupHeader extends React.Component {
         <div
           onMouseEnter={() => this.onHover(true, group.id)}
           onMouseLeave={() => this.onHover(false, group.id)}
-          className="group-title flex align-center fs18"
+          className="group-title fs18 flex align-center fs18"
           style={{ color: group.style.color }}
           contentEditable="true"
           suppressContentEditableWarning={true}

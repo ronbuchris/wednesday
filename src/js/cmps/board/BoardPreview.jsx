@@ -19,15 +19,15 @@ export function BoardPreview({
     <div
       className={`${
         board._id === boardId && 'selected'
-      } board-preview br4 menu-button-wrapper flex align-center space-between`}
+      } board-preview br4 menu-button-wrapper text-wrap flex align-center space-between`}
       onClick={() => {
         changeView(false);
       }}
     >
       <Link to={`/board/${board._id}`} className="full">
-        <div className="board-title flex align-center">
+        <div className="board-title text-wrap flex align-center">
           <Board />
-          <span>{board.title}</span>
+          <span className="text-cmp">{board.title}</span>
         </div>
       </Link>
       <div

@@ -46,6 +46,7 @@
 }
 
 .status-col {
+  font-size: rem(12px);
   position: relative;
   align-items: center;
   justify-content: center;
@@ -56,12 +57,6 @@
   }
 }
 
-.update-card {
-  width: 750px;
-  height: 200px;
-  border-radius: 8px;
-  border: 1px solid;
-}
 .add-update-btn-wrapper {
   height: 100%;
 

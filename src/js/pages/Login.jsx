@@ -31,8 +31,7 @@ class _Login extends React.Component {
     isSignup: false,
   };
   componentDidMount() {
-    document.title = `Mondus Login`
-
+    document.title = `Mondus Login`;
   }
   handleChange = ({ target }) => {
     const field = target.name;
@@ -87,7 +86,7 @@ class _Login extends React.Component {
           <Avatar
             style={{
               margin: '40px',
-              backgroundColor: 'blue',
+              backgroundColor: '#4353ff',
             }}
           >
             {/* <LockOutlinedIcon /> */}
@@ -154,6 +153,7 @@ class _Login extends React.Component {
               color="primary"
               style={{
                 margin: '25px 0',
+                backgroundColor: '#4353ff',
               }}
             >
               {isSignUp ? 'Sign Up' : 'Sign In'}

@@ -1,16 +1,22 @@
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 import Duplicate from 'monday-ui-react-core/dist/icons/Duplicate';
 
-
-export function ItemMenu({ item, onRemoveItem, toggleMenus, toggleMenu, onAddItem, group }) {
+export function ItemMenu({
+  item,
+  onRemoveItem,
+  toggleMenus,
+  toggleMenu,
+  onAddItem,
+  group,
+}) {
   return (
     <div className="item-menu menu-modal br8">
-      <div className="menu-section">
+      <div className="menu-section fs14">
         <div
           className="btn flex align-center header-btn"
           onClick={(ev) => {
             ev.stopPropagation();
-            onAddItem(item, group,false,null,'Duplicate')
+            onAddItem(item, group, false, null, 'Duplicate');
             toggleMenu(toggleMenus);
           }}
         >

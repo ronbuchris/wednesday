@@ -122,22 +122,22 @@ const gWorkspaces = [
                                     {
                                         id: 'update101',
                                         txt: 'first update!',
-                                        createBy: {
+                                        createdBy: {
                                             _id: 'u101',
                                             fullname: 'Adir Cohen',
                                             img: `https://robohash.org/adir`,
                                         },
-                                        createAt: 1589983468418
+                                        createdAt: 1589983468418
                                     },
                                     {
                                         id: 'update102',
                                         txt: 'Sec update!',
-                                        createBy: {
+                                        createdBy: {
                                             _id: 'u102',
                                             fullname: 'On Chetrit',
                                             img: `https://robohash.org/on`,
                                         },
-                                        createAt: 1589989468418
+                                        createdAt: 1589989468418
                                     }
                                 ],
                                 createdAt: 1589983468418,

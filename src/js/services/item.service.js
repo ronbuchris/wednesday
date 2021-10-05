@@ -53,12 +53,12 @@ function createUpdate(txt, user) {
     return {
         id: makeId(),
         txt,
-        createBy: {
+        createdBy: {
             _id: user._id,
             fullname: user.fullname,
             img: user.img
         },
-        createAt: Date.now()
+        createdAt: Date.now()
     }
 }
 

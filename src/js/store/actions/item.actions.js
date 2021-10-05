@@ -75,23 +75,10 @@ export function loadItem(board, itemId) {
     }
 }
 
-// export function onSortItemTitle(board, sortType) {
-//     return async (dispatch) => {
-//         try {
-//             dispatch({
-//                 type: 'SORT_ITEMS',
-//                 board,
-//                 sortType
-//             })
-//         } catch (err) {
-//             console.log('Cannot sort item', err)
-//         }
-//     }
-// }
-export function onSortItemTitle(board, { sortType }) {
+export function onSort(board,  sortType ) {
     return (dispatch) => {
         try {
-            const groups = groupService.query(board, { sortType })
+            const groups = groupService.query(board,  {sortType})
             dispatch({
                 type: 'SET_GROUPS',
                 groups

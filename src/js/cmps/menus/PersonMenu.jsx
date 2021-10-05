@@ -16,7 +16,7 @@ export function PersonMenu({
       <div className="item-member-list flex">
         {item.columns[findIdx('member')].members.map((member) => {
           return (
-            <div className="member-box flex align-center">
+            <div className="member-box fs12 flex align-center">
               <div className="user-wrapper flex align-center">
                 <img src={member.img} alt="user-img" />
                 {member.fullname}
@@ -37,7 +37,9 @@ export function PersonMenu({
                 <div className="img-user">
                   <img src={member.img} alt="member-img" />
                 </div>
-                <div className="fullname-user">{member.fullname}</div>
+                <div className="fullname-user full">
+                  <span>{member.fullname}</span>
+                </div>
               </div>
             </div>
           );
