@@ -45,6 +45,7 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, workspaces, lastRemovedWorkspace }
             break
         case 'SET_UNDO_WORKSPACE':
+            console.log('action',action.lastEditedWorkspace);
             newState = { ...state, lastEditedWorkspace: action.lastEditedWorkspace }
             break
         case 'TOGGLE_NAV':

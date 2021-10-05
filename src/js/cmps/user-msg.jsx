@@ -31,7 +31,7 @@ class _UserMsg extends React.Component {
 
   render() {
     const { msg } = this.state;
-    const { lastEditedWorkspace } = this.props;
+    const { lastEditedWorkspace, board } = this.props;
     if (!msg) return <React.Fragment></React.Fragment>;
     return (
       <section className={`user-msg flex align-center`}>
@@ -43,7 +43,8 @@ class _UserMsg extends React.Component {
         <div
           className="undo-btn btn br4"
           onClick={() => {
-            this.props.undo(lastEditedWorkspace);
+            this.props.undo(lastEditedWorkspace, board._id);
+            this.onCloseMsg();
           }}
         >
           Undo
@@ -63,6 +64,7 @@ function mapStateToProps(state) {
   return {
     workspace: state.workspaceModule.workspace,
     lastEditedWorkspace: state.workspaceModule.lastEditedWorkspace,
+    board: state.boardModule.board,
   };
 }
 

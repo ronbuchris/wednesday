@@ -37,17 +37,22 @@ class _GroupPreview extends React.Component {
 
   onRemoveGroup = (groupId) => {
     const { workspace, board, removeGroup } = this.props;
+    this.saveUndo(workspace)
     removeGroup(workspace, board, groupId);
     eventBusService.emit('user-msg', { txt: 'Group has removed', type: '' });
   };
 
   onRemoveItem = (itemId) => {
-    const { workspace, group, removeItem, saveUndoWorkspace } = this.props;
-    const undoWorkspace = JSON.parse(JSON.stringify(workspace))
-    saveUndoWorkspace(undoWorkspace)
+    const { workspace, group, removeItem } = this.props;
+    this.saveUndo(workspace)
     removeItem(workspace, group, itemId);
     eventBusService.emit('user-msg', { txt: 'Item has removed', type: '' });
   };
+
+  saveUndo = (workspace) => {
+    const undoWorkspace = JSON.parse(JSON.stringify(workspace))
+    this.props.saveUndoWorkspace(undoWorkspace)
+  }
 
   onKeyUp = (ev) => {
     if (ev.keyCode === 13) {
