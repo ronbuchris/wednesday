@@ -58,11 +58,6 @@ function _BoardActions({
         <IoIosArrowDown className="w32" />
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
       </div>
-      <div className="btn-search flex br4 btn  align-center justify-center">
-        <Person className="w32" />
-        <span>Person</span>
-        <IoIosArrowDown className="w32" />
-      </div>
       <div
         className={`btn-search flex br4 btn  align-center justify-center ${
           sortStore.sortBy !== 'Select sort by' ? 'active' : ''
