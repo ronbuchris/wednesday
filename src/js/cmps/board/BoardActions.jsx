@@ -17,6 +17,7 @@ function _BoardActions({
   toggleMenu,
   onEditGroup,
   toggleMenus,
+  filterStore,
 }) {
   return (
     <div className="actions-container flex">
@@ -42,7 +43,11 @@ function _BoardActions({
       </div>
       <BoardSearch board={board} />
       <div
-        className="btn-search flex br4 btn  align-center justify-center"
+        className={`btn-search flex br4 btn  align-center justify-center ${
+          filterStore.groupsIds.length || filterStore.statuses.length
+            ? 'active'
+            : ''
+        }`}
         onClick={() => {
           toggleMenu(toggleMenus, 'filterMenu', true);
         }}
@@ -70,8 +75,17 @@ function _BoardActions({
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    filterStore: state.boardModule.filterStore,
+  };
+}
+
 const mapDispatchToProps = {
   toggleMenu,
 };
 
-export const BoardActions = connect(null, mapDispatchToProps)(_BoardActions);
+export const BoardActions = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardActions);

@@ -49,13 +49,17 @@ export function loadGroups(board) {
     }
 }
 
-export function filterGroups(board, groupsIds, statuses) {
+export function filterGroups(board, filterStore) {
     return async dispatch => {
         try {
-            const groups = groupService.query(board, { groupsIds, statuses})
+            const groups = groupService.query(board, filterStore)
             dispatch({
                 type: 'SET_GROUPS',
                 groups
+            })
+            dispatch({
+                type: 'FILTER',
+                filterStore
             })
         } catch (err) {
             console.log('Cannot load workspaces', err)

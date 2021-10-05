@@ -2,9 +2,6 @@ import React from 'react';
 
 export function StatusFooter({ board, group, column }) {
   const getStatusMap = () => {
-    console.log(`board`, board);
-    console.log(`group`, group);
-    console.log(`column`, column);
     const statusIdx = board.columns.findIndex(
       (cmpOrder) => cmpOrder.type === 'status'
     );

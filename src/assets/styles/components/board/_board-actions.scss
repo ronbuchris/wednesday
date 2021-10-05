@@ -33,6 +33,10 @@
   color: $clr2;
   margin-right: 6px;
 
+  &.active {
+    background-color: $clr5 !important;
+  }
+
   &.search {
     width: 90px;
   }

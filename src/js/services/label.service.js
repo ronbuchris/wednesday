@@ -24,14 +24,12 @@ function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, ty
     if (label?.id) {
         if (type === "color") {
             const prevColorIdx = gColors.findIndex(color => color === label.color);
-            console.log(`prevColorIdx`, prevColorIdx)
             gColors.splice(prevColorIdx, 1, prevColor)
         }
 
         board.groups.forEach(group => {
             return group.items.forEach(item => {
                 const currLabel = item.columns[columnIdx].label
-                console.log(`currLabel[type]`, currLabel[type])
                 if (currLabel.id === label.id) currLabel[type] = label[type]
             })
         })
