@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
-import Person from 'monday-ui-react-core/dist/icons/Person';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
 import { IoIosArrowDown } from 'react-icons/io';
 
@@ -57,11 +56,6 @@ function _BoardActions({
         <span>Filter</span>
         <IoIosArrowDown className="w32" />
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
-      </div>
-      <div className="btn-search flex br4 btn  align-center justify-center">
-        <Person className="w32" />
-        <span>Person</span>
-        <IoIosArrowDown className="w32" />
       </div>
       <div
         className={`btn-search flex br4 btn  align-center justify-center ${

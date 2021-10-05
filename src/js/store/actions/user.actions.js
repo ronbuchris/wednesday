@@ -1,9 +1,9 @@
 import { userService } from "../../services/user.service";
 
-export function onLogin(credentials, guest) {
+export function onLogin(credentials) {
     return async (dispatch) => {
         try {
-            const user = await userService.login(credentials, guest)
+            const user = await userService.login(credentials)
             dispatch({
                 type: 'SET_USER',
                 user
@@ -63,6 +63,19 @@ export function loadUsers() {
             dispatch({
                 type: 'SET_USERS',
                 users
+            })
+        } catch (err) {
+            console.log('Cannot load users', err)
+        }
+    }
+}
+export function getLoggedinUser() {
+    return async dispatch => {
+        try {
+            const user = userService.getLoggedinUser()
+            dispatch({
+                type: 'SET_USER',
+                user
             })
         } catch (err) {
             console.log('Cannot load users', err)

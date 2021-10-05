@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
 import { eventBusService } from '../services/event-bus.service';
+// import { socketService } from '../services/socket.service';
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
 import { WorkspaceNav } from '../cmps/WorkspaceNav';
@@ -25,17 +26,31 @@ import {
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
+  loadWorkspaces,
 } from '../store/actions/workspace.actions';
+import { getLoggedinUser } from '../store/actions/user.actions';
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
 import { Loader } from '../cmps/Loader';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
+    const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
+      this.props;
     const boardId = this.props.match.params.boardId;
-    await this.props.loadWorkspaceByBoardId(boardId);
+
+    if (!this.props.workspaces?.length) {
+      await getLoggedinUser();
+      await loadWorkspaces(this.props.user);
+    }
+    await loadWorkspaceByBoardId(boardId, this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     // document.title = `${this.props.board.title}`;
+    // socketService.setup()
+    // socketService.emit('connect board', this.props.board._id)
+    // socketService.on('board updated', workspace => {
+    //         this.props.editWorkspace(workspace)
+    // })
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -180,6 +195,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   toggleMenu,
   //workspace
+  loadWorkspaces,
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
@@ -194,6 +210,8 @@ const mapDispatchToProps = {
   //item
   saveItem,
   changeView,
+  //USER
+  getLoggedinUser,
 };
 
 export const BoardDetails = connect(

@@ -15,8 +15,10 @@ import { onLogout } from '../store/actions/user.actions';
 import { toggleMenu } from '../store/actions/board.actions';
 
 class _SidebarHeader extends Component {
-  logout = async () => {
-    await this.props.onLogout();
+
+  
+  logout = () => {
+     this.props.onLogout();
     this.props.history.push('/');
   };
   render() {

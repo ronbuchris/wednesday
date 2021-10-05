@@ -30,11 +30,11 @@ export function loadWorkspace(workspaceId) {
     }
 }
 
-export function loadWorkspaceByBoardId(boardId) {
-
-    return async dispatch => {
+export function loadWorkspaceByBoardId(boardId,workspaces) {
+    return  dispatch => {
         try {
-            const workspace = await workspaceService.getByBoardId(boardId)
+            const workspace =  workspaceService.getByBoardId(boardId,workspaces)
+            console.log(`workspace`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

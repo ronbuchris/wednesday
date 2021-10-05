@@ -16,6 +16,8 @@ export function BoardPreview({
   const board = workspace.boards[boardIdx];
   if (!board) return <div></div>;
   return (
+    <div>
+
     <div
       className={`${
         board._id === boardId && 'selected'
@@ -23,7 +25,7 @@ export function BoardPreview({
       onClick={() => {
         changeView(false);
       }}
-    >
+      >
       <Link to={`/board/${board._id}`} className="full">
         <div className="board-title text-wrap flex align-center">
           <Board />
@@ -35,17 +37,18 @@ export function BoardPreview({
         onClick={() => {
           toggleMenu(toggleMenus, 'boardMenu', board._id);
         }}
-      >
+        >
         <Menu />
       </div>
+    </div>
       {toggleMenus.boardMenu === board._id && (
         <BoardMenu
-          board={board}
-          onRemoveBoard={onRemoveBoard}
-          toggleMenus={toggleMenus}
-          toggleMenu={toggleMenu}
+        board={board}
+        onRemoveBoard={onRemoveBoard}
+        toggleMenus={toggleMenus}
+        toggleMenu={toggleMenu}
         />
-      )}
-    </div>
+        )}
+        </div>
   );
 }
