@@ -6,6 +6,7 @@ import { setGroup, removeGroup } from '../../store/actions/group.actions';
 import { GroupHeader } from './GroupHeader';
 import { GroupFooter } from './GroupFooter';
 import { removeItem } from '../../store/actions/item.actions';
+import { eventBusService } from '../../services/event-bus.service';
 
 class _GroupPreview extends React.Component {
   state = {
@@ -36,11 +37,13 @@ class _GroupPreview extends React.Component {
   onRemoveGroup = (groupId) => {
     const { workspace, board, removeGroup } = this.props;
     removeGroup(workspace, board, groupId);
+    eventBusService.emit('user-msg', { txt: 'Group has removed', type: '' });
   };
 
   onRemoveItem = (itemId) => {
     const { workspace, group, removeItem } = this.props;
     removeItem(workspace, group, itemId);
+    eventBusService.emit('user-msg', { txt: 'Item has removed', type: '' });
   };
 
   onKeyUp = (ev) => {
@@ -74,7 +77,7 @@ class _GroupPreview extends React.Component {
           group={group}
         />
         <Droppable type="item" droppableId={group.id}>
-          {(provided,snapshot) => (
+          {(provided, snapshot) => (
             <div
               className="item-list flex column"
               {...provided.droppableProps}

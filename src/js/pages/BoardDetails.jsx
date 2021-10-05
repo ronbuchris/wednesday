@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
+import { eventBusService } from '../services/event-bus.service';
 // import { socketService } from '../services/socket.service';
 import { BoardContent } from '../cmps/board/BoardContent';
 import { BoardHeader } from '../cmps/board/BoardHeader';
@@ -27,22 +28,22 @@ import {
   loadWorkspace,
   loadWorkspaces,
 } from '../store/actions/workspace.actions';
-import{getLoggedinUser} from '../store/actions/user.actions'
+import { getLoggedinUser } from '../store/actions/user.actions';
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
 import { Loader } from '../cmps/Loader';
 
 export class _BoardDetails extends React.Component {
-
   async componentDidMount() {
-    const {getLoggedinUser,loadWorkspaces,loadWorkspaceByBoardId} = this.props;
+    const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
+      this.props;
     const boardId = this.props.match.params.boardId;
 
-    if(!this.props.workspaces?.length){
-      await getLoggedinUser()
-      await loadWorkspaces(this.props.user)
+    if (!this.props.workspaces?.length) {
+      await getLoggedinUser();
+      await loadWorkspaces(this.props.user);
     }
-    await loadWorkspaceByBoardId(boardId,this.props.workspaces);
+    await loadWorkspaceByBoardId(boardId, this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     // document.title = `${this.props.board.title}`;
     // socketService.setup()
@@ -98,6 +99,7 @@ export class _BoardDetails extends React.Component {
     } else if (match.params.boardId === boardId) {
       this.props.history.push(`/board/${workspace.boards[0]._id}`);
     }
+    eventBusService.emit('user-msg', { txt: 'Board has removed', type: '' });
   };
 
   onEditBoard = (board) => {
@@ -209,7 +211,7 @@ const mapDispatchToProps = {
   saveItem,
   changeView,
   //USER
-  getLoggedinUser
+  getLoggedinUser,
 };
 
 export const BoardDetails = connect(
