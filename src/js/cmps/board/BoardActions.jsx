@@ -18,6 +18,7 @@ function _BoardActions({
   onEditGroup,
   toggleMenus,
   filterStore,
+  sortStore,
 }) {
   return (
     <div className="actions-container flex">
@@ -63,13 +64,17 @@ function _BoardActions({
         <IoIosArrowDown className="w32" />
       </div>
       <div
-        className="btn-search flex br4 btn  align-center justify-center"
+        className={`btn-search flex br4 btn  align-center justify-center ${
+          sortStore.sortBy !== 'Select sort by' ? 'active' : ''
+        }`}
         onClick={() => toggleMenu(toggleMenus, 'sortMenu', true)}
       >
         <Sort className="w32" />
         <span>Sort</span>
         <IoIosArrowDown className="w32" />
-        {toggleMenus.sortMenu && <SortMenu board={board} />}
+        {toggleMenus.sortMenu && (
+          <SortMenu board={board} toggleMenus={toggleMenus} />
+        )}
       </div>
     </div>
   );
@@ -78,6 +83,7 @@ function _BoardActions({
 function mapStateToProps(state) {
   return {
     filterStore: state.boardModule.filterStore,
+    sortStore: state.boardModule.sortStore,
   };
 }
 

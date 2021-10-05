@@ -1,25 +1,27 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
-import { onSort} from '../../store/actions/item.actions';
+import { toggleMenu } from '../../store/actions/board.actions';
+import { onSort } from '../../store/actions/item.actions';
 
-function _SortMenu({ onSort, board }) {
+function _SortMenu({ onSort, board, sortStore, toggleMenu, toggleMenus }) {
+  const { sortBy, sortOrder } = sortStore;
   const [dropdownBy, setDropdownBy] = useState(false);
   const [dropdownOrder, setDropdownOrder] = useState(false);
-  const [sortBy, setSortBy] = useState('Text');
-  const [sortOrder, setSortOrder] = useState('Ascending');
 
-  // const onSort = (sortType) => {
-  //   onSortItemTitle(board, sortType);
-  // };
-
-  const resetSort = () => {};
-
-  const onSetSort = () => {
-    onSort(board,{sortBy, sortOrder});
+  const resetSort = () => {
+    sortStore.sortBy = 'Select sort by';
+    onSort(board, sortStore);
+    toggleMenu(toggleMenus);
   };
 
-  const sortByArray = ['Text', 'Status','Date'];
+  const onSetSort = () => {
+    onSort(board, sortStore);
+    toggleMenu(toggleMenus);
+    console.log(`toggleMenus`, toggleMenus);
+  };
+
+  const sortByArray = ['Text', 'Status', 'Date'];
 
   return (
     <div className="menu-modal sort-menu ">
@@ -47,7 +49,7 @@ function _SortMenu({ onSort, board }) {
                 <div
                   key={value}
                   className="sort-by-title br4"
-                  onClick={() => setSortBy(value)}
+                  onClick={() => (sortStore.sortBy = value)}
                 >
                   {value}
                 </div>
@@ -66,13 +68,13 @@ function _SortMenu({ onSort, board }) {
             <div className="dropdown-sort br4">
               <div
                 className="sort-by-title br4"
-                onClick={() => setSortOrder('Ascending')}
+                onClick={() => (sortStore.sortOrder = 'Ascending')}
               >
                 Ascending
               </div>
               <div
                 className="sort-by-title br4"
-                onClick={() => setSortOrder('Descending')}
+                onClick={() => (sortStore.sortOrder = 'Descending')}
               >
                 Descending
               </div>
@@ -84,8 +86,15 @@ function _SortMenu({ onSort, board }) {
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    sortStore: state.boardModule.sortStore,
+  };
+}
+
 const mapDispatchToProps = {
   onSort,
+  toggleMenu,
 };
 
-export const SortMenu = connect(null, mapDispatchToProps)(_SortMenu);
+export const SortMenu = connect(mapStateToProps, mapDispatchToProps)(_SortMenu);
