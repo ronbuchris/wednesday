@@ -1,6 +1,6 @@
 import { BsEnvelope } from 'react-icons/bs';
 import { connect } from 'react-redux';
-import { saveItem} from '../../store/actions/item.actions'
+import { saveItem } from '../../store/actions/item.actions'
 import Close from 'monday-ui-react-core/dist/icons/Close';
 function _PersonMenu({
   toggleMenus,
@@ -14,10 +14,16 @@ function _PersonMenu({
   saveItem
 }) {
   const onAddMember = (member) => {
-  item.columns[findIdx('member')].members.unshift(member)
-  const newItem = JSON.parse(JSON.stringify(item))
-  saveItem(newItem, user, workspace, group, null, board, '')
-}
+    item.columns[findIdx('member')].members.unshift(member)
+    const newItem = JSON.parse(JSON.stringify(item))
+    saveItem(newItem, user, workspace, group, null, board, '')
+  }
+
+  const checkMember = (memberId) => {
+    return item.columns[findIdx('member')].members.some((member) => {
+      return member._id === memberId
+    })
+  }
   return (
     <div className="person-menu menu-modal flex column">
       <div className="search-person">
@@ -41,10 +47,15 @@ function _PersonMenu({
       <div className="divider"></div>
       <div className="members-list  flex column">
         {workspace.members.map((member) => {
-          return (
-            <div className="wrapper" key={member._id} onClick={() => {
-              onAddMember(member)
-            }}>
+          const isExcluded = checkMember(member._id)
+          if (isExcluded) return <div key={member._id}></div>
+          {return (
+            <div className="wrapper"
+              key={member._id}
+              onClick={() => {
+                onAddMember(member)
+                toggleMenu(toggleMenus);
+              }}>
               <div className="add-member-box br4 btn flex">
                 <div className="img-user">
                   <img src={member.img} alt="member-img" />
@@ -54,7 +65,7 @@ function _PersonMenu({
                 </div>
               </div>
             </div>
-          );
+          );}
         })}
         <div
           className="invite br4 flex align-center"
