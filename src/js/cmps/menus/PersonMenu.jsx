@@ -1,13 +1,29 @@
 import { BsEnvelope } from 'react-icons/bs';
+import { connect } from 'react-redux';
+import { saveItem } from '../../store/actions/item.actions'
 import Close from 'monday-ui-react-core/dist/icons/Close';
-export function PersonMenu({
+function _PersonMenu({
   toggleMenus,
   toggleMenu,
   group,
   item,
   workspace,
   findIdx,
+  user,
+  board,
+  saveItem
 }) {
+  const onAddMember = (member) => {
+    item.columns[findIdx('member')].members.unshift(member)
+    const newItem = JSON.parse(JSON.stringify(item))
+    saveItem(newItem, user, workspace, group, null, board, '')
+  }
+
+  const checkMember = (memberId) => {
+    return item.columns[findIdx('member')].members.some((member) => {
+      return member._id === memberId
+    })
+  }
   return (
     <div className="person-menu menu-modal flex column">
       <div className="search-person">
@@ -16,7 +32,7 @@ export function PersonMenu({
       <div className="item-member-list flex">
         {item.columns[findIdx('member')].members.map((member) => {
           return (
-            <div className="member-box fs12 flex align-center">
+            <div className="member-box fs12 flex align-center" key={member._id}>
               <div className="user-wrapper flex align-center">
                 <img src={member.img} alt="user-img" />
                 {member.fullname}
@@ -31,8 +47,15 @@ export function PersonMenu({
       <div className="divider"></div>
       <div className="members-list  flex column">
         {workspace.members.map((member) => {
-          return (
-            <div className="wrapper">
+          const isExcluded = checkMember(member._id)
+          if (isExcluded) return <div key={member._id}></div>
+          {return (
+            <div className="wrapper"
+              key={member._id}
+              onClick={() => {
+                onAddMember(member)
+                toggleMenu(toggleMenus);
+              }}>
               <div className="add-member-box br4 btn flex">
                 <div className="img-user">
                   <img src={member.img} alt="member-img" />
@@ -42,7 +65,7 @@ export function PersonMenu({
                 </div>
               </div>
             </div>
-          );
+          );}
         })}
         <div
           className="invite br4 flex align-center"
@@ -57,3 +80,18 @@ export function PersonMenu({
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    workspace: state.workspaceModule.workspace,
+    user: state.userModule.user,
+    board: state.boardModule.board,
+  };
+}
+
+const mapDispatchToProps = {
+  saveItem
+};
+
+export const PersonMenu = connect(mapStateToProps, mapDispatchToProps)(_PersonMenu)
+

@@ -26,8 +26,7 @@ function _ItemPreview({
   group,
   item,
 }) {
-  const onFocus = (itemId) => {};
-
+  const input = React.createRef();
   return (
     <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
@@ -63,6 +62,7 @@ function _ItemPreview({
             className="item-title-text"
             contentEditable="true"
             suppressContentEditableWarning={true}
+            ref={input}
             onBlur={(ev) => {
               onBlur(ev.target.innerText, item.title, item, 'item', group);
             }}
@@ -72,7 +72,7 @@ function _ItemPreview({
           <div
             className="edit-title-btn br4"
             onClick={(ev) => {
-              onFocus(item.id);
+              input.current.focus();
             }}
           >
             Edit

@@ -169,6 +169,5 @@ export function ItemColumn({
       default:
     }
   };
-
   return <>{renderSwitch(column)}</>;
 }
