@@ -40,10 +40,31 @@ class _GroupPreview extends React.Component {
     this.saveUndo(workspace)
     removeGroup(workspace, board, groupId);
     eventBusService.emit('user-msg', { txt: 'Group has removed', type: '' });
-  };
+  }
 
+  makeId = (length = 6) => {
+    var txt = '';
+    var possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (var i = 0; i < length; i++) {
+      txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+  }
   onRemoveItem = (itemId) => {
-    const { workspace, group, removeItem } = this.props;
+    const { workspace, group, removeItem, board, user } = this.props;
+    const activity = {
+      id: this.makeId(),
+      createdAt: Date.now(),
+      activity: 'Removed item',
+      createdBy: {
+        _id: user._id,
+        fullname: user.fullname,
+        img: user.img
+      }
+    }
+    board.activities.unshift(activity);
     this.saveUndo(workspace)
     removeItem(workspace, group, itemId);
     eventBusService.emit('user-msg', { txt: 'Item has removed', type: '' });
