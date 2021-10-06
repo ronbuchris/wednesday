@@ -35,9 +35,7 @@ import { Loader } from '../cmps/Loader';
 import { SelectedPopup } from '../cmps/SelectedPopup';
 
 export class _BoardDetails extends React.Component {
-
   async componentDidMount() {
-    console.log(`componentDidMount`)
     const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
       this.props;
     const boardId = this.props.match.params.boardId;
@@ -49,20 +47,20 @@ export class _BoardDetails extends React.Component {
     await loadWorkspaceByBoardId(boardId, this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     document.title = `${this.props.board.title}`;
-    socketService.setup()
-    socketService.emit('connect board', this.props.board._id)
-    socketService.on('board updated', workspace => {
-      this.props.editWorkspace(workspace)
-      if(this.props.board._id ===boardId){
-        this.props.loadBoard(workspace,boardId)
+    socketService.setup();
+    socketService.emit('connect board', this.props.board._id);
+    socketService.on('board updated', (workspace) => {
+      // this.props.editWorkspace(workspace)
+      if (this.props.board._id === boardId) {
+        this.props.loadBoard(workspace, boardId);
       }
-    })
+    });
   }
-  
+
   componentWillUnmount() {
-    socketService.off('board updated')
+    socketService.off('board updated');
   }
-  
+
   async componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;
