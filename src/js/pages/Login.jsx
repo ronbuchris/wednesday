@@ -18,7 +18,7 @@ import {
   onSignup,
   onLogout,
   loadUsers,
-  onLoginWithGoogle
+  onLoginWithGoogle,
 } from '../store/actions/user.actions.js';
 
 class _Login extends React.Component {
@@ -42,11 +42,11 @@ class _Login extends React.Component {
     }));
   };
 
-  onLogin = async (ev,guest) => {
+  onLogin = async (ev, guest) => {
     ev.preventDefault();
-    if(guest){
+    if (guest) {
       await this.props.onLogin(guest);
-    } else{
+    } else {
       const { username, password } = this.state.credentials;
       if (!username || !password) return;
       await this.props.onLogin({ username, password }, null);
@@ -71,16 +71,15 @@ class _Login extends React.Component {
     const userToSave = {
       username: response.profileObj.email,
       fullname: response.profileObj.name,
-      img: response.profileObj.imageUrl
-    }
-      await this.props.onLoginWithGoogle(userToSave, 'isGoogleLogin');
-      const user = userService.getLoggedinUser();
-      const workspaces = await this.props.loadWorkspaces(user);
-      this.props.loadUsers();
-      const boardId = workspaces[0].boards[0]._id;
-      this.props.history.push(`/board/${boardId}`);
-    
-  }
+      img: response.profileObj.imageUrl,
+    };
+    await this.props.onLoginWithGoogle(userToSave, 'isGoogleLogin');
+    const user = userService.getLoggedinUser();
+    const workspaces = await this.props.loadWorkspaces(user);
+    this.props.loadUsers();
+    const boardId = workspaces[0].boards[0]._id;
+    this.props.history.push(`/board/${boardId}`);
+  };
 
   render() {
     const { isSignUp, credentials } = this.state;
@@ -171,31 +170,19 @@ class _Login extends React.Component {
             >
               {isSignUp ? 'Sign Up' : 'Sign In'}
             </Button>
-            <div className='flex auto-center'
+            <div
+              className="flex auto-center"
               style={{ marginBottom: 10 + 'px' }}
             >
-            <GoogleLogin
+              <GoogleLogin
                 clientId="1090497579239-pe91bi8058atbcb12mbcffonugrjovlu.apps.googleusercontent.com"
-              buttonText="Log in with Google"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
+                buttonText="Log in with Google"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
             </div>
-            {/* <div
-              className="sign-guest flex auto-center btn"
-              onClick={(ev) => {
-                this.onLogin(ev,'guest');
-              }}
-            >
-              <h3>Sign in as a Guest</h3>
-            </div> */}
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
                 <Link
                   href="#"
@@ -228,7 +215,7 @@ const mapDispatchToProps = {
   onLogout,
   loadWorkspaces,
   loadUsers,
-  onLoginWithGoogle
+  onLoginWithGoogle,
 };
 
 export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login);

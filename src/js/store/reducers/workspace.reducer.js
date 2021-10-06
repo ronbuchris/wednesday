@@ -30,6 +30,7 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, workspaces: action.workspaces }
             break
         case 'SET_WORKSPACE':
+            // workspaces = state.workspaces.map(workspace => workspace._id !== action.workspace._id ? workspace : action.workspace)
             newState = { ...state, workspace: action.workspace }
             break
         case 'ADD_WORKSPACE':
@@ -45,7 +46,6 @@ export function workspaceReducer(state = initialState, action) {
             newState = { ...state, workspaces, lastRemovedWorkspace }
             break
         case 'SET_UNDO_WORKSPACE':
-            console.log('action',action.lastEditedWorkspace);
             newState = { ...state, lastEditedWorkspace: action.lastEditedWorkspace }
             break
         case 'TOGGLE_NAV':

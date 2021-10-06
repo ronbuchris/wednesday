@@ -5,11 +5,20 @@ import { Switch, Route } from 'react-router';
 import { MainHeader } from './js/cmps/MainHeader';
 import { SidebarHeader } from './js/cmps/SidebarHeader';
 import { UserMsg } from './js/cmps/user-msg';
+import { socketService } from './js/services/socket.service';
 
 import routesHomePage from './routesHomePage';
 import routesMainApp from './routesMainApp';
 
 class _RootCmp extends React.Component {
+
+  componentDidMount(){
+    socketService.setup()
+  }
+
+  componentWillUnmount(){
+    socketService.terminate()
+  }
 
   render() {
     const { user } = this.props;
