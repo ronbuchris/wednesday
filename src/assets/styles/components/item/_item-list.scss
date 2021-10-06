@@ -57,13 +57,20 @@
     }
 
     .item-title {
+      width:120px;
       display: flex;
       align-items: center;
       padding: 0 10px 0 0;
       flex: 1 0;
       border-bottom: 1px solid $ui-grey-color;
       cursor: pointer;
-
+.title{
+  width:84%;
+  .item-title-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
       .add-update-btn {
         &:hover {
           color: $primary-color;
@@ -117,4 +124,9 @@
       }
     }
   }
+}
+
+.add-update-btn-wrapper{
+  position: absolute;
+    right: 10px;
 }
