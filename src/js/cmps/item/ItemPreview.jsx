@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { FaCaretDown } from 'react-icons/fa';
+import Check from 'monday-ui-react-core/dist/icons/Check';
 
 import { toggleMenu } from '../../store/actions/board.actions';
 import { loadItem } from '../../store/actions/item.actions';
@@ -26,6 +27,8 @@ function _ItemPreview({
   group,
   item,
 }) {
+  const toggleSelect = () => {};
+
   const input = React.createRef();
   return (
     <div className="item-preview flex">
@@ -50,9 +53,25 @@ function _ItemPreview({
         </div>
       </div>
       <div
-        className="indicator"
+        className="indicator select flex align-center justify-center"
         style={{ backgroundColor: group.style.color }}
-      ></div>
+      >
+        <div
+          className={`selected btn flex ${
+            item.isSelected ? 'is-selected' : ''
+          }`}
+          onClick={() => toggleSelect(item._id)}
+        >
+          {item.isSelected && (
+            <span
+              className="flex align-center "
+              style={{ color: group.style.color }}
+            >
+              <Check />
+            </span>
+          )}
+        </div>
+      </div>
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
@@ -71,7 +90,7 @@ function _ItemPreview({
           </div>
           <div
             className="edit-title-btn br4"
-            onClick={(ev) => {
+            onClick={() => {
               input.current.focus();
             }}
           >

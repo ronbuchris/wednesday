@@ -148,7 +148,7 @@ const gWorkspaces = [
                                     img: `https://robohash.org/adir`
                                 },
                                 activities: [],
-                                isSelected: false,
+                                isSelected: true,
                             },
                             {
                                 id: "c102",
@@ -178,7 +178,7 @@ const gWorkspaces = [
                                 updates: [],
                                 createdAt: 1589983468418,
                                 activities: [],
-                                isSelected: false,
+                                isSelected: true,
 
                             },
                         ],
@@ -259,7 +259,7 @@ const gWorkspaces = [
                                 "updates": [],
                                 "createdAt": 1589983468418,
                                 "activities": [],
-                                "isSelected": false,
+                                "isSelected": true,
 
                             },
                         ],
@@ -757,8 +757,8 @@ const gUsers = [
     },
 ]
 
-// _save('workspaceDB', gWorkspaces)
-// _save('userDB', gUsers)
+_save('workspaceDB', gWorkspaces)
+_save('userDB', gUsers)
 
 
 function query(entityType, delay = 400) {
