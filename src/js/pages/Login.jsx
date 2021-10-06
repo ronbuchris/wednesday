@@ -10,9 +10,8 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
 import { userService } from '../services/user.service';
-
+import { GoogleLogin } from 'react-google-login';
 import { loadWorkspaces } from '../store/actions/workspace.actions';
 import {
   onLogin,
@@ -67,6 +66,14 @@ class _Login extends React.Component {
     if (!username || !password || !fullname) return;
     this.props.onSignup({ username, password, fullname });
   };
+  responseGoogle = (response) => {
+    const user = {
+      username: response.profileObj.email,
+      fullname: response.profileObj.name,
+      img: response.profileObj.imageUrl
+    }
+    console.log(user);
+  }
 
   render() {
     const { isSignUp, credentials } = this.state;
@@ -157,15 +164,25 @@ class _Login extends React.Component {
             >
               {isSignUp ? 'Sign Up' : 'Sign In'}
             </Button>
-
-            <div
+            <div className='flex auto-center'
+              style={{ marginBottom: 10 + 'px' }}
+            >
+            <GoogleLogin
+                clientId="1090497579239-pe91bi8058atbcb12mbcffonugrjovlu.apps.googleusercontent.com"
+              buttonText="Log in with Google"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+            </div>
+            {/* <div
               className="sign-guest flex auto-center btn"
               onClick={(ev) => {
                 this.onLogin(ev,'guest');
               }}
             >
               <h3>Sign in as a Guest</h3>
-            </div>
+            </div> */}
             <Grid container>
               {/* <Grid item xs>
                 <Link href="#" variant="body2">
