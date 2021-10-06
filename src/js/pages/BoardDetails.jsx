@@ -35,7 +35,6 @@ import { Loader } from '../cmps/Loader';
 import { SelectedPopup } from '../cmps/SelectedPopup';
 
 export class _BoardDetails extends React.Component {
-
   async componentDidMount() {
     const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
       this.props;
@@ -54,13 +53,13 @@ export class _BoardDetails extends React.Component {
       if(this.props.board._id ===boardId){
         this.props.loadBoard(workspace,boardId)
       }
-    })
+    });
   }
-  
+
   componentWillUnmount() {
-    socketService.off('board updated')
+    socketService.off('board updated');
   }
-  
+
   async componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     const { workspace } = this.props;

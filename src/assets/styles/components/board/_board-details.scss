@@ -27,7 +27,8 @@
         overflow: hidden;
 
         .board-header-title {
-          font-size: 24px;
+          font-size: rem(32px);
+          font-family: roboto-bold;
           outline: none;
 
           &:hover {
@@ -170,7 +171,7 @@
     .title-section {
       flex: 1;
       .title {
-        font-size: 24px;
+        font-size: rem(24px);
         padding-left: 20px;
         font-family: sofia-thin;
         overflow: hidden;
