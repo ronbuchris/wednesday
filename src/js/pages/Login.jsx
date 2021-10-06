@@ -18,6 +18,7 @@ import {
   onSignup,
   onLogout,
   loadUsers,
+  onLoginWithGoogle
 } from '../store/actions/user.actions.js';
 
 class _Login extends React.Component {
@@ -66,13 +67,20 @@ class _Login extends React.Component {
     if (!username || !password || !fullname) return;
     this.props.onSignup({ username, password, fullname });
   };
-  responseGoogle = (response) => {
-    const user = {
+  responseGoogle = async (response) => {
+    const {users} = this.props
+    const userToSave = {
       username: response.profileObj.email,
       fullname: response.profileObj.name,
       img: response.profileObj.imageUrl
     }
-    console.log(user);
+      await this.props.onLoginWithGoogle(userToSave, 'isGoogleLogin');
+      const user = userService.getLoggedinUser();
+      const workspaces = await this.props.loadWorkspaces(user);
+      this.props.loadUsers();
+      const boardId = workspaces[0].boards[0]._id;
+      this.props.history.push(`/board/${boardId}`);
+    
   }
 
   render() {
@@ -211,6 +219,7 @@ class _Login extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.userModule.user,
+    users: state.userModule.users,
   };
 }
 
@@ -220,6 +229,7 @@ const mapDispatchToProps = {
   onLogout,
   loadWorkspaces,
   loadUsers,
+  onLoginWithGoogle
 };
 
 export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login);
