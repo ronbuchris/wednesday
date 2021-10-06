@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
@@ -39,7 +39,10 @@ function _ItemPreview({
     toggleSelected(board, selectedItems);
   };
 
+  const [isFocus, setFocus] = useState(false);
+
   const input = React.createRef();
+
   return (
     <div className="item-preview flex">
       {toggleMenus.itemMenu === item.id && (
@@ -87,22 +90,30 @@ function _ItemPreview({
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
+        // onClick={() => history.push(location.pathname + `/item/${item.id}`)}
       >
         <div className="title flex align-center">
           <div
-            className="item-title-text"
+            className={`item-title-text ${isFocus ? 'focus' : ''}`}
             contentEditable="true"
             suppressContentEditableWarning={true}
             ref={input}
             onBlur={(ev) => {
+              ev.stopPropagation();
               onBlur(ev.target.innerText, item.title, item, 'item', group);
+              setFocus(false);
+            }}
+            onFocus={(ev) => {
+              ev.stopPropagation();
+              setFocus(true);
             }}
           >
             {item.title}
           </div>
           <div
-            className="edit-title-btn br4"
-            onClick={() => {
+            className={`edit-title-btn br4 ${isFocus ? 'focus' : ''}`}
+            onClick={(ev) => {
+              ev.stopPropagation();
               input.current.focus();
             }}
           >
