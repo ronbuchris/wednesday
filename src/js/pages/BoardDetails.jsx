@@ -44,7 +44,6 @@ export class _BoardDetails extends React.Component {
     const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
       this.props;
     const boardId = this.props.match.params.boardId;
-
     if (!this.props.workspaces?.length) {
       await getLoggedinUser();
       await loadWorkspaces(this.props.user);
@@ -52,11 +51,12 @@ export class _BoardDetails extends React.Component {
     await loadWorkspaceByBoardId(boardId, this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     document.title = `${this.props.board.title}`;
-    socketService.setup();
-    socketService.emit('connect board', this.props.board._id);
-    socketService.on('board updated', (workspace) => {
-      if (this.props.board._id === boardId) {
-        this.props.loadBoard(workspace, boardId);
+    socketService.emit('connect board', this.props.board._id)
+    console.log(`boardId`, boardId)
+    console.log(`this.props.board._id`, this.props.board._id)
+    socketService.on('board updated', workspace=> {
+      if(this.props.board._id ===boardId){
+        this.props.loadBoard(workspace,boardId)
       }
     });
   }

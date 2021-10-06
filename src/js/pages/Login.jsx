@@ -68,14 +68,14 @@ class _Login extends React.Component {
     this.props.onSignup({ username, password, fullname });
   };
   responseGoogle = async (response) => {
-    const { users } = this.props;
     const userToSave = {
       username: response.profileObj.email,
       fullname: response.profileObj.name,
       img: response.profileObj.imageUrl,
     };
-    await this.props.onLoginWithGoogle(userToSave, 'isGoogleLogin');
+    await this.props.onLoginWithGoogle(userToSave);
     const user = userService.getLoggedinUser();
+    console.log('user after login', user);
     const workspaces = await this.props.loadWorkspaces(user);
     this.props.loadUsers();
     const boardId = workspaces[0].boards[0]._id;
