@@ -1,8 +1,107 @@
 .app-container {
-  height: 100vh;
+  flex-direction: column;
+  
+  @include for-normal-layout {
+    @media (min-width: $narrow-breakpoint) {
+      flex-direction: row;
+        height: 100vh;
+          }}
+
 
   .sidebar-container {
     background-color: $clr1;
+    min-height:65px;
+    
+    @include for-normal-layout {
+      @media (min-width: $narrow-breakpoint) {
+        min-width: 66px;
+        height: 100vh;
+            }}
+
+    .sidebar-icons{
+      flex-direction: row;
+      @include for-normal-layout {
+        @media (min-width: $narrow-breakpoint) {
+          flex-direction: column;
+              }}
+
+      .left-side{
+        .logos-wrapper{
+          display: none;
+          @include for-normal-layout {
+            @media (min-width: $narrow-breakpoint) {
+              display:flex;
+  
+                  }}
+        }
+
+      }
+      .right-side{
+        .logos-wrapper{
+
+          display:none;
+          @include for-normal-layout {
+            @media (min-width: $narrow-breakpoint) {
+              display:flex;
+  
+                  }}
+                }
+                .hamburger{
+                  display: block;
+                  position: relative;
+ 
+          z-index: 1;
+          user-select: none;
+          appearance: none;
+          border:none;
+          outline: none;
+          cursor: pointer;
+          background-color: $clr1;
+          
+          span{
+              display: block;
+              width: 33px;
+              height: 4px;
+              margin-bottom: 5px;
+              position: relative;
+              background-color: #fff;
+              border-radius: 6px;
+              z-index: 1;
+              transform-origin:0 0;
+              transition:0.4s;
+          }
+          &:hover span:nth-child(2){
+              transform: translateX(10px);
+              background-color: #8c38ff;
+          }
+          &.is-active span:nth-child(1){
+              transform: translate(0px,-2px) rotate(45deg);
+          }
+          
+          &.is-active span:nth-child(3){
+              transform: translate(-3px,3px) rotate(-45deg);
+          }
+          &.is-active span:nth-child(2){
+              opacity:0;
+              transform: translateX(15px);
+          }
+          &.is-active:hover span {
+              background-color: #8c38ff;
+            }
+          }
+
+          @include for-normal-layout {
+            @media (min-width: $narrow-breakpoint) {
+              .hamburger{
+                display:none;
+              }
+  
+                  }}
+
+        }
+        
+      }
+
     min-width: 66px;
 
     .logo {
@@ -107,3 +206,4 @@
   line-height: 1.75;
   color: #fff;
 }
+

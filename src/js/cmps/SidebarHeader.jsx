@@ -16,12 +16,23 @@ import { toggleMenu } from '../store/actions/board.actions';
 
 class _SidebarHeader extends Component {
 
+  state={
+    isActive:false,
+  }
+
+
+  onActive = () => {
+    const{isActive}=this.state;
+    this.setState({ isActive: !isActive })
+}
+
   
   logout = () => {
      this.props.onLogout();
     this.props.history.push('/');
   };
   render() {
+    const {isActive}= this.state;
     const { user, workspace, toggleMenus, toggleMenu } = this.props;
     if (!workspace) return <div></div>;
     const id = workspace.boards.length
@@ -31,21 +42,29 @@ class _SidebarHeader extends Component {
     return (
       <div className="sidebar-container flex justify-center">
         <nav className="sidebar-icons flex space-between column align-center">
-          <div className="flex column align-center">
-            <img className="logo" src={logo} alt="" />
+          <div className="left-side flex column align-center">
+            <img className="logo" src={logo} alt="logo" />
+            <div className="logos-wrapper flex column align-center">
             <Link to={id ? `/${route}/${id}` : `/`}>
               <Workspace className="nav-icon workspace" />
             </Link>
             <Notifications className="nav-icon Notifications" />
             <Inbox className="nav-icon Inbox" />
             <MyWeek className="nav-icon MyWeek" />
+            </div>
           </div>
-          <div className="flex column align-center">
+          <div className="right-side flex column align-center">
+            <div className={`hamburger ${isActive ? 'is-active' :''}`} onClick={this.onActive}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div className="logos-wrapper flex column align-center">
             <button
               onClick={() => {
                 toggleMenu(toggleMenus, 'isMemberModal', true);
               }}
-            >
+              >
               <Invite className="nav-icon Invite" />
             </button>
             <Help className="nav-icon Help" />
@@ -55,6 +74,7 @@ class _SidebarHeader extends Component {
             <Link to={`/user/${user._id}`}>
               <img className="user-profile" src={user.img} alt="" />
             </Link>
+              </div>
           </div>
         </nav>
       </div>
