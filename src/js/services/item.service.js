@@ -69,6 +69,11 @@ function remove(workspace, group, itemId) {
     return returnedWorkspace
 }
 
+function removeSelected(workspace, group,itemsIds) {
+    itemsIds.forEach(itemId => {
+        remove(workspace, group, itemId)
+    })
+}
 function duplicateItem(item) {
     return {
         ...item,
