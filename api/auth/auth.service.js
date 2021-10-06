@@ -15,6 +15,23 @@ async function login(username, password) {
     return user
 }
 
+async function loginWithGoogle(user) {
+    logger.debug(`auth.service - login with google username: ${user.username}`)
+    const userFromColl = await userService.getByUsername(user.username)
+    console.log('userFromColl', userFromColl);
+    if (userFromColl === null) {
+        const userToReturn = await signUpWithGoogle(user)
+        console.log('userToReturn',userToReturn);
+        return userToReturn
+    }
+    return userFromColl
+}
+
+async function signUpWithGoogle(user) {
+    logger.debug(`auth.service - signup with google username: ${user.username}, fullname: ${user.fullname}`)
+    if (!user.username || !user.fullname) return Promise.reject('fullname, username and password are required!')
+    return userService.addGoogleUser(user)
+}
 async function signup(username, password, fullname) {
     const saltRounds = 10
 
@@ -28,4 +45,5 @@ async function signup(username, password, fullname) {
 module.exports = {
     signup,
     login,
+    loginWithGoogle
 }

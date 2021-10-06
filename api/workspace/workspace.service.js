@@ -4,11 +4,12 @@ const ObjectId = require('mongodb').ObjectId
 
 async function query(user) {
     try {
-        if(user.username==='guest'){
-            var criteria={}
-        }else{
-            var criteria = _buildCriteria(user._id)
-        }
+        // if(user.username==='guest'){
+        //     var criteria={}
+        // }else{
+        //     var criteria = _buildCriteria(user._id)
+        // }
+        const criteria ={}
         const collection = await dbService.getCollection('workspace')
         var workspaces = await collection.find(criteria).toArray()
         return workspaces
@@ -51,15 +52,14 @@ async function add(workspace) {
     }
 }
 async function update(workspace) {
-    const id = workspace._id
-    delete workspace._id
     try {
+        var id = ObjectId(workspace._id)
+        delete workspace._id
         const collection = await dbService.getCollection('workspace')
-        await collection.updateOne({ "_id": ObjectId(id) }, { $set: workspace  })
-        workspace._id=id
+        await collection.updateOne({ "_id": id }, { $set: { ...workspace } })
         return workspace
     } catch (err) {
-        logger.error(`cannot update workspace ${workspace._id}`, err)
+        logger.error(`cannot update workspace ${workspaceId}`, err)
         throw err
     }
 }

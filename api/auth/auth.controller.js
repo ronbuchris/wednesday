@@ -12,6 +12,17 @@ async function login(req, res) {
         res.status(401).send({ err: 'Failed to Login' })
     }
 }
+async function loginWithGoogle(req, res) {
+    try {
+        const user = req.body
+        const userToReturn = await authService.loginWithGoogle(user)
+        req.session.userToReturn = userToReturn
+        res.json(userToReturn)
+    } catch (err) {
+        logger.error('Failed to Login ' + err)
+        res.status(401).send({ err: 'Failed to Login' })
+    }
+}
 
 async function signup(req, res) {
     try {
@@ -41,5 +52,6 @@ async function logout(req, res){
 module.exports = {
     login,
     signup,
-    logout
+    logout,
+    loginWithGoogle
 }
