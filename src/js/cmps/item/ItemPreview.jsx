@@ -6,7 +6,7 @@ import { FaCaretDown } from 'react-icons/fa';
 import Check from 'monday-ui-react-core/dist/icons/Check';
 
 import { toggleMenu } from '../../store/actions/board.actions';
-import { loadItem, toggleSelected} from '../../store/actions/item.actions';
+import { loadItem, toggleSelected } from '../../store/actions/item.actions';
 
 import { ItemColumn } from './ItemColumn';
 import { connect } from 'react-redux';
@@ -27,17 +27,16 @@ function _ItemPreview({
   group,
   item,
   toggleSelected,
-  selectedItems
+  selectedItems,
 }) {
   const toggleSelect = (itemId) => {
-    console.log(selectedItems.includes(itemId));
     if (selectedItems.includes(itemId)) {
-      const itemIdx = selectedItems.findIndex(item => item.id === itemId)
-      selectedItems.splice(itemIdx, 1)
+      const itemIdx = selectedItems.findIndex((item) => item === itemId);
+      selectedItems.splice(itemIdx, 1);
     } else {
-      selectedItems.push(itemId)
+      selectedItems.push(itemId);
     }
-    toggleSelected(board,selectedItems)
+    toggleSelected(board, selectedItems);
   };
 
   const input = React.createRef();
@@ -64,7 +63,9 @@ function _ItemPreview({
         </div>
       </div>
       <div
-        className={`indicator select flex align-center justify-center ${selectedItems.length && 'is-selecting'}`}
+        className={`indicator select flex align-center justify-center ${
+          selectedItems.length && 'is-selecting'
+        }`}
         style={{ backgroundColor: group.style.color }}
       >
         <div
@@ -149,7 +150,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   toggleMenu,
   loadItem,
-  toggleSelected
+  toggleSelected,
 };
 
 export const ItemPreview = withRouter(

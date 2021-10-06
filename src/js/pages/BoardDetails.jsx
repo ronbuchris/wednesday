@@ -32,6 +32,7 @@ import { getLoggedinUser } from '../store/actions/user.actions';
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
 import { Loader } from '../cmps/Loader';
+import { SelectedPopup } from '../cmps/SelectedPopup';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
@@ -140,8 +141,15 @@ export class _BoardDetails extends React.Component {
   };
 
   render() {
-    const { currView, toggleMenus, changeView, workspace, groups, board } =
-      this.props;
+    const {
+      currView,
+      toggleMenus,
+      changeView,
+      workspace,
+      groups,
+      board,
+      selectedItems,
+    } = this.props;
     if (!workspace || !board) return <Loader />;
     return (
       <div className="board-app flex">
@@ -170,6 +178,11 @@ export class _BoardDetails extends React.Component {
             groups={groups}
             board={board}
           />
+          {selectedItems.length ? (
+            <SelectedPopup selectedItems={selectedItems} groups={groups} />
+          ) : (
+            ''
+          )}
           <Route path="/board/:boardId/item/:itemId" component={ItemDetails} />
           <Route path="/board/:boardId/activity_log" component={ActivityLog} />
         </div>
@@ -181,6 +194,7 @@ export class _BoardDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
+    selectedItems: state.itemModule.selectedItems,
     workspaces: state.workspaceModule.workspaces,
     workspace: state.workspaceModule.workspace,
     currView: state.boardModule.currView,
