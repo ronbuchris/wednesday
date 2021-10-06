@@ -52,7 +52,6 @@ export class _BoardDetails extends React.Component {
     socketService.setup()
     socketService.emit('connect board', this.props.board._id)
     socketService.on('board updated', workspace => {
-      this.props.editWorkspace(workspace)
       if(this.props.board._id ===boardId){
         this.props.loadBoard(workspace,boardId)
       }
