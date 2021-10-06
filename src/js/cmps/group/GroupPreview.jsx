@@ -37,10 +37,13 @@ class _GroupPreview extends React.Component {
 
   onRemoveGroup = (groupId) => {
     const { workspace, board, removeGroup } = this.props;
-    this.saveUndo(workspace)
+    this.saveUndo(workspace);
     removeGroup(workspace, board, groupId);
-    eventBusService.emit('user-msg', { txt: 'Group has removed', type: '' });
-  }
+    eventBusService.emit('user-msg', {
+      txt: 'group was successfully deleted',
+      // type: '',
+    });
+  };
 
   makeId = (length = 6) => {
     var txt = '';
@@ -51,7 +54,7 @@ class _GroupPreview extends React.Component {
       txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return txt;
-  }
+  };
   onRemoveItem = (itemId) => {
     const { workspace, group, removeItem, board, user } = this.props;
     const activity = {
@@ -61,19 +64,22 @@ class _GroupPreview extends React.Component {
       createdBy: {
         _id: user._id,
         fullname: user.fullname,
-        img: user.img
-      }
-    }
+        img: user.img,
+      },
+    };
     board.activities.unshift(activity);
-    this.saveUndo(workspace)
+    this.saveUndo(workspace);
     removeItem(workspace, group, itemId);
-    eventBusService.emit('user-msg', { txt: 'Item has removed', type: '' });
+    eventBusService.emit('user-msg', {
+      txt: 'We successfully deleted 1 item',
+      type: '',
+    });
   };
 
   saveUndo = (workspace) => {
-    const undoWorkspace = JSON.parse(JSON.stringify(workspace))
-    this.props.saveUndoWorkspace(undoWorkspace)
-  }
+    const undoWorkspace = JSON.parse(JSON.stringify(workspace));
+    this.props.saveUndoWorkspace(undoWorkspace);
+  };
 
   onKeyUp = (ev) => {
     if (ev.keyCode === 13) {
@@ -193,7 +199,7 @@ const mapDispatchToProps = {
   setGroup,
   removeGroup,
   removeItem,
-  saveUndoWorkspace
+  saveUndoWorkspace,
 };
 
 export const GroupPreview = connect(
