@@ -1,7 +1,8 @@
 const initialState = {
     item: null,
     items: [],
-    statuses:{}
+    statuses:{},
+    selectedItems:[]
 }
 
 export function itemReducer(state = initialState, action) {
@@ -23,6 +24,9 @@ export function itemReducer(state = initialState, action) {
             break
         case 'GET_STATUS':
             newState = { ...state, statuses: action.statuses }
+            break
+        case 'TOGGLE_SELECT':
+            newState = { ...state, selectedItems: action.selectedItems }
             break
         case 'REMOVE_ITEM':
             const lastRemovedItem = state.items.find(item => item._id === action.itemId)

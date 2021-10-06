@@ -259,7 +259,7 @@ const gWorkspaces = [
                                 "updates": [],
                                 "createdAt": 1589983468418,
                                 "activities": [],
-                                "isSelected": false,
+                                "isSelected": true,
 
                             },
                         ],

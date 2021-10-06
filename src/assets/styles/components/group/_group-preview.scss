@@ -99,8 +99,38 @@
   width: 8px;
   height: 100%;
   overflow: hidden;
-  transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
   will-change: width;
+  transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
+
+  &.select {
+    &:hover {
+      width: 32px;
+    }
+    &.is-selecting {
+      width: 32px;
+    }
+  }
+
+  .selected {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 9px;
+    height: 14px;
+    width: 14px;
+    background-color: rgba(0, 0, 0, 0.2);
+    outline: 1px rgba(255, 255, 255, 0.2) solid;
+
+    &.is-selected {
+      background-color: #fff;
+
+      span {
+        svg {
+          width: 14px;
+        }
+      }
+    }
+  }
 }
 
 .cell-cmp {

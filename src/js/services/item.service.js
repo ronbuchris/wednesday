@@ -6,7 +6,8 @@ export const itemService = {
     getById,
     onPost,
     createItem,
-    getStatuses
+    getStatuses,
+    removeSelected
 }
 
 const gCmpsOrder = ["member", "status", "date"]
@@ -67,7 +68,14 @@ function remove(workspace, group, itemId) {
     group.items.splice(itemIdx, 1)
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
+}
 
+function removeSelected(workspace, group,itemsIds) {
+    itemsIds.forEach(itemId => {
+        const itemIdx = group.items.findIndex(item => item.id === itemId);
+        group.items.splice(itemIdx,1)
+    })
+    return JSON.parse(JSON.stringify(workspace))
 }
 
 function duplicateItem(item) {

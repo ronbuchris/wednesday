@@ -15,7 +15,7 @@ class _UserMsg extends React.Component {
     this.removeEventBus = eventBusService.on('user-msg', (msg) => {
       this.setState({ msg }, () => {
         if (this.timeoutId) clearTimeout(this.timeoutId);
-        // this.timeoutId = setTimeout(this.onCloseMsg, 3000);
+        this.timeoutId = setTimeout(this.onCloseMsg, 5000);
       });
     });
   }

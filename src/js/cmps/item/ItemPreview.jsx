@@ -3,9 +3,10 @@ import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
 import { FaCaretDown } from 'react-icons/fa';
+import Check from 'monday-ui-react-core/dist/icons/Check';
 
 import { toggleMenu } from '../../store/actions/board.actions';
-import { loadItem } from '../../store/actions/item.actions';
+import { loadItem, toggleSelected } from '../../store/actions/item.actions';
 
 import { ItemColumn } from './ItemColumn';
 import { connect } from 'react-redux';
@@ -25,7 +26,19 @@ function _ItemPreview({
   board,
   group,
   item,
+  toggleSelected,
+  selectedItems,
 }) {
+  const toggleSelect = (itemId) => {
+    if (selectedItems.includes(itemId)) {
+      const itemIdx = selectedItems.findIndex((item) => item === itemId);
+      selectedItems.splice(itemIdx, 1);
+    } else {
+      selectedItems.push(itemId);
+    }
+    toggleSelected(board, selectedItems);
+  };
+
   const input = React.createRef();
   return (
     <div className="item-preview flex">
@@ -50,9 +63,27 @@ function _ItemPreview({
         </div>
       </div>
       <div
-        className="indicator"
+        className={`indicator select flex align-center justify-center ${
+          selectedItems.length && 'is-selecting'
+        }`}
         style={{ backgroundColor: group.style.color }}
-      ></div>
+      >
+        <div
+          className={`selected btn flex ${
+            selectedItems.includes(item.id) ? 'is-selected' : ''
+          }`}
+          onClick={() => toggleSelect(item.id)}
+        >
+          {selectedItems.includes(item.id) && (
+            <span
+              className="flex align-center "
+              style={{ color: group.style.color }}
+            >
+              <Check />
+            </span>
+          )}
+        </div>
+      </div>
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
@@ -71,7 +102,7 @@ function _ItemPreview({
           </div>
           <div
             className="edit-title-btn br4"
-            onClick={(ev) => {
+            onClick={() => {
               input.current.focus();
             }}
           >
@@ -112,12 +143,14 @@ function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
     workspace: state.workspaceModule.workspace,
+    selectedItems: state.itemModule.selectedItems,
   };
 }
 
 const mapDispatchToProps = {
   toggleMenu,
   loadItem,
+  toggleSelected,
 };
 
 export const ItemPreview = withRouter(
