@@ -19,6 +19,7 @@
             }}
 
     .sidebar-icons{
+      width: 100%;
       flex-direction: row;
       @include for-normal-layout {
         @media (min-width: $narrow-breakpoint) {
@@ -26,25 +27,39 @@
               }}
 
       .left-side{
+        margin-left:13px;
+        @include for-normal-layout {
+          @media (min-width: $narrow-breakpoint) {
+            margin-left:0px;
+          }}
         .logos-wrapper{
           display: none;
           @include for-normal-layout {
             @media (min-width: $narrow-breakpoint) {
               display:flex;
-  
-                  }}
+              
+            }}
+          }
+
+          
         }
+        .right-side{
+        margin-right:13px;
+        @include for-normal-layout {
+          @media (min-width: $narrow-breakpoint) {
+            margin-right:0px;
 
-      }
-      .right-side{
+                }}
         .logos-wrapper{
-
+          
           display:none;
           @include for-normal-layout {
             @media (min-width: $narrow-breakpoint) {
               display:flex;
+              margin-right:0px;
   
                   }}
+
                 }
                 .hamburger{
                   display: block;
@@ -62,13 +77,16 @@
               display: block;
               width: 33px;
               height: 4px;
-              margin-bottom: 5px;
+              margin-bottom: 7px;
               position: relative;
               background-color: #fff;
               border-radius: 6px;
               z-index: 1;
               transform-origin:0 0;
               transition:0.4s;
+              &:nth-child(3){
+                margin-bottom: 0px;
+              }
           }
           &:hover span:nth-child(2){
               transform: translateX(10px);
