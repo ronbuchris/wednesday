@@ -1,8 +1,9 @@
 .workspace-nav {
-  position: relative;
-  width: 254px;
+  position: absolute;
+  z-index: 5;
   border-inline-end: 1px solid $ui-grey-color;
   transition: width 0.3s;
+  
   .dropdown-header {
     height: 30px;
   }
@@ -98,26 +99,22 @@
 
 
 
-// @include for-wide-layout {
-//   @media (min-width: $normal-breakpoint) {
-//     .workspace-nav {
-//       position: relative;
-//       width: 254px;
-//       border-inline-end: 1px solid $ui-grey-color;
-//       transition: width 0.3s;
-// }
-// }
-// }
+@include for-wide-layout {
+  @media (min-width: $normal-breakpoint) {
+    .workspace-nav {
+      position: relative;
+      // width: 254px;
+      // border-inline-end: 1px solid $ui-grey-color;
+      // transition: width 0.3s;
+}
+}
+}
 
 
-// @include for-normal-layout {
-//     @media (min-width: $narrow-breakpoint) {
-//         .workspace-nav{
-//               position: absolute;
-//               z-index: 5;
-//               height:100vh;
-//               width: 254px;
-//               border-inline-end: 1px solid $ui-grey-color;
-//               transition: width 0.3s;
-//             }
-//           }}
+@include for-normal-layout {
+    @media (min-width: $narrow-breakpoint) {
+        .workspace-nav{
+          height:100vh;
+          width: 254px;
+            }
+          }}
