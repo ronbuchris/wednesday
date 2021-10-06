@@ -68,7 +68,6 @@ class _Login extends React.Component {
     this.props.onSignup({ username, password, fullname });
   };
   responseGoogle = async (response) => {
-    const {users} = this.props
     const userToSave = {
       username: response.profileObj.email,
       fullname: response.profileObj.name,

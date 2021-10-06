@@ -7,6 +7,7 @@ const STORAGE_KEY = 'workspaceDB'
 export const workspaceService = { query, getById, remove, save, getByBoardId, addNewWorkspace }
 
 async function query(user) {
+    console.log(user);
        return await httpService.get(`workspace`,user)
 
 }
