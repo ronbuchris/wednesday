@@ -35,39 +35,42 @@ class _BoardContent extends Component {
     if (!groups.length) return <NoResault />;
     return (
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
+        <div>
+
         <Droppable type="group" droppableId="groups">
           {(provided) => (
             <div
-              className="board-content"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
+            className="board-content"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
             >
               {currView === 'chart' && <DashboardView board={board} />}
               {currView === 'table' && (
                 <TableView
-                  setCurrGroupId={this.setCurrGroupId}
-                  onEditGroup={onEditGroup}
-                  onEditItem={onEditItem}
-                  onAddItem={onAddItem}
-                  onBlur={onBlur}
-                  groups={groups}
-                  board={board}
+                setCurrGroupId={this.setCurrGroupId}
+                onEditGroup={onEditGroup}
+                onEditItem={onEditItem}
+                onAddItem={onAddItem}
+                onBlur={onBlur}
+                groups={groups}
+                board={board}
                 />
-              )}
+                )}
               {currView === 'kanban' && (
                 <KanbanView
-                  onEditGroup={onEditGroup}
-                  onEditItem={onEditItem}
-                  onAddItem={onAddItem}
-                  onBlur={onBlur}
-                  groups={groups}
-                  board={board}
+                onEditGroup={onEditGroup}
+                onEditItem={onEditItem}
+                onAddItem={onAddItem}
+                onBlur={onBlur}
+                groups={groups}
+                board={board}
                 />
-              )}
+                )}
               {provided.placeholder}
             </div>
-          )}
-        </Droppable>
+                )}
+                </Droppable>
+                </div>
       </DragDropContext>
     );
   }

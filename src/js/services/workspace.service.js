@@ -1,54 +1,55 @@
 import { storageService } from './async-storage.service';
-import {httpService} from './http.service';
-// import { socketService } from './socket.service'
+import { httpService } from './http.service';
+import { socketService } from './socket.service'
 import { makeId } from '../services/util.service'
 const STORAGE_KEY = 'workspaceDB'
 
 export const workspaceService = { query, getById, remove, save, getByBoardId, addNewWorkspace }
 
 async function query(user) {
-//    return await httpService.get(`workspace`,user)
-    
-    const workspaces = await storageService.query(STORAGE_KEY)
-    if (user._id === 'guest') return Promise.resolve(workspaces)
-    const userWorkspaces = workspaces.filter(workspace => workspace.createdBy._id === user._id)
-    workspaces.forEach(workspace => {
-        workspace.members.forEach(member => {
-            if (member._id === user._id) {
-                userWorkspaces.push(workspace)
-            }
-        })
-    });
-    return Promise.resolve(userWorkspaces)
+       return await httpService.get(`workspace`,user)
+
+    // const workspaces = await storageService.query(STORAGE_KEY)
+    // if (user._id === 'guest') return Promise.resolve(workspaces)
+    // const userWorkspaces = workspaces.filter(workspace => workspace.createdBy._id === user._id)
+    // workspaces.forEach(workspace => {
+    //     workspace.members.forEach(member => {
+    //         if (member._id === user._id) {
+    //             userWorkspaces.push(workspace)
+    //         }
+    //     })
+    // });
+    // return Promise.resolve(userWorkspaces)
 }
 
 
 
 function getById(workspaceId) {
-    // return httpService.get(`workspace/${workspaceId}`)
-    return storageService.get(STORAGE_KEY, workspaceId)
+    return httpService.get(`workspace/${workspaceId}`)
+    // return storageService.get(STORAGE_KEY, workspaceId)
 }
 
 function remove(workspaceId) {
-    // return httpService.delete(`workspace/${workspaceId}`)
-    return storageService.remove(STORAGE_KEY, workspaceId)
+    return httpService.delete(`workspace/${workspaceId}`)
+    // return storageService.remove(STORAGE_KEY, workspaceId)
 }
 
 async function save(workspace) {
+    let updatedWorkspace;
     if (workspace._id) {
 
-        //   var updatedWorkspace = await httpService.put(`workspace/${workspace._id}`,workspace)
-        return storageService.put(STORAGE_KEY, workspace)
+        updatedWorkspace = await httpService.put(`workspace/${workspace._id}`, workspace)
+        // return storageService.put(STORAGE_KEY, workspace)
     } else {
-        // var updatedWorkspace = httpService.post(`workspace`, workspace)
+        updatedWorkspace = await httpService.post(`workspace`, workspace)
         // workspace.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, workspace)
+        // return storageService.post(STORAGE_KEY, workspace)
     }
-    // socketService.emit('board changed', updatedWorkspace)
-    // return updatedWorkspace;
+    socketService.emit('board changed', updatedWorkspace)
+    return updatedWorkspace;
 }
 
- function getByBoardId(boardId,workspaces) {
+function getByBoardId(boardId, workspaces) {
     return workspaces.find(workspace => {
         return workspace.boards.find(board => {
             if (board._id === boardId) {

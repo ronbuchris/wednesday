@@ -10,6 +10,7 @@ import routesHomePage from './routesHomePage';
 import routesMainApp from './routesMainApp';
 
 class _RootCmp extends React.Component {
+
   render() {
     const { user } = this.props;
     const routes = user ? routesMainApp : routesHomePage;

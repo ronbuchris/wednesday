@@ -19,61 +19,61 @@ window.userService = userService
 
 
 function query() {
-    // return httpService.get(`user`)
-    return storageService.query(STORAGE_KEY)
+    return httpService.get(`user`)
+    // return storageService.query(STORAGE_KEY)
 }
 
 
 async function getById(userId) {
-    const user = await storageService.get(STORAGE_KEY, userId)
-    // const user = await httpService.get(`user/${userId}`)
+    // const user = await storageService.get(STORAGE_KEY, userId)
+    const user = await httpService.get(`user/${userId}`)
     // gWatchedUser = user;
     return user;
 }
 function remove(userId) {
-    return storageService.remove(STORAGE_KEY, userId)
-    // return httpService.delete(`user/${userId}`)
+    // return storageService.remove(STORAGE_KEY, userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
-    await storageService.put(STORAGE_KEY, user)
-    // user = await httpService.put(`user/${user._id}`, user)
+    // await storageService.put(STORAGE_KEY, user)
+    user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
+    // if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
     return user;
 }
 
 async function login(userCred) {
-    const users = await storageService.query(STORAGE_KEY)
+    // const users = await storageService.query(STORAGE_KEY)
     // if (guest) {
     //     var user = users.find(user => user._id === 'guest')
     // }else {
-        var user = users.find(user => user.username === userCred.username)
+    //     var user = users.find(user => user.username === userCred.username)
     // }
-    if (user) return _saveLocalUser(user)
-    // if (userCred === 'guest') {
-    //     userCred = { username: userCred, password: userCred }
-    // }
-    // const user = await httpService.post('auth/login', userCred)
-    // return _saveLocalUser(user)
+    // if (user) return _saveLocalUser(user)
+    if (userCred === 'guest') {
+        userCred = { username: userCred, password: userCred }
+    }
+    const user = await httpService.post('auth/login', userCred)
+    return _saveLocalUser(user)
     // socketService.emit('set-user-socket', user._id);
 }
 
 
 async function signup(userCred) {
-    const user = await storageService.post(STORAGE_KEY, userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    // sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    // const user = await storageService.post(STORAGE_KEY, userCred)
+    const user = await httpService.post('auth/signup', userCred)
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     // socketService.emit('set-user-socket', user._id);
     return user;
 }
 
 
 async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.emit('unset-user-socket');
-    //  await httpService.post('auth/logout')
-    //  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+     await httpService.post('auth/logout')
+     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
 }
 
 function _saveLocalUser(user) {
