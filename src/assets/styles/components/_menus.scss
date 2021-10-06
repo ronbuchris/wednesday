@@ -57,8 +57,14 @@
   top: 80%;
   left: 7px;
 
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+  }
+
   .change-group-color {
-    gap: 5px;
+    gap: 8px;
 
     .group-color {
       width: 14px;
@@ -96,6 +102,10 @@
   width: 264px;
   top: 30px;
   left: -25px;
+
+  .divider {
+    margin-bottom: 8px;
+  }
 }
 
 .board-menu {

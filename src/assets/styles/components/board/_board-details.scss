@@ -81,7 +81,7 @@
         margin: 8px 4px 0 0;
 
         .list-header {
-          padding-top: 12px;
+          margin: 4px 0 8px 0;
           font-size: rem(18px);
           position: relative;
 
@@ -92,8 +92,7 @@
 
           &:hover {
             .drag-btn {
-              display: flex;
-              position: relative;
+              display: block;
             }
           }
         }
@@ -122,8 +121,9 @@
         .item-add {
           padding: 4px 8px;
           width: 260px;
-          height: 45px;
+          height: 37px;
           .item-add-input {
+            color: #fff;
             background: transparent;
             border: none;
             outline: none;
@@ -162,6 +162,7 @@
     }
     .title-section {
       flex: 1;
+
       .title {
         font-size: rem(24px);
         padding-left: 20px;
@@ -187,6 +188,7 @@
     .duplicate-items {
       width: 63px;
       margin-right: 15px;
+      transition: color 0.2s;
 
       svg {
         width: 25px;
@@ -195,9 +197,17 @@
     }
     .delete-items {
       width: 63px;
+      transition: color 0.2s;
+
       svg {
         width: 25px;
         height: 25px;
+      }
+    }
+
+    .action {
+      &:hover {
+        color: $primary-color;
       }
     }
 

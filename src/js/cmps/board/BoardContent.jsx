@@ -24,53 +24,56 @@ class _BoardContent extends Component {
 
   render() {
     const {
-      board,
+      onEditGroup,
+      onEditItem,
+      removeItem,
+      onAddItem,
+      workspace,
+      currView,
       groups,
       onBlur,
-      onAddItem,
-      onEditItem,
-      onEditGroup,
-      currView,
+      board,
     } = this.props;
     if (!groups.length) return <NoResault />;
     return (
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
         <div>
-
-        <Droppable type="group" droppableId="groups">
-          {(provided) => (
-            <div
-            className="board-content"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            >
-              {currView === 'chart' && <DashboardView board={board} />}
-              {currView === 'table' && (
-                <TableView
-                setCurrGroupId={this.setCurrGroupId}
-                onEditGroup={onEditGroup}
-                onEditItem={onEditItem}
-                onAddItem={onAddItem}
-                onBlur={onBlur}
-                groups={groups}
-                board={board}
-                />
+          <Droppable type="group" droppableId="groups">
+            {(provided) => (
+              <div
+                className="board-content"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {currView === 'chart' && <DashboardView board={board} />}
+                {currView === 'table' && (
+                  <TableView
+                    setCurrGroupId={this.setCurrGroupId}
+                    onEditGroup={onEditGroup}
+                    onEditItem={onEditItem}
+                    onAddItem={onAddItem}
+                    onBlur={onBlur}
+                    groups={groups}
+                    board={board}
+                  />
                 )}
-              {currView === 'kanban' && (
-                <KanbanView
-                onEditGroup={onEditGroup}
-                onEditItem={onEditItem}
-                onAddItem={onAddItem}
-                onBlur={onBlur}
-                groups={groups}
-                board={board}
-                />
+                {currView === 'kanban' && (
+                  <KanbanView
+                    onEditGroup={onEditGroup}
+                    onEditItem={onEditItem}
+                    workspace={workspace}
+                    onAddItem={onAddItem}
+                    removeItem={removeItem}
+                    onBlur={onBlur}
+                    groups={groups}
+                    board={board}
+                  />
                 )}
-              {provided.placeholder}
-            </div>
-                )}
-                </Droppable>
-                </div>
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </div>
       </DragDropContext>
     );
   }
