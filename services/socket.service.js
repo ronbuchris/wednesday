@@ -26,7 +26,7 @@ function connectSockets(http, session) {
         })
 
         socket.on('board changed',workspace => {
-           console.log(`boardboardboardboard`, workspace)
+
            socket.broadcast.emit('board updated',workspace)
         })
 

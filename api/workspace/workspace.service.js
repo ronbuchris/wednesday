@@ -51,14 +51,15 @@ async function add(workspace) {
     }
 }
 async function update(workspace) {
+    const id = workspace._id
+    delete workspace._id
     try {
-        var id = ObjectId(workspace._id)
-        delete workspace._id
         const collection = await dbService.getCollection('workspace')
-        await collection.updateOne({ "_id": id }, { $set: { ...workspace } })
+        await collection.updateOne({ "_id": ObjectId(id) }, { $set: workspace  })
+        workspace._id=id
         return workspace
     } catch (err) {
-        logger.error(`cannot update workspace ${workspaceId}`, err)
+        logger.error(`cannot update workspace ${workspace._id}`, err)
         throw err
     }
 }
