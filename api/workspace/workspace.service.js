@@ -4,11 +4,12 @@ const ObjectId = require('mongodb').ObjectId
 
 async function query(user) {
     try {
-        if(user.username==='guest'){
-            var criteria={}
-        }else{
-            var criteria = _buildCriteria(user._id)
-        }
+        // if(user.username==='guest'){
+        //     var criteria={}
+        // }else{
+        //     var criteria = _buildCriteria(user._id)
+        // }
+        const criteria ={}
         const collection = await dbService.getCollection('workspace')
         var workspaces = await collection.find(criteria).toArray()
         return workspaces

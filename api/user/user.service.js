@@ -9,7 +9,8 @@ module.exports = {
     getByUsername,
     remove,
     update,
-    add
+    add,
+    addGoogleUser
 }
 
 async function query(filterBy = {}) {
@@ -82,6 +83,23 @@ async function update(user) {
     }
 }
 
+async function addGoogleUser(user) {
+    try {
+        // peek only updatable fields!
+        const userToAdd = {
+            username: user.username,
+            fullname: user.fullname,
+            img: user.img,
+            pending: user.pending || []
+        }
+        const collection = await dbService.getCollection('user')
+        await collection.insertOne(userToAdd)
+        return userToAdd
+    } catch (err) {
+        logger.error('cannot insert user', err)
+        throw err
+    }
+}
 async function add(user) {
     try {
         // peek only updatable fields!
@@ -89,6 +107,7 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
+            img:user.img,
             pending: user.pending || []
         }
         const collection = await dbService.getCollection('user')
