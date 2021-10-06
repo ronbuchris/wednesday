@@ -12,7 +12,8 @@ export const userService = {
     getById,
     remove,
     update,
-    save
+    save,
+    loginWithGoogle
 }
 
 window.userService = userService
@@ -57,6 +58,10 @@ async function login(userCred) {
     const user = await httpService.post('auth/login', userCred)
     return _saveLocalUser(user)
     // socketService.emit('set-user-socket', user._id);
+}
+async function loginWithGoogle(googleUser) {
+    const user = await httpService.post('auth/loginWithGoogle', googleUser)
+    return _saveLocalUser(user)
 }
 
 

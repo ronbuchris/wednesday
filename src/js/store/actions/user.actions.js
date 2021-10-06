@@ -13,6 +13,19 @@ export function onLogin(credentials) {
         }
     }
 }
+export function onLoginWithGoogle(googleUser) {
+    return async (dispatch) => {
+        try {
+            const user = await userService.loginWithGoogle(googleUser)
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
+        } catch (err) {
+            console.log('Cannot login', err)
+        }
+    }
+}
 
 export function getById(userId) {
     return async (dispatch) => {
