@@ -27,7 +27,11 @@ function _ItemPreview({
   group,
   item,
 }) {
-  const toggleSelect = () => {};
+  const toggleSelect = (item) => {
+    console.log(item);
+    item.isSelected = !item.isSelected
+    onEditItem(item,group)
+  };
 
   const input = React.createRef();
   return (
@@ -60,7 +64,7 @@ function _ItemPreview({
           className={`selected btn flex ${
             item.isSelected ? 'is-selected' : ''
           }`}
-          onClick={() => toggleSelect(item._id)}
+          onClick={() => toggleSelect(item)}
         >
           {item.isSelected && (
             <span
