@@ -134,11 +134,8 @@
 }
 
 .cell-cmp {
-  // overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  // font-size: 13px;
-  // font-weight: 400;
   border-right: 1px solid;
   border-right-color: $clr7;
   position: relative;

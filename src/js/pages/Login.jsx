@@ -41,11 +41,11 @@ class _Login extends React.Component {
     }));
   };
 
-  onLogin = async (ev,guest) => {
+  onLogin = async (ev, guest) => {
     ev.preventDefault();
-    if(guest){
+    if (guest) {
       await this.props.onLogin(guest);
-    } else{
+    } else {
       const { username, password } = this.state.credentials;
       if (!username || !password) return;
       await this.props.onLogin({ username, password }, null);
@@ -70,10 +70,10 @@ class _Login extends React.Component {
     const user = {
       username: response.profileObj.email,
       fullname: response.profileObj.name,
-      img: response.profileObj.imageUrl
-    }
+      img: response.profileObj.imageUrl,
+    };
     console.log(user);
-  }
+  };
 
   render() {
     const { isSignUp, credentials } = this.state;
@@ -164,31 +164,19 @@ class _Login extends React.Component {
             >
               {isSignUp ? 'Sign Up' : 'Sign In'}
             </Button>
-            <div className='flex auto-center'
+            <div
+              className="flex auto-center"
               style={{ marginBottom: 10 + 'px' }}
             >
-            <GoogleLogin
+              <GoogleLogin
                 clientId="1090497579239-pe91bi8058atbcb12mbcffonugrjovlu.apps.googleusercontent.com"
-              buttonText="Log in with Google"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
+                buttonText="Log in with Google"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
             </div>
-            {/* <div
-              className="sign-guest flex auto-center btn"
-              onClick={(ev) => {
-                this.onLogin(ev,'guest');
-              }}
-            >
-              <h3>Sign in as a Guest</h3>
-            </div> */}
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
                 <Link
                   href="#"
