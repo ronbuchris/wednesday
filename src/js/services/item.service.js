@@ -67,7 +67,6 @@ function remove(workspace, group, itemId) {
     group.items.splice(itemIdx, 1)
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
-
 }
 
 function duplicateItem(item) {
