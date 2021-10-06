@@ -6,7 +6,7 @@ import { FaCaretDown } from 'react-icons/fa';
 import Check from 'monday-ui-react-core/dist/icons/Check';
 
 import { toggleMenu } from '../../store/actions/board.actions';
-import { loadItem } from '../../store/actions/item.actions';
+import { loadItem, toggleSelected} from '../../store/actions/item.actions';
 
 import { ItemColumn } from './ItemColumn';
 import { connect } from 'react-redux';
@@ -26,11 +26,18 @@ function _ItemPreview({
   board,
   group,
   item,
+  toggleSelected,
+  selectedItems
 }) {
-  const toggleSelect = (item) => {
-    console.log(item);
-    item.isSelected = !item.isSelected
-    onEditItem(item,group)
+  const toggleSelect = (itemId) => {
+    console.log(selectedItems.includes(itemId));
+    if (selectedItems.includes(itemId)) {
+      const itemIdx = selectedItems.findIndex(item => item.id === itemId)
+      selectedItems.splice(itemIdx, 1)
+    } else {
+      selectedItems.push(itemId)
+    }
+    toggleSelected(board,selectedItems)
   };
 
   const input = React.createRef();
@@ -57,16 +64,16 @@ function _ItemPreview({
         </div>
       </div>
       <div
-        className="indicator select flex align-center justify-center"
+        className={`indicator select flex align-center justify-center ${selectedItems.length && 'is-selecting'}`}
         style={{ backgroundColor: group.style.color }}
       >
         <div
           className={`selected btn flex ${
-            item.isSelected ? 'is-selected' : ''
+            selectedItems.includes(item.id) ? 'is-selected' : ''
           }`}
-          onClick={() => toggleSelect(item)}
+          onClick={() => toggleSelect(item.id)}
         >
-          {item.isSelected && (
+          {selectedItems.includes(item.id) && (
             <span
               className="flex align-center "
               style={{ color: group.style.color }}
@@ -135,12 +142,14 @@ function mapStateToProps(state) {
   return {
     toggleMenus: state.workspaceModule.toggleMenus,
     workspace: state.workspaceModule.workspace,
+    selectedItems: state.itemModule.selectedItems,
   };
 }
 
 const mapDispatchToProps = {
   toggleMenu,
   loadItem,
+  toggleSelected
 };
 
 export const ItemPreview = withRouter(

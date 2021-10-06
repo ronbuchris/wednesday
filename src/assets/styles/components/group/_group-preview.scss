@@ -106,6 +106,9 @@
     &:hover {
       width: 32px;
     }
+    &.is-selecting {
+      width: 32px;
+    }
   }
 
   .selected {

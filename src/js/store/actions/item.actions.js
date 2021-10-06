@@ -32,6 +32,24 @@ export function onPost(update, user, item, groups, workspace) {
     }
 }
 
+export function toggleSelected(board,selectedItems) {
+    return dispatch => {
+        const newBoard = JSON.parse(JSON.stringify(board))
+        dispatch({
+            type: 'TOGGLE_SELECT',
+            selectedItems
+        })
+        dispatch({
+            type: 'SET_BOARD',
+            board: newBoard
+        })
+        dispatch({
+            type: 'SET_GROUPS',
+            groups: newBoard.groups
+        })
+    }
+}
+
 export function loadStatuses(board) {
     return async dispatch => {
         try {
