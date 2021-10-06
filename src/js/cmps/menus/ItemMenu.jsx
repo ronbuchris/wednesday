@@ -13,7 +13,7 @@ export function ItemMenu({
     <div className="item-menu menu-modal br8">
       <div className="menu-section fs14">
         <div
-          className="btn flex align-center header-btn"
+          className="btn flex align-center  header-btn"
           onClick={(ev) => {
             ev.stopPropagation();
             onAddItem(item, group, false, null, 'Duplicate');

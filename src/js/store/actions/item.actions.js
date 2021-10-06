@@ -32,7 +32,7 @@ export function onPost(update, user, item, groups, workspace) {
     }
 }
 
-export function toggleSelected(board,selectedItems) {
+export function toggleSelected(board, selectedItems) {
     return dispatch => {
         const newBoard = JSON.parse(JSON.stringify(board))
         dispatch({
@@ -114,12 +114,22 @@ export function onSort(board, sortStore) {
 export function removeItem(workspace, group, itemId) {
     return async (dispatch) => {
         try {
-            const newWorkspace = itemService.remove(workspace, group, itemId)
+            if (typeof itemId === 'string') {
+                var newWorkspace = itemService.remove(workspace, group, itemId)
+            } else {
+                var newWorkspace = itemService.removeSelected(workspace, group, itemId)
+                dispatch({
+                    type: 'TOGGLE_SELECT',
+                    selectedItems: []
+                })
+
+            }
             await workspaceService.save(newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
                 workspace: newWorkspace
             })
+
         } catch (err) {
             console.log('Cannot remove item', err)
         }

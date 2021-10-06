@@ -1,7 +1,15 @@
 import Close from 'monday-ui-react-core/dist/icons/Close';
 import Duplicate from 'monday-ui-react-core/dist/icons/Duplicate';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
-export function SelectedPopup({ selectedItems, groups }) {
+
+export function SelectedPopup({
+  toggleSelected,
+  selectedItems,
+  removeItem,
+  workspace,
+  groups,
+  board,
+}) {
   const itemsDots = () => {
     return groups.map((group) =>
       group.items.map((item) => {
@@ -29,15 +37,21 @@ export function SelectedPopup({ selectedItems, groups }) {
         </div>
         <div className="items-dot flex align-center">{itemsDots()}</div>
       </div>
-      <div className="duplicate-items btn flex column align-center space-evenly">
+      <div className="duplicate-items action btn flex column align-center space-evenly">
         <Duplicate />
         Duplicate
       </div>
-      <div className="delete-items btn flex column align-center space-evenly">
+      <div
+        className="delete-items action btn flex column align-center space-evenly"
+        onClick={() => removeItem(workspace, groups, selectedItems)}
+      >
         <Delete />
         Delete
       </div>
-      <div className="unselect btn flex align-center justify-center">
+      <div
+        className="unselect btn action flex align-center justify-center"
+        onClick={() => toggleSelected(board, [])}
+      >
         <Close />
       </div>
     </div>

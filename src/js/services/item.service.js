@@ -70,12 +70,20 @@ function remove(workspace, group, itemId) {
     return returnedWorkspace
 }
 
-function removeSelected(workspace, group,itemsIds) {
-    itemsIds.forEach(itemId => {
-        const itemIdx = group.items.findIndex(item => item.id === itemId);
-        group.items.splice(itemIdx,1)
+function removeSelected(workspace, groups, itemsIds) {
+    groups.forEach(group => {
+        itemsIds.forEach(itemId => {
+            const itemIdx = group.items.findIndex(item => item.id === itemId);
+            if (itemIdx !== -1) {
+                group.items.splice(itemIdx, 1)
+                console.log(`itemIdx`, itemIdx)
+            }
+        })
     })
-    return JSON.parse(JSON.stringify(workspace))
+    console.log(`workspace`, workspace)
+    const returnedWorkspace = JSON.parse(JSON.stringify(workspace))
+    console.log(`returnedWorkspace`, returnedWorkspace)
+    return returnedWorkspace
 }
 
 function duplicateItem(item) {

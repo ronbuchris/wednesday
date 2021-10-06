@@ -21,7 +21,12 @@ import {
   setGroup,
   loadGroups,
 } from '../../js/store/actions/group.actions';
-import { saveItem } from '../../js/store/actions/item.actions';
+
+import {
+  saveItem,
+  removeItem,
+  toggleSelected,
+} from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
@@ -138,6 +143,8 @@ export class _BoardDetails extends React.Component {
     saveItem(item, user, workspace, group);
   };
 
+  onRemoveSelected = (group) => {};
+
   isMenuOpen = () => {
     const { toggleMenus } = this.props;
     for (const menu of Object.keys(toggleMenus)) {
@@ -148,13 +155,15 @@ export class _BoardDetails extends React.Component {
 
   render() {
     const {
-      currView,
+      toggleSelected,
+      selectedItems,
       toggleMenus,
       changeView,
+      removeItem,
       workspace,
+      currView,
       groups,
       board,
-      selectedItems,
     } = this.props;
     if (!workspace || !board) return <Loader />;
     return (
@@ -185,7 +194,14 @@ export class _BoardDetails extends React.Component {
             board={board}
           />
           {selectedItems.length ? (
-            <SelectedPopup selectedItems={selectedItems} groups={groups} />
+            <SelectedPopup
+              toggleSelected={toggleSelected}
+              selectedItems={selectedItems}
+              removeItem={removeItem}
+              workspace={workspace}
+              groups={groups}
+              board={board}
+            />
           ) : (
             ''
           )}
@@ -230,6 +246,8 @@ const mapDispatchToProps = {
   //item
   saveItem,
   changeView,
+  removeItem,
+  toggleSelected,
   //USER
   getLoggedinUser,
 };

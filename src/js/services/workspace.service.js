@@ -7,8 +7,7 @@ const STORAGE_KEY = 'workspaceDB'
 export const workspaceService = { query, getById, remove, save, getByBoardId, addNewWorkspace }
 
 async function query(user) {
-       return await httpService.get(`workspace`,user)
-
+    return await httpService.get(`workspace`,user)
 }
 
 
@@ -26,7 +25,6 @@ function remove(workspaceId) {
 async function save(workspace) {
     let updatedWorkspace;
     if (workspace._id) {
-
         updatedWorkspace = await httpService.put(`workspace/${workspace._id}`, workspace)
         // return storageService.put(STORAGE_KEY, workspace)
     } else {

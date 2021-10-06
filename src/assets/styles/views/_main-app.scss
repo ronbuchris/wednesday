@@ -102,6 +102,7 @@
         
       }
 
+    min-width: 66px;
 
     .logo {
       width: 30px;
@@ -117,8 +118,11 @@
     }
 
     .user-profile {
-      width: 50px;
+      width: 44px;
+      height: 44px;
       margin-bottom: 16px;
+      border: 2px solid #fff;
+      border-radius: 50%;
     }
   }
 

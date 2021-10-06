@@ -33,6 +33,8 @@
     flex: 1;
     outline: none;
     // transition: all 0.3s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover {
       //   border-right: 4px solid $ui-grey-color;

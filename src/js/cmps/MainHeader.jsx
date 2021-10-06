@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { IoIosArrowDown } from 'react-icons/io';
 import { onLogin } from '../store/actions/user.actions.js';
 import mainlogo from '../../assets/img/logo/mainlogo.png';
+
 class _MainHeader extends React.Component {
   state = {
     isActive: false,
