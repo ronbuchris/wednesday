@@ -39,6 +39,7 @@ class _ItemDetails extends Component {
     const { user, workspace, onPost, item, groups } = this.props;
     onPost(update, user, item, groups, workspace);
   };
+
   onToggle = (bool) => {
     this.setState({ toggleNav: bool });
   };
