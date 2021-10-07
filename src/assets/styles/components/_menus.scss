@@ -158,6 +158,15 @@
       height: 32px;
       background-color: $clr6;
 
+      .text-wrapper {
+        width: 100%;
+
+        .filter-group-list-text {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
       &:hover {
         background-color: $ui-grey-color;
       }

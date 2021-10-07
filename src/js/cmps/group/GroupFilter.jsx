@@ -18,12 +18,12 @@ export function GroupFilter({ board, groups, onFilter, groupsIds }) {
                 onFilter(group.id, '', true);
               }}
             >
-              <div className="flex align-center">
+              <div className="text-wrapper flex align-center">
                 <div
                   className="color-div"
                   style={{ backgroundColor: group.style.color }}
                 ></div>
-                <div>{group.title}</div>
+                <div className="filter-group-list-text">{group.title}</div>
               </div>
               <div>{group.items.length}</div>
             </div>

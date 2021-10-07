@@ -60,9 +60,9 @@
       flex: 1;
       position: sticky;
       left: 0;
-    z-index: 2;
-    background-color: rgba(253, 253, 250,0.95);
-    min-width: 150px;
+      z-index: 2;
+      background-color: rgba(253, 253, 250, 0.95);
+      min-width: 150px;
     }
 
     .status-footer {
@@ -101,7 +101,7 @@
 .indicator {
   background-color: $ui-grey-color;
   position: relative;
-  width: 8px;
+  min-width: 8px;
   height: 100%;
   overflow: hidden;
   will-change: width;
