@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 
 import AddUpdate from 'monday-ui-react-core/dist/icons/AddUpdate';
+import Update from 'monday-ui-react-core/dist/icons/Update';
 import { FaCaretDown } from 'react-icons/fa';
 import Check from 'monday-ui-react-core/dist/icons/Check';
 
@@ -124,7 +125,14 @@ function _ItemPreview({
           className="add-update-btn-wrapper flex align-center"
           onClick={() => history.push(location.pathname + `/item/${item.id}`)}
         >
-          <AddUpdate className="add-update-btn" />
+          {item.updates.length ? (
+            <>
+              <Update className="updates" />
+              <span className="updates-count">{item.updates.length}</span>
+            </>
+          ) : (
+            <AddUpdate className="add-update-btn" />
+          )}
         </div>
       </div>
       <div className="item-column-list flex">

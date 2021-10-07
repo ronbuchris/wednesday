@@ -60,6 +60,7 @@
 }
 
 .add-update-btn-wrapper {
+  position: relative;
   height: 100%;
 
   &:hover {
@@ -70,6 +71,25 @@
     width: 24px;
     height: 24px;
     transition: color 0.05s;
+  }
+
+  .updates {
+    color: $primary-color;
+    width: 24px;
+    height: 24px;
+  }
+
+  .updates-count {
+    position: absolute;
+    background-color: $primary-color;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2px 4px;
+    top: 18px;
+    left: 13px;
+    line-height: 9px;
+    font-size: rem(10px);
   }
 }
 
