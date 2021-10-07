@@ -8,7 +8,8 @@ const initialState = {
     },
     filterStore: {
         groupsIds: [],
-        statuses: []
+        statuses: [],
+        persons: []
     }
 }
 
