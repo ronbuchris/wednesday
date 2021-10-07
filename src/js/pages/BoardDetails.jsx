@@ -52,11 +52,10 @@ export class _BoardDetails extends React.Component {
     await this.props.loadBoard(this.props.workspace, boardId);
     document.title = `${this.props.board.title}`;
     socketService.emit('connect board', this.props.board._id)
-    console.log(`boardId`, boardId)
-    console.log(`this.props.board._id`, this.props.board._id)
-    socketService.on('board updated', workspace=> {
-      if(this.props.board._id ===boardId){
-        this.props.loadBoard(workspace,boardId)
+    socketService.on('board updated', socket=> {
+      console.log(`socket`, socket)
+      if(socket.boardId===boardId) {
+        this.props.loadBoard(socket.workspace,socket.boardId)
       }
     });
   }
