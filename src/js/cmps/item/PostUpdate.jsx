@@ -2,68 +2,48 @@ import { Component } from 'react';
 
 import FroalaEditor from 'react-froala-wysiwyg';
 
-
 export class PostUpdate extends Component {
-
-  constructor(){
+  constructor() {
     super();
     this.handleModelChange = this.handleModelChange.bind(this);
-    this.state={
-      model:''
+    this.state = {
+      model: '',
     };
   }
-  
-  
-  handleModelChange=(model)=> {
+
+  handleModelChange = (model) => {
     this.setState({
-      model: model
+      model: model,
     });
-  }
-    onPost = () => {
-      this.props.onPost(this.state.model);
-      this.setState({ model:''});
-    };
-    
-    render(){
-      return(
+  };
+  onPost = () => {
+    this.props.onPost(this.state.model);
+    this.setState({ model: '' });
+  };
+
+  render() {
+    return (
+      <div>
         <div>
-    <div>
-     <FroalaEditor model={this.state.model} onModelChange={this.handleModelChange}/>
-    </div>
-    <div className="update-btn btn">
-    <div onClick={(ev)=>{
-      ev.preventDefault();
-      this.onPost()
-    }} >Update</div>
-    </div>
-    </div>
-  )
+          <FroalaEditor
+            model={this.state.model}
+            onModelChange={this.handleModelChange}
+          />
+        </div>
+        <div className="update-btn btn">
+          <div
+            onClick={(ev) => {
+              ev.preventDefault();
+              this.onPost();
+            }}
+          >
+            Update
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export class PostUpdate extends Component {
 //   state = {

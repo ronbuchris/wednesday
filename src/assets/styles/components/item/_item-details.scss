@@ -7,6 +7,7 @@
     font-weight: 300;
     color: $clr2;
     border: 1px solid $ui-grey-color;
+    margin-bottom: 16px;
 
     .post-header {
       padding: 15px;
@@ -14,6 +15,7 @@
       img {
         width: 40px;
         height: 40px;
+        border-radius: 50%;
       }
     }
     .post-action {
@@ -22,12 +24,14 @@
       border-top-color: #e6e9ef;
       justify-content: space-around;
       align-items: center;
+
       .like-post-wrapper {
         height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
         .like-post {
           display: flex;
           align-items: center;
@@ -36,17 +40,20 @@
           height: calc(100% - 8px);
           border-radius: 4px;
           font-size: 14px;
+
           &:hover {
             background-color: #e6e9ef;
           }
         }
       }
+
       .reply-post-wrapper {
         height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
         .reply-post {
           display: flex;
           align-items: center;
@@ -55,6 +62,7 @@
           height: calc(100% - 8px);
           border-radius: 4px;
           font-size: 14px;
+
           &:hover {
             background-color: #e6e9ef;
           }
@@ -62,6 +70,7 @@
       }
     }
   }
+
   .update-input {
     width: 100%;
     margin: 0;
