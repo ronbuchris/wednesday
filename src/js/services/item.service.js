@@ -7,7 +7,8 @@ export const itemService = {
     onPost,
     createItem,
     getStatuses,
-    removeSelected
+    removeSelected,
+    duplicateItems,
 }
 
 const gCmpsOrder = ["member", "status", "date"]
@@ -76,13 +77,10 @@ function removeSelected(workspace, groups, itemsIds) {
             const itemIdx = group.items.findIndex(item => item.id === itemId);
             if (itemIdx !== -1) {
                 group.items.splice(itemIdx, 1)
-                console.log(`itemIdx`, itemIdx)
             }
         })
     })
-    console.log(`workspace`, workspace)
     const returnedWorkspace = JSON.parse(JSON.stringify(workspace))
-    console.log(`returnedWorkspace`, returnedWorkspace)
     return returnedWorkspace
 }
 
@@ -106,7 +104,23 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
     const newWorkspace = { ...workspace };
-    console.log(newWorkspace);
+    return newWorkspace
+}
+
+function duplicateItems(workspace, board, itemsIds) {
+    board.groups.forEach(group => {
+        itemsIds.forEach(itemId => {
+            const itemIdx = group.items.findIndex(item => item.id === itemId);
+            if (itemIdx !== -1) {
+                const item = group.items.find(item => item.id === itemId);
+                const newItem = duplicateItem(item)
+                group.items.splice(itemIdx + 1, 0, newItem)
+            }
+        })
+    })
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
+    const newWorkspace = { ...workspace };
     return newWorkspace
 }
 
