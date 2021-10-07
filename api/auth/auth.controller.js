@@ -16,7 +16,7 @@ async function loginWithGoogle(req, res) {
     try {
         const user = req.body
         const userToReturn = await authService.loginWithGoogle(user)
-        req.session.userToReturn = userToReturn
+        req.session.user = userToReturn
         res.json(userToReturn)
     } catch (err) {
         logger.error('Failed to Login ' + err)

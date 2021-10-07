@@ -18,10 +18,8 @@ async function login(username, password) {
 async function loginWithGoogle(user) {
     logger.debug(`auth.service - login with google username: ${user.username}`)
     const userFromColl = await userService.getByUsername(user.username)
-    console.log('userFromColl', userFromColl);
-    if (userFromColl === null) {
+    if (!userFromColl) {
         const userToReturn = await signUpWithGoogle(user)
-        console.log('userToReturn',userToReturn);
         return userToReturn
     }
     return userFromColl
