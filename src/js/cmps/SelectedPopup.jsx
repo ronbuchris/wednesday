@@ -9,6 +9,7 @@ export function SelectedPopup({
   workspace,
   groups,
   board,
+  duplicateItems
 }) {
   const itemsDots = () => {
     return groups.map((group) =>
@@ -37,13 +38,16 @@ export function SelectedPopup({
         </div>
         <div className="items-dot flex align-center">{itemsDots()}</div>
       </div>
-      <div className="duplicate-items action btn flex column align-center space-evenly">
+      <div 
+      className="duplicate-items action btn flex column align-center space-evenly"
+        onClick={() => duplicateItems(workspace, board, selectedItems)}
+      >
         <Duplicate />
         Duplicate
       </div>
       <div
         className="delete-items action btn flex column align-center space-evenly"
-        onClick={() => removeItem(workspace, groups, selectedItems)}
+        onClick={() => removeItem(workspace, board, selectedItems)}
       >
         <Delete />
         Delete

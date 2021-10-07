@@ -69,7 +69,7 @@ class _GroupPreview extends React.Component {
     };
     board.activities.unshift(activity);
     this.saveUndo(workspace);
-    removeItem(workspace, group, itemId);
+    removeItem(workspace, group, itemId,board);
     eventBusService.emit('user-msg', {
       txt: 'We successfully deleted 1 item',
       type: '',

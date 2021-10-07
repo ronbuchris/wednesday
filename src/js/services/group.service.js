@@ -138,6 +138,8 @@ function save(workspace, board, group, user, groupId, Duplicate) {
         const newGroup = createGroup(user, board)
         board.groups.unshift(newGroup)
     }
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -183,6 +185,8 @@ export function createGroup(user, board, itemCount = 1) {
 function removeGroup(workspace, board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
     board.groups.splice(groupIdx, 1)
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }

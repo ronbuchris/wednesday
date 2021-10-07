@@ -57,9 +57,11 @@ export function saveUndoWorkspace(workspace) {
 }
 
 export function loadWorkspace(workspaceId) {
+    console.log(`workspaceId`, workspaceId)
     return async dispatch => {
         try {
             const workspace = await workspaceService.getById(workspaceId)
+            console.log(`workspace action`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

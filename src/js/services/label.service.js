@@ -37,6 +37,8 @@ function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, ty
         const newLabel = createLabel(label)
         board.columns[columnIdx].labels.push(newLabel)
     }
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -44,6 +46,8 @@ function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, ty
 function remove(labelIdx, board, columnIdx, workspace) {
     const removedLabel = board.columns[columnIdx].labels.splice(labelIdx, 1)
     gColors.push(removedLabel[0].color)
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }

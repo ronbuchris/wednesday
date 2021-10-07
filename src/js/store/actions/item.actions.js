@@ -111,13 +111,13 @@ export function onSort(board, sortStore) {
     }
 }
 
-export function removeItem(workspace, group, itemId) {
+export function removeItem(workspace, groupOrBoard, itemId,board) {
     return async (dispatch) => {
         try {
             if (typeof itemId === 'string') {
-                var newWorkspace = itemService.remove(workspace, group, itemId)
+                var newWorkspace = itemService.remove(workspace, groupOrBoard, itemId,board)
             } else {
-                var newWorkspace = itemService.removeSelected(workspace, group, itemId)
+                var newWorkspace = itemService.removeSelected(workspace, groupOrBoard, itemId)
                 dispatch({
                     type: 'TOGGLE_SELECT',
                     selectedItems: []
@@ -137,14 +137,34 @@ export function removeItem(workspace, group, itemId) {
 }
 
 export function saveItem(item, user, workspace, group, addToTop, board, Duplicate) {
-    console.log(item);
     return async (dispatch) => {
         try {
             const newWorkspace = itemService.save(item, group, workspace, user, addToTop, board, Duplicate)
             await workspaceService.save(newWorkspace)
+            console.log(`newWorkspace fron item`, newWorkspace)
             dispatch({
                 type: 'EDIT_WORKSPACE',
                 workspace: newWorkspace,
+            })
+        } catch (err) {
+            console.log('Cannot add item', err)
+        }
+    }
+}
+
+export function duplicateItems(workspace, board, selectedItems) {
+    return async (dispatch) => {
+        try {
+            const newWorkspace = itemService.duplicateItems(workspace, board, selectedItems)
+            console.log(newWorkspace);
+            await workspaceService.save(newWorkspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace,
+            })
+            dispatch({
+                type: 'TOGGLE_SELECT',
+                selectedItems: []
             })
         } catch (err) {
             console.log('Cannot add item', err)

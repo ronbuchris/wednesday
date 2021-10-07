@@ -26,6 +26,7 @@ import {
   saveItem,
   removeItem,
   toggleSelected,
+  duplicateItems
 } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
@@ -53,9 +54,11 @@ export class _BoardDetails extends React.Component {
     document.title = `${this.props.board.title}`;
     socketService.emit('connect board', this.props.board._id)
     socketService.on('board updated', socket=> {
-      console.log(`socket`, socket)
+      console.log(`socket111111111111`, socket.workspace)
       if(socket.boardId===boardId) {
-        this.props.loadBoard(socket.workspace,socket.boardId)
+        this.props.loadWorkspace(socket.workspace._id);
+        // loadWorkspaceByBoardId(socket.boardId, this.props.workspaces);
+        this.props.loadBoard(socket.workspace,socket.boardId);
       }
     });
   }
@@ -138,8 +141,8 @@ export class _BoardDetails extends React.Component {
   };
 
   onEditItem = (item, group) => {
-    const { workspace, user, saveItem } = this.props;
-    saveItem(item, user, workspace, group);
+    const { workspace, user, saveItem,board } = this.props;
+    saveItem(item, user, workspace, group,false,board);
   };
 
   onRemoveSelected = (group) => {};
@@ -155,6 +158,7 @@ export class _BoardDetails extends React.Component {
   render() {
     const {
       toggleSelected,
+      duplicateItems,
       selectedItems,
       toggleMenus,
       changeView,
@@ -195,6 +199,7 @@ export class _BoardDetails extends React.Component {
           {selectedItems.length ? (
             <SelectedPopup
               toggleSelected={toggleSelected}
+              duplicateItems={duplicateItems}
               selectedItems={selectedItems}
               removeItem={removeItem}
               workspace={workspace}
@@ -247,6 +252,7 @@ const mapDispatchToProps = {
   changeView,
   removeItem,
   toggleSelected,
+  duplicateItems,
   //USER
   getLoggedinUser,
 };
