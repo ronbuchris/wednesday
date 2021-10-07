@@ -89,18 +89,20 @@ function removeSelected(workspace,board,itemsIds) {
 }
 
 function duplicateItem(item) {
+    
     return {
         ...item,
         title: `${item.title} (copy)`,
         id: makeId(),
-        updates: []
+        updates: [],
     }
 }
 
 function save(item, group, workspace, user, addToTop, board, Duplicate) {
     const itemIdx = group.items.findIndex(currItem => currItem.id === item.id);
     if (Duplicate || item.id) {
-        const newItem = Duplicate ? duplicateItem(item) : item
+        const itemToCopy = JSON.parse(JSON.stringify(item))
+        const newItem = Duplicate ? duplicateItem(itemToCopy) : item
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
             : group.items.splice(itemIdx, 1, item)
     } else {
@@ -119,7 +121,8 @@ function duplicateItems(workspace, board, itemsIds) {
             const itemIdx = group.items.findIndex(item => item.id === itemId);
             if (itemIdx !== -1) {
                 const item = group.items.find(item => item.id === itemId);
-                const newItem = duplicateItem(item)
+                const itemToCopy = JSON.parse(JSON.stringify(item))
+                const newItem = duplicateItem(itemToCopy)
                 group.items.splice(itemIdx + 1, 0, newItem)
             }
         })

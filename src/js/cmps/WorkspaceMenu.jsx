@@ -25,7 +25,7 @@ class _WorkspaceMenu extends React.Component {
                   }}
                 >
                   <div
-                    className="workspace-icon flex align-center justify-center"
+                    className="workspace-icon flex auto-center"
                     // style={{ backgroundColor: }}
                   >
                     {workspace.name?.substring(0, 1)}

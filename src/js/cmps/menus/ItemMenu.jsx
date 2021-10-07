@@ -8,6 +8,7 @@ export function ItemMenu({
   toggleMenu,
   onAddItem,
   group,
+  board
 }) {
   return (
     <div className="item-menu menu-modal br8">
@@ -16,7 +17,7 @@ export function ItemMenu({
           className="btn flex align-center  header-btn"
           onClick={(ev) => {
             ev.stopPropagation();
-            onAddItem(item, group, false, null, 'Duplicate');
+            onAddItem(item, group, false, board, 'Duplicate');
             toggleMenu(toggleMenus);
           }}
         >

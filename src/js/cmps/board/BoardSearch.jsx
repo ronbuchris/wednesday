@@ -33,7 +33,7 @@ class _BoardSearch extends Component {
     const { itemTitle } = this.state.searchBy;
     return (
       <div
-        className={`btn-search search flex br4 align-center justify-center ${
+        className={`btn-search search flex br4 auto-center ${
           this.state.isSearch ? 'searching' : ''
         }`}
       >

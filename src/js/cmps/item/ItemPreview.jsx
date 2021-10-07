@@ -52,13 +52,14 @@ function _ItemPreview({
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
           onAddItem={onAddItem}
+          board={board}
           group={group}
           item={item}
         />
       )}
-      <div className="item-menu-arrow flex align-center justify-center">
+      <div className="item-menu-arrow flex auto-center">
         <div
-          className="item-menu-button br4 btn flex align-center justify-center"
+          className="item-menu-button br4 btn flex auto-center"
           onClick={() => {
             toggleMenu(toggleMenus, 'itemMenu', item.id);
           }}
@@ -67,7 +68,7 @@ function _ItemPreview({
         </div>
       </div>
       <div
-        className={`indicator select flex align-center justify-center ${
+        className={`indicator select flex auto-center ${
           selectedItems.length && 'is-selecting'
         }`}
         style={{ backgroundColor: group.style.color }}
@@ -91,7 +92,9 @@ function _ItemPreview({
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
-        onClick={() =>!isFocus && history.push(location.pathname + `/item/${item.id}`)}
+        onClick={() =>
+          !isFocus && history.push(location.pathname + `/item/${item.id}`)
+        }
       >
         <div className="title flex align-center">
           <div

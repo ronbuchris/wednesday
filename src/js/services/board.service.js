@@ -3,6 +3,7 @@ import { makeId } from '../services/util.service'
 
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
+import { createColumn } from './column.service'
 
 export const boardService = { getById, save, getBoardById, remove, toggleMenu, dragAndDrop }
 const STORAGE_KEY = 'workspaceDB'
@@ -66,36 +67,14 @@ export function createBoard(user, users, title) {
                 width: 140,
                 members: []
             },
+            createColumn('status'),
+            ,
             {
                 id: makeId(),
-                type: "status",
-                title: "Status",
-                pos: 2,
+                type: "date",
+                title: "Date",
                 width: 140,
-                labels: [
-                    {
-                        id: makeId(),
-                        title: "Done",
-                        color: "#00c875"
-                    },
-                    {
-                        id: makeId(),
-                        title: "Stuck",
-                        color: "#e2445c"
-                    },
-                    {
-                        id: makeId(),
-                        title: "Working on it",
-                        color: " #fdab3d"
-                    }
-                ]
-            },
-            {
-                "id": makeId(),
-                "type": "date",
-                "title": "Date",
-                "width": 140,
-                "date": ''
+                date: ''
             },
 
         ],
@@ -151,8 +130,8 @@ function dragAndDrop(workspace, board, result, groupId) {
         board.cmpsOrder.splice(endIdx, 0, cmpOrder)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
-    const newBoard=workspace.boards.find(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx, 1, board)
+    const newBoard = workspace.boards.find(gBoard => gBoard._id === board._id)
     // const newBoard = { ...board }
     const newWorkspace = { ...workspace };
     return [newWorkspace, newBoard];

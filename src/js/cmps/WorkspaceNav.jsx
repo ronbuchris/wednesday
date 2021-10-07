@@ -64,7 +64,7 @@ class _WorkspaceNav extends Component {
         className={`workspace-nav flex column ${isOpenNav && 'close hovered'}`}
       >
         <div
-          className={`collapse-button-component flex align-center justify-center btn ${
+          className={`collapse-button-component flex auto-center btn ${
             (!isOpenNav || isHovered) && 'is-pinned'
           }`}
           onClick={() => toggleNav()}
@@ -87,7 +87,7 @@ class _WorkspaceNav extends Component {
             >
               <div className="workspace-title flex align-center">
                 <div
-                  className="workspace-icon large flex align-center justify-center"
+                  className="workspace-icon large flex auto-center"
                   // style={{ backgroundColor: }}
                 >
                   {workspace.name?.substring(0, 1)}

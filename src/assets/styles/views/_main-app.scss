@@ -121,9 +121,14 @@
 
     .logo {
       width: 30px;
-      margin: 19px 0 12px 0;
       line-height: 1;
       font-size: 14px;
+
+      @include for-normal-layout {
+        @media (min-width: $narrow-breakpoint) {
+          margin: 19px 0 12px 0;
+        }
+      }
     }
     .nav-icon {
       width: 25px;

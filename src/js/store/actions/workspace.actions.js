@@ -17,8 +17,6 @@ export function loadWorkspaces(user) {
 }
 
 export function undo(lastEditedWorkspace, boardId) {
-    console.log(lastEditedWorkspace);
-    console.log(boardId);
     return async dispatch => {
         try {
             const savedWorkspace = await workspaceService.save(lastEditedWorkspace)
@@ -42,7 +40,6 @@ export function undo(lastEditedWorkspace, boardId) {
     }
 }
 export function saveUndoWorkspace(workspace) {
-    console.log(workspace);
     return async dispatch => {
         try {
             dispatch({
@@ -57,11 +54,9 @@ export function saveUndoWorkspace(workspace) {
 }
 
 export function loadWorkspace(workspaceId) {
-    console.log(`workspaceId`, workspaceId)
     return async dispatch => {
         try {
             const workspace = await workspaceService.getById(workspaceId)
-            console.log(`workspace action`, workspace)
             dispatch({
                 type: 'SET_WORKSPACE',
                 workspace

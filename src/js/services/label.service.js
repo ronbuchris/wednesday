@@ -13,7 +13,7 @@ const gColors = ["#ff5ac4", "#ff158a", "#bb3354", "#7f5347",
     "#ffadad", "#7e3b8a", "#9aadbd", "#68a1bd", "#225091",
     "#4eccc6", "#5559df", "#401694", "#563e3e", "#bda8f9",
     "#2b76e5", "#a9bee8", "#d974b0", "#9d99b9", "#ad967a",
-    "#a1e3f6", "#bd816e", "#175a63",
+    "#a1e3f6", "#bd816e", "#175a63", "#00c875", "#e2445c", "#fdab3d", '#c4c4c4'
 ]
 
 export function queryColors() {
@@ -38,7 +38,7 @@ function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, ty
         board.columns[columnIdx].labels.push(newLabel)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -47,12 +47,12 @@ function remove(labelIdx, board, columnIdx, workspace) {
     const removedLabel = board.columns[columnIdx].labels.splice(labelIdx, 1)
     gColors.push(removedLabel[0].color)
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
 
-function createLabel(color = null, title = null) {
+export function createLabel(color = null, title = null) {
     const colorIdx = gColors.findIndex(currColor => currColor === color)
     return {
         id: makeId(),

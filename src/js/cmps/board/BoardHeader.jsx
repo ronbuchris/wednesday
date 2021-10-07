@@ -50,7 +50,7 @@ function _BoardHeader({
             </div>
           </div>
         </div>
-        <div className="header right-side flex align-center justify-center">
+        <div className="header right-side flex auto-center">
           <div
             className="board-activity btn header-btn"
             onClick={() => {
@@ -59,7 +59,7 @@ function _BoardHeader({
           >
             activity
           </div>
-          <div className="menu-btn header-btn btn br4 flex align-center justify-center">
+          <div className="menu-btn header-btn btn br4 flex auto-center">
             <Menu />
           </div>
         </div>
