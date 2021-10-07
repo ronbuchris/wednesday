@@ -26,6 +26,7 @@ import {
   saveItem,
   removeItem,
   toggleSelected,
+  duplicateItems
 } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
@@ -157,6 +158,7 @@ export class _BoardDetails extends React.Component {
   render() {
     const {
       toggleSelected,
+      duplicateItems,
       selectedItems,
       toggleMenus,
       changeView,
@@ -197,6 +199,7 @@ export class _BoardDetails extends React.Component {
           {selectedItems.length ? (
             <SelectedPopup
               toggleSelected={toggleSelected}
+              duplicateItems={duplicateItems}
               selectedItems={selectedItems}
               removeItem={removeItem}
               workspace={workspace}
@@ -249,6 +252,7 @@ const mapDispatchToProps = {
   changeView,
   removeItem,
   toggleSelected,
+  duplicateItems,
   //USER
   getLoggedinUser,
 };

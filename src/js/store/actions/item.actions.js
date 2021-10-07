@@ -151,3 +151,23 @@ export function saveItem(item, user, workspace, group, addToTop, board, Duplicat
         }
     }
 }
+
+export function duplicateItems(workspace, board, selectedItems) {
+    return async (dispatch) => {
+        try {
+            const newWorkspace = itemService.duplicateItems(workspace, board, selectedItems)
+            console.log(newWorkspace);
+            await workspaceService.save(newWorkspace)
+            dispatch({
+                type: 'EDIT_WORKSPACE',
+                workspace: newWorkspace,
+            })
+            dispatch({
+                type: 'TOGGLE_SELECT',
+                selectedItems: []
+            })
+        } catch (err) {
+            console.log('Cannot add item', err)
+        }
+    }
+}
