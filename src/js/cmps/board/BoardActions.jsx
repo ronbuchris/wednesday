@@ -43,7 +43,7 @@ function _BoardActions({
       </div>
       <BoardSearch board={board} />
       <div
-        className={`btn-search flex br4 btn  align-center justify-center ${
+        className={`btn-search flex br4 btn  auto-center ${
           filterStore.groupsIds.length || filterStore.statuses.length
             ? 'active'
             : ''
@@ -58,7 +58,7 @@ function _BoardActions({
         {toggleMenus.filterMenu && <FilterMenu board={board} />}
       </div>
       <div
-        className={`btn-search flex br4 btn  align-center justify-center ${
+        className={`btn-search flex br4 btn  auto-center ${
           sortStore.sortBy !== 'Select sort by' ? 'active' : ''
         }`}
         onClick={() => toggleMenu(toggleMenus, 'sortMenu', true)}

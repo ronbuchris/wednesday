@@ -88,7 +88,7 @@ export function ItemColumn({
               minWidth: board.columns[findIdx('member')].width,
             }}
           >
-            <div className="add-member justify-center align-center">
+            <div className="add-member auto-center">
               <FaPlus className="plus" />
             </div>
             {!column.members.length && (
@@ -140,7 +140,7 @@ export function ItemColumn({
               }}
             >
               <div
-                className="item-column date-col flex align-center justify-center btn"
+                className="item-column date-col flex auto-center btn"
                 style={{
                   minWidth: board.columns[findIdx('date')].width - 10,
                   color:
