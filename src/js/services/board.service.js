@@ -150,7 +150,10 @@ function dragAndDrop(workspace, board, result, groupId) {
         const [cmpOrder] = board.cmpsOrder.splice(startIdx, 1)
         board.cmpsOrder.splice(endIdx, 0, cmpOrder)
     }
-    const newBoard = { ...board }
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
+    const newBoard=workspace.boards.find(gBoard => gBoard._id === board._id)
+    // const newBoard = { ...board }
     const newWorkspace = { ...workspace };
     return [newWorkspace, newBoard];
 }

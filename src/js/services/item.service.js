@@ -64,15 +64,17 @@ function createUpdate(txt, user) {
     }
 }
 
-function remove(workspace, group, itemId) {
+function remove(workspace, group, itemId,board) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
     group.items.splice(itemIdx, 1)
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
 }
 
-function removeSelected(workspace, groups, itemsIds) {
-    groups.forEach(group => {
+function removeSelected(workspace,board,itemsIds) {
+    board.groups.forEach(group => {
         itemsIds.forEach(itemId => {
             const itemIdx = group.items.findIndex(item => item.id === itemId);
             if (itemIdx !== -1) {
@@ -80,6 +82,8 @@ function removeSelected(workspace, groups, itemsIds) {
             }
         })
     })
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const returnedWorkspace = JSON.parse(JSON.stringify(workspace))
     return returnedWorkspace
 }
@@ -103,6 +107,8 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         const newItem = createItem(item, user, board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx,1,board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }

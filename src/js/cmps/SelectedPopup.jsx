@@ -47,7 +47,7 @@ export function SelectedPopup({
       </div>
       <div
         className="delete-items action btn flex column align-center space-evenly"
-        onClick={() => removeItem(workspace, groups, selectedItems)}
+        onClick={() => removeItem(workspace, board, selectedItems)}
       >
         <Delete />
         Delete

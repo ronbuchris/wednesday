@@ -2,12 +2,10 @@ import React from 'react';
 
 export function StatusFooter({ board, group, column }) {
   const getStatusMap = () => {
-    const statusIdx = board.columns.findIndex(
-      (cmpOrder) => cmpOrder.type === 'status'
-    );
     let statusToShow = [];
     const statusMap = group.items.reduce(
       (acc, item) => {
+        const statusIdx=item.columns.findIndex(column=>column.type === 'status')
         acc.totalCount++;
         const title = item.columns[statusIdx].label.title;
         const color = item.columns[statusIdx].label.color;
