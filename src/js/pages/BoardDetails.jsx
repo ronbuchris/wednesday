@@ -55,7 +55,9 @@ export class _BoardDetails extends React.Component {
     socketService.on('board updated', socket=> {
       console.log(`socket`, socket)
       if(socket.boardId===boardId) {
-        this.props.loadBoard(socket.workspace,socket.boardId)
+        this.props.loadWorkspace(socket.workspace._id);
+        // loadWorkspaceByBoardId(socket.boardId, this.props.workspaces);
+        this.props.loadBoard(socket.workspace,socket.boardId);
       }
     });
   }
