@@ -67,7 +67,16 @@ function _ItemPreview({
           <FaCaretDown />
         </div>
       </div>
+
       <div
+        {...provided.dragHandleProps}
+        className="item-title flex space-between cell-cmp"
+        onClick={() =>
+          !isFocus && history.push(location.pathname + `/item/${item.id}`)
+        }
+      >
+        <div className="title flex align-center">
+        <div
         className={`indicator select flex auto-center ${
           selectedItems.length && 'is-selecting'
         }`}
@@ -89,14 +98,6 @@ function _ItemPreview({
           )}
         </div>
       </div>
-      <div
-        {...provided.dragHandleProps}
-        className="item-title flex space-between cell-cmp"
-        onClick={() =>
-          !isFocus && history.push(location.pathname + `/item/${item.id}`)
-        }
-      >
-        <div className="title flex align-center">
           <div
             className={`item-title-text ${isFocus ? 'focus' : ''}`}
             contentEditable="true"

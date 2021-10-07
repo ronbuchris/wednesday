@@ -35,6 +35,11 @@
     // transition: all 0.3s;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 150px;
+    background-color: rgba(253, 253, 250,0.95);
 
     &:hover {
       //   border-right: 4px solid $ui-grey-color;

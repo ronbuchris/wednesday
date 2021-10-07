@@ -27,6 +27,17 @@
           flex-direction: column;
         }
       }
+      .board-title-header{
+        font-size: 26px;
+        color: #fff;
+        font-family: roboto-bold;
+        @include for-normal-layout {
+          @media (min-width: $narrow-breakpoint) {
+           display:none;
+          }
+        }
+
+      }
 
       .left-side {
         margin-left: 13px;
