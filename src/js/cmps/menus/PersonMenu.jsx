@@ -11,10 +11,17 @@ function _PersonMenu({
   findIdx,
   user,
   board,
-  saveItem
+  saveItem,
+  users
 }) {
-  const onAddMember = (member) => {
-    item.columns[findIdx('member')].members.unshift(member)
+  const onAddMember = (user) => {
+    item.columns[findIdx('member')].members.unshift(user)
+    const newItem = JSON.parse(JSON.stringify(item))
+    saveItem(newItem, user, workspace, group, null, board, '')
+  }
+  const removePerson = (memberId) => {
+    const memberIdx = item.columns[findIdx('member')].members.findIndex(member => member._id === memberId)
+    item.columns[findIdx('member')].members.splice(memberIdx, 1)
     const newItem = JSON.parse(JSON.stringify(item))
     saveItem(newItem, user, workspace, group, null, board, '')
   }
@@ -37,7 +44,12 @@ function _PersonMenu({
                 <img src={member.img} alt="user-img" />
                 {member.fullname}
               </div>
-              <div className="clear-btn flex align-center justify-center">
+              <div 
+              className="clear-btn flex align-center justify-center"
+              onClick={() => {
+                removePerson(member._id)
+              }}
+              >
                 <Close />
               </div>
             </div>
@@ -46,22 +58,23 @@ function _PersonMenu({
       </div>
       <div className="divider"></div>
       <div className="members-list  flex column">
-        {workspace.members.map((member) => {
-          const isExcluded = checkMember(member._id)
-          if (isExcluded) return <div key={member._id}></div>
+        {users.map((user) => {
+          const isExcluded = checkMember(user._id)
+          if (isExcluded) return <div key={user._id}></div>
           {return (
             <div className="wrapper"
-              key={member._id}
-              onClick={() => {
-                onAddMember(member)
+              key={user._id}
+              onClick={(ev) => {
+                ev.preventDefault();
+                onAddMember(user)
                 toggleMenu(toggleMenus);
               }}>
               <div className="add-member-box br4 btn flex">
                 <div className="img-user">
-                  <img src={member.img} alt="member-img" />
+                  <img src={user.img} alt="member-img" />
                 </div>
                 <div className="fullname-user full">
-                  <span>{member.fullname}</span>
+                  <span>{user.fullname}</span>
                 </div>
               </div>
             </div>
@@ -85,6 +98,7 @@ function mapStateToProps(state) {
   return {
     workspace: state.workspaceModule.workspace,
     user: state.userModule.user,
+    users: state.userModule.users,
     board: state.boardModule.board,
   };
 }
