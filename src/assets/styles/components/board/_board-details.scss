@@ -1,12 +1,16 @@
 .board-details {
   position: relative;
-  padding-left:30px;
+  padding-left: 0px;
 
-    @include for-wide-layout {
+  @include for-normal-layout {
+    @media (min-width: $narrow-breakpoint) {
+      padding-left: 30px;
+    }
+  }
+
+  @include for-wide-layout {
     @media (min-width: $normal-breakpoint) {
-      .board-details{
-        padding-left:0px;
-      }
+      padding-left: 0px;
     }
   }
   .board-header {
@@ -70,7 +74,12 @@
   .table-view-container {
     width: 100%;
     height: 100%;
-    padding: 18px 30px 40px 18px;
+
+    @include for-normal-layout {
+      @media (min-width: $narrow-breakpoint) {
+        padding: 18px 30px 40px 18px;
+      }
+    }
   }
 
   .kanban-view {

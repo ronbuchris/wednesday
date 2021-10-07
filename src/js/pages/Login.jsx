@@ -31,7 +31,7 @@ class _Login extends React.Component {
     isSignup: false,
   };
   componentDidMount() {
-    document.title = `Mondus Login`;
+    document.title = `Wednesday Login`;
   }
   handleChange = ({ target }) => {
     const field = target.name;

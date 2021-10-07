@@ -2,40 +2,42 @@
   width: 100%;
   position: absolute;
   z-index: 5;
-  border-inline-end: 1px solid $ui-grey-color;
   transition: width 0.3s;
+  border-bottom: 1px solid $ui-grey-color;
 
   @include for-wide-layout {
     @media (min-width: $normal-breakpoint) {
-        position: relative;
-  }
+      position: relative;
+    }
   }
   @include for-normal-layout {
     @media (min-width: $narrow-breakpoint) {
-          height:100vh;
-          width: 254px;
-          }}
-
+      border-inline-end: 1px solid $ui-grey-color;
+      height: 100vh;
+      width: 254px;
+    }
+  }
 
   .dropdown-header {
     height: 30px;
   }
-  
+
   &.close {
     width: 100%;
     @include for-normal-layout {
       @media (min-width: $narrow-breakpoint) {
         width: 30px;
-            }}
+      }
+    }
   }
-  
+
   select {
     padding: 6px;
   }
-  
+
   .collapse-button-component {
     right: 20px;
-    top:43%;
+    top: 43%;
     position: absolute;
     padding: 3px 7px;
     background-color: $clr7;
@@ -47,41 +49,40 @@
       @media (min-width: $narrow-breakpoint) {
         top: 20px;
         right: -14px;
-      }}
-      
-      &.is-pinned {
-        top: 95%;
+      }
+    }
+
+    &.is-pinned {
+      top: 95%;
       @include for-normal-layout {
         @media (min-width: $narrow-breakpoint) {
           top: 20px;
           right: -14px;
-              }}
-              svg{
-                transform: rotate( 90deg);
-                @include for-normal-layout {
-                  @media (min-width: $narrow-breakpoint) {
-                    transform: rotate(
-                      0deg);
-                        }}
-              }
-    }
-    
-    svg {
-      width: 13px;
-      transform: rotate(
-90deg);
+        }
+      }
+      svg {
+        transform: rotate(90deg);
         @include for-normal-layout {
           @media (min-width: $narrow-breakpoint) {
-            transform: rotate(
-              0deg);
-            
-                }}
-
+            transform: rotate(0deg);
+          }
+        }
+      }
     }
-    
+
+    svg {
+      width: 13px;
+      transform: rotate(90deg);
+      @include for-normal-layout {
+        @media (min-width: $narrow-breakpoint) {
+          transform: rotate(0deg);
+        }
+      }
+    }
+
     &:hover {
       background-color: $primary-color;
-      
+
       svg {
         path {
           color: $clr7;
@@ -89,7 +90,7 @@
       }
     }
   }
-  
+
   .workspace-dropdown-button {
     position: relative;
     height: 40px;
@@ -97,7 +98,7 @@
     border: 1px solid $clr1;
     padding: 6px;
     margin-bottom: 18px;
-    
+
     .workspace-title {
       width: 100%;
       h2 {
@@ -108,42 +109,35 @@
       }
     }
   }
-  
+
   .menu-button-wrapper {
     font-size: rem(14px);
     height: 32px;
     gap: 5px;
     padding: 0 8px;
-    
+
     &.search {
       margin-bottom: 14px;
     }
-    
+
     .board-title {
       gap: 5px;
-      
+
       svg {
         color: $clr3;
       }
     }
-    
+
     .hover-display {
       display: none;
     }
-    
+
     &:hover {
       background-color: $ui-grey-color;
-      
+
       .hover-display {
         display: flex;
       }
     }
   }
 }
-
-
-
-
-
-
-

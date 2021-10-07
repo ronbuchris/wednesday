@@ -23,7 +23,7 @@ export class _WorkspaceDetails extends Component {
     await this.props.loadWorkspace(workspaceId);
     const { workspace } = this.props;
     this.props.loadBoard(workspace, workspace[0]);
-    document.title = `Mondus - Workspaces`
+    document.title = `Wednesday - Workspaces`;
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -43,7 +43,7 @@ export class _WorkspaceDetails extends Component {
 
   render() {
     const { workspace, board, changeView, removeBoard } = this.props;
-    if (!workspace) return <Loader/>
+    if (!workspace) return <Loader />;
     return (
       <div className="workspace-app flex">
         <WorkspaceNav
