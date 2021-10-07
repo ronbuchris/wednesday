@@ -91,7 +91,7 @@ function _ItemPreview({
       <div
         {...provided.dragHandleProps}
         className="item-title flex space-between cell-cmp"
-        // onClick={() => history.push(location.pathname + `/item/${item.id}`)}
+        onClick={() =>!isFocus && history.push(location.pathname + `/item/${item.id}`)}
       >
         <div className="title flex align-center">
           <div
