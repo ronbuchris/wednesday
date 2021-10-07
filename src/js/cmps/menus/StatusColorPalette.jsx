@@ -8,7 +8,7 @@ export function StatusColorPalette({
   statusIdx,
 }) {
   return (
-    <div className="status-cange-color flex align-center justify-center">
+    <div className="status-cange-color flex auto-center">
       {queryColors().map((color) => {
         return (
           <div

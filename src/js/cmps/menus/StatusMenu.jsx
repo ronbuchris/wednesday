@@ -160,7 +160,7 @@ export function _StatusMenu({
                 ) : (
                   <div
                     key={label.id}
-                    className="label flex align-center justify-center btn text-cmp"
+                    className="label flex auto-center btn text-cmp"
                     style={{ backgroundColor: label.color }}
                     onClick={(ev) => {
                       ev.stopPropagation();
@@ -191,7 +191,7 @@ export function _StatusMenu({
                   : hoverColor?.color,
               color: hoverColor?.color ? '#fff' : '#c4c4c4',
             }}
-            className="add-label-placeholder flex align-center justify-center btn"
+            className="add-label-placeholder flex auto-center btn"
             onClick={() => {
               onAddLabel(statusIdx());
             }}
@@ -211,7 +211,7 @@ export function _StatusMenu({
       )}
       <div className="divider"></div>
       <div
-        className="edit-label flex align-center justify-center btn"
+        className="edit-label flex auto-center btn"
         onClick={(ev) => {
           ev.stopPropagation();
           setIsEdit(!isEdit);

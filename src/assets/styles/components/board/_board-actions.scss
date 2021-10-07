@@ -1,6 +1,15 @@
 .actions-container {
   padding: 16px 0;
   font-size: rem(14px);
+  .action-hidden{
+    display:none;
+    @include for-narrow-layout {
+      @media (min-width: $mobile-breakpoint) {
+        display:flex;
+      }
+    }
+  }
+
   .add-action {
     height: 32px;
     margin-right: 14px;

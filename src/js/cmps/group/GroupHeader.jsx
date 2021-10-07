@@ -114,8 +114,8 @@ export class _GroupHeader extends React.Component {
             </div>
           )}
         </Droppable>
-        <div className="add-column flex align-center justify-center">
-          <div className="plus-btn open flex align-center justify-center btn">
+        <div className="add-column flex auto-center">
+          <div className="plus-btn open flex auto-center btn">
             <Add className="icon" />
           </div>
         </div>

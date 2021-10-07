@@ -50,7 +50,7 @@ class _UserMsg extends React.Component {
           Undo
         </div>
         <button
-          className="btn reset-btn align-center justify-center br4"
+          className="btn reset-btn auto-center br4"
           onClick={this.onCloseMsg}
         >
           <CloseSmall />

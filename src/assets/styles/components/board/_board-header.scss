@@ -11,6 +11,12 @@
     padding: 8px 16px;
     gap: 5px;
     height: 40px;
+    flex-basis: 33%;
+    @include for-normal-layout {
+      @media (min-width: $narrow-breakpoint) {
+        flex-basis:0%;
+      }
+    }
 
     &:hover {
       background-color: $ui-grey-color;

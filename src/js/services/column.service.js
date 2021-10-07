@@ -2,7 +2,6 @@ import { makeId } from '../services/util.service'
 import { createLabel } from './label.service'
 
 
-export const columnService = {}
 
 function save(column, workspace, board) {
     if (column?.id) {
@@ -15,7 +14,7 @@ function save(column, workspace, board) {
     return { ...workspace }
 }
 
-function createColumn(column) {
+export function createColumn(column) {
     switch (column) {
         case 'status':
             return {
