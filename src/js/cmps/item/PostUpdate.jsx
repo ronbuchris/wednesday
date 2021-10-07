@@ -30,8 +30,15 @@ export class PostUpdate extends Component {
             onModelChange={this.handleModelChange}
           />
         </div>
-        <div className="update-btn btn">
+        <div className="side-panel-actions flex space-between btn">
+          <div className="left-side-actions flex">
+            <div className="add-files">Add files</div>
+            <div className="gif">GIF</div>
+            <div className="emoji">Emoji</div>
+            <div className="mention">Mention</div>
+          </div>
           <div
+            className="update-btn br4"
             onClick={(ev) => {
               ev.preventDefault();
               this.onPost();
