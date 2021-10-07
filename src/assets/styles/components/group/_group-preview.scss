@@ -106,7 +106,7 @@
 .indicator {
   background-color: $ui-grey-color;
   position: relative;
-  width: 8px;
+  min-width: 8px;
   height: 100%;
   overflow: hidden;
   will-change: width;

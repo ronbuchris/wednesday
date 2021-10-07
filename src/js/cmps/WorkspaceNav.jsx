@@ -28,10 +28,6 @@ import { AddBoard } from './board/AddBoard';
 import { AddMember } from './menus/AddMember';
 
 class _WorkspaceNav extends Component {
-  state = {
-    isHovered: false,
-  };
-
   componentDidMount() {
     this.props.loadWorkspaces(this.props.user);
   }
@@ -39,12 +35,6 @@ class _WorkspaceNav extends Component {
   handleChange = ({ target }) => {
     const value = target.value;
     this.props.loadWorkspace(value);
-  };
-
-  handleHover = () => {
-    this.setState((prevState) => ({
-      isHovered: !prevState.isHovered,
-    }));
   };
 
   render() {
@@ -58,21 +48,17 @@ class _WorkspaceNav extends Component {
       toggleMenus,
       changeView,
     } = this.props;
-    const { isHovered } = this.state;
     return (
-      <div
-        className={`workspace-nav flex column ${isOpenNav && 'close hovered'}`}
-      >
+      <div className={`workspace-nav flex column ${isOpenNav ? 'close' : ''}`}>
         <div
-          className={`collapse-button-component flex auto-center btn ${
-            (!isOpenNav || isHovered) && 'is-pinned'
-          }`}
+          className={`collapse-button-component flex auto-center btn
+          ${isOpenNav ? '' : 'is-pinned'}`}
           onClick={() => toggleNav()}
         >
           {isOpenNav ? <NavigationChevronRight /> : <NavigationChevronLeft />}
         </div>
 
-        {(!isOpenNav || isHovered) && (
+        {!isOpenNav && (
           <>
             <div className="dropdown-header flex space-between">
               <span>Workspace</span>

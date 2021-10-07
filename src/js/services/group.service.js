@@ -11,7 +11,7 @@ export const groupService = {
 
 function query(board, ActionBy = {}) {
     var groups = []
-    if (ActionBy) {    
+    if (ActionBy) {
         if (ActionBy.searchBy?.itemTitle) {
             groups = searchItem(board, ActionBy)
         } else {
@@ -23,6 +23,9 @@ function query(board, ActionBy = {}) {
                 const statusIdx = board.cmpsOrder.findIndex((cmpOrder) => cmpOrder === 'status');
                 const groupsToFilter = groups?.length ? groups : board.groups
                 groups = filterStatus(ActionBy, groupsToFilter, statusIdx)
+            }
+            if (ActionBy?.persons?.length) {
+                groups = filterPersons(board, ActionBy)
             }
         }
         if (ActionBy?.sortStore) {
@@ -42,8 +45,8 @@ function query(board, ActionBy = {}) {
             }
         })
     }
-    const { searchBy, statuses, groupsIds, sortStore } = ActionBy
-    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortStore) ? groups : board.groups
+    const { searchBy, statuses, groupsIds, sortStore,persons } = ActionBy
+    const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortStore || persons?.length) ? groups : board.groups
     return groupsToReturn
 }
 
@@ -100,6 +103,22 @@ function filterGroups(board, ActionBy) {
     })
     return groups
 }
+function filterPersons(board, ActionBy) {
+    const memberIdx = board.cmpsOrder.findIndex(cmp => cmp === 'member')
+    const filteredGroups = board.groups.reduce((acc,group) => {
+        const newGroup = {
+            ...group, items: group.items.filter(item => {
+                return item.columns[memberIdx].members.some(member => {
+                    return ActionBy.persons.includes(member._id)
+                })
+            })
+        }
+        acc.push(newGroup)
+        return acc
+    },[])
+    console.log(filteredGroups);
+    return filteredGroups
+}
 function filterStatus(ActionBy, groupsToFilter, statusIdx) {
     var groups = []
     groups = groupsToFilter.map(group => {
@@ -138,7 +157,7 @@ function save(workspace, board, group, user, groupId, Duplicate) {
         board.groups.unshift(newGroup)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -185,7 +204,7 @@ function removeGroup(workspace, board, groupId) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId);
     board.groups.splice(groupIdx, 1)
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
