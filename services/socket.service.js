@@ -26,8 +26,11 @@ function connectSockets(http, session) {
         })
 
         socket.on('board changed',workspace => {
-           console.log(`boardboardboardboard`, workspace)
-           socket.broadcast.emit('board updated',workspace)
+            const socket1={
+                workspace,
+                boardId:socket.board,
+            }
+           socket.broadcast.emit('board updated',socket1)
         })
 
        

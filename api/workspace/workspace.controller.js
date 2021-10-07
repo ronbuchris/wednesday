@@ -5,7 +5,6 @@ const logger = require('../../services/logger.service')
 async function getWorkspaces(req, res) {
   try {
     var queryParams = req.query;
-    console.log(`queryParams`, queryParams)
     const workspaces = await workspaceService.query(queryParams)
     res.json(workspaces);
   } catch (err) {
