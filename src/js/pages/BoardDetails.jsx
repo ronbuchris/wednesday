@@ -34,7 +34,7 @@ import {
   loadWorkspace,
   loadWorkspaces,
 } from '../store/actions/workspace.actions';
-import { getLoggedinUser } from '../store/actions/user.actions';
+import { getLoggedinUser, loadUsers } from '../store/actions/user.actions';
 import { Screen } from './Screen';
 import { ActivityLog } from './ActivityLog';
 import { Loader } from '../cmps/Loader';
@@ -42,8 +42,9 @@ import { SelectedPopup } from '../cmps/SelectedPopup';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
-    const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId } =
+    const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId, loadUsers} =
       this.props;
+    await loadUsers()
     const boardId = this.props.match.params.boardId;
     if (!this.props.workspaces?.length) {
       await getLoggedinUser();
@@ -54,10 +55,8 @@ export class _BoardDetails extends React.Component {
     document.title = `${this.props.board.title}`;
     socketService.emit('connect board', this.props.board._id)
     socketService.on('board updated', socket=> {
-      console.log(`socket111111111111`, socket.workspace)
       if(socket.boardId===boardId) {
         this.props.loadWorkspace(socket.workspace._id);
-        // loadWorkspaceByBoardId(socket.boardId, this.props.workspaces);
         this.props.loadBoard(socket.workspace,socket.boardId);
       }
     });
@@ -255,6 +254,7 @@ const mapDispatchToProps = {
   duplicateItems,
   //USER
   getLoggedinUser,
+  loadUsers
 };
 
 export const BoardDetails = connect(
