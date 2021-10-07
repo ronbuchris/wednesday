@@ -18,7 +18,6 @@ function _SortMenu({ onSort, board, sortStore, toggleMenu, toggleMenus }) {
   const onSetSort = () => {
     onSort(board, sortStore);
     toggleMenu(toggleMenus);
-    console.log(`toggleMenus`, toggleMenus);
   };
 
   const sortByArray = ['Text', 'Status', 'Date'];

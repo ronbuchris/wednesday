@@ -33,6 +33,7 @@ import {
   editWorkspace,
   loadWorkspace,
   loadWorkspaces,
+  saveUndoWorkspace
 } from '../store/actions/workspace.actions';
 import { getLoggedinUser, loadUsers } from '../store/actions/user.actions';
 import { Screen } from './Screen';
@@ -156,6 +157,7 @@ export class _BoardDetails extends React.Component {
 
   render() {
     const {
+      saveUndoWorkspace,
       toggleSelected,
       duplicateItems,
       selectedItems,
@@ -197,6 +199,7 @@ export class _BoardDetails extends React.Component {
           />
           {selectedItems.length ? (
             <SelectedPopup
+            saveUndoWorkspace={saveUndoWorkspace}
               toggleSelected={toggleSelected}
               duplicateItems={duplicateItems}
               selectedItems={selectedItems}
@@ -238,6 +241,7 @@ const mapDispatchToProps = {
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
+  saveUndoWorkspace,
   //board
   removeBoard,
   loadBoard,
