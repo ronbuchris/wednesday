@@ -2,12 +2,10 @@ import { boardService } from "../../services/board.service"
 import { workspaceService } from "../../services/workspace.service";
 
 export function loadBoard(workspace, boardId) {
-    console.log(`workspace action`, workspace)
     return dispatch => {
         try {
             if (!boardId) return
             const board = boardService.getById(workspace, boardId)
-            console.log(`board`, board)
             dispatch({
                 type: 'SET_BOARD',
                 board

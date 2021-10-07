@@ -1,16 +1,23 @@
 import Close from 'monday-ui-react-core/dist/icons/Close';
 import Duplicate from 'monday-ui-react-core/dist/icons/Duplicate';
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
+import { eventBusService } from '../services/event-bus.service';
 
 export function SelectedPopup({
+  saveUndoWorkspace,
   toggleSelected,
+  duplicateItems,
   selectedItems,
   removeItem,
   workspace,
   groups,
   board,
-  duplicateItems
 }) {
+  const saveUndo = (workspace) => {
+    const undoWorkspace = JSON.parse(JSON.stringify(workspace));
+    saveUndoWorkspace(undoWorkspace);
+  };
+
   const itemsDots = () => {
     return groups.map((group) =>
       group.items.map((item) => {
@@ -40,14 +47,22 @@ export function SelectedPopup({
       </div>
       <div 
       className="duplicate-items action btn flex column align-center space-evenly"
-        onClick={() => duplicateItems(workspace, board, selectedItems)}
+        onClick={() => {
+          saveUndo(workspace)
+          duplicateItems(workspace, board, selectedItems)
+          eventBusService.emit('user-msg', { txt: `We successfully duplicated ${selectedItems.length} ${selectedItems.length > 1 ? 'items' : 'item'}`, type: '' });
+        }}
       >
         <Duplicate />
         Duplicate
       </div>
       <div
         className="delete-items action btn flex column align-center space-evenly"
-        onClick={() => removeItem(workspace, board, selectedItems)}
+        onClick={() => {
+          saveUndo(workspace)
+          removeItem(workspace, board, selectedItems)
+          eventBusService.emit('user-msg', { txt: `We successfully deleted ${selectedItems.length} ${selectedItems.length > 1 ? 'items' : 'item'}`, type: '' });
+        }}
       >
         <Delete />
         Delete

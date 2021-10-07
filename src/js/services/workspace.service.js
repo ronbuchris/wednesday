@@ -23,7 +23,6 @@ function remove(workspaceId) {
 }
 
 async function save(workspace) {
-    console.log(`objworkspaceworkspaceect`, workspace)
     let updatedWorkspace;
     if (workspace._id) {
         updatedWorkspace = await httpService.put(`workspace/${workspace._id}`, workspace)
@@ -33,7 +32,6 @@ async function save(workspace) {
         // workspace.owner = userService.getLoggedinUser()
         // return storageService.post(STORAGE_KEY, workspace)
     }
-    console.log(`updatedWorkspace`, updatedWorkspace)
     socketService.emit('board changed', updatedWorkspace)
     return updatedWorkspace;
 }

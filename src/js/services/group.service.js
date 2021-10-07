@@ -26,7 +26,6 @@ function query(board, ActionBy = {}) {
             }
         }
         if (ActionBy?.sortStore) {
-            console.log(ActionBy.sortStore);
             if (ActionBy.sortStore.sortBy === 'Select sort by') {
                 return board.groups
             } else {

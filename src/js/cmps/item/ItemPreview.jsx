@@ -52,6 +52,7 @@ function _ItemPreview({
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
           onAddItem={onAddItem}
+          board={board}
           group={group}
           item={item}
         />
