@@ -18,6 +18,7 @@ export function ItemColumn({
 }) {
   const [isFocus, setFocus] = useState(false);
 
+
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
@@ -52,6 +53,7 @@ export function ItemColumn({
     const newItem = { ...item };
     onEditItem(newItem, group);
   };
+
 
   const renderSwitch = (column) => {
     switch (column.type) {
@@ -189,7 +191,7 @@ export function ItemColumn({
               className={`number-field flex auto-center ${
                 isFocus ? 'focus' : ''
               }`}
-              contentEditable="true"
+              contentEditable='true'
               suppressContentEditableWarning={true}
               onBlur={(ev) => {
                 ev.stopPropagation();
