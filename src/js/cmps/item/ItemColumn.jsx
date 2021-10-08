@@ -49,6 +49,10 @@ export function ItemColumn({
     if (newTxt === prevTxt) return;
     item.columns[findIdx('number')].number = newTxt;
     console.log(`newTxt`, newTxt);
+    console.log(
+      `item.columns[findIdx('number')]`,
+      item.columns[findIdx('number')]
+    );
     const newItem = { ...item };
     onEditItem(newItem, group);
   };
@@ -201,9 +205,9 @@ export function ItemColumn({
                 ev.stopPropagation();
                 const value = +ev.target.innerText;
                 if (!isNaN(value)) {
-                  onBlur(value, column.number, column);
+                  onBlur(value, column.number);
                 } else {
-                  return (value = '');
+                  ev.target.innerText = '';
                 }
                 setFocus(false);
               }}
@@ -213,7 +217,7 @@ export function ItemColumn({
               }}
             >
               {column.number}
-              {column.number && (
+              {typeof column.number === 'number' && (
                 <div
                   className="clear-number auto-center btn"
                   onClick={(ev) => {

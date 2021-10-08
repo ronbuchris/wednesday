@@ -105,11 +105,13 @@
       }
 
       .number {
+        font-size: rem(15px);
+        height: 21px;
       }
 
       .function {
         font-size: rem(12px);
-        text-align: center;
+        height: 18px;
       }
     }
 

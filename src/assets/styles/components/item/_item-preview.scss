@@ -85,6 +85,7 @@
     width: 100%;
 
     .clear-number {
+      z-index: 5;
       display: none;
       top: 50%;
       right: 8px;
@@ -112,6 +113,9 @@
 
       .number-field {
         background-color: $clr5 !important;
+      }
+      .clear-number {
+        display: none !important;
       }
     }
   }

@@ -7,23 +7,19 @@ export function NumberFooter({
   board,
 }) {
   const calcNumbers = (func) => {
-    console.log(`func`, func);
-    const numbers = group.items.filter(
-      (item) => item.columns[columnIdx]?.number
-    );
+    const numbers = [];
+    group.items.forEach((item) => {
+      const number = item.columns[columnIdx].number;
+      if (number) numbers.push(number);
+    });
     if (!numbers.length) return 0;
     console.log(`numbers`, numbers);
     switch (func) {
       case 'avg':
-        return (
-          numbers.reduce((acc, num) => acc + num.columns[columnIdx].number) /
-          numbers.length
-        );
+        return numbers.reduce((acc, num) => acc + num) / numbers.length;
 
       case 'sum':
-        return numbers.reduce(
-          (acc, num) => acc + num.columns[columnIdx]?.number
-        );
+        return numbers.reduce((acc, num) => acc + num, 0);
 
       case 'min':
         return Math.min(...numbers);
@@ -48,8 +44,10 @@ export function NumberFooter({
         toggleMenu(toggleMenus, 'numberMenu', group.id);
       }}
     >
-      {/* <div className="number">{calcNumbers(column.function)}</div> */}
-      <div className="function">{column.function}</div>
+      <div className="number flex auto-center">
+        {calcNumbers(column.function)}
+      </div>
+      <div className="function flex auto-center">{column.function}</div>
     </div>
   );
 }

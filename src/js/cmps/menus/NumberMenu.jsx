@@ -12,10 +12,10 @@ export function NumberMenu() {
       <div className="functions">
         <div className="function-title title">Function</div>
         <div className="function-list list flex">
-          <div className="avg btn flex auto-center">Average</div>
+          <div className="avg btn flex auto-center selected">Average</div>
           <div className="sum btn flex auto-center">Sum</div>
           <div className="min btn flex auto-center">Min</div>
-          <div className="max btn flex auto-center selected">Max</div>
+          <div className="max btn flex auto-center ">Max</div>
           <div className="count btn flex auto-center ">Count</div>
         </div>
       </div>
