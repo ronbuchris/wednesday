@@ -3,7 +3,10 @@
     padding-left: 30px;
 
     &:hover {
-      .item-preview {
+      .item-preview,
+      .member-col,
+      .date-border,
+      .item-title {
         background-color: $ui-grey-color;
       }
 
