@@ -15,10 +15,6 @@
       align-items: center;
       justify-content: center;
     }
-
-    .clear-date {
-      display: flex !important;
-    }
   }
 
   .add-member {
@@ -48,28 +44,6 @@
     border: 1px solid $wolf-color;
     margin: 0 -4px;
     background-color: #fff;
-  }
-
-  .clear-date {
-    display: none;
-    top: 50%;
-    right: 8px;
-    position: absolute;
-    transform: translateY(-50%);
-    font-size: 12px;
-    border-radius: 50%;
-
-    svg {
-      color: #c4c4c4;
-      height: 15px;
-      width: 15px;
-    }
-
-    &:hover {
-      svg {
-        color: $btn-column-color;
-      }
-    }
   }
 }
 

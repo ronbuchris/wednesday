@@ -42,6 +42,7 @@
 
     .item-column-list {
       .date {
+        cursor: text;
         position: relative;
         border-bottom: 1px solid $ui-grey-color;
 
@@ -54,9 +55,42 @@
             .date-col {
               outline: 1px dashed $wolf-color;
             }
+
+            .clear-date {
+              display: flex !important;
+            }
           }
+
           .date-col {
             color: $text-column-color;
+
+            .red {
+              color: $negative-color;
+              position: absolute;
+              left: 10px;
+            }
+
+            .clear-date {
+              display: none;
+              top: 50%;
+              right: 8px;
+              position: absolute;
+              transform: translateY(-50%);
+              font-size: rem(12px);
+              border-radius: 50%;
+
+              svg {
+                color: #c4c4c4;
+                height: 15px;
+                width: 15px;
+              }
+
+              &:hover {
+                svg {
+                  color: $btn-column-color;
+                }
+              }
+            }
           }
         }
       }

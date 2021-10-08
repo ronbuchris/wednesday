@@ -42,9 +42,7 @@ export function ItemColumn({
       'Nov',
       'Dec',
     ];
-    return `${Date.now() - timestamp > 0 ? '!' : ''}${months[month]} ${
-      day < 10 ? '0' + day : day
-    }`;
+    return `${months[month]} ${day < 10 ? '0' + day : day}`;
   };
 
   const onBlur = (newTxt, prevTxt) => {
@@ -140,7 +138,7 @@ export function ItemColumn({
       case 'date':
         return (
           <div
-            className="date btn cell-cmp"
+            className="date cell-cmp"
             onClick={(ev) => {
               ev.stopPropagation();
               toggleMenu(toggleMenus, 'dateMenu', item.id);
@@ -148,11 +146,14 @@ export function ItemColumn({
           >
             <div className="date-border">
               <div
-                className="item-column date-col flex auto-center btn"
+                className="item-column date-col flex auto-center"
                 style={{
                   minWidth: board.columns[findIdx('date')].width - 10,
                 }}
               >
+                {column.date && Date.now() - column.date > 0 && (
+                  <span className="red">!</span>
+                )}
                 {column.date && printDate(column.date)}
                 {column.date && (
                   <div
