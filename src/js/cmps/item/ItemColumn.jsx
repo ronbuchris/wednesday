@@ -200,9 +200,9 @@ export function ItemColumn({
                 ev.stopPropagation();
                 const value = +ev.target.innerText
                 if (!isNaN(value)) {
-                  onBlur(ev.target.innerText, column.number, column);
+                  onBlur(value, column.number, column);
                 } else {
-                  return ev.target.innerText = ''
+                  return value = ''
                 }
                 setFocus(false);
               }}
