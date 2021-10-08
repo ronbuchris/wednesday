@@ -109,6 +109,7 @@ export class KanbanGroup extends Component {
                     />
                   </form>
                 </div>
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
