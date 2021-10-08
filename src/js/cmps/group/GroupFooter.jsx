@@ -6,7 +6,7 @@ export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
   return (
     <div className="group-footer flex">
       <div className="empty-cell-cmp group-title"></div>
-      {board.columns.map((column) => {
+      {board.columns.map((column, idx) => {
         return column.type === 'status' ? (
           <StatusFooter
             key={column.id}
@@ -15,17 +15,20 @@ export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
             column={column}
           />
         ) : column.type === 'number' ? (
-          <>
+          <div className="number-container">
             <NumberFooter
               key={column.id}
+              columnIdx={idx}
               board={board}
               group={group}
               column={column}
               toggleMenus={toggleMenus}
               toggleMenu={toggleMenu}
             />
-            {toggleMenus.numberMenu === group.id && <NumberMenu />}
-          </>
+            {toggleMenus.numberMenu === group.id && (
+              <NumberMenu board={board} column={column} group={group} />
+            )}
+          </div>
         ) : (
           <div
             key={column.id}
