@@ -1,6 +1,6 @@
 
 
-export function PersonFilter({ board, onFilterPerson, persons }) {
+export function PersonFilter({ board, onFilterPerson, persons, personsCount, getPersonItem }) {
     const getPersons = () => {
         const persons = []
         board.groups.map(group => {

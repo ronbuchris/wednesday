@@ -2,7 +2,7 @@ import React from 'react';
 
 export class HomePage extends React.Component {
   componentDidMount() {
-    document.title = `Welcome to Mundos!`;
+    document.title = `Welcome to Wednesday!`;
   }
   render() {
     return (

@@ -1,14 +1,15 @@
 import { makeId } from '../services/util.service'
 
 export const itemService = {
-    save,
-    remove,
-    getById,
-    onPost,
-    createItem,
-    getStatuses,
-    removeSelected,
     duplicateItems,
+    removeSelected,
+    getPersonItem,
+    getStatuses,
+    createItem,
+    getById,
+    remove,
+    onPost,
+    save,
 }
 
 const gCmpsOrder = ["member", "status", "date"]
@@ -36,6 +37,31 @@ function getStatuses(board) {
         })
     })
     return [statuses, colors]
+}
+function getPersonItem(board) {
+    let personsToShow = [];
+    const personsMap = board.groups.map(group => {
+        return group.items.reduce((acc, item) => {
+            const memberIdx = item.columns.findIndex(column => column.type === 'member')
+            acc.totalCount++;
+            const members = item.columns[memberIdx].members;
+            members.forEach(member => {
+                const name = member.fullname
+                if (acc[name]) {
+                    acc[name].count++;
+                } else {
+                    personsToShow.push(name);
+                    acc[name] = {};
+                    acc[name].count = 1;
+                }
+            })
+            acc.personsToShow = personsToShow;
+            return acc;
+        },
+        { totalCount: 0 }
+        );
+    })
+    return personsMap;
 }
 
 function onPost(update, user, item, groups, workspace) {

@@ -2,6 +2,7 @@ const initialState = {
     item: null,
     items: [],
     statuses:{},
+    personsCount:{},
     selectedItems:[]
 }
 
@@ -21,6 +22,9 @@ export function itemReducer(state = initialState, action) {
         case 'UPDATE_ITEM':
             items = state.items.map(item => (item.id === action.item.id) ? action.item : item)
             newState = { ...state, items }
+            break
+        case 'GET_PERSONS':
+            newState = { ...state, personsCount: action.personsCount }
             break
         case 'GET_STATUS':
             newState = { ...state, statuses: action.statuses }

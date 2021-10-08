@@ -116,7 +116,6 @@ function filterPersons(board, ActionBy) {
         acc.push(newGroup)
         return acc
     },[])
-    console.log(filteredGroups);
     return filteredGroups
 }
 function filterStatus(ActionBy, groupsToFilter, statusIdx) {
