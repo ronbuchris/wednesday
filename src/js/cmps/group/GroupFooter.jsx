@@ -14,12 +14,15 @@ export function GroupFooter({ board, group }) {
             column={column}
           />
         ) : column.type === 'number' ? (
-          <NumberFooter
-            key={column.id}
-            board={board}
-            group={group}
-            column={column}
-          />
+          <>
+            <NumberFooter
+              key={column.id}
+              board={board}
+              group={group}
+              column={column}
+            />
+            {toggleMenus.numberMenu === group.id && <NumberMenu />}
+          </>
         ) : (
           <div
             key={column.id}
