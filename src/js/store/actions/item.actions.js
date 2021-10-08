@@ -64,6 +64,20 @@ export function loadStatuses(board) {
         }
     }
 }
+export function getPersonItem(board,persons) {
+    return async dispatch => {
+        try {
+            const personsCount = itemService.getPersonItem(board, persons)
+            dispatch({
+                type: 'GET_PERSONS',
+                personsCount
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
 
 export function onSetSearch(board, searchBy) {
     return (dispatch) => {

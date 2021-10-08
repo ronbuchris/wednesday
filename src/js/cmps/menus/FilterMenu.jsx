@@ -1,11 +1,12 @@
 import fi from 'date-fns/esm/locale/fi/index.js';
 import { connect } from 'react-redux';
 import { filterGroups } from '../../store/actions/group.actions';
+import { getPersonItem } from '../../store/actions/item.actions';
 import { GroupFilter } from '../group/GroupFilter';
 import { PersonFilter } from '../item/PersonFilter';
 import { StatusFilter } from '../item/StatusFilter';
 
-function _FilterMenu({ board, groups, filterGroups, filterStore }) {
+function _FilterMenu({ board, groups, filterGroups, filterStore, personsCount, getPersonItem }) {
   const { groupsIds, statuses, persons} = filterStore;
 
   const onFilter = (groupId, status, bool) => {
@@ -53,7 +54,13 @@ function _FilterMenu({ board, groups, filterGroups, filterStore }) {
           onFilter={onFilter}
           groupsIds={groupsIds}
         />
-        <PersonFilter board={board} onFilterPerson={onFilterPerson} persons={persons}/>
+        <PersonFilter 
+        board={board} 
+        onFilterPerson={onFilterPerson} 
+        persons={persons} 
+        personsCount={personsCount}
+          getPersonItem={getPersonItem}
+        />
         <StatusFilter
           board={board}
           onFilterStatus={onFilter}
@@ -69,12 +76,15 @@ function mapStateToProps(state) {
     workspace: state.workspaceModule.workspace,
     groups: state.groupModule.groups,
     filterStore: state.boardModule.filterStore,
+    personsCount: state.itemModule.personsCount,
   };
 }
 
 const mapDispatchToProps = {
   filterGroups,
+  getPersonItem
 };
+
 export const FilterMenu = connect(
   mapStateToProps,
   mapDispatchToProps
