@@ -374,6 +374,7 @@
   .list {
     font-size: rem(13px);
     height: 25px;
+    text-transform: capitalize;
 
     > * {
       text-align: center;
@@ -401,16 +402,10 @@
   }
 
   .units {
+    margin-bottom: 20px;
     .unit-list {
       font-size: rem(14px);
     }
-  }
-
-  .functions {
-    .function-list {
-    }
-  }
-  .selected {
   }
 }
 

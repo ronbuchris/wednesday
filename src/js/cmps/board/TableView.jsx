@@ -3,6 +3,7 @@ import { GroupPreview } from '../group/GroupPreview';
 export function TableView({
   setCurrGroupId,
   onEditGroup,
+  onEditBoard,
   onEditItem,
   onAddItem,
   onBlur,
@@ -18,6 +19,7 @@ export function TableView({
               <div {...provided.draggableProps} ref={provided.innerRef}>
                 <GroupPreview
                   setCurrGroupId={setCurrGroupId}
+                  onEditBoard={onEditBoard}
                   onEditGroup={onEditGroup}
                   onEditItem={onEditItem}
                   onAddItem={onAddItem}

@@ -25,6 +25,7 @@ class _BoardContent extends Component {
   render() {
     const {
       onEditGroup,
+      onEditBoard,
       onEditItem,
       removeItem,
       onAddItem,
@@ -50,6 +51,7 @@ class _BoardContent extends Component {
                   <TableView
                     setCurrGroupId={this.setCurrGroupId}
                     onEditGroup={onEditGroup}
+                    onEditBoard={onEditBoard}
                     onEditItem={onEditItem}
                     onAddItem={onAddItem}
                     onBlur={onBlur}

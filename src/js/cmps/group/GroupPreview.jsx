@@ -93,6 +93,7 @@ class _GroupPreview extends React.Component {
     const {
       setCurrGroupId,
       onEditGroup,
+      onEditBoard,
       toggleMenus,
       onEditItem,
       toggleMenu,
@@ -163,17 +164,19 @@ class _GroupPreview extends React.Component {
               className="indicator"
               style={{ backgroundColor: group.style.color, opacity: 0.5 }}
             ></div>
-            <input
-              type="text"
-              dir="auto"
-              className="item-add-input"
-              placeholder="+ Add"
-              value={itemTitle}
-              onChange={this.handleChange}
-              onBlur={this.onBlur}
-              onFocus={this.onFocus}
-              onKeyUp={this.onKeyUp}
-            />
+            <div className="item-add-input">
+              <input
+                type="text"
+                dir="auto"
+                className="input-text"
+                placeholder="+ Add"
+                value={itemTitle}
+                onChange={this.handleChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                onKeyUp={this.onKeyUp}
+              />
+            </div>
 
             {(isFocused || itemTitle) && (
               <>
@@ -187,6 +190,7 @@ class _GroupPreview extends React.Component {
         <GroupFooter
           board={board}
           group={group}
+          onEditBoard={onEditBoard}
           toggleMenus={toggleMenus}
           toggleMenu={toggleMenu}
         />

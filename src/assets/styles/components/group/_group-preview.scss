@@ -25,6 +25,10 @@
         opacity: 1;
       }
     }
+    .indicator {
+      position: sticky;
+      left: 0px;
+    }
 
     .item-add-input {
       border: none;
@@ -32,7 +36,13 @@
       border-top: 1px solid $ui-grey-color;
       width: 100%;
       padding: 5px 0 3px 20px;
-      outline: none;
+
+      input {
+        border: none;
+        outline: none;
+        position: sticky;
+        left: 28px;
+      }
 
       &:hover {
         border: 1px solid $clr2;
@@ -46,6 +56,8 @@
       background-color: $primary-color;
       color: $clr7;
       padding: 0 16px;
+      position: sticky;
+      right: 0;
 
       &:hover {
         background-color: $primary-hover-color;

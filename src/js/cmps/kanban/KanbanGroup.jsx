@@ -35,16 +35,15 @@ export class KanbanGroup extends Component {
   };
 
   render() {
-    const { provided, group, onAddItem, board, snapshot} = this.props;
+    const { provided, group, onAddItem, board, snapshot } = this.props;
     const { itemTitle, isFocused } = this.state;
 
     return (
-      <div className="kanban-group" 
-      >
+      <div className="kanban-group">
         <div
           className="group-box br4 flex column"
           style={{ backgroundColor: group.style.color }}
-          >
+        >
           <div
             className="list-header flex justify-center"
             {...provided.dragHandleProps}
@@ -98,7 +97,7 @@ export class KanbanGroup extends Component {
                     <input
                       type="text"
                       dir="auto"
-                      className={`item-add-input ${
+                      className={`item-add-input-kanban ${
                         isFocused ? 'is-focus' : ''
                       }`}
                       placeholder="+ Add Item"

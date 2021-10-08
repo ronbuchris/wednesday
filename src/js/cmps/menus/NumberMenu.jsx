@@ -1,22 +1,71 @@
-export function NumberMenu() {
+export function NumberMenu({ board, column, group, onEditBoard }) {
+  const changeUnit = (value) => {
+    if (value === 'none') value = '';
+    column.unit = value;
+    onEditBoard(board);
+  };
+
+  const ChangeFunc = (value) => {
+    column.function = value;
+    console.log(`column`, column);
+    onEditBoard(board);
+  };
+  const findIdx = (type) => {
+    const idx = board.cmpsOrder.findIndex((column) => column === type);
+    return idx;
+  };
+
+  const units = ['$', '%', '₪', '€'];
+  const functions = ['average', 'sum', 'min', 'max', 'count'];
+
   return (
     <div className="menu-modal number-menu">
       <div className="units">
         <div className="unit-title title">Unit</div>
         <div className="unit-list list flex">
-          <div className="symbol">$</div>
-          <div className="symbol selected">%</div>
-          <div className="symbol">₪</div>
+          <div
+            className={`symbol btn flex auto-center ${
+              board.columns[findIdx('number')].unit === '' ? 'selected' : ''
+            }`}
+            onClick={() => changeUnit('')}
+          >
+            None
+          </div>
+          {units.map((unit) => {
+            return (
+              <div
+                className={`symbol btn flex auto-center ${
+                  board.columns[findIdx('number')].unit === unit
+                    ? 'selected'
+                    : ''
+                }`}
+                key={unit}
+                onClick={() => changeUnit(unit)}
+              >
+                {unit}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="functions">
         <div className="function-title title">Function</div>
         <div className="function-list list flex">
-          <div className="avg btn flex auto-center selected">Average</div>
-          <div className="sum btn flex auto-center">Sum</div>
-          <div className="min btn flex auto-center">Min</div>
-          <div className="max btn flex auto-center ">Max</div>
-          <div className="count btn flex auto-center ">Count</div>
+          {functions.map((func) => {
+            return (
+              <div
+                key={func}
+                onClick={() => ChangeFunc(func)}
+                className={`sum btn flex auto-center ${
+                  board.columns[findIdx('number')].function === func
+                    ? 'selected'
+                    : ''
+                }`}
+              >
+                {func}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

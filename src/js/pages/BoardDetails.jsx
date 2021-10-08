@@ -26,14 +26,14 @@ import {
   saveItem,
   removeItem,
   toggleSelected,
-  duplicateItems
+  duplicateItems,
 } from '../../js/store/actions/item.actions';
 import {
   loadWorkspaceByBoardId,
   editWorkspace,
   loadWorkspace,
   loadWorkspaces,
-  saveUndoWorkspace
+  saveUndoWorkspace,
 } from '../store/actions/workspace.actions';
 import { getLoggedinUser, loadUsers } from '../store/actions/user.actions';
 import { Screen } from './Screen';
@@ -43,9 +43,13 @@ import { SelectedPopup } from '../cmps/SelectedPopup';
 
 export class _BoardDetails extends React.Component {
   async componentDidMount() {
-    const { getLoggedinUser, loadWorkspaces, loadWorkspaceByBoardId, loadUsers} =
-      this.props;
-    await loadUsers()
+    const {
+      getLoggedinUser,
+      loadWorkspaces,
+      loadWorkspaceByBoardId,
+      loadUsers,
+    } = this.props;
+    await loadUsers();
     const boardId = this.props.match.params.boardId;
     if (!this.props.workspaces?.length) {
       await getLoggedinUser();
@@ -54,11 +58,11 @@ export class _BoardDetails extends React.Component {
     await loadWorkspaceByBoardId(boardId, this.props.workspaces);
     await this.props.loadBoard(this.props.workspace, boardId);
     document.title = `${this.props.board.title}`;
-    socketService.emit('connect board', this.props.board._id)
-    socketService.on('board updated', socket=> {
-      if(socket.boardId===boardId) {
+    socketService.emit('connect board', this.props.board._id);
+    socketService.on('board updated', (socket) => {
+      if (socket.boardId === boardId) {
         this.props.loadWorkspace(socket.workspace._id);
-        this.props.loadBoard(socket.workspace,socket.boardId);
+        this.props.loadBoard(socket.workspace, socket.boardId);
       }
     });
   }
@@ -141,8 +145,8 @@ export class _BoardDetails extends React.Component {
   };
 
   onEditItem = (item, group) => {
-    const { workspace, user, saveItem,board } = this.props;
-    saveItem(item, user, workspace, group,false,board);
+    const { workspace, user, saveItem, board } = this.props;
+    saveItem(item, user, workspace, group, false, board);
   };
 
   onRemoveSelected = (group) => {};
@@ -190,6 +194,7 @@ export class _BoardDetails extends React.Component {
           />
           <BoardContent
             onEditGroup={this.onEditGroup}
+            onEditBoard={this.onEditBoard}
             onEditItem={this.onEditItem}
             onAddItem={this.onAddItem}
             onBlur={this.onBlur}
@@ -199,7 +204,7 @@ export class _BoardDetails extends React.Component {
           />
           {selectedItems.length ? (
             <SelectedPopup
-            saveUndoWorkspace={saveUndoWorkspace}
+              saveUndoWorkspace={saveUndoWorkspace}
               toggleSelected={toggleSelected}
               duplicateItems={duplicateItems}
               selectedItems={selectedItems}
@@ -258,7 +263,7 @@ const mapDispatchToProps = {
   duplicateItems,
   //USER
   getLoggedinUser,
-  loadUsers
+  loadUsers,
 };
 
 export const BoardDetails = connect(

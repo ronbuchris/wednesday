@@ -10,13 +10,12 @@ export function NumberFooter({
     const numbers = [];
     group.items.forEach((item) => {
       const number = item.columns[columnIdx].number;
-      if (number) numbers.push(number);
+      if (number || number === 0) numbers.push(number);
     });
     if (!numbers.length) return 0;
-    console.log(`numbers`, numbers);
     switch (func) {
-      case 'avg':
-        return numbers.reduce((acc, num) => acc + num) / numbers.length;
+      case 'average':
+        return numbers.reduce((acc, num) => acc + num, 0) / numbers.length;
 
       case 'sum':
         return numbers.reduce((acc, num) => acc + num, 0);
@@ -45,7 +44,8 @@ export function NumberFooter({
       }}
     >
       <div className="number flex auto-center">
-        {calcNumbers(column.function)}
+        {column.unit}
+        {calcNumbers(column.function).toLocaleString()}
       </div>
       <div className="function flex auto-center">{column.function}</div>
     </div>

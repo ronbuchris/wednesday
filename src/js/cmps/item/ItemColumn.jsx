@@ -211,24 +211,30 @@ export function ItemColumn({
                 }
                 setFocus(false);
               }}
-              onFocus={(ev) => {
+              onClick={(ev) => {
                 ev.stopPropagation();
                 setFocus(true);
               }}
             >
-              {column.number}
               {typeof column.number === 'number' && (
-                <div
-                  className="clear-number auto-center btn"
-                  onClick={(ev) => {
-                    ev.stopPropagation();
-                    column.number = '';
-                    onEditItem(item, group);
-                  }}
-                >
-                  <IoIosCloseCircle />
-                </div>
+                <span className="unit">
+                  {board.columns[findIdx('number')].unit}
+                </span>
               )}
+              {column.number.toLocaleString()}
+              {/* {typeof column.number === 'number' && ( */}
+              <div
+                className="clear-number auto-center btn"
+                onClick={(ev) => {
+                  console.log(`ev`, ev);
+                  ev.stopPropagation();
+                  column.number = '';
+                  onEditItem(item, group);
+                }}
+              >
+                <IoIosCloseCircle />
+              </div>
+              {/* )} */}
             </div>
           </div>
         );
