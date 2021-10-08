@@ -202,7 +202,7 @@ export function ItemColumn({
                 if (!isNaN(value)) {
                   onBlur(value, column.number, column);
                 } else {
-                  return value = ''
+                  ev.target.innerText = ''
                 }
                 setFocus(false);
               }}
