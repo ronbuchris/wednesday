@@ -160,6 +160,8 @@ export function ItemColumn({
                     className="clear-date auto-center btn"
                     onClick={(ev) => {
                       ev.stopPropagation();
+                      column.date = ''
+                      onEditItem(item,group)
                     }}
                   >
                     <IoIosCloseCircle />
@@ -196,7 +198,12 @@ export function ItemColumn({
               spellCheck={false}
               onBlur={(ev) => {
                 ev.stopPropagation();
-                onBlur(ev.target.innerText, column.number, column);
+                const value = +ev.target.innerText
+                if (!isNaN(value)) {
+                  onBlur(ev.target.innerText, column.number, column);
+                } else {
+                  return ev.target.innerText = ''
+                }
                 setFocus(false);
               }}
               onFocus={(ev) => {
@@ -210,6 +217,8 @@ export function ItemColumn({
                   className="clear-number auto-center btn"
                   onClick={(ev) => {
                     ev.stopPropagation();
+                    column.number = ''
+                    onEditItem(item, group)
                   }}
                 >
                   <IoIosCloseCircle />
