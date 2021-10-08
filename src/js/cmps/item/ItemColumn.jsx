@@ -159,7 +159,7 @@ export function ItemColumn({
                   color:
                     column.date && Date.now() - column.date > 0
                       ? '#fff'
-                      : '#323338',
+                      : '#666',
                 }}
               >
                 {column.date && printDate(column.date)}
