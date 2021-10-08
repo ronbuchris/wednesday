@@ -85,6 +85,7 @@ export class _GroupHeader extends React.Component {
           style={{ color: group.style.color }}
           contentEditable="true"
           suppressContentEditableWarning={true}
+          spellCheck={false}
           onBlur={(ev) => {
             onBlur(ev.target.innerText, group.title, group, 'group');
           }}

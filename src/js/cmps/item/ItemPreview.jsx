@@ -87,8 +87,8 @@ function _ItemPreview({
                 selectedItems.includes(item.id) ? 'is-selected' : ''
               }`}
               onClick={(ev) => {
-                ev.stopPropagation()
-                toggleSelect(item.id)
+                ev.stopPropagation();
+                toggleSelect(item.id);
               }}
             >
               {selectedItems.includes(item.id) && (
@@ -105,6 +105,7 @@ function _ItemPreview({
             className={`item-title-text ${isFocus ? 'focus' : ''}`}
             contentEditable="true"
             suppressContentEditableWarning={true}
+            spellCheck={false}
             ref={input}
             onBlur={(ev) => {
               ev.stopPropagation();

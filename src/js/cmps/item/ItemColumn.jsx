@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import { IoCloseCircleSharp } from 'react-icons/io';
 
 import user from '../../../assets/img/user.svg';
 import { StatusMenu } from '../menus/StatusMenu';
@@ -17,7 +18,6 @@ export function ItemColumn({
   workspace,
 }) {
   const [isFocus, setFocus] = useState(false);
-
 
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
@@ -53,7 +53,6 @@ export function ItemColumn({
     const newItem = { ...item };
     onEditItem(newItem, group);
   };
-
 
   const renderSwitch = (column) => {
     switch (column.type) {
@@ -147,21 +146,11 @@ export function ItemColumn({
               toggleMenu(toggleMenus, 'dateMenu', item.id);
             }}
           >
-            <div
-              className="date-border"
-              style={{
-                backgroundColor:
-                  column.date && Date.now() - column.date > 0 ? '#e2445c' : '',
-              }}
-            >
+            <div className="date-border">
               <div
                 className="item-column date-col flex auto-center btn"
                 style={{
                   minWidth: board.columns[findIdx('date')].width - 10,
-                  color:
-                    column.date && Date.now() - column.date > 0
-                      ? '#fff'
-                      : '#666',
                 }}
               >
                 {column.date && printDate(column.date)}
@@ -191,8 +180,9 @@ export function ItemColumn({
               className={`number-field flex auto-center ${
                 isFocus ? 'focus' : ''
               }`}
-              contentEditable='true'
+              contentEditable="true"
               suppressContentEditableWarning={true}
+              spellCheck={false}
               onBlur={(ev) => {
                 ev.stopPropagation();
                 onBlur(ev.target.innerText, column.number, column);
@@ -204,6 +194,11 @@ export function ItemColumn({
               }}
             >
               {column.number}
+              {column.number && (
+                <div className="clear-number auto-center">
+                  <IoCloseCircleSharp />
+                </div>
+              )}
             </div>
           </div>
         );

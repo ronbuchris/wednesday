@@ -63,29 +63,56 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #e6e9ef;
+  border-bottom: 1px solid $ui-grey-color;
   background-color: #f5f6f8;
   padding: 5px;
   color: $text-column-color;
 
   &:hover {
     .number-field {
-      outline: 1px dashed #c5c7d0;
+      outline: 1px dashed $wolf-color;
+    }
+    .clear-number {
+      display: flex;
     }
   }
 
   .number-field {
+    position: relative;
     outline: none;
     height: 100%;
     text-align: center;
     width: 100%;
 
-    input {
-      width: 118px;
-      background: inherit;
-      border: none;
-      outline: none;
-      text-align: center;
+    .clear-number {
+      // display: none;
+      top: 50%;
+      right: 8px;
+      position: absolute;
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      font-size: 12px;
+      background-color: #c4c4c4;
+      cursor: pointer;
+      border-radius: 50%;
+
+      svg {
+        color: $ui-grey-color;
+      }
+
+      &:hover {
+        color: $btn-column-color;
+      }
+    }
+
+    &:focus {
+      background-color: #fff;
+      outline: 1px dashed $primary-color;
+
+      .number-field {
+        background-color: $clr5 !important;
+      }
     }
   }
 }

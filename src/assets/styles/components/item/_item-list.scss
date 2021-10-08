@@ -6,9 +6,10 @@
       .item-preview,
       .member-col,
       .date-border,
+      .date,
       .number-col,
       .item-title {
-        background-color: $ui-grey-color;
+        background-color: $ui-grey-color !important;
       }
 
       .item-menu-arrow {
@@ -47,11 +48,13 @@
           height: 100%;
           background-color: $clr6;
 
-          .date-col {
-            color: $text-column-color;
-            &:hover {
+          &:hover {
+            .date-col {
               outline: 1px dashed $wolf-color;
             }
+          }
+          .date-col {
+            color: $text-column-color;
           }
         }
       }
