@@ -85,9 +85,7 @@ function _BoardHeader({
           }}
         >
           <Table />
-          <div className="full flex align-center">
-          Main Table
-          </div>
+          <div className="full flex align-center">Table</div>
         </div>
         <div
           className={`flex align-center table-view btn ${
@@ -99,9 +97,7 @@ function _BoardHeader({
           }}
         >
           <Chart />
-          <div className="full flex align-center">
-          Chart
-          </div>
+          <div className="full flex align-center">Chart</div>
         </div>
         <div
           className={`flex align-center table-view btn ${
@@ -113,9 +109,7 @@ function _BoardHeader({
           }}
         >
           <BsKanban />
-          <div className="full flex align-center">
-          Kanban
-          </div>
+          <div className="full flex align-center">Kanban</div>
         </div>
       </div>
       <div className="divider"></div>

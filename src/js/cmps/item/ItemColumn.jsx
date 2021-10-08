@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
 import user from '../../../assets/img/user.svg';
@@ -15,10 +16,13 @@ export function ItemColumn({
   item,
   workspace,
 }) {
+  const [isFocus, setFocus] = useState(false);
+
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
   };
+
   const printDate = (timestamp) => {
     const date = new Date(timestamp);
     const month = date.getMonth();
@@ -41,6 +45,14 @@ export function ItemColumn({
       day < 10 ? '0' + day : day
     }`;
   };
+
+  const onBlur = (newTxt, prevTxt) => {
+    if (newTxt === prevTxt) return;
+    item.columns[findIdx('number')].number = newTxt;
+    const newItem = { ...item };
+    onEditItem(newItem, group);
+  };
+
   const renderSwitch = (column) => {
     switch (column.type) {
       case 'status':
@@ -123,6 +135,7 @@ export function ItemColumn({
             </div>
           </div>
         );
+
       case 'date':
         return (
           <div
@@ -166,6 +179,32 @@ export function ItemColumn({
           </div>
         );
 
+      case 'number':
+        return (
+          <div
+            className="item-col number-col cell-cmp"
+            style={{ minWidth: board.columns[findIdx('number')].width }}
+          >
+            <div
+              className={`number-field flex auto-center ${
+                isFocus ? 'focus' : ''
+              }`}
+              contentEditable="true"
+              suppressContentEditableWarning={true}
+              onBlur={(ev) => {
+                ev.stopPropagation();
+                onBlur(ev.target.innerText, column.number, column);
+                setFocus(false);
+              }}
+              onFocus={(ev) => {
+                ev.stopPropagation();
+                setFocus(true);
+              }}
+            >
+              {column.number}
+            </div>
+          </div>
+        );
       default:
     }
   };

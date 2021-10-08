@@ -14,11 +14,15 @@ export function ItemUpdatesList({ item, onPost }) {
                   {update.createdBy.fullname}
                 </div>
               </div>
-              <div className="body-text" dangerouslySetInnerHTML={{ __html: update.txt }}></div>
+              <div
+                className="body-text"
+                dangerouslySetInnerHTML={{ __html: update.txt }}
+              ></div>
               <div className="post-action flex ">
                 <div className="like-post-wrapper ">
                   <div className="like-post btn">Like</div>
                 </div>
+                <div className="divider-height"></div>
                 <div className="reply-post-wrapper ">
                   <div className="reply-post btn">Reply</div>
                 </div>
