@@ -7,13 +7,12 @@ export function NumberFooter({
 }) {
   return (
     <div
+      style={{ minWidth: column.width }}
       className="status-footer flex"
       onClick={(ev) => {
         ev.preventDefault();
         toggleMenu(toggleMenus, 'numberMenu', group.id);
       }}
-    >
-      Hii
-    </div>
+    ></div>
   );
 }

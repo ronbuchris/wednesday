@@ -5,14 +5,14 @@ import Close from 'monday-ui-react-core/dist/icons/Close';
 function _PersonMenu({
   toggleMenus,
   toggleMenu,
-  group,
-  item,
   workspace,
-  findIdx,
-  user,
-  board,
   saveItem,
+  findIdx,
+  group,
+  board,
   users,
+  user,
+  item,
 }) {
   const onAddMember = (user) => {
     item.columns[findIdx('member')].members.unshift(user);
@@ -103,9 +103,9 @@ function _PersonMenu({
 function mapStateToProps(state) {
   return {
     workspace: state.workspaceModule.workspace,
-    user: state.userModule.user,
-    users: state.userModule.users,
     board: state.boardModule.board,
+    users: state.userModule.users,
+    user: state.userModule.user,
   };
 }
 

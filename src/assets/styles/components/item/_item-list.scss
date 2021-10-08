@@ -47,6 +47,7 @@
           background-color: $clr6;
 
           .date-col {
+            color: $text-column-color;
             &:hover {
               outline: 1px dashed $wolf-color;
             }
