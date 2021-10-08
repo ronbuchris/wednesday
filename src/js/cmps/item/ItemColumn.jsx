@@ -160,6 +160,8 @@ export function ItemColumn({
                     className="clear-date auto-center btn"
                     onClick={(ev) => {
                       ev.stopPropagation();
+                      column.date = ''
+                      onEditItem(item,group)
                     }}
                   >
                     <IoIosCloseCircle />
