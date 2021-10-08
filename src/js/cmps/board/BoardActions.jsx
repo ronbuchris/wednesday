@@ -44,7 +44,9 @@ function _BoardActions({
       <BoardSearch board={board} />
       <div
         className={`action-hidden btn-search flex br4 btn  auto-center ${
-          filterStore.groupsIds.length || filterStore.statuses.length
+          filterStore.groupsIds.length ||
+          filterStore.statuses.length ||
+          filterStore.persons.length
             ? 'active'
             : ''
         }`}

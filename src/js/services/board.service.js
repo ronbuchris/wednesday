@@ -76,11 +76,18 @@ export function createBoard(user, users, title) {
                 width: 140,
                 date: ''
             },
+            {
+                id: makeId(),
+                type: "number",
+                title: "Number",
+                width: 140,
+                number: ''
+            }
 
         ],
         groups: groups,
         activities: [],
-        cmpsOrder: ["member", "status", "date"]
+        cmpsOrder: ["member", "status", "date", "number"]
     }
 }
 

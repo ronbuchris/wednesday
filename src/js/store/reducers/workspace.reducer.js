@@ -13,6 +13,7 @@ const initialState = {
         filterMenu: false,
         sortMenu: false,
         personMenu: false,
+        numberMenu: false,
         isBoardModal: false,
         isWorkspaceModal: false,
         userDetailsModal: false,

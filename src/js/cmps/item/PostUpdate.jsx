@@ -30,7 +30,7 @@ export class PostUpdate extends Component {
             onModelChange={this.handleModelChange}
           />
         </div>
-        <div className="side-panel-actions flex space-between btn">
+        <div className="side-panel-actions flex align-center space-between btn">
           <div className="left-side-actions flex">
             <div className="add-files">Add files</div>
             <div className="gif">GIF</div>

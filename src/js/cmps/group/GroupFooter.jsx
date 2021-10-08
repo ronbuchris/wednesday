@@ -1,4 +1,5 @@
 import { StatusFooter } from './StatusFooter';
+import { NumberFooter } from './NumberFooter';
 
 export function GroupFooter({ board, group }) {
   return (
@@ -7,6 +8,13 @@ export function GroupFooter({ board, group }) {
       {board.columns.map((column) => {
         return column.type === 'status' ? (
           <StatusFooter
+            key={column.id}
+            board={board}
+            group={group}
+            column={column}
+          />
+        ) : column.type === 'number' ? (
+          <NumberFooter
             key={column.id}
             board={board}
             group={group}

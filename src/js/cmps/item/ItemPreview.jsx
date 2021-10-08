@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import { ItemMenu } from '../menus/ItemMenu';
 
 function _ItemPreview({
+  toggleSelected,
+  selectedItems,
   onRemoveItem,
   toggleMenus,
   onEditItem,
@@ -27,8 +29,6 @@ function _ItemPreview({
   board,
   group,
   item,
-  toggleSelected,
-  selectedItems,
 }) {
   const toggleSelect = (itemId) => {
     if (selectedItems.includes(itemId)) {
@@ -76,28 +76,28 @@ function _ItemPreview({
         }
       >
         <div className="title flex align-center">
-        <div
-        className={`indicator select flex auto-center ${
-          selectedItems.length && 'is-selecting'
-        }`}
-        style={{ backgroundColor: group.style.color }}
-      >
-        <div
-          className={`selected btn flex ${
-            selectedItems.includes(item.id) ? 'is-selected' : ''
-          }`}
-          onClick={() => toggleSelect(item.id)}
-        >
-          {selectedItems.includes(item.id) && (
-            <span
-              className="flex align-center "
-              style={{ color: group.style.color }}
+          <div
+            className={`indicator select flex auto-center ${
+              selectedItems.length && 'is-selecting'
+            }`}
+            style={{ backgroundColor: group.style.color }}
+          >
+            <div
+              className={`selected btn flex ${
+                selectedItems.includes(item.id) ? 'is-selected' : ''
+              }`}
+              onClick={() => toggleSelect(item.id)}
             >
-              <Check />
-            </span>
-          )}
-        </div>
-      </div>
+              {selectedItems.includes(item.id) && (
+                <span
+                  className="flex align-center "
+                  style={{ color: group.style.color }}
+                >
+                  <Check />
+                </span>
+              )}
+            </div>
+          </div>
           <div
             className={`item-title-text ${isFocus ? 'focus' : ''}`}
             contentEditable="true"

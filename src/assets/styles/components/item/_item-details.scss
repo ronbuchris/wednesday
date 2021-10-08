@@ -21,7 +21,7 @@
     .post-action {
       height: 42px;
       border-top: 1px solid;
-      border-top-color: #e6e9ef;
+      border-top-color: $ui-grey-color;
       justify-content: space-around;
       align-items: center;
 
@@ -42,7 +42,7 @@
           font-size: 14px;
 
           &:hover {
-            background-color: #e6e9ef;
+            background-color: $ui-grey-color;
           }
         }
       }
@@ -64,10 +64,20 @@
           font-size: 14px;
 
           &:hover {
-            background-color: #e6e9ef;
+            background-color: $ui-grey-color;
           }
         }
       }
+
+      .divider-height {
+        width: 1px;
+        height: 100%;
+        background-color: $ui-grey-color;
+      }
+    }
+
+    .body-text {
+      padding: 0 15px 15px;
     }
   }
 

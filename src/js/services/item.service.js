@@ -64,16 +64,16 @@ function createUpdate(txt, user) {
     }
 }
 
-function remove(workspace, group, itemId,board) {
+function remove(workspace, group, itemId, board) {
     const itemIdx = group.items.findIndex(item => item.id === itemId);
     group.items.splice(itemIdx, 1)
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
 }
 
-function removeSelected(workspace,board,itemsIds) {
+function removeSelected(workspace, board, itemsIds) {
     board.groups.forEach(group => {
         itemsIds.forEach(itemId => {
             const itemIdx = group.items.findIndex(item => item.id === itemId);
@@ -83,13 +83,13 @@ function removeSelected(workspace,board,itemsIds) {
         })
     })
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const returnedWorkspace = JSON.parse(JSON.stringify(workspace))
     return returnedWorkspace
 }
 
 function duplicateItem(item) {
-    
+
     return {
         ...item,
         title: `${item.title} (copy)`,
@@ -110,7 +110,7 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -128,7 +128,7 @@ function duplicateItems(workspace, board, itemsIds) {
         })
     })
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
-    workspace.boards.splice(boardIdx,1,board)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -172,9 +172,16 @@ function _addCmpsOrder(cmpsOrder) {
         date: ''
     }
 
+    const number = {
+        type: "number",
+        title: "Number",
+        number: ''
+    }
+
     cmpsOrder.forEach((cmpOrder) => {
         if (cmpOrder === "member") columns.push(members)
         if (cmpOrder === "status") columns.push(status)
+        if (cmpOrder === "number") columns.push(number)
         if (cmpOrder === "date") columns.push(date)
     })
     return columns
