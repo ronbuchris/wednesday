@@ -18,6 +18,7 @@ export function ItemColumn({
 }) {
   const [isFocus, setFocus] = useState(false);
 
+
   const findIdx = (type) => {
     const idx = board.cmpsOrder.findIndex((column) => column === type);
     return idx;
@@ -53,14 +54,6 @@ export function ItemColumn({
     onEditItem(newItem, group);
   };
 
-  const testCharacter = (event) => {
-    if ((event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 13) {
-      return true;
-    } else {
-      return false;
-    }
-
-  }
 
   const renderSwitch = (column) => {
     switch (column.type) {
@@ -198,8 +191,7 @@ export function ItemColumn({
               className={`number-field flex auto-center ${
                 isFocus ? 'focus' : ''
               }`}
-              onkeypress="return testCharacter(event);"
-              contentEditable="true"
+              contentEditable='true'
               suppressContentEditableWarning={true}
               onBlur={(ev) => {
                 ev.stopPropagation();
