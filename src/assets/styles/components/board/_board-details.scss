@@ -1,7 +1,6 @@
 .board-details {
   position: relative;
   padding-left: 0px;
-
   @include for-normal-layout {
     @media (min-width: $narrow-breakpoint) {
       padding-left: 30px;
@@ -11,6 +10,13 @@
   @include for-wide-layout {
     @media (min-width: $normal-breakpoint) {
       padding-left: 0px;
+    }
+  }
+
+  .board-content-container{
+    height: 100%;
+    .board-content{
+      height: 100%;
     }
   }
   .board-header {
@@ -113,6 +119,7 @@
     flex: 1 0;
     position: relative;
     width: 100%;
+    height: 100%;
     overflow: auto;
     color: $clr7;
 

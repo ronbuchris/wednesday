@@ -37,7 +37,7 @@ class _BoardContent extends Component {
     if (!groups.length) return <NoResault />;
     return (
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
-        <div>
+        <div className="board-content-container">
           <Droppable type="group" droppableId="groups">
             {(provided) => (
               <div
