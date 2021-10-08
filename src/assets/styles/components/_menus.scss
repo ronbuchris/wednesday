@@ -360,6 +360,64 @@
   }
 }
 
+.number-menu {
+  top: 0;
+  right: 100%;
+  padding: 10px;
+  width: 325px;
+
+  .title {
+    font-size: rem(15px);
+    margin-bottom: 8px;
+  }
+
+  .list {
+    font-size: rem(13px);
+    height: 25px;
+
+    > * {
+      text-align: center;
+      width: 60px;
+      // padding: 2px 8px;
+      border-bottom: 1px solid $wolf-color;
+      border-top: 1px solid $wolf-color;
+    }
+
+    :first-child {
+      border-left: 1px solid $wolf-color;
+      border-radius: 4px 0 0 4px;
+    }
+
+    :last-child {
+      border-right: 1px solid $wolf-color;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .selected {
+      border: 1px solid $primary-color;
+      // border-radius: 5px;
+      color: $primary-color;
+    }
+  }
+
+  .units {
+    .unit-list {
+      font-size: rem(14px);
+    }
+  }
+
+  .functions {
+    .function-list {
+    }
+  }
+  .selected {
+  }
+}
+
+.number-container {
+  position: relative;
+}
+
 //COLUMNS MENUS
 .status-menu {
   position: absolute;

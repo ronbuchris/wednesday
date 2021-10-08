@@ -94,6 +94,25 @@
       }
     }
 
+    .number-footer {
+      border-radius: 0 0 4px 4px;
+      background-color: $clr6;
+      transition: color 0.4s;
+      height: 100%;
+
+      &:hover {
+        background-color: $ui-grey-color;
+      }
+
+      .number {
+      }
+
+      .function {
+        font-size: rem(12px);
+        text-align: center;
+      }
+    }
+
     .empty-footer-column {
       height: 100%;
     }
