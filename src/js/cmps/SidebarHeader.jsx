@@ -32,7 +32,6 @@ class _SidebarHeader extends Component {
     const { isActive } = this.state;
     const { user, workspace, toggleMenus, toggleMenu, board } = this.props;
     if (!workspace || !board) return <div></div>;
-    console.log(`board from sidebar`, board);
     const id = workspace.boards.length
       ? workspace.boards[0]._id
       : workspace._id;
