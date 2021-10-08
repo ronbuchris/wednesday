@@ -35,6 +35,7 @@ function _BoardHeader({
               className="board-header-title"
               contentEditable="true"
               suppressContentEditableWarning={true}
+              spellCheck={false}
               onBlur={(ev) => {
                 onBlur(ev.target.innerText, board.title, board, 'board');
               }}
@@ -68,6 +69,7 @@ function _BoardHeader({
         className="board-desc"
         contentEditable="true"
         suppressContentEditableWarning={true}
+        spellCheck={false}
         onBlur={(ev) => {
           onBlur(ev.target.innerText, board.description, board, 'boardDesc');
         }}

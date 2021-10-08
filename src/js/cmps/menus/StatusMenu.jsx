@@ -125,6 +125,7 @@ export function _StatusMenu({
                             className="label-input text-cmp"
                             contentEditable="true"
                             suppressContentEditableWarning={true}
+                            spellCheck={false}
                             onBlur={(ev) =>
                               onEditLabel(
                                 statusIdx(),
