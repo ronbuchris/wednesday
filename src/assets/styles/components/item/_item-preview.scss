@@ -15,6 +15,10 @@
       align-items: center;
       justify-content: center;
     }
+
+    .clear-date {
+      display: flex !important;
+    }
   }
 
   .add-member {
@@ -45,6 +49,28 @@
     margin: 0 -4px;
     background-color: #fff;
   }
+
+  .clear-date {
+    display: none;
+    top: 50%;
+    right: 8px;
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 12px;
+    border-radius: 50%;
+
+    svg {
+      color: #c4c4c4;
+      height: 15px;
+      width: 15px;
+    }
+
+    &:hover {
+      svg {
+        color: $btn-column-color;
+      }
+    }
+  }
 }
 
 .status-col {
@@ -73,7 +99,7 @@
       outline: 1px dashed $wolf-color;
     }
     .clear-number {
-      display: flex;
+      display: flex !important;
     }
   }
 
@@ -85,24 +111,24 @@
     width: 100%;
 
     .clear-number {
-      // display: none;
+      display: none;
       top: 50%;
       right: 8px;
       position: absolute;
       transform: translateY(-50%);
-      width: 17px;
-      height: 17px;
       font-size: 12px;
-      background-color: #c4c4c4;
-      cursor: pointer;
       border-radius: 50%;
 
       svg {
-        color: $ui-grey-color;
+        color: #c4c4c4;
+        height: 15px;
+        width: 15px;
       }
 
       &:hover {
-        color: $btn-column-color;
+        svg {
+          color: $btn-column-color;
+        }
       }
     }
 

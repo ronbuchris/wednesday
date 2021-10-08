@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { IoCloseCircleSharp } from 'react-icons/io';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 import user from '../../../assets/img/user.svg';
 import { StatusMenu } from '../menus/StatusMenu';
@@ -154,6 +154,16 @@ export function ItemColumn({
                 }}
               >
                 {column.date && printDate(column.date)}
+                {column.date && (
+                  <div
+                    className="clear-date auto-center btn"
+                    onClick={(ev) => {
+                      ev.stopPropagation();
+                    }}
+                  >
+                    <IoIosCloseCircle />
+                  </div>
+                )}
               </div>
             </div>
             {toggleMenus.dateMenu === item.id && (
@@ -195,8 +205,13 @@ export function ItemColumn({
             >
               {column.number}
               {column.number && (
-                <div className="clear-number auto-center">
-                  <IoCloseCircleSharp />
+                <div
+                  className="clear-number auto-center btn"
+                  onClick={(ev) => {
+                    ev.stopPropagation();
+                  }}
+                >
+                  <IoIosCloseCircle />
                 </div>
               )}
             </div>

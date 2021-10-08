@@ -9,7 +9,7 @@ export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
       {board.columns.map((column) => {
         return column.type === 'status' ? (
           <StatusFooter
-            key={column.type}
+            key={column.id}
             board={board}
             group={group}
             column={column}
@@ -17,7 +17,7 @@ export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
         ) : column.type === 'number' ? (
           <>
             <NumberFooter
-              key={column.type}
+              key={column.id}
               board={board}
               group={group}
               column={column}

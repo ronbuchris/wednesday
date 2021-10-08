@@ -1,5 +1,6 @@
 .group-preview {
   margin-bottom: 50px;
+  min-width: 740px;
 
   .group-header {
     height: 36px;
@@ -17,6 +18,7 @@
     outline: none;
     height: 35px;
     padding-left: 30px;
+    min-width: 769px;
 
     &:hover {
       .indicator {
@@ -60,14 +62,14 @@
       flex: 1;
       position: sticky;
       left: 0;
-    z-index: 2;
-    background-color: rgba(253, 253, 250,0.95);
-    min-width: 180px;
-    @include for-narrow-layout {
-      @media (min-width: $mobile-breakpoint) {
-        background-color: unset;
+      z-index: 2;
+      background-color: rgba(253, 253, 250, 0.95);
+      min-width: 180px;
+      @include for-narrow-layout {
+        @media (min-width: $mobile-breakpoint) {
+          background-color: unset;
+        }
       }
-    }
     }
 
     .status-footer {
