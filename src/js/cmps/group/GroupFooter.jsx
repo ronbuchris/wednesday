@@ -1,7 +1,7 @@
 import { StatusFooter } from './StatusFooter';
 import { NumberFooter } from './NumberFooter';
 
-export function GroupFooter({ board, group }) {
+export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
   return (
     <div className="group-footer flex">
       <div className="empty-cell-cmp group-title"></div>
@@ -20,6 +20,8 @@ export function GroupFooter({ board, group }) {
               board={board}
               group={group}
               column={column}
+              toggleMenus={toggleMenus}
+              toggleMenu={toggleMenu}
             />
             {toggleMenus.numberMenu === group.id && <NumberMenu />}
           </>

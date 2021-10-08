@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ItemPreview } from '../item/ItemPreview';
 import { setGroup, removeGroup } from '../../store/actions/group.actions';
+import { toggleMenu } from '../../store/actions/board.actions';
 import { saveUndoWorkspace } from '../../store/actions/workspace.actions';
 import { GroupHeader } from './GroupHeader';
 import { GroupFooter } from './GroupFooter';
@@ -69,7 +70,7 @@ class _GroupPreview extends React.Component {
     };
     board.activities.unshift(activity);
     this.saveUndo(workspace);
-    removeItem(workspace, group, itemId,board);
+    removeItem(workspace, group, itemId, board);
     eventBusService.emit('user-msg', {
       txt: 'We successfully deleted 1 item',
       type: '',
@@ -92,7 +93,9 @@ class _GroupPreview extends React.Component {
     const {
       setCurrGroupId,
       onEditGroup,
+      toggleMenus,
       onEditItem,
+      toggleMenu,
       onAddItem,
       provided,
       onBlur,
@@ -181,7 +184,12 @@ class _GroupPreview extends React.Component {
             <div className="indicator"></div>
           </form>
         </div>
-        <GroupFooter board={board} group={group} />
+        <GroupFooter
+          board={board}
+          group={group}
+          toggleMenus={toggleMenus}
+          toggleMenu={toggleMenu}
+        />
       </div>
     );
   }
@@ -190,8 +198,9 @@ class _GroupPreview extends React.Component {
 function mapStateToProps(state) {
   return {
     isOpenNav: state.workspaceModule.isOpenNav,
-    user: state.userModule.user,
     workspace: state.workspaceModule.workspace,
+    toggleMenus: state.workspaceModule.toggleMenus,
+    user: state.userModule.user,
   };
 }
 
@@ -200,6 +209,7 @@ const mapDispatchToProps = {
   removeGroup,
   removeItem,
   saveUndoWorkspace,
+  toggleMenu,
 };
 
 export const GroupPreview = connect(
