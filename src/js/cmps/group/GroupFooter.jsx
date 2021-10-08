@@ -1,5 +1,5 @@
 import { StatusFooter } from './StatusFooter';
-import { NumberFooter } from './NumberFooter';
+import { NumberFooter } from '../group/NumberFooter';
 
 export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
   return (
@@ -23,7 +23,7 @@ export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
               toggleMenus={toggleMenus}
               toggleMenu={toggleMenu}
             />
-            {toggleMenus.numberMenu === group.id && <NumberMenu />}
+            {/* {toggleMenus.numberMenu === group.id && <NumberMenu />} */}
           </>
         ) : (
           <div
