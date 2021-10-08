@@ -20,12 +20,12 @@ async function query(filterBy = {}) {
         var users = await collection.find(criteria).toArray()
         users = users.map(user => {
             delete user.password
-            user.isHappy = true
             user.createdAt = ObjectId(user._id).getTimestamp()
             // Returning fake fresh data
             // user.createdAt = Date.now() - (1000 * 60 * 60 * 24 * 3) // 3 days ago
             return user
         })
+
         return users
     } catch (err) {
         logger.error('cannot find users', err)
@@ -72,7 +72,7 @@ async function update(user) {
             _id: ObjectId(user._id),
             username: user.username,
             fullname: user.fullname,
-            pending:user.pending
+            pending: user.pending
         }
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ '_id': userToSave._id }, { $set: userToSave })
@@ -107,7 +107,7 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
-            img:user.img,
+            img: user.img,
             pending: user.pending || []
         }
         const collection = await dbService.getCollection('user')
