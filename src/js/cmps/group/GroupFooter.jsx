@@ -1,5 +1,5 @@
 import { StatusFooter } from './StatusFooter';
-import { NumberFooter } from './NumberFooter';
+import { NumberFooter } from '../group/NumberFooter';
 
 export function GroupFooter({ board, group, toggleMenus, toggleMenu }) {
   return (
