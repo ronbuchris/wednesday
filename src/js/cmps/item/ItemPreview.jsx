@@ -86,7 +86,10 @@ function _ItemPreview({
               className={`selected btn flex ${
                 selectedItems.includes(item.id) ? 'is-selected' : ''
               }`}
-              onClick={() => toggleSelect(item.id)}
+              onClick={(ev) => {
+                ev.stopPropagation()
+                toggleSelect(item.id)
+              }}
             >
               {selectedItems.includes(item.id) && (
                 <span
