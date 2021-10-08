@@ -48,6 +48,7 @@ export function ItemColumn({
   const onBlur = (newTxt, prevTxt) => {
     if (newTxt === prevTxt) return;
     item.columns[findIdx('number')].number = newTxt;
+    console.log(`newTxt`, newTxt);
     const newItem = { ...item };
     onEditItem(newItem, group);
   };
@@ -160,8 +161,8 @@ export function ItemColumn({
                     className="clear-date auto-center btn"
                     onClick={(ev) => {
                       ev.stopPropagation();
-                      column.date = ''
-                      onEditItem(item,group)
+                      column.date = '';
+                      onEditItem(item, group);
                     }}
                   >
                     <IoIosCloseCircle />
@@ -198,11 +199,11 @@ export function ItemColumn({
               spellCheck={false}
               onBlur={(ev) => {
                 ev.stopPropagation();
-                const value = +ev.target.innerText
+                const value = +ev.target.innerText;
                 if (!isNaN(value)) {
-                  onBlur(ev.target.innerText, column.number, column);
+                  onBlur(value, column.number, column);
                 } else {
-                  return ev.target.innerText = ''
+                  return (value = '');
                 }
                 setFocus(false);
               }}
@@ -217,8 +218,8 @@ export function ItemColumn({
                   className="clear-number auto-center btn"
                   onClick={(ev) => {
                     ev.stopPropagation();
-                    column.number = ''
-                    onEditItem(item, group)
+                    column.number = '';
+                    onEditItem(item, group);
                   }}
                 >
                   <IoIosCloseCircle />
