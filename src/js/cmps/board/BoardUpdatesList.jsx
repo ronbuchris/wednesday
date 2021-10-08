@@ -1,5 +1,5 @@
 
-
+import Board from 'monday-ui-react-core/dist/icons/Board';
 
 export function BoardUpdatesList({ board }) {
     return (
@@ -13,6 +13,9 @@ export function BoardUpdatesList({ board }) {
                                    <img src={update.createdBy.img} alt="user-img" />
                                    <div className="username-wrapper">
                                        {update.createdBy.fullname}
+                                   <div className='flex align-center'>
+                                       <Board/>{`${board.title} > ${group.title} > ${item.title}`}
+                                   </div>
                                    </div>
                                </div>
                                <div className="body-text" dangerouslySetInnerHTML={{ __html: update.txt }}></div>
