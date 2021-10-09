@@ -64,10 +64,10 @@ export function loadStatuses(board) {
         }
     }
 }
-export function getPersonItem(board,persons) {
+export function getPersonItem(board) {
     return async dispatch => {
         try {
-            const personsCount = itemService.getPersonItem(board, persons)
+            const personsCount = itemService.getPersonItem(board)
             dispatch({
                 type: 'GET_PERSONS',
                 personsCount

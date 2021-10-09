@@ -8,7 +8,6 @@ import { StatusFilter } from '../item/StatusFilter';
 
 function _FilterMenu({ board, groups, filterGroups, filterStore, personsCount, getPersonItem }) {
   const { groupsIds, statuses, persons} = filterStore;
-
   const onFilter = (groupId, status, bool) => {
     const filter = bool ? groupsIds : statuses;
     const object = bool ? groupId : status;

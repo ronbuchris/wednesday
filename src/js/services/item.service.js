@@ -38,30 +38,18 @@ function getStatuses(board) {
     })
     return [statuses, colors]
 }
+
 function getPersonItem(board) {
-    let personsToShow = [];
-    const personsMap = board.groups.map(group => {
-        return group.items.reduce((acc, item) => {
+    const memberCounter ={}
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
             const memberIdx = item.columns.findIndex(column => column.type === 'member')
-            acc.totalCount++;
-            const members = item.columns[memberIdx].members;
-            members.forEach(member => {
-                const name = member.fullname
-                if (acc[name]) {
-                    acc[name].count++;
-                } else {
-                    personsToShow.push(name);
-                    acc[name] = {};
-                    acc[name].count = 1;
-                }
+            item.columns[memberIdx].members.forEach(member => {
+                memberCounter[member.fullname] = (memberCounter[member.fullname] ?? 0) + 1
             })
-            acc.personsToShow = personsToShow;
-            return acc;
-        },
-        { totalCount: 0 }
-        );
+        })
     })
-    return personsMap;
+    return memberCounter
 }
 
 function onPost(update, user, item, groups, workspace) {
