@@ -6,7 +6,6 @@ export function PieChart() {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
             {
-                label: '# of Votes',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -28,7 +27,25 @@ export function PieChart() {
             },
         ],
     };
+    const options = {
+        indexAxis: 'y',
+        elements: {
+            bar: {
+                borderWidth: 2,
+            },
+        },
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Horizontal Bar Chart',
+            },
+        },
+    };
     return (
-        <Pie data={data} />
+        <Pie data={data} options={options} />
     )
 }

@@ -86,11 +86,11 @@ class _DashboardView extends React.Component {
               </div>
             </div>
         </div>
-        <div className="charts-container grid">
+        <div className="charts-container">
           {/* <div className='date-chart br4'>
             <DateChart dateCounter={dateCounter}/>
           </div> */}
-          <div className='status-chart br4'>
+          <div className='group-chart br4'>
             <GroupItemsCount groupItemsCount={groupItemsCount}/>
           </div>
           <div className='status-chart br4'>
@@ -98,6 +98,9 @@ class _DashboardView extends React.Component {
           </div>
           <div className='person-chart br4'>
             <PersonChart personsCount={personsCount}/>
+          </div>
+          <div className='pie-chart br4'>
+            <PieChart />
           </div>
         </div>
       </div>
