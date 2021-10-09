@@ -14,6 +14,7 @@ const initialState = {
         sortMenu: false,
         personMenu: false,
         numberMenu: false,
+        addGroupMenu: false,
         isBoardModal: false,
         isWorkspaceModal: false,
         userDetailsModal: false,
