@@ -5,6 +5,7 @@ import { loadStatuses, getPersonItem } from '../../store/actions/item.actions';
 import { StatusChart } from '../charts/StatusChart';
 import { PersonChart } from '../charts/PersonChart';
 import { Loader } from '../Loader';
+import Group from 'monday-ui-react-core/dist/icons/Group';
 
 class _DashboardView extends React.Component {
   componentDidMount() {
@@ -14,12 +15,19 @@ class _DashboardView extends React.Component {
   }
 
   render() {
-    const { statuses, personsCount } = this.props;
+    const { statuses, personsCount,board } = this.props;
     if (!statuses.length) return <div><Loader/></div>;
 
     return (
-      <div className="dashboard-preview flex column align-center">
-        <div className="charts-container">
+      <div className="dashboard-preview flex">
+        <div className="data-container">
+            <div className="data-box">
+              <Group/>
+              <p>{board.groups.length}</p>
+              <p>Groups</p>
+            </div>
+        </div>
+        <div className="charts-container flex column auto-center">
           <div className='status-chart'>
             <StatusChart statuses={statuses}/>
           </div>
