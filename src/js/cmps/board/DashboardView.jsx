@@ -26,6 +26,21 @@ class _DashboardView extends React.Component {
               <p>{board.groups.length}</p>
               <p>Groups</p>
             </div>
+            <div className="data-box">
+              <Group/>
+              <p>{Object.keys(personsCount).length}</p>
+              <p>Persons</p>
+            </div>
+            <div className="data-box">
+              <Group/>
+              <p>{board.groups.length}</p>
+              <p>Groups</p>
+            </div>
+            <div className="data-box">
+              <Group/>
+              <p>{board.groups.length}</p>
+              <p>Groups</p>
+            </div>
         </div>
         <div className="charts-container flex column auto-center">
           <div className='status-chart'>
