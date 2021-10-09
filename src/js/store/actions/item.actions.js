@@ -92,6 +92,20 @@ export function getDateData(board) {
         }
     }
 }
+export function getGroupItemsCount(board) {
+    return async dispatch => {
+        try {
+            const groupItemsCount = itemService.getGroupItemsCount(board)
+            dispatch({
+                type: 'GET_ITEM_COUNT',
+                groupItemsCount
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
 
 export function onSetSearch(board, searchBy) {
     return (dispatch) => {

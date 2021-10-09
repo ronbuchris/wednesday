@@ -48,11 +48,6 @@ export function ItemColumn({
   const onBlur = (newTxt, prevTxt) => {
     if (newTxt === prevTxt) return;
     item.columns[findIdx('number')].number = newTxt;
-    console.log(`newTxt`, newTxt);
-    console.log(
-      `item.columns[findIdx('number')]`,
-      item.columns[findIdx('number')]
-    );
     const newItem = { ...item };
     onEditItem(newItem, group);
   };
@@ -226,7 +221,6 @@ export function ItemColumn({
               <div
                 className="clear-number auto-center btn"
                 onClick={(ev) => {
-                  console.log(`ev`, ev);
                   ev.stopPropagation();
                   column.number = '';
                   onEditItem(item, group);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadStatuses, getPersonItem, getDateData } from '../../store/actions/item.actions';
+import { loadStatuses, getPersonItem, getDateData, getGroupItemsCount } from '../../store/actions/item.actions';
 import { StatusChart } from '../charts/StatusChart';
 import { PersonChart } from '../charts/PersonChart';
 import { Loader } from '../Loader';
@@ -12,19 +12,20 @@ import Activity from 'monday-ui-react-core/dist/icons/Activity';
 import Update from 'monday-ui-react-core/dist/icons/Update';
 import { DateChart } from '../charts/DateChart';
 import { PieChart } from '../charts/PieChart';
+import { GroupItemsCount } from '../charts/GroupItemsCount';
 
 class _DashboardView extends React.Component {
-  componentDidMount() {
-    const { board, loadStatuses, getPersonItem, getDateData} = this.props;
+  async componentDidMount() {
+    const { board, loadStatuses, getPersonItem, getDateData, getGroupItemsCount} = this.props;
     loadStatuses(board);
     getPersonItem(board);
-    getDateData(board)
+    getGroupItemsCount(board);
+    // getDateData(board)
   }
 
   render() {
-    const { statuses, personsCount, board, dateCounter } = this.props;
+    const { statuses, personsCount, board, dateCounter, groupItemsCount } = this.props;
     if (!statuses.length) return <div><Loader/></div>;
-    console.log(dateCounter);
     const numbers = Object.values(statuses[0]);
     var sum = 0
     numbers.forEach(num => {
@@ -85,18 +86,18 @@ class _DashboardView extends React.Component {
               </div>
             </div>
         </div>
-        <div className="charts-container flex align-center space-evenly">
-          <div className='status-chart'>
+        <div className="charts-container grid">
+          {/* <div className='date-chart br4'>
+            <DateChart dateCounter={dateCounter}/>
+          </div> */}
+          <div className='status-chart br4'>
+            <GroupItemsCount groupItemsCount={groupItemsCount}/>
+          </div>
+          <div className='status-chart br4'>
             <StatusChart statuses={statuses}/>
           </div>
-          <div className='person-chart'>
-            <PersonChart personsCount={personsCount} statuses={statuses}/>
-          </div>
-          <div className='person-chart'>
-            <DateChart dateCounter={dateCounter}/>
-          </div>
-          <div className='person-chart'>
-            <PieChart />
+          <div className='person-chart br4'>
+            <PersonChart personsCount={personsCount}/>
           </div>
         </div>
       </div>
@@ -106,16 +107,18 @@ class _DashboardView extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    statuses: state.itemModule.statuses,
-    workspace: state.workspaceModule.workspace,
+    groupItemsCount: state.itemModule.groupItemsCount,
     personsCount: state.itemModule.personsCount,
+    workspace: state.workspaceModule.workspace,
     dateCounter: state.itemModule.dateCounter,
+    statuses: state.itemModule.statuses,
   };
 }
 
 const mapDispatchToProps = {
-  loadStatuses,
+  getGroupItemsCount,
   getPersonItem,
+  loadStatuses,
   getDateData
 };
 

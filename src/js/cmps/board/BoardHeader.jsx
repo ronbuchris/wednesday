@@ -13,6 +13,7 @@ import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
 import { toggleMenu } from '../../store/actions/board.actions';
+import { getDateData } from '../../store/actions/item.actions';
 
 function _BoardHeader({
   board,
@@ -132,7 +133,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = { toggleMenu };
+const mapDispatchToProps = { toggleMenu, getDateData };
 export const BoardHeader = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(_BoardHeader)
 );

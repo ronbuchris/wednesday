@@ -2,35 +2,27 @@ import { Bar } from 'react-chartjs-2';
 
 export function DateChart({ dateCounter}) {
     const rand = () => Math.round(Math.random() * 20 - 10);
-    console.log(Object.keys(dateCounter));
-    console.log(Object.values(dateCounter));
+    const values = Object.values(dateCounter)
     const data = {
         labels: Object.keys(dateCounter),
         datasets: [
             {
-                type: 'line',
-                label: 'Dataset 1',
-                borderColor: 'rgb(54, 162, 235)',
-                borderWidth: 2,
-                fill: false,
-                data: [rand(), rand(), rand(), rand(), rand(), rand()],
-            },
-            {
                 type: 'bar',
-                label: 'Dataset 2',
+                label: 'Undone Items',
                 backgroundColor: 'rgb(255, 99, 132)',
-                data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
+                data: [values[0].elseStatus, values[1].elseStatus, values[2].elseStatus, values[3].elseStatus, values[4].elseStatus, values[5].elseStatus, values[6].elseStatus, values[7].elseStatus, values[8].elseStatus, values[9].elseStatus, values[10].elseStatus, values[11].elseStatus],
                 borderColor: 'white',
                 borderWidth: 2,
             },
             {
                 type: 'bar',
-                label: 'Dataset 3',
+                label: 'Done Items',
                 backgroundColor: 'rgb(75, 192, 192)',
-                data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
+                data: [values[0].doneStatus, values[1].doneStatus, values[2].doneStatus, values[3].doneStatus, values[4].doneStatus, values[5].doneStatus, values[6].doneStatus, values[7].doneStatus, values[8].doneStatus, values[9].doneStatus, values[10].doneStatus, values[11].doneStatus],
             },
         ],
     };
+
     return (
         <Bar data={data} />
     )

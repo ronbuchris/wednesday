@@ -204,16 +204,16 @@ padding-left: 30px;
   .data-container{
     width: 100%;
     .group-data{
-      background: linear-gradient(145deg, $primary-color 0%, $login-color 100%);
+      background: linear-gradient(145deg, #50a4fd 0%, $login-color 100%);
     }
     .person-data{
       background: linear-gradient(145deg, $color-bubble-purple 0%, $shareable-color 100%);
     }
     .item-data{
-      background: linear-gradient(145deg, $color-done-green 0%, $positive-color 100%);
+      background: linear-gradient(145deg, $color-done-hover-green 0%, $positive-color 100%);
     }
     .activity-data{
-      background: linear-gradient(145deg, $color-stuck-red 0%, $negative-color 100%);
+      background: linear-gradient(145deg, #f1788b 0%, $negative-color 100%);
     }
     .update-data{
       background: linear-gradient(145deg, $color-working-hover-orange 0%, $color-working-orange 100%);
@@ -253,12 +253,34 @@ padding-left: 30px;
       }
     }
   }
+
+.data-charts{
+  grid-area: data-charts;
+}
+.status-chart{
+  grid-area: status-chart;
+}
+.person-chart{
+  grid-area: person-chart;
+}
+
+
 .charts-container {
   margin-top:30px;
+  gap: 30px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns:1fr 1fr ;
+  grid-template-areas:
+  "date-chart status-chart"
+  "person-chart status-chart";
   >*{
-    height:227px;
-    width: 454px;
+    padding:20px;
+    height:300px;
+    width: 600px;
+    box-shadow: 0 4px 17px 6px #0000001a;
+    margin-bottom:46px;
   }
+
   width: 100%;
   .box{
     width: 500px;

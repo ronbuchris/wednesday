@@ -1,6 +1,7 @@
 import { makeId } from '../services/util.service'
 
 export const itemService = {
+    getGroupItemsCount,
     duplicateItems,
     removeSelected,
     getPersonItem,
@@ -130,6 +131,13 @@ function getPersonItem(board) {
         })
     })
     return memberCounter
+}
+function getGroupItemsCount(board) {
+    const itemsCounter ={}
+    board.groups.forEach(group => {
+        itemsCounter[group.title] = group.items.length
+    })
+    return itemsCounter
 }
 
 function onPost(update, user, item, groups, workspace) {

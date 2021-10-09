@@ -75,7 +75,6 @@ class _Login extends React.Component {
     };
     await this.props.onLoginWithGoogle(userToSave);
     const user = userService.getLoggedinUser();
-    console.log('user after login', user);
     const workspaces = await this.props.loadWorkspaces(user);
     this.props.loadUsers();
     const boardId = workspaces[0].boards[0]._id;
