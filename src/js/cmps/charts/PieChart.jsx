@@ -38,10 +38,11 @@ export function PieChart() {
         plugins: {
             legend: {
                 position: 'right',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Horizontal Bar Chart',
+                maxWidth:150,
+                maxHeight:280,
+                labels: {
+                    padding:15,
+                }
             },
         },
     };
