@@ -58,9 +58,15 @@
           font-size: rem(32px);
           font-family: roboto-bold;
           outline: none;
+          height: 56px;
 
           &:hover {
-            outline: 1px solid $ui-grey-color;
+            border: 1px solid $ui-grey-color;
+          }
+
+          &:focus {
+            color: $clr2;
+            outline: 1px solid $primary-color;
           }
         }
 
@@ -77,13 +83,19 @@
         }
       }
     }
+
     .board-desc {
       display: none;
       color: $clr3;
       outline: none;
 
+      &:hover {
+        outline: 1px dashed $wolf-color;
+      }
+
       &:focus {
         color: $clr2;
+        outline: 1px solid $primary-color;
       }
 
       @include for-normal-layout {
@@ -98,6 +110,34 @@
       line-height: 52px;
       font-family: Roboto-bold, sans-serif;
       color: $primary-text-color;
+    }
+
+    .header {
+      .invite {
+        padding: 4px 8px;
+
+        svg {
+          margin-right: 5px;
+          height: 18px;
+          width: 18px;
+        }
+      }
+
+      .board-activity {
+        padding: 4px 8px;
+        margin-left: 16px;
+      }
+
+      .add-to-board {
+        margin-left: 16px;
+        border: 1px solid $wolf-color;
+        padding: 4px 8px;
+        height: 32px;
+
+        &:hover {
+          background-color: $ui-grey-color;
+        }
+      }
     }
   }
 

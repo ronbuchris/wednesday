@@ -3,29 +3,29 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
-import { BoardActions } from './BoardActions';
+import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import Table from 'monday-ui-react-core/dist/icons/Table';
-import Dashboard from 'monday-ui-react-core/dist/icons/Dashboard';
 import Favorite from 'monday-ui-react-core/dist/icons/Favorite';
 import Chart from 'monday-ui-react-core/dist/icons/Chart';
 import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
+import { BoardActions } from './BoardActions';
+
 import { toggleMenu } from '../../store/actions/board.actions';
 
 function _BoardHeader({
-  board,
-  onBlur,
-  onAddItem,
-  changeView,
-  toggleMenus,
   onEditGroup,
+  toggleMenus,
+  changeView,
+  onAddItem,
   currView,
-  history,
   location,
+  history,
+  onBlur,
+  board,
 }) {
-  // const []
   return (
     <div className="board-header flex column">
       <div className="board-header-top flex align-center">
@@ -51,15 +51,20 @@ function _BoardHeader({
             </div>
           </div>
         </div>
-        <div className="header right-side flex auto-center">
+        <div className="header right-side flex auto-center ">
+          <div className="invite btn header-btn flex auto-center">
+            <Invite />
+            Invite / 2
+          </div>
           <div
-            className="board-activity btn header-btn"
+            className="board-activity btn auto-center flex header-btn"
             onClick={() => {
               history.push(location.pathname + `/activity_log`);
             }}
           >
-            activity
+            Activity
           </div>
+          <div className="add-to-board btn br4"> + Add to board</div>
           <div className="menu-btn header-btn btn br4 flex auto-center">
             <Menu />
           </div>
@@ -78,7 +83,7 @@ function _BoardHeader({
       </div>
       <div className="view-container flex align-center">
         <div
-          className={`flex align-center table-view btn ${
+          className={`flex auto-center table-view btn ${
             currView === 'table' ? 'active' : ''
           }`}
           onClick={(ev) => {
@@ -86,8 +91,10 @@ function _BoardHeader({
             changeView('table');
           }}
         >
-          <Table />
-          <div className="full flex align-center">Table</div>
+          <div className="full flex auto-center">
+            <Table />
+            Table
+          </div>
         </div>
         <div
           className={`flex align-center table-view btn ${
@@ -98,8 +105,10 @@ function _BoardHeader({
             changeView('chart');
           }}
         >
-          <Chart />
-          <div className="full flex align-center">Chart</div>
+          <div className="full flex auto-center">
+            <Chart />
+            Chart
+          </div>
         </div>
         <div
           className={`flex align-center table-view btn ${
@@ -110,8 +119,10 @@ function _BoardHeader({
             changeView('kanban');
           }}
         >
-          <BsKanban />
-          <div className="full flex align-center">Kanban</div>
+          <div className="full flex auto-center">
+            <BsKanban />
+            Kanban
+          </div>
         </div>
       </div>
       <div className="divider"></div>
