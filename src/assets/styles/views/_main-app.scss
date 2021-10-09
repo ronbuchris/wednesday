@@ -199,7 +199,7 @@
 }
 
 .dashboard-preview {
-  margin-top:60px;
+  margin-top:30px;
 padding-left: 30px;
   .data-container{
     width: 100%;
@@ -254,25 +254,27 @@ padding-left: 30px;
     }
   }
 
-.data-charts{
-  grid-area: data-charts;
-}
-.status-chart{
-  grid-area: status-chart;
-}
-.person-chart{
-  grid-area: person-chart;
-}
+  
+  
+  .charts-container {
 
-
-.charts-container {
+  .data-chart{
+    grid-area: data;
+  }
+  .status-chart{
+    grid-area: status;
+  }
+  .person-chart{
+    grid-area: person;
+  }
+  display:grid;
   margin-top:30px;
   gap: 30px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns:1fr 1fr ;
   grid-template-areas:
-  "date-chart status-chart"
-  "person-chart status-chart";
+  "date status"
+  "person .";
   >*{
     padding:20px;
     height:300px;

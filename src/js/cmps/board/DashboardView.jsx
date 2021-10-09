@@ -83,7 +83,7 @@ class _DashboardView extends React.Component {
               </div>
             </div>
         </div>
-        <div className="charts-container grid">
+        <div className="charts-container justify-center">
           <div className='date-chart br4'>
             <DateChart />
           </div>
