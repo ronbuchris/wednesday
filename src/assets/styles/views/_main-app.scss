@@ -258,8 +258,8 @@ padding-left: 30px;
   
   .charts-container {
 
-  .data-chart{
-    grid-area: data;
+  .group-chart{
+    grid-area: group;
   }
   .status-chart{
     grid-area: status;
@@ -268,12 +268,13 @@ padding-left: 30px;
     grid-area: person;
   }
   display:grid;
+  justify-items: center;
   margin-top:30px;
   gap: 30px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns:1fr 1fr ;
   grid-template-areas:
-  "date status"
+  "group status"
   "person .";
   >*{
     padding:20px;

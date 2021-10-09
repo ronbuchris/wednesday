@@ -86,11 +86,11 @@ class _DashboardView extends React.Component {
               </div>
             </div>
         </div>
-        <div className="charts-container grid">
+        <div className="charts-container">
           {/* <div className='date-chart br4'>
             <DateChart dateCounter={dateCounter}/>
           </div> */}
-          <div className='status-chart br4'>
+          <div className='group-chart br4'>
             <GroupItemsCount groupItemsCount={groupItemsCount}/>
           </div>
           <div className='status-chart br4'>
