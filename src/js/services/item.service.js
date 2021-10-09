@@ -5,6 +5,7 @@ export const itemService = {
     removeSelected,
     getPersonItem,
     getStatuses,
+    getDateData,
     createItem,
     getById,
     remove,
@@ -39,6 +40,85 @@ function getStatuses(board) {
     return [statuses, colors]
 }
 
+function getDateData(board) {
+    const months = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+    const dateCounter ={
+        Jan: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Feb: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Mar: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Apr: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        May: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        June: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        July: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Aug: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Sept: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Oct: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Nov: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Dec: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+    }
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
+            const dateIdx = item.columns.findIndex(column => column.type === 'date')
+            const statusIdx = item.columns.findIndex(column => column.type === 'status')
+            const timestamp = item.columns[dateIdx].date
+            if (!timestamp) return
+            const date = new Date(timestamp)
+            const month = months[date.getMonth()]
+            const statusTitle = item.columns[statusIdx].label.title
+            const dateObj = dateCounter[month]
+            if (dateObj) {
+                if(statusTitle === 'Done') {
+                    dateObj.doneStatus++
+                } else {
+                    dateObj.elseStatus++
+                }
+            } else {
+                if (statusTitle === 'Done') {
+                    dateObj.doneStatus = 1
+                } else {
+                    dateObj.elseStatus = 1
+                }
+            }
+        })
+    })
+    return dateCounter
+}
 function getPersonItem(board) {
     const memberCounter ={}
     board.groups.forEach(group => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadStatuses, getPersonItem } from '../../store/actions/item.actions';
+import { loadStatuses, getPersonItem, getDateData } from '../../store/actions/item.actions';
 import { StatusChart } from '../charts/StatusChart';
 import { PersonChart } from '../charts/PersonChart';
 import { Loader } from '../Loader';
@@ -15,14 +15,16 @@ import { PieChart } from '../charts/PieChart';
 
 class _DashboardView extends React.Component {
   componentDidMount() {
-    const { board, loadStatuses, getPersonItem} = this.props;
+    const { board, loadStatuses, getPersonItem, getDateData} = this.props;
     loadStatuses(board);
     getPersonItem(board);
+    getDateData(board)
   }
 
   render() {
-    const { statuses, personsCount,board } = this.props;
+    const { statuses, personsCount, board, dateCounter } = this.props;
     if (!statuses.length) return <div><Loader/></div>;
+    console.log(dateCounter);
     const numbers = Object.values(statuses[0]);
     var sum = 0
     numbers.forEach(num => {
@@ -91,7 +93,7 @@ class _DashboardView extends React.Component {
             <PersonChart personsCount={personsCount} statuses={statuses}/>
           </div>
           <div className='person-chart'>
-            <DateChart />
+            <DateChart dateCounter={dateCounter}/>
           </div>
           <div className='person-chart'>
             <PieChart />
@@ -107,12 +109,14 @@ function mapStateToProps(state) {
     statuses: state.itemModule.statuses,
     workspace: state.workspaceModule.workspace,
     personsCount: state.itemModule.personsCount,
+    dateCounter: state.itemModule.dateCounter,
   };
 }
 
 const mapDispatchToProps = {
   loadStatuses,
-  getPersonItem
+  getPersonItem,
+  getDateData
 };
 
 export const DashboardView = connect(

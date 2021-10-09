@@ -78,6 +78,20 @@ export function getPersonItem(board) {
         }
     }
 }
+export function getDateData(board) {
+    return async dispatch => {
+        try {
+            const dateCounter = itemService.getDateData(board)
+            dispatch({
+                type: 'GET_DATE',
+                dateCounter
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
 
 export function onSetSearch(board, searchBy) {
     return (dispatch) => {

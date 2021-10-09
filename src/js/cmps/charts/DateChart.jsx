@@ -1,10 +1,11 @@
 import { Bar } from 'react-chartjs-2';
 
-export function DateChart() {
+export function DateChart({ dateCounter}) {
     const rand = () => Math.round(Math.random() * 20 - 10);
-
+    console.log(Object.keys(dateCounter));
+    console.log(Object.values(dateCounter));
     const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: Object.keys(dateCounter),
         datasets: [
             {
                 type: 'line',
