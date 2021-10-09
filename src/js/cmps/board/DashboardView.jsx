@@ -99,6 +99,9 @@ class _DashboardView extends React.Component {
           <div className='person-chart br4'>
             <PersonChart personsCount={personsCount}/>
           </div>
+          <div className='pie-chart br4'>
+            <PieChart />
+          </div>
         </div>
       </div>
     );
