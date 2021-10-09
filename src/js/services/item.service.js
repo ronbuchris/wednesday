@@ -7,6 +7,7 @@ export const itemService = {
     getPersonItem,
     getStatuses,
     getDateData,
+    getNumbers,
     createItem,
     getById,
     remove,
@@ -131,6 +132,31 @@ function getPersonItem(board) {
         })
     })
     return memberCounter
+}
+
+function getNumbers(board) {
+    const numbers = {
+        average: 0,
+        sum: 0,
+        min: 0,
+        max: 0,
+    }
+    const numArr =[]
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
+            const numberIdx = item.columns.findIndex(column => column.type === 'number')
+            const number = item.columns[numberIdx].number || 0
+            numArr.push(number)
+        })
+    })
+    numbers['min'] = Math.min(...numArr)
+    numbers['max'] = Math.max(...numArr)
+    numArr.forEach(num => {
+        numbers['sum'] += num
+    })
+    numbers['average'] = numbers['sum'] / numArr.length
+    return numbers
+
 }
 function getGroupItemsCount(board) {
     const itemsCounter ={}
