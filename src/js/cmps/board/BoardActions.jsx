@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import Filter from 'monday-ui-react-core/dist/icons/Filter';
 import Sort from 'monday-ui-react-core/dist/icons/Sort';
+import Group from 'monday-ui-react-core/dist/icons/Group';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import { FilterMenu } from '../menus/FilterMenu';
@@ -33,13 +34,27 @@ function _BoardActions({
         </div>
         <div
           className="add group-add flex align-center btn"
-          onClick={(ev) => {
-            ev.stopPropagation();
-            onEditGroup('New Group');
+          onClick={() => {
+            toggleMenu(toggleMenus, 'addGroupMenu', true);
           }}
         >
-          New group
+          <IoIosArrowDown />
         </div>
+        {toggleMenus.addGroupMenu && (
+          <div className="menu-modal new-group-menu">
+            <div
+              className="flex align-center br4 btn"
+              onClick={(ev) => {
+                ev.stopPropagation();
+                onEditGroup('New Group');
+                toggleMenu(toggleMenus);
+              }}
+            >
+              <Group />
+              New group of items
+            </div>
+          </div>
+        )}
       </div>
       <BoardSearch board={board} />
       <div

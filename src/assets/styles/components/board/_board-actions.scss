@@ -1,11 +1,11 @@
 .actions-container {
   padding: 16px 0;
   font-size: rem(14px);
-  .action-hidden{
-    display:none;
+  .action-hidden {
+    display: none;
     @include for-narrow-layout {
       @media (min-width: $mobile-breakpoint) {
-        display:flex;
+        display: flex;
       }
     }
   }
@@ -13,6 +13,7 @@
   .add-action {
     height: 32px;
     margin-right: 14px;
+    position: relative;
 
     .add {
       background-color: $primary-color;
@@ -30,6 +31,27 @@
       &.group-add {
         border-radius: 0 4px 4px 0;
         border-left: 1px solid $primary-hover-color;
+      }
+    }
+    .new-group-menu {
+      position: absolute;
+      top: 120%;
+      left: 70%;
+      width: 220px;
+      padding: 8px;
+
+      > div {
+        padding: 4px 8px;
+
+        &:hover {
+          background-color: $ui-grey-color;
+        }
+
+        svg {
+          margin-right: 8px;
+          width: 18px;
+          height: 18px;
+        }
       }
     }
   }
