@@ -82,10 +82,10 @@ class _DashboardView extends React.Component {
             </div>
         </div>
         <div className="charts-container flex align-center space-evenly">
-          <div className='status-chart'>
+          <div className='status-chart br4'>
             <StatusChart statuses={statuses}/>
           </div>
-          <div className='person-chart'>
+          <div className='person-chart br4'>
             <PersonChart personsCount={personsCount} statuses={statuses}/>
           </div>
         </div>
