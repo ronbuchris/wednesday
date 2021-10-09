@@ -32,7 +32,6 @@ async function save(workspace) {
         // workspace.owner = userService.getLoggedinUser()
         // return storageService.post(STORAGE_KEY, workspace)
     }
-    console.log(updatedWorkspace);
     socketService.emit('board changed', updatedWorkspace)
     return updatedWorkspace;
 }

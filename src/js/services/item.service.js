@@ -1,10 +1,12 @@
 import { makeId } from '../services/util.service'
 
 export const itemService = {
+    getGroupItemsCount,
     duplicateItems,
     removeSelected,
     getPersonItem,
     getStatuses,
+    getDateData,
     createItem,
     getById,
     remove,
@@ -38,30 +40,104 @@ function getStatuses(board) {
     })
     return [statuses, colors]
 }
-function getPersonItem(board) {
-    let personsToShow = [];
-    const personsMap = board.groups.map(group => {
-        return group.items.reduce((acc, item) => {
-            const memberIdx = item.columns.findIndex(column => column.type === 'member')
-            acc.totalCount++;
-            const members = item.columns[memberIdx].members;
-            members.forEach(member => {
-                const name = member.fullname
-                if (acc[name]) {
-                    acc[name].count++;
-                } else {
-                    personsToShow.push(name);
-                    acc[name] = {};
-                    acc[name].count = 1;
-                }
-            })
-            acc.personsToShow = personsToShow;
-            return acc;
+
+function getDateData(board) {
+    const months = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+    const dateCounter ={
+        Jan: {
+            doneStatus: 0,
+            elseStatus: 0
         },
-        { totalCount: 0 }
-        );
+        Feb: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Mar: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Apr: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        May: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        June: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        July: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Aug: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Sept: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Oct: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Nov: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+        Dec: {
+            doneStatus: 0,
+            elseStatus: 0
+        },
+    }
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
+            const dateIdx = item.columns.findIndex(column => column.type === 'date')
+            const statusIdx = item.columns.findIndex(column => column.type === 'status')
+            const timestamp = item.columns[dateIdx].date
+            if (!timestamp) return
+            const date = new Date(timestamp)
+            const month = months[date.getMonth()]
+            const statusTitle = item.columns[statusIdx].label.title
+            const dateObj = dateCounter[month]
+            if (dateObj) {
+                if(statusTitle === 'Done') {
+                    dateObj.doneStatus++
+                } else {
+                    dateObj.elseStatus++
+                }
+            } else {
+                if (statusTitle === 'Done') {
+                    dateObj.doneStatus = 1
+                } else {
+                    dateObj.elseStatus = 1
+                }
+            }
+        })
     })
-    return personsMap;
+    return dateCounter
+}
+function getPersonItem(board) {
+    const memberCounter ={}
+    board.groups.forEach(group => {
+        group.items.forEach(item => {
+            const memberIdx = item.columns.findIndex(column => column.type === 'member')
+            item.columns[memberIdx].members.forEach(member => {
+                memberCounter[member.fullname] = (memberCounter[member.fullname] ?? 0) + 1
+            })
+        })
+    })
+    return memberCounter
+}
+function getGroupItemsCount(board) {
+    const itemsCounter ={}
+    board.groups.forEach(group => {
+        itemsCounter[group.title] = group.items.length
+    })
+    return itemsCounter
 }
 
 function onPost(update, user, item, groups, workspace) {

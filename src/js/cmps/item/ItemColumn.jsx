@@ -50,11 +50,6 @@ export function ItemColumn({
   const onBlur = (newTxt, prevTxt) => {
     if (newTxt === prevTxt) return;
     item.columns[findIdx('number')].number = newTxt;
-    console.log(`newTxt`, newTxt);
-    console.log(
-      `item.columns[findIdx('number')]`,
-      item.columns[findIdx('number')]
-    );
     const newItem = { ...item };
     onEditItem(newItem, group);
   };

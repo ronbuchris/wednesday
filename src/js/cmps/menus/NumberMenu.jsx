@@ -7,7 +7,6 @@ export function NumberMenu({ board, column, group, onEditBoard }) {
 
   const ChangeFunc = (value) => {
     column.function = value;
-    console.log(`column`, column);
     onEditBoard(board);
   };
   const findIdx = (type) => {

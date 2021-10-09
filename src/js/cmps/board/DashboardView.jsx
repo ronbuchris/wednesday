@@ -1,92 +1,104 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Doughnut, Pie, Bar, Line } from 'react-chartjs-2';
-import { loadStatuses } from '../../store/actions/item.actions';
+import { loadStatuses, getPersonItem, getDateData, getGroupItemsCount } from '../../store/actions/item.actions';
+import { StatusChart } from '../charts/StatusChart';
+import { PersonChart } from '../charts/PersonChart';
+import { Loader } from '../Loader';
+import Group from 'monday-ui-react-core/dist/icons/Group';
+import Item from 'monday-ui-react-core/dist/icons/Item';
+import Person from 'monday-ui-react-core/dist/icons/Person';
+import Activity from 'monday-ui-react-core/dist/icons/Activity';
+import Update from 'monday-ui-react-core/dist/icons/Update';
+import { DateChart } from '../charts/DateChart';
+import { PieChart } from '../charts/PieChart';
+import { GroupItemsCount } from '../charts/GroupItemsCount';
 
 class _DashboardView extends React.Component {
-  state = {
-    chartType: 'Pie',
-  };
-  componentDidMount() {
-    this.props.loadStatuses(this.props.board);
+  async componentDidMount() {
+    const { board, loadStatuses, getPersonItem, getDateData, getGroupItemsCount} = this.props;
+    loadStatuses(board);
+    getPersonItem(board);
+    getGroupItemsCount(board);
+    // getDateData(board)
   }
 
-  changeChart = (type) => {
-    this.setState({ chartType: type });
-  };
   render() {
-    const { statuses } = this.props;
-    const { chartType } = this.state;
-    if (!statuses.length) return <div>loading</div>;
-    const statusToShow = Object.keys(statuses[0]);
+    const { statuses, personsCount, board, dateCounter, groupItemsCount } = this.props;
+    if (!statuses.length) return <div><Loader/></div>;
     const numbers = Object.values(statuses[0]);
-    const colors = Object.values(statuses[1]);
-    const DynamicChart = (props) => {
-      switch (chartType) {
-        case 'Pie':
-          return <Pie {...props} />;
-        case 'Doughnut':
-          return <Doughnut {...props} />;
-        case 'Bar':
-          return <Bar {...props} />;
-        case 'Line':
-          return <Line {...props} />;
-        default:
-          return;
-      }
-    };
-    if (!statusToShow || !numbers || !colors) return <div>loading</div>;
-    const data = {
-      labels: statusToShow,
-      datasets: [
-        {
-          label: '# of Votes',
-          data: numbers,
-          backgroundColor: colors,
-          borderColor: colors,
-          borderWidth: 3,
-        },
-      ],
-    };
+    var sum = 0
+    numbers.forEach(num => {
+      sum += num
+    })
+    var updateSum = 0
+    board.groups.forEach(group => {
+      group.items.forEach(item => {
+        updateSum += item.updates.length
+      })
+    })
     return (
-      <div className="dashboard-preview flex column align-center">
-        <div className="charts-list flex">
-          <h3
-            className="chart-choice"
-            onClick={() => {
-              this.changeChart('Pie');
-            }}
-          >
-            Pie
-          </h3>
-          <h3
-            className="chart-choice"
-            onClick={() => {
-              this.changeChart('Doughnut');
-            }}
-          >
-            Doughnut
-          </h3>
-          <h3
-            className="chart-choice"
-            onClick={() => {
-              this.changeChart('Bar');
-            }}
-          >
-            Bar
-          </h3>
-          <h3
-            className="chart-choice"
-            onClick={() => {
-              this.changeChart('Line');
-            }}
-          >
-            Line
-          </h3>
+      <div className="dashboard-preview flex column auto-center">
+        <div className="data-container flex space-evenly">
+            <div className="group-data box br4 flex align-center justify-center">
+              <div className="group-icon icon flex auto-center">
+              <Group/>
+              </div>
+              <div className="group-header-chart header flex column">
+              <p className="data-nums" >{board.groups.length}</p>
+              <p>Groups</p>
+              </div>
+            </div>
+            <div className="person-data box br4 flex align-center justify-center">
+            <div className="person-icon icon flex auto-center">
+              <Person/>
+              </div>
+              <div className="person-header-chart header flex column">
+              <p className="data-nums" >{Object.keys(personsCount).length}</p>
+              <p>Persons</p>
+              </div>
+            </div>
+            <div className="item-data box br4 flex align-center justify-center">
+              <div className="item-icon icon flex auto-center">
+              <Item/>
+              </div>
+              <div className="item-header-chart header flex column">
+              <p className="data-nums" >{sum}</p>
+              <p>Items</p>
+              </div>
+            </div>
+            <div className="activity-data box br4 flex align-center justify-center">
+              <div className="activity-icon icon flex auto-center">
+            <Activity/>
+              </div>
+              <div className="activity-header-chart header flex column">
+              <p className="data-nums" >{board.activities.length}</p>
+            <p>Activities</p>
+              </div>
+            </div>
+            <div className="update-data box br4 flex align-center justify-center">
+              <div className="update-icon icon flex auto-center">
+            <Update/>
+              </div>
+              <div className="update-header-chart header flex column">
+            <p className="data-nums" >{updateSum}</p>
+            <p >Updates</p>
+              </div>
+            </div>
         </div>
-        <div className="dashboard">
-          <DynamicChart data={data} />
+        <div className="charts-container grid">
+          {/* <div className='date-chart br4'>
+            <DateChart dateCounter={dateCounter}/>
+          </div> */}
+          <div className='status-chart br4'>
+            <GroupItemsCount groupItemsCount={groupItemsCount}/>
+          </div>
+          <div className='status-chart br4'>
+            <StatusChart statuses={statuses}/>
+          </div>
+          <div className='person-chart br4'>
+            <PersonChart personsCount={personsCount}/>
+          </div>
         </div>
       </div>
     );
@@ -95,13 +107,19 @@ class _DashboardView extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    statuses: state.itemModule.statuses,
+    groupItemsCount: state.itemModule.groupItemsCount,
+    personsCount: state.itemModule.personsCount,
     workspace: state.workspaceModule.workspace,
+    dateCounter: state.itemModule.dateCounter,
+    statuses: state.itemModule.statuses,
   };
 }
 
 const mapDispatchToProps = {
+  getGroupItemsCount,
+  getPersonItem,
   loadStatuses,
+  getDateData
 };
 
 export const DashboardView = connect(

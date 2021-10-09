@@ -14,6 +14,7 @@ import { BsKanban } from 'react-icons/bs';
 import { BoardActions } from './BoardActions';
 
 import { toggleMenu } from '../../store/actions/board.actions';
+import { getDateData } from '../../store/actions/item.actions';
 
 function _BoardHeader({
   onEditGroup,
@@ -126,12 +127,12 @@ function _BoardHeader({
         </div>
       </div>
       <div className="divider"></div>
-      <BoardActions
+      {currView !== 'chart' && <BoardActions
         onEditGroup={onEditGroup}
         toggleMenus={toggleMenus}
         onAddItem={onAddItem}
         board={board}
-      />
+      />}
     </div>
   );
 }
@@ -143,7 +144,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = { toggleMenu };
+const mapDispatchToProps = { toggleMenu, getDateData };
 export const BoardHeader = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(_BoardHeader)
 );

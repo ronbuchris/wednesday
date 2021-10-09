@@ -17,6 +17,25 @@
         height: 40px;
         border-radius: 50%;
       }
+      .username-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 18px;
+        margin-left: 8px;
+        .board-update{
+          overflow: hidden;
+           text-overflow: ellipsis;
+           font-size: 12px;
+            color: $clr4;
+             margin-top: 4px;
+             svg{
+               width: 17px;
+               height: 17px;
+               margin-right: 3px;
+             }
+        }
+      }
     }
     .post-action {
       height: 42px;
@@ -69,11 +88,7 @@
         }
       }
 
-      .divider-height {
-        width: 1px;
-        height: 100%;
-        background-color: $ui-grey-color;
-      }
+
     }
 
     .body-text {
@@ -95,4 +110,10 @@
     text-align: left;
     outline: none;
   }
+}
+
+.divider-height {
+  width: 1px;
+  height: 100%;
+  background-color: $ui-grey-color;
 }

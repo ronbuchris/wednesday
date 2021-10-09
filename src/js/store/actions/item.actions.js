@@ -64,13 +64,41 @@ export function loadStatuses(board) {
         }
     }
 }
-export function getPersonItem(board,persons) {
+export function getPersonItem(board) {
     return async dispatch => {
         try {
-            const personsCount = itemService.getPersonItem(board, persons)
+            const personsCount = itemService.getPersonItem(board)
             dispatch({
                 type: 'GET_PERSONS',
                 personsCount
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
+export function getDateData(board) {
+    return async dispatch => {
+        try {
+            const dateCounter = itemService.getDateData(board)
+            dispatch({
+                type: 'GET_DATE',
+                dateCounter
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
+export function getGroupItemsCount(board) {
+    return async dispatch => {
+        try {
+            const groupItemsCount = itemService.getGroupItemsCount(board)
+            dispatch({
+                type: 'GET_ITEM_COUNT',
+                groupItemsCount
             })
 
         } catch (err) {

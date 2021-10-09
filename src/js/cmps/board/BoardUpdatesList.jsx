@@ -12,7 +12,7 @@ export function BoardUpdatesList({ board }) {
                   <img src={update.createdBy.img} alt="user-img" />
                   <div className="username-wrapper">
                     {update.createdBy.fullname}
-                    <div className="flex align-center">
+                    <div className="board-update flex align-center">
                       <Board />
                       {`${board.title} > ${group.title} > ${item.title}`}
                     </div>
@@ -26,6 +26,7 @@ export function BoardUpdatesList({ board }) {
                   <div className="like-post-wrapper ">
                     <div className="like-post btn">Like</div>
                   </div>
+                  <div className="divider-height"></div>
                   <div className="reply-post-wrapper ">
                     <div className="reply-post btn">Reply</div>
                   </div>
