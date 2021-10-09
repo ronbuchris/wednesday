@@ -3,9 +3,8 @@
     align-items: center;
     font-family: sofia;
 
-    & .head-line {
-      padding-top: 40px;
-      padding-bottom: 24px;
+    .head-line {
+      padding: 40px 32px 24px;
 
       h1 {
         font-size: rem(72px);
@@ -13,6 +12,7 @@
         font-family: sofia-bold;
         word-break: break-word;
         margin-bottom: 16px;
+        text-align: center;
       }
 
       h2 {
@@ -21,6 +21,100 @@
         line-height: 40px;
         word-break: break-word;
         text-align: center;
+      }
+    }
+
+    .started {
+      color: $clr7;
+      background-color: $login-color;
+      border-radius: 40px;
+      border: none;
+      padding: 11px 48px;
+      transition: 0.3s ease all;
+
+      &:hover {
+        filter: brightness(85%);
+      }
+
+      svg {
+        padding-left: 4px;
+      }
+    }
+
+    .home-section {
+      box-shadow: 0px 18px 30px #00000006;
+      padding-bottom: 100px;
+      flex-direction: column;
+      padding: 32px 96px;
+      @include for-wide-layout {
+        @media (min-width: $normal-breakpoint) {
+          flex-direction: row;
+        }
+      }
+
+      .text {
+        padding: 0 60px 60px;
+
+        .title {
+          font-family: sofia-bold;
+          font-size: rem(40px);
+          line-height: 48px;
+          word-break: break-word;
+        }
+
+        .info {
+          font-family: sofia-thin;
+          font-size: 20px;
+          line-height: 32px;
+          word-break: break-word;
+        }
+      }
+      img {
+        width: 600px;
+      }
+    }
+
+    .bottom-section {
+      width: 100%;
+      background-color: $primary-selling-color;
+      color: #fff;
+      padding-top: 80px;
+      padding-bottom: 104px;
+      text-align: center;
+
+      h2 {
+        font-family: sofia-bold;
+        font-size: rem(50px);
+      }
+
+      .info {
+        font-family: sofia-thin;
+        font-size: rem(24px);
+      }
+    }
+
+    footer {
+      padding: 48px;
+      .links {
+        flex-wrap: wrap;
+        padding-bottom: 32px;
+
+        .link {
+          font-size: rem(14px);
+          margin: 32px 32px 0 0;
+          text-decoration: underline;
+          color: $text-column-color;
+
+          &:hover {
+            color: $primary-color;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .logo-footer {
+        width: 127px;
+        margin: 0 auto;
       }
     }
   }
