@@ -33,35 +33,55 @@ class _DashboardView extends React.Component {
       })
     })
     return (
-      <div className="dashboard-preview flex">
-        <div className="data-container">
-            <div className="data-box">
+      <div className="dashboard-preview flex column auto-center">
+        <div className="data-container flex space-evenly">
+            <div className="group-data box br4 flex align-center justify-center">
+              <div className="group-icon icon flex auto-center">
               <Group/>
-              <p>{board.groups.length}</p>
+              </div>
+              <div className="group-header-chart header flex column">
+              <p className="data-nums" >{board.groups.length}</p>
               <p>Groups</p>
+              </div>
             </div>
-            <div className="data-box">
+            <div className="person-data box br4 flex align-center justify-center">
+            <div className="person-icon icon flex auto-center">
               <Person/>
-              <p>{Object.keys(personsCount).length}</p>
+              </div>
+              <div className="person-header-chart header flex column">
+              <p className="data-nums" >{Object.keys(personsCount).length}</p>
               <p>Persons</p>
+              </div>
             </div>
-            <div className="data-box">
+            <div className="item-data box br4 flex align-center justify-center">
+              <div className="item-icon icon flex auto-center">
               <Item/>
-              <p>{sum}</p>
+              </div>
+              <div className="item-header-chart header flex column">
+              <p className="data-nums" >{sum}</p>
               <p>Items</p>
+              </div>
             </div>
-            <div className="data-box">
+            <div className="activity-data box br4 flex align-center justify-center">
+              <div className="activity-icon icon flex auto-center">
             <Activity/>
-              <p>{board.activities.length}</p>
+              </div>
+              <div className="activity-header-chart header flex column">
+              <p className="data-nums" >{board.activities.length}</p>
             <p>Activities</p>
+              </div>
             </div>
-            <div className="data-box">
+            <div className="update-data box br4 flex align-center justify-center">
+              <div className="update-icon icon flex auto-center">
             <Update/>
-            <p>{updateSum}</p>
-            <p>Updates</p>
+              </div>
+              <div className="update-header-chart header flex column">
+            <p className="data-nums" >{updateSum}</p>
+            <p >Updates</p>
+              </div>
             </div>
         </div>
-        <div className="charts-container flex column auto-center">
+        <div className="charts-container flex align-center space-evenly">
           <div className='status-chart'>
             <StatusChart statuses={statuses}/>
           </div>

@@ -115,12 +115,12 @@ function _BoardHeader({
         </div>
       </div>
       <div className="divider"></div>
-      <BoardActions
+      {currView !== 'chart' && <BoardActions
         onEditGroup={onEditGroup}
         toggleMenus={toggleMenus}
         onAddItem={onAddItem}
         board={board}
-      />
+      />}
     </div>
   );
 }

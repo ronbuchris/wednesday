@@ -37,8 +37,8 @@ export function StatusChart({statuses}) {
     };
 
     return (
-        <div className="dashboard">
+        
             <Bar data={data} options={options} />
-        </div>
+        
     )
 }
