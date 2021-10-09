@@ -44,6 +44,12 @@ export function PieChart() {
                     padding:15,
                 }
             },
+            title: {
+                display: true,
+                text: 'Bar Chart',
+                padding:0,
+                margin:0,
+            },
         },
     };
     return (
