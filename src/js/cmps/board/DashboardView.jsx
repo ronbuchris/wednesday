@@ -10,6 +10,8 @@ import Item from 'monday-ui-react-core/dist/icons/Item';
 import Person from 'monday-ui-react-core/dist/icons/Person';
 import Activity from 'monday-ui-react-core/dist/icons/Activity';
 import Update from 'monday-ui-react-core/dist/icons/Update';
+import { DateChart } from '../charts/DateChart';
+import { PieChart } from '../charts/PieChart';
 
 class _DashboardView extends React.Component {
   componentDidMount() {
@@ -87,6 +89,12 @@ class _DashboardView extends React.Component {
           </div>
           <div className='person-chart br4'>
             <PersonChart personsCount={personsCount} statuses={statuses}/>
+          </div>
+          <div className='person-chart'>
+            <DateChart />
+          </div>
+          <div className='person-chart'>
+            <PieChart />
           </div>
         </div>
       </div>
