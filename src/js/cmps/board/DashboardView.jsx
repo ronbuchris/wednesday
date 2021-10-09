@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadStatuses, getPersonItem, getDateData, getGroupItemsCount } from '../../store/actions/item.actions';
+import { loadStatuses, getPersonItem, getDateData, getGroupItemsCount, getNumbers } from '../../store/actions/item.actions';
 import { StatusChart } from '../charts/StatusChart';
 import { PersonChart } from '../charts/PersonChart';
 import { Loader } from '../Loader';
@@ -16,19 +16,20 @@ import { GroupItemsCount } from '../charts/GroupItemsCount';
 
 class _DashboardView extends React.Component {
   async componentDidMount() {
-    const { board, loadStatuses, getPersonItem, getDateData, getGroupItemsCount} = this.props;
+    const { board, loadStatuses, getPersonItem, getDateData, getGroupItemsCount, getNumbers} = this.props;
     loadStatuses(board);
     getPersonItem(board);
     getGroupItemsCount(board);
+    getNumbers(board)
     // getDateData(board)
   }
 
   render() {
-    const { statuses, personsCount, board, dateCounter, groupItemsCount } = this.props;
+    const { statuses, personsCount, board, dateCounter, groupItemsCount, numbers } = this.props;
     if (!statuses.length) return <div><Loader/></div>;
-    const numbers = Object.values(statuses[0]);
+    const numbersSum = Object.values(statuses[0]);
     var sum = 0
-    numbers.forEach(num => {
+    numbersSum.forEach(num => {
       sum += num
     })
     var updateSum = 0
@@ -93,14 +94,17 @@ class _DashboardView extends React.Component {
           <div className='group-chart br4'>
             <GroupItemsCount groupItemsCount={groupItemsCount}/>
           </div>
+          <div className='pie-chart br4'>
+            <PieChart numbers={numbers} />
+          </div>
           <div className='status-chart br4'>
             <StatusChart statuses={statuses}/>
           </div>
           <div className='person-chart br4'>
             <PersonChart personsCount={personsCount}/>
           </div>
-          <div className='pie-chart br4'>
-            <PieChart />
+          <div className='status-chart br4'>
+            <StatusChart statuses={statuses} />
           </div>
         </div>
       </div>
@@ -115,6 +119,7 @@ function mapStateToProps(state) {
     workspace: state.workspaceModule.workspace,
     dateCounter: state.itemModule.dateCounter,
     statuses: state.itemModule.statuses,
+    numbers: state.itemModule.numbers,
   };
 }
 
@@ -122,7 +127,8 @@ const mapDispatchToProps = {
   getGroupItemsCount,
   getPersonItem,
   loadStatuses,
-  getDateData
+  getDateData,
+  getNumbers,
 };
 
 export const DashboardView = connect(

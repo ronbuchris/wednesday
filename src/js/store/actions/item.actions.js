@@ -64,6 +64,20 @@ export function loadStatuses(board) {
         }
     }
 }
+export function getNumbers(board) {
+    return async dispatch => {
+        try {
+            const numbers = itemService.getNumbers(board)
+            dispatch({
+                type: 'GET_NUMBERS',
+                numbers
+            })
+
+        } catch (err) {
+            console.log('Cannot search item', err)
+        }
+    }
+}
 export function getPersonItem(board) {
     return async dispatch => {
         try {

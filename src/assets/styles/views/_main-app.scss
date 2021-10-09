@@ -270,9 +270,9 @@ padding-left: 30px;
   .pie-chart{
     grid-area: pie;
     canvas{
-      height:290px !important;
-      width:290px !important;
-      margin: 0 auto ;
+      // height:290px !important;
+      // width:290px !important;
+      // margin: 0 auto ;
     }
   }
   display:grid;
@@ -282,8 +282,8 @@ padding-left: 30px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns:1fr 1fr ;
   grid-template-areas:
-  "group status"
-  "person pie";
+  "group pie"
+  "person status";
   >*{
     padding:20px;
     height:300px;

@@ -5,6 +5,7 @@ const initialState = {
     personsCount:{},
     selectedItems:[],
     dateCounter:{},
+    numbers:{},
     groupItemsCount:{}
 }
 
@@ -27,6 +28,9 @@ export function itemReducer(state = initialState, action) {
             break
         case 'GET_PERSONS':
             newState = { ...state, personsCount: action.personsCount }
+            break
+        case 'GET_NUMBERS':
+            newState = { ...state, numbers: action.numbers }
             break
         case 'GET_DATE':
             newState = { ...state, dateCounter: action.dateCounter }

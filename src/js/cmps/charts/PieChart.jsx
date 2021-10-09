@@ -1,12 +1,11 @@
-import { Pie } from 'react-chartjs-2';
+import { Bar  } from 'react-chartjs-2';
 
-export function PieChart() {
-
+export function PieChart({ numbers}) {
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: Object.keys(numbers),
         datasets: [
             {
-                data: [12, 19, 3, 5, 2, 3],
+                data: Object.values(numbers),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -37,22 +36,15 @@ export function PieChart() {
         responsive: true,
         plugins: {
             legend: {
-                position: 'right',
-                maxWidth:150,
-                maxHeight:280,
-                labels: {
-                    padding:15,
-                }
+                display: false,
             },
             title: {
                 display: true,
-                text: 'Bar Chart',
-                padding:0,
-                margin:0,
+                text: 'Board Numbers functions',
             },
         },
     };
     return (
-        <Pie data={data} options={options} />
+        <Bar  data={data} options={options} />
     )
 }
