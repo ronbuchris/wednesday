@@ -75,6 +75,9 @@
     .clear-number {
       display: flex !important;
     }
+    .no-number {
+      display: flex !important;
+    }
   }
 
   .number-field {
@@ -111,6 +114,27 @@
       }
     }
 
+    .no-number {
+      height: 100%;
+      display: none;
+      gap: 5px;
+
+      .add-number {
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background-color: $primary-color;
+
+        .plus {
+          width: 11px;
+          height: 11px;
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
     &:focus {
       background-color: #fff;
       outline: 1px dashed $primary-color;
@@ -119,6 +143,9 @@
         background-color: $clr5 !important;
       }
       .clear-number {
+        display: none !important;
+      }
+      .no-number {
         display: none !important;
       }
     }

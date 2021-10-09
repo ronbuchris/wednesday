@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { BsExclamationCircle } from 'react-icons/bs';
+import Counter from 'monday-ui-react-core/dist/icons/Counter';
 
 import user from '../../../assets/img/user.svg';
 import { StatusMenu } from '../menus/StatusMenu';
@@ -152,7 +154,10 @@ export function ItemColumn({
                 }}
               >
                 {column.date && Date.now() - column.date > 0 && (
-                  <span className="red">!</span>
+                  // <span className="red">!</span>
+                  <span className="red flex auto-center">
+                    <BsExclamationCircle />
+                  </span>
                 )}
                 {column.date && printDate(column.date)}
                 {column.date && (
@@ -217,18 +222,25 @@ export function ItemColumn({
                 </span>
               )}
               {column.number.toLocaleString()}
-              {/* {typeof column.number === 'number' && ( */}
-              <div
-                className="clear-number auto-center btn"
-                onClick={(ev) => {
-                  ev.stopPropagation();
-                  column.number = '';
-                  onEditItem(item, group);
-                }}
-              >
-                <IoIosCloseCircle />
-              </div>
-              {/* )} */}
+              {typeof column.number === 'number' ? (
+                <div
+                  className="clear-number auto-center btn"
+                  onClick={(ev) => {
+                    ev.stopPropagation();
+                    column.number = '';
+                    onEditItem(item, group);
+                  }}
+                >
+                  <IoIosCloseCircle />
+                </div>
+              ) : (
+                <div className="no-number flex auto-center">
+                  <div className="add-number flex auto-center">
+                    <FaPlus className="plus" />
+                  </div>
+                  <Counter />
+                </div>
+              )}
             </div>
           </div>
         );

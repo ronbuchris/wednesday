@@ -125,6 +125,7 @@
         font-size: rem(12px);
         height: 18px;
         text-transform: capitalize;
+        color: $primary-color;
       }
     }
 
@@ -146,14 +147,14 @@
   height: 100%;
   overflow: hidden;
   will-change: width;
-  transition: width 0.07s cubic-bezier(0, 0, 0.35, 1);
+  transition: min-width 0.07s cubic-bezier(0, 0, 0.35, 1);
 
   &.select {
     &:hover {
-      width: 32px;
+      min-width: 32px;
     }
     &.is-selecting {
-      width: 32px;
+      min-width: 32px;
     }
   }
 
