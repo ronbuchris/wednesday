@@ -19,7 +19,7 @@ import {
   onLogout,
   loadUsers,
   onLoginWithGoogle,
-} from '../store/actions/user.actions.js';
+} from '../store/actions/user.actions';
 
 class _Login extends React.Component {
   state = {
@@ -43,22 +43,23 @@ class _Login extends React.Component {
   };
 
   onLogin = async (ev, guest) => {
+    const { onLogin, loadWorkspaces, loadUsers, history } = this.props;
     ev.preventDefault();
     if (guest) {
-      await this.props.onLogin(guest);
+      await onLogin(guest);
     } else {
       const { username, password } = this.state.credentials;
       if (!username || !password) return;
-      await this.props.onLogin({ username, password }, null);
+      await onLogin({ username, password }, null);
     }
     const user = userService.getLoggedinUser();
-    const workspaces = await this.props.loadWorkspaces(user);
-    this.props.loadUsers();
+    const workspaces = await loadWorkspaces(user);
+    loadUsers();
 
     //Open first board of first workspace
     const boardId = workspaces[0].boards[0]._id;
     // loadWorkspace(workspaces[0])
-    this.props.history.push(`/board/${boardId}`);
+    history.push(`/board/${boardId}`);
   };
 
   onSignup = (ev) => {

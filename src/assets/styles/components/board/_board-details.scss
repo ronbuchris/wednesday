@@ -57,16 +57,30 @@
         .board-header-title {
           font-size: rem(32px);
           font-family: roboto-bold;
-          outline: none;
-          height: 56px;
 
-          &:hover {
-            border: 1px solid $ui-grey-color;
-          }
+          h1 {
+            // outline: none;
+            border-radius: 4px;
+            font-size: rem(24px);
+            line-height: 32px;
+            overflow: hidden;
+            white-space: normal;
+            line-height: 52px;
+            font-family: Roboto-bold, sans-serif;
+            color: $primary-text-color;
 
-          &:focus {
-            color: $clr2;
-            outline: 1px solid $primary-color;
+            &:hover {
+              outline: 1px solid $ui-grey-color;
+            }
+
+            &:focus {
+              color: $clr2;
+              outline: 1px solid $primary-color !important;
+
+              .board-header-title {
+                flex: 1;
+              }
+            }
           }
         }
 
@@ -103,13 +117,6 @@
           display: block;
         }
       }
-    }
-
-    & h1 {
-      letter-spacing: -0.2px;
-      line-height: 52px;
-      font-family: Roboto-bold, sans-serif;
-      color: $primary-text-color;
     }
 
     .header {

@@ -5,10 +5,28 @@ import mainlogo from '../../assets/img/logo/mainlogo.png';
 import image1 from '../../assets/img/homepage/image1.jpg';
 import image2 from '../../assets/img/homepage/image2.png';
 
-export class HomePage extends React.Component {
+import { onLogin, loadUsers } from '../store/actions/user.actions';
+import { loadWorkspaces } from '../store/actions/workspace.actions';
+import { userService } from '../services/user.service';
+import { connect } from 'react-redux';
+
+class _HomePage extends React.Component {
   componentDidMount() {
     document.title = `Welcome to Wednesday!`;
   }
+
+  onLogin = async () => {
+    await this.props.onLogin({ username: 'guest', password: 'guest' }, null);
+    const user = userService.getLoggedinUser();
+    const workspaces = await this.props.loadWorkspaces(user);
+    this.props.loadUsers();
+
+    //Open first board of first workspace
+    const boardId = workspaces[0].boards[0]._id;
+    // loadWorkspace(workspaces[0])
+    this.props.history.push(`/board/${boardId}`);
+  };
+
   render() {
     return (
       <div className="main-home-page ">
@@ -21,7 +39,7 @@ export class HomePage extends React.Component {
               What would you like to manage with wednesday Work OS?
             </h2>
           </div>
-          <div className="started flex auto-center btn">
+          <div className="started flex auto-center btn" onClick={this.onLogin}>
             Get Started
             <NavigationChevronRight />
           </div>
@@ -79,3 +97,11 @@ export class HomePage extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  onLogin,
+  loadWorkspaces,
+  loadUsers,
+};
+
+export const HomePage = connect(null, mapDispatchToProps)(_HomePage);

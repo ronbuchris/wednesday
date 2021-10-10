@@ -41,7 +41,7 @@ function _BoardHeader({
                 onBlur(ev.target.innerText, board.title, board, 'board');
               }}
             >
-              <div>{board.title}</div>
+              <h1>{board.title}</h1>
             </div>
             <div className="header-btn toggle-desc btn">
               <Info />
@@ -127,12 +127,14 @@ function _BoardHeader({
         </div>
       </div>
       <div className="divider"></div>
-      {currView !== 'chart' && <BoardActions
-        onEditGroup={onEditGroup}
-        toggleMenus={toggleMenus}
-        onAddItem={onAddItem}
-        board={board}
-      />}
+      {currView !== 'chart' && (
+        <BoardActions
+          onEditGroup={onEditGroup}
+          toggleMenus={toggleMenus}
+          onAddItem={onAddItem}
+          board={board}
+        />
+      )}
     </div>
   );
 }

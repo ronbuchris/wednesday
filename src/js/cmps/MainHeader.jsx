@@ -1,12 +1,29 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { IoIosArrowDown } from 'react-icons/io';
-import { onLogin } from '../store/actions/user.actions.js';
-import mainlogo from '../../assets/img/logo/mainlogo.png';
+import {} from 'react-router-dom';
 
-function _MainHeader() {
+import { IoIosArrowDown } from 'react-icons/io';
+
+import { loadWorkspaces } from '../store/actions/workspace.actions';
+import { onLogin, loadUsers } from '../store/actions/user.actions';
+import mainlogo from '../../assets/img/logo/mainlogo.png';
+import { userService } from '../services/user.service';
+
+function _MainHeader({ onLogin, loadWorkspaces, loadUsers, history }) {
   const [active, setActive] = useState(false);
+
+  const onLoginGuest = async () => {
+    await onLogin({ username: 'guest', password: 'guest' }, null);
+    const user = userService.getLoggedinUser();
+    const workspaces = await loadWorkspaces(user);
+    loadUsers();
+
+    //Open first board of first workspace
+    const boardId = workspaces[0].boards[0]._id;
+    // loadWorkspace(workspaces[0])
+    history.push(`/board/${boardId}`);
+  };
 
   return (
     <header className="main-header main-container">
@@ -38,7 +55,9 @@ function _MainHeader() {
           <NavLink exact to="/login">
             Log in
           </NavLink>
-          <div className="started btn">Get Started</div>
+          <div className="started btn" onClick={onLoginGuest}>
+            Get Started
+          </div>
         </div>
       </div>
     </header>
@@ -47,6 +66,10 @@ function _MainHeader() {
 
 const mapDispatchToProps = {
   onLogin,
+  loadWorkspaces,
+  loadUsers,
 };
 
-export const MainHeader = connect(null, mapDispatchToProps)(_MainHeader);
+export const MainHeader = withRouter(
+  connect(null, mapDispatchToProps)(_MainHeader)
+);
