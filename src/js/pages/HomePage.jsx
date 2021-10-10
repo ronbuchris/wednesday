@@ -16,7 +16,7 @@ class _HomePage extends React.Component {
   }
 
   onLogin = async () => {
-    await this.props.onLogin({ username: 'guest', password: 'guest' }, null);
+    await this.props.onLogin({ username: 'ron', password: '123' }, null);
     const user = userService.getLoggedinUser();
     const workspaces = await this.props.loadWorkspaces(user);
     this.props.loadUsers();

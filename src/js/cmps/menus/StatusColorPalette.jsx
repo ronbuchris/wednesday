@@ -1,11 +1,11 @@
 import { queryColors } from '../../services/label.service';
 
 export function StatusColorPalette({
-  setColor,
+  onEditLabel,
   hoverColor,
   onAddLabel,
-  onEditLabel,
   statusIdx,
+  setColor,
 }) {
   return (
     <div className="status-cange-color flex auto-center">
