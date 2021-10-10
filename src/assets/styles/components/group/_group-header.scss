@@ -41,18 +41,27 @@
     z-index: 2;
     min-width: 180px;
     background-color: rgba(253, 253, 250, 0.95);
+
     @include for-narrow-layout {
       @media (min-width: $mobile-breakpoint) {
         background-color: unset;
       }
     }
 
+    .title {
+      margin-left: 5px;
+      padding: 0 5px;
+      &:hover {
+        outline: 1px dashed $wolf-color;
+      }
+    }
+
     &:hover {
-      padding: 10px;
+      padding: 18px;
 
       .drag-btn {
         display: flex;
-        position: relative;
+        position: absolute;
       }
     }
   }

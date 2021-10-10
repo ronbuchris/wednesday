@@ -15,7 +15,7 @@ export const itemService = {
     save,
 }
 
-const gCmpsOrder = ["member", "status", "date"]
+const gCmpsOrder = ["member", "status", "date", "number"]
 
 function getById(board, itemId) {
     const group = board.groups.find(group => group.items.find(item => item.id === itemId));
@@ -43,8 +43,8 @@ function getStatuses(board) {
 }
 
 function getDateData(board) {
-    const months = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
-    const dateCounter ={
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    const dateCounter = {
         Jan: {
             doneStatus: 0,
             elseStatus: 0
@@ -105,7 +105,7 @@ function getDateData(board) {
             const statusTitle = item.columns[statusIdx].label.title
             const dateObj = dateCounter[month]
             if (dateObj) {
-                if(statusTitle === 'Done') {
+                if (statusTitle === 'Done') {
                     dateObj.doneStatus++
                 } else {
                     dateObj.elseStatus++
@@ -122,7 +122,7 @@ function getDateData(board) {
     return dateCounter
 }
 function getPersonItem(board) {
-    const memberCounter ={}
+    const memberCounter = {}
     board.groups.forEach(group => {
         group.items.forEach(item => {
             const memberIdx = item.columns.findIndex(column => column.type === 'member')
@@ -141,7 +141,7 @@ function getNumbers(board) {
         min: 0,
         max: 0,
     }
-    const numArr =[]
+    const numArr = []
     board.groups.forEach(group => {
         group.items.forEach(item => {
             const numberIdx = item.columns.findIndex(column => column.type === 'number')
@@ -159,7 +159,7 @@ function getNumbers(board) {
 
 }
 function getGroupItemsCount(board) {
-    const itemsCounter ={}
+    const itemsCounter = {}
     board.groups.forEach(group => {
         itemsCounter[group.title] = group.items.length
     })

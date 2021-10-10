@@ -19,6 +19,7 @@ export function createColumn(column) {
         case 'status':
             return {
                 id: makeId(),
+                type: 'status',
                 title: 'Status',
                 width: 150,
                 labels: [
@@ -28,7 +29,30 @@ export function createColumn(column) {
                     createLabel('#fdab3d', 'Working on it'),
                 ]
             }
-            break;
+        case 'date':
+            return {
+                id: makeId(),
+                type: 'date',
+                title: 'Date',
+                width: 140,
+                date: ''
+            }
+        case 'member':
+            return {
+                id: makeId(),
+                type: "member",
+                title: 'Person',
+                width: 150,
+            }
+        case 'number':
+            return {
+                id: makeId(),
+                type: "number",
+                title: "Number",
+                width: 150,
+                number: ''
+
+            }
 
         default:
             break;

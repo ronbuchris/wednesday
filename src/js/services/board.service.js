@@ -63,7 +63,6 @@ export function createBoard(user, users, title) {
                 id: makeId(),
                 type: "member",
                 title: "Person",
-                pos: 1,
                 width: 140,
                 members: []
             },

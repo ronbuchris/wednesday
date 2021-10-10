@@ -93,7 +93,7 @@ export class _GroupHeader extends React.Component {
           <div className="drag-btn btn" {...provided.dragHandleProps}>
             <Drag />
           </div>
-          {group.title}
+          <div className="title">{group.title}</div>
         </div>
         <Droppable
           droppableId="all-columns"
