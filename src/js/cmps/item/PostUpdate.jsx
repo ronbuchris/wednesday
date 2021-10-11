@@ -1,34 +1,46 @@
 import { Component } from 'react';
-
-import FroalaEditor from 'react-froala-wysiwyg';
+import { Editor } from '@tinymce/tinymce-react'; 
+// import FroalaEditor from 'react-froala-wysiwyg';
 
 export class PostUpdate extends Component {
-  constructor() {
-    super();
-    this.handleModelChange = this.handleModelChange.bind(this);
-    this.state = {
-      model: '',
+ state = {
+      update: '',
     };
-  }
 
-  handleModelChange = (model) => {
+
+  handleModelChange = (e) => {
     this.setState({
-      model: model,
-    });
+      update: e.target.getContent()
+    })
   };
   onPost = () => {
-    this.props.onPost(this.state.model);
-    this.setState({ model: '' });
+    this.props.onPost(this.state.update);
+    this.setState({ update: '' });
   };
-
+  
   render() {
     return (
       <div>
         <div>
-          <FroalaEditor
-            model={this.state.model}
-            onModelChange={this.handleModelChange}
-          />
+        <Editor
+          apiKey="8oty9fy177hya366jthfhnnfan4vpydo8mqzzb04z3c5sapy"
+          initialValue=""
+          init={{
+            max_height: 145,
+            resize: false,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image',
+              'charmap print preview anchor help',
+              'searchreplace visualblocks code',
+              'insertdatetime media table paste wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic | \
+            alignleft aligncenter alignright | \
+            bullist numlist outdent indent | help'
+          }}
+          onChange={this.handleModelChange} />
         </div>
         <div className="side-panel-actions flex align-center space-between btn">
           <div className="left-side-actions flex">
@@ -43,7 +55,7 @@ export class PostUpdate extends Component {
               ev.preventDefault();
               this.onPost();
             }}
-          >
+            >
             Update
           </div>
         </div>
@@ -52,16 +64,20 @@ export class PostUpdate extends Component {
   }
 }
 
+{/* <FroalaEditor
+  model={this.state.model}
+  onModelChange={this.handleModelChange}
+/> */}
 // export class PostUpdate extends Component {
-//   state = {
-//     update: {
-//       txt: '',
-//     },
-//   };
-//   handleChange = (ev) => {
-//     ev.preventDefault();
-//     const field = ev.target.name;
-//     if (!field) return;
+  //   state = {
+    //     update: {
+      //       txt: '',
+      //     },
+      //   };
+      //   handleChange = (ev) => {
+        //     ev.preventDefault();
+        //     const field = ev.target.name;
+        //     if (!field) return;
 //     const value = ev.target.value;
 //     this.setState((prevState) => ({
 //       update: { ...prevState.update, [field]: value },
