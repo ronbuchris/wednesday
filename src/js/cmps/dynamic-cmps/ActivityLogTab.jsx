@@ -67,8 +67,25 @@ export class ActivityLogTab extends Component {
                       <img src={activity.createdBy.img} alt="user" />
                       {activity.createdBy.fullname}
                     </div>
-                    <div className="activity-activity align-center">
+                    <div className="activity-activity flex space-between align-center">
                       {activity.activity}
+                      {activity.from && (
+                        <div className="activity-info flex space-between align-center">
+                          <div
+                            className="from flex auto-center"
+                            style={{ backgroundColor: activity.from.color }}
+                          >
+                            {activity.from.title}
+                          </div>
+                          {'>'}
+                          <div
+                            className="to flex auto-center"
+                            style={{ backgroundColor: activity.to.color }}
+                          >
+                            {activity.to.title}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="divider"></div>

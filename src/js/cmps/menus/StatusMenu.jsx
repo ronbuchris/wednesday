@@ -11,6 +11,7 @@ import { StatusColorPalette } from './StatusColorPalette';
 
 import { saveLabel, removeLabel } from '../../store/actions/label.actions';
 import { toggleMenu } from '../../store/actions/board.actions';
+import { createActivity } from '../../services/board.service';
 
 export function _StatusMenu({
   toggleMenus,
@@ -55,6 +56,13 @@ export function _StatusMenu({
   const onChangeStatus = (item, group, column, label) => {
     const columnIdx = item.columns.findIndex(
       (currColumn) => currColumn.type === column.type
+    );
+
+    createActivity(
+      'Change status',
+      board,
+      item.columns[columnIdx].label,
+      label
     );
     item.columns[columnIdx].label = label;
     const newItem = { ...item };

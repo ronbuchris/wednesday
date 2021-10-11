@@ -89,12 +89,15 @@ export function createBoard(user, users, title) {
     }
 }
 
-export function createActivity(activity, board) {
+export function createActivity(activity, board, from, to) {
+
     const user = getLoggedinUser()
     const newActivity = {
         id: makeId(),
         createdAt: Date.now(),
         activity,
+        from,
+        to,
         createdBy: {
             _id: user._id,
             fullname: user.fullname,

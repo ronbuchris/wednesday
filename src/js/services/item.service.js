@@ -246,6 +246,7 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
     workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
+    console.log(`newWorkspace`, newWorkspace)
     return newWorkspace
 }
 

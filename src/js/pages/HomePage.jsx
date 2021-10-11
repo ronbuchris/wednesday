@@ -4,6 +4,9 @@ import NavigationChevronRight from 'monday-ui-react-core/dist/icons/NavigationCh
 import mainlogo from '../../assets/img/logo/mainlogo.png';
 import image1 from '../../assets/img/homepage/image1.jpg';
 import image2 from '../../assets/img/homepage/image2.png';
+import image3 from '../../assets/img/homepage/image3.png';
+import image4 from '../../assets/img/homepage/image4.png';
+import image5 from '../../assets/img/homepage/image5.png';
 
 import { onLogin, loadUsers } from '../store/actions/user.actions';
 import { loadWorkspaces } from '../store/actions/workspace.actions';
@@ -43,37 +46,48 @@ class _HomePage extends React.Component {
             Get Started
             <NavigationChevronRight />
           </div>
-          <img src={image2} alt="features" />
-          <div className="home-section flex">
-            <div className="text">
+          <img src={image2} className="hero" alt="features" />
+          <div className="home-section flex reverse">
+            <div className="text flex column justify-center">
               <h2 className="title">Manage everything in one workspace</h2>
               <div className="info">
                 Planning, tracking and delivering your team’s best work has
                 never been easier
               </div>
             </div>
+            <img src={image3} alt="features" />
           </div>
           <div className="home-section flex">
-            <div className="text">
+            <div className="text flex column justify-center">
               <h2 className="title">Visualize work with Views</h2>
               <div className="info">
                 View data as a kanban, dahsboard and more
               </div>
             </div>
-            <img src={image1} alt="features" />
+            <img src={image4} alt="features" />
           </div>
-          <div className="home-section flex">
-            <div className="text">
-              <h2 className="title"></h2>
-              <div className="info"></div>
+          <div className="home-section flex reverse">
+            <div className="text flex column justify-center">
+              <h2 className="title">Set up in minutes</h2>
+              <div className="info">
+                Get started fast with hundreds of visual and customizable
+                templates - or create your own
+              </div>
             </div>
-            {/* <img src={image1} alt="features" /> */}
+            <img src={image5} alt="features" />
           </div>
 
           <div className="bottom-section">
             <h2>Try wednesday for your team</h2>
             <div className="info">
               14-day free trial | No credit card needed
+            </div>
+            <div
+              className="started flex auto-center btn"
+              onClick={this.onLogin}
+            >
+              Get Started
+              <NavigationChevronRight />
             </div>
           </div>
           <footer className="flex column">
