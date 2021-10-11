@@ -4,12 +4,12 @@ import Time from 'monday-ui-react-core/dist/icons/Time';
 import { FaCaretDown } from 'react-icons/fa';
 import { UpdateMenu } from '../menus/UpdateMenu';
 
-export function ItemUpdatesList({ item, onPost, toggleMenu, toggleMenus }) {
+export function ItemUpdatesList({ item, onPost, toggleMenu, toggleMenus, onRemoveUpdate }) {
   return (
     <div className="item-updates-container">
       <PostUpdate onPost={onPost} />
       <div className="">
-        {item.updates.map((update) => {
+        {item.updates.map((update, idx) => {
           return (
             <div className="update-card br8" key={update.id}>
               <div className="post-header flex align-center">
@@ -37,11 +37,15 @@ export function ItemUpdatesList({ item, onPost, toggleMenu, toggleMenus }) {
                     </div>
                     {toggleMenus.updateMenu === update.id && (
                       <UpdateMenu
+                        onRemoveUpdate={onRemoveUpdate}
                         toggleMenus={toggleMenus}
                         toggleMenu={toggleMenu}
+                        item={item}
+                        idx={idx}
                       />
                     )}
                   </div>
+
                 </div>
               </div>
               <div

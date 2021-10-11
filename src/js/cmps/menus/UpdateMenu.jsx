@@ -1,6 +1,6 @@
 import Delete from 'monday-ui-react-core/dist/icons/Delete';
 
-export function UpdateMenu({ board, onRemoveUpdate, toggleMenus, toggleMenu }) {
+export function UpdateMenu({ item,idx, onRemoveUpdate, toggleMenus, toggleMenu }) {
   return (
     <div className="update-menu menu-modal">
       <div className="menu-section fs14">
@@ -8,7 +8,7 @@ export function UpdateMenu({ board, onRemoveUpdate, toggleMenus, toggleMenu }) {
           className="btn flex align-center header-btn"
           onClick={(ev) => {
             ev.stopPropagation();
-            // onRemoveUpdate(board._id);
+            onRemoveUpdate(item,idx);
             toggleMenu(toggleMenus);
           }}
         >

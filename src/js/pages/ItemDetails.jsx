@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { loadItem, onPost } from '../store/actions/item.actions';
+import { loadItem, onPost, saveItem} from '../store/actions/item.actions';
 import { loadBoard } from '../store/actions/board.actions';
 import { loadWorkspaceByBoardId } from '../store/actions/workspace.actions';
 import Close from 'monday-ui-react-core/dist/icons/Close';
@@ -44,6 +44,15 @@ class _ItemDetails extends Component {
     this.setState({ toggleNav: bool });
   };
 
+  onRemoveUpdate = (item, updateIdx) => {
+    const { user, workspace, board, saveItem} = this.props
+    const group = board.groups.find(group => {
+      return group.items.find(gItem => gItem.id === item.id)
+    })
+    item.updates.splice(updateIdx,1)
+    const newItem = JSON.parse(JSON.stringify(item));
+    saveItem(newItem, user, workspace, group, false, board, null)
+  }
   render() {
     const { toggleMenu, toggleMenus, item, board } = this.props;
     const { toggleNav } = this.state;
@@ -92,6 +101,7 @@ class _ItemDetails extends Component {
           <ActivityUpdateTab
             toggleMenu={toggleMenu}
             toggleMenus={toggleMenus}
+            onRemoveUpdate={this.onRemoveUpdate}
             item={item}
             onPost={this.onPost}
           />
@@ -120,6 +130,7 @@ const mapDispatchToProps = {
   loadBoard,
   onPost,
   toggleMenu,
+  saveItem
 };
 export const ItemDetails = withRouter(
   connect(mapStateToProps, mapDispatchToProps)(_ItemDetails)
