@@ -1,5 +1,6 @@
 import { makeId } from '../services/util.service'
 import { createItem } from './item.service'
+import { createActivity } from './board.service'
 var randomColor = require('randomcolor');
 
 export const groupService = {
@@ -45,7 +46,7 @@ function query(board, ActionBy = {}) {
             }
         })
     }
-    const { searchBy, statuses, groupsIds, sortStore,persons } = ActionBy
+    const { searchBy, statuses, groupsIds, sortStore, persons } = ActionBy
     const groupsToReturn = (searchBy || statuses?.length || groupsIds?.length || sortStore || persons?.length) ? groups : board.groups
     return groupsToReturn
 }
@@ -62,6 +63,7 @@ function searchItem(board, ActionBy) {
     })
     return groups
 }
+
 function sortGroups(board, ActionBy) {
     const { sortBy, sortOrder } = ActionBy.sortStore
     var groups = []
@@ -96,6 +98,7 @@ function sortGroups(board, ActionBy) {
     })
     return groups
 }
+
 function filterGroups(board, ActionBy) {
     var groups = []
     groups = board.groups.filter(group => {
@@ -103,9 +106,10 @@ function filterGroups(board, ActionBy) {
     })
     return groups
 }
+
 function filterPersons(board, ActionBy) {
     const memberIdx = board.cmpsOrder.findIndex(cmp => cmp === 'member')
-    const filteredGroups = board.groups.reduce((acc,group) => {
+    const filteredGroups = board.groups.reduce((acc, group) => {
         const newGroup = {
             ...group, items: group.items.filter(item => {
                 return item.columns[memberIdx].members.some(member => {
@@ -115,9 +119,10 @@ function filterPersons(board, ActionBy) {
         }
         acc.push(newGroup)
         return acc
-    },[])
+    }, [])
     return filteredGroups
 }
+
 function filterStatus(ActionBy, groupsToFilter, statusIdx) {
     var groups = []
     groups = groupsToFilter.map(group => {
@@ -132,27 +137,19 @@ function filterStatus(ActionBy, groupsToFilter, statusIdx) {
 
 //EDIT-ADD GROUP
 function save(workspace, board, group, user, groupId, Duplicate) {
-    const activity = {
-        id: makeId(),
-        createdAt: Date.now(),
-        activity: 'add group',
-        createdBy: {
-            _id: user._id,
-            fullname: user.fullname,
-            img: user.img
-        }
-    }
-    board.activities.push(activity)
     const groupIdx = board.groups.findIndex(currGroup => currGroup.id === groupId);
     if (Duplicate || groupId) {
         const newGroup = Duplicate ? duplicateGroup(group) : createGroup(user, board)
+        Duplicate ? createActivity('Duplicated Group', board) : createActivity('Updated Group', board)
         board.groups.splice(groupIdx + 1, 0, newGroup);
     }
     else if (group.id) {
         const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id);
+        createActivity('Duplicated Group', board)
         board.groups.splice(groupIdx, 1, group);
     } else {
         const newGroup = createGroup(user, board)
+        createActivity('Created Group', board)
         board.groups.unshift(newGroup)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
@@ -204,6 +201,7 @@ function removeGroup(workspace, board, groupId) {
     board.groups.splice(groupIdx, 1)
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
     workspace.boards.splice(boardIdx, 1, board)
+    createActivity('Removed Group', board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }

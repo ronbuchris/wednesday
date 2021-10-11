@@ -6,10 +6,22 @@ export function StatusColorPalette({
   onAddLabel,
   statusIdx,
   setColor,
+  board,
 }) {
+  const getColors = () => {
+    const statusIdx = board.columns.findIndex((col) => col.type === 'status');
+    const takenColors = board.columns[statusIdx].labels.map(
+      (label) => label.color
+    );
+    const colors = queryColors().filter((color) => {
+      return !takenColors.includes(color);
+    });
+    return colors;
+  };
+
   return (
-    <div className="status-cange-color flex auto-center">
-      {queryColors().map((color) => {
+    <div className="status-cange-color flex">
+      {getColors().map((color) => {
         return (
           <div
             key={color}

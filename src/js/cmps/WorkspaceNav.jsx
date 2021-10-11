@@ -96,7 +96,7 @@ class _WorkspaceNav extends Component {
             </button>
             <button className="flex menu-button-wrapper align-center">
               <Filter />
-              <span>Filter</span>
+              <span>Filters</span>
             </button>
             <button className="flex menu-button-wrapper align-center search">
               <Search />

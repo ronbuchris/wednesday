@@ -203,11 +203,12 @@ export function _StatusMenu({
       </div>
       {isEdit && (
         <StatusColorPalette
-          setColor={setColor}
+          onEditLabel={onEditLabel}
           hoverColor={hoverColor}
           onAddLabel={onAddLabel}
           statusIdx={statusIdx}
-          onEditLabel={onEditLabel}
+          setColor={setColor}
+          board={board}
         />
       )}
       <div className="divider"></div>

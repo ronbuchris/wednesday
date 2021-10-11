@@ -77,8 +77,8 @@ async function signup(userCred) {
 async function logout() {
     // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // socketService.emit('unset-user-socket');
-     await httpService.post('auth/logout')
-     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    await httpService.post('auth/logout')
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
 }
 
 function _saveLocalUser(user) {
@@ -94,7 +94,7 @@ function save(user) {
     }
 }
 
-function getLoggedinUser() {
+export function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 

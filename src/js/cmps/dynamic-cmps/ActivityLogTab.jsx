@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Time from 'monday-ui-react-core/dist/icons/Time';
 import DropdownChevronDown from 'monday-ui-react-core/dist/icons/DropdownChevronDown';
+import ReactTimeAgo from 'react-time-ago';
 
 export class ActivityLogTab extends Component {
   state = {
@@ -53,15 +54,22 @@ export class ActivityLogTab extends Component {
                   key={activity.id}
                   className="single-activity flex align-center column"
                 >
-                  <div className="activity-box flex align-center space-between">
-                    <div className="activity-time">
+                  <div className="activity-box flex align-center">
+                    <div className="activity-time flex align-center">
                       <Time />
-                      17m
+                      <ReactTimeAgo
+                        date={activity.createdAt}
+                        locale="en-US"
+                        timeStyle="mini"
+                      />
                     </div>
-                    <div className="activity-member">
+                    <div className="activity-member flex align-center">
+                      <img src={activity.createdBy.img} alt="user" />
                       {activity.createdBy.fullname}
                     </div>
-                    <div className="activity-activity">{activity.activity}</div>
+                    <div className="activity-activity align-center">
+                      {activity.activity}
+                    </div>
                   </div>
                   <div className="divider"></div>
                 </div>

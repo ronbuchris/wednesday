@@ -89,7 +89,12 @@ class _ItemDetails extends Component {
           </div>
         </div>
         {toggleNav ? (
-          <ActivityUpdateTab item={item} onPost={this.onPost} />
+          <ActivityUpdateTab
+            toggleMenu={toggleMenu}
+            toggleMenus={toggleMenus}
+            item={item}
+            onPost={this.onPost}
+          />
         ) : (
           <ActivityLogTab item={item} />
         )}

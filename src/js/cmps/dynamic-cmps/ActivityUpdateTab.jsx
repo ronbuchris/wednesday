@@ -6,10 +6,17 @@ import { ItemUpdatesList } from '../item/ItemUpdatesList';
 // ReactDOM.render(<FroalaEditorComponent tag='textarea' />, document.getElementById('editor'));
 export class ActivityUpdateTab extends Component {
   render() {
-    const { item, board, onPost } = this.props;
+    const { item, board, onPost, toggleMenu, toggleMenus } = this.props;
     return (
       <div className="slide-panel-bottom">
-        {item && <ItemUpdatesList item={item} onPost={onPost} />}
+        {item && (
+          <ItemUpdatesList
+            toggleMenus={toggleMenus}
+            toggleMenu={toggleMenu}
+            onPost={onPost}
+            item={item}
+          />
+        )}
         {board && <BoardUpdatesList board={board} />}
       </div>
     );

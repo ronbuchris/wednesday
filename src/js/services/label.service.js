@@ -1,5 +1,6 @@
 
 import { makeId } from '../services/util.service'
+import { createActivity } from './board.service'
 
 export const labelService = {
     save,
@@ -33,7 +34,9 @@ function save(workspace, board, columnIdx, label = null, labelIdx, prevColor, ty
                 if (currLabel.id === label.id) currLabel[type] = label[type]
             })
         })
+        createActivity('Changed Status', board)
     } else {
+        createActivity('Created Status', board)
         const newLabel = createLabel(label)
         board.columns[columnIdx].labels.push(newLabel)
     }

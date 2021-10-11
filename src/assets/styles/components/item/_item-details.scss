@@ -12,28 +12,65 @@
     .post-header {
       padding: 15px;
 
-      img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-      .username-wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        line-height: 18px;
-        margin-left: 8px;
-        .board-update{
-          overflow: hidden;
-           text-overflow: ellipsis;
-           font-size: 12px;
+      .post-title {
+        position: relative;
+        flex: 1;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        .username-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          line-height: 18px;
+          margin-left: 8px;
+
+          .board-update {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: rem(13px);
             color: $clr4;
-             margin-top: 4px;
-             svg{
-               width: 17px;
-               height: 17px;
-               margin-right: 3px;
-             }
+            margin-top: 4px;
+            gap: 4px;
+
+            svg {
+              width: 17px;
+              height: 17px;
+              margin-right: 3px;
+            }
+
+            .hover {
+              &:hover {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+
+        .post-top-right-wrapper {
+          position: absolute;
+          top: 0;
+          right: 0;
+          gap: 5px;
+
+          .time {
+            color: $clr3;
+            gap: 3px;
+            svg {
+              width: 15px;
+              height: 15px;
+            }
+          }
+
+          .options {
+            &:hover {
+              background-color: $ui-grey-color;
+            }
+          }
         }
       }
     }
@@ -87,8 +124,6 @@
           }
         }
       }
-
-
     }
 
     .body-text {

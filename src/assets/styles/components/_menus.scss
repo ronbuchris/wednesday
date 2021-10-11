@@ -256,7 +256,7 @@
 .person-menu {
   width: 264px;
   top: 100%;
-  left: 0;
+  right: 0;
 
   .search-person {
     height: 34px;
@@ -368,6 +368,12 @@
   }
 }
 
+.update-menu {
+  top: 150%;
+  right: 0;
+  width: 264px;
+}
+
 .number-menu {
   top: 0;
   right: 100%;
@@ -442,6 +448,7 @@
     width: 100%;
     background-color: $clr6;
     flex-wrap: wrap;
+    padding-left: 7px;
 
     .color-icon {
       width: 20px;
@@ -742,6 +749,8 @@
 
     .activity-log-wrapper {
       height: 100%;
+      padding: 0 25px;
+      overflow-y: scroll;
 
       .log-filter {
         margin-top: 24px;
@@ -776,8 +785,7 @@
       }
       .logs {
         width: 100%;
-        flex: 1;
-        height: 100%;
+        // flex: 1;
 
         .single-activity {
           width: 100%;
@@ -788,6 +796,33 @@
             height: 39px;
             font-size: rem(14px);
             padding: 0 8px 0 16px;
+            justify-content: flex-start;
+
+            .activity-time {
+              flex-basis: 56px;
+              color: $clr3;
+              gap: 3px;
+
+              svg {
+                width: 15px;
+                height: 15px;
+              }
+            }
+
+            .activity-member {
+              flex: 1 0 0;
+              gap: 8px;
+
+              img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+              }
+            }
+
+            .activity-activity {
+              flex: 1.5 0 0;
+            }
           }
         }
       }

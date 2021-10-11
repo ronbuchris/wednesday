@@ -20,6 +20,10 @@
 
   .dropdown-header {
     height: 30px;
+
+    span {
+      font-size: rem(14px);
+    }
   }
 
   &.close {

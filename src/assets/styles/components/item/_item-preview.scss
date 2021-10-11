@@ -61,10 +61,8 @@
 
 .number-col {
   position: relative;
-  align-items: center;
-  justify-content: center;
   border-bottom: 1px solid $ui-grey-color;
-  background-color: #f5f6f8;
+  background-color: $clr6;
   padding: 5px;
   color: $text-column-color;
 
@@ -139,7 +137,7 @@
       background-color: #fff;
       outline: 1px dashed $primary-color;
 
-      .number-field {
+      .number-col {
         background-color: $clr5 !important;
       }
       .clear-number {

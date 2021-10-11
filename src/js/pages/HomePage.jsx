@@ -43,6 +43,7 @@ class _HomePage extends React.Component {
             Get Started
             <NavigationChevronRight />
           </div>
+          <img src={image2} alt="features" />
           <div className="home-section flex">
             <div className="text">
               <h2 className="title">Manage everything in one workspace</h2>
@@ -51,7 +52,6 @@ class _HomePage extends React.Component {
                 never been easier
               </div>
             </div>
-            <img src={image2} alt="features" />
           </div>
           <div className="home-section flex">
             <div className="text">
