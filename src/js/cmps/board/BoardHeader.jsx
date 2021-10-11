@@ -108,7 +108,7 @@ function _BoardHeader({
         >
           <div className="full flex auto-center">
             <Chart />
-            Chart
+            Dashboard
           </div>
         </div>
         <div
