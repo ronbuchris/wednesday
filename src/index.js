@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
 
 import './assets/styles/styles.scss';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
+
 import { RootCmp } from './RootCmp';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
 import { store } from './js/store/store'
-import { BrowserRouter as Router } from 'react-router-dom'
+
+TimeAgo.addDefaultLocale(en)
 
 
 ReactDOM.render(

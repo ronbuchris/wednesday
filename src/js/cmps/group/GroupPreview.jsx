@@ -57,18 +57,7 @@ class _GroupPreview extends React.Component {
     return txt;
   };
   onRemoveItem = (itemId) => {
-    const { workspace, group, removeItem, board, user } = this.props;
-    const activity = {
-      id: this.makeId(),
-      createdAt: Date.now(),
-      activity: 'Removed item',
-      createdBy: {
-        _id: user._id,
-        fullname: user.fullname,
-        img: user.img,
-      },
-    };
-    board.activities.unshift(activity);
+    const { workspace, group, removeItem, board } = this.props;
     this.saveUndo(workspace);
     removeItem(workspace, group, itemId, board);
     eventBusService.emit('user-msg', {

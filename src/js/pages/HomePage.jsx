@@ -16,7 +16,7 @@ class _HomePage extends React.Component {
   }
 
   onLogin = async () => {
-    await this.props.onLogin({ username: 'guest', password: 'guest' }, null);
+    await this.props.onLogin({ username: 'ron', password: '123' }, null);
     const user = userService.getLoggedinUser();
     const workspaces = await this.props.loadWorkspaces(user);
     this.props.loadUsers();
@@ -43,6 +43,7 @@ class _HomePage extends React.Component {
             Get Started
             <NavigationChevronRight />
           </div>
+          <img src={image2} alt="features" />
           <div className="home-section flex">
             <div className="text">
               <h2 className="title">Manage everything in one workspace</h2>
@@ -51,7 +52,6 @@ class _HomePage extends React.Component {
                 never been easier
               </div>
             </div>
-            <img src={image2} alt="features" />
           </div>
           <div className="home-section flex">
             <div className="text">

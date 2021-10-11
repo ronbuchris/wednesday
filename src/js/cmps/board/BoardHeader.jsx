@@ -3,11 +3,12 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
+import Activity from 'monday-ui-react-core/dist/icons/Activity';
 import Invite from 'monday-ui-react-core/dist/icons/Invite';
 import Menu from 'monday-ui-react-core/dist/icons/Menu';
 import Table from 'monday-ui-react-core/dist/icons/Table';
 import Favorite from 'monday-ui-react-core/dist/icons/Favorite';
-import Chart from 'monday-ui-react-core/dist/icons/Chart';
+import Dashboard from 'monday-ui-react-core/dist/icons/Dashboard';
 import Info from 'monday-ui-react-core/dist/icons/Info';
 import { BsKanban } from 'react-icons/bs';
 
@@ -63,6 +64,7 @@ function _BoardHeader({
               history.push(location.pathname + `/activity_log`);
             }}
           >
+            <Activity />
             Activity
           </div>
           <div className="add-to-board btn br4"> + Add to board</div>
@@ -107,7 +109,7 @@ function _BoardHeader({
           }}
         >
           <div className="full flex auto-center">
-            <Chart />
+            <Dashboard />
             Dashboard
           </div>
         </div>

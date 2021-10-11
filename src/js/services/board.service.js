@@ -1,9 +1,9 @@
 import { makeId } from '../services/util.service'
 
-
 import { storageService } from "./async-storage.service"
 import { createGroup } from './group.service'
 import { createColumn } from './column.service'
+import { getLoggedinUser } from './user.service'
 
 export const boardService = { getById, save, getBoardById, remove, toggleMenu, dragAndDrop }
 const STORAGE_KEY = 'workspaceDB'
@@ -67,7 +67,6 @@ export function createBoard(user, users, title) {
                 members: []
             },
             createColumn('status'),
-            ,
             {
                 id: makeId(),
                 type: "date",
@@ -88,6 +87,21 @@ export function createBoard(user, users, title) {
         activities: [],
         cmpsOrder: ["member", "status", "date", "number"]
     }
+}
+
+export function createActivity(activity, board) {
+    const user = getLoggedinUser()
+    const newActivity = {
+        id: makeId(),
+        createdAt: Date.now(),
+        activity,
+        createdBy: {
+            _id: user._id,
+            fullname: user.fullname,
+            img: user.img,
+        },
+    };
+    board.activities.unshift(newActivity);
 }
 
 function toggleMenu(toggleMenus, menuToOpen, id) {

@@ -21,9 +21,8 @@ export function GroupFooter({
             column={column}
           />
         ) : column.type === 'number' ? (
-          <div className="number-container">
+          <div className="number-container" key={idx}>
             <NumberFooter
-              key={column.id}
               columnIdx={idx}
               board={board}
               group={group}
@@ -42,7 +41,7 @@ export function GroupFooter({
           </div>
         ) : (
           <div
-            key={column.id}
+            key={column.title}
             style={{ minWidth: column.width }}
             className="empty-footer-column"
           ></div>

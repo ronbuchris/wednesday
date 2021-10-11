@@ -191,7 +191,7 @@ export function ItemColumn({
       case 'number':
         return (
           <div
-            className="item-col number-col cell-cmp"
+            className="item-col number-col flex auto-center cell-cmp"
             style={{ minWidth: board.columns[findIdx('number')].width }}
           >
             <div

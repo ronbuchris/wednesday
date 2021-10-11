@@ -14,7 +14,7 @@ function _MainHeader({ onLogin, loadWorkspaces, loadUsers, history }) {
   const [active, setActive] = useState(false);
 
   const onLoginGuest = async () => {
-    await onLogin({ username: 'guest', password: 'guest' }, null);
+    await onLogin({ username: 'ron', password: '123' }, null);
     const user = userService.getLoggedinUser();
     const workspaces = await loadWorkspaces(user);
     loadUsers();

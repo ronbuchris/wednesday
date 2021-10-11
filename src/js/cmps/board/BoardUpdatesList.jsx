@@ -1,4 +1,8 @@
 import Board from 'monday-ui-react-core/dist/icons/Board';
+import Time from 'monday-ui-react-core/dist/icons/Time';
+import ReactTimeAgo from 'react-time-ago';
+
+import { FaCaretDown } from 'react-icons/fa';
 
 export function BoardUpdatesList({ board }) {
   return (
@@ -9,12 +13,31 @@ export function BoardUpdatesList({ board }) {
             return (
               <div className="update-card br8" key={update.id}>
                 <div className="post-header flex align-center">
-                  <img src={update.createdBy.img} alt="user-img" />
-                  <div className="username-wrapper">
-                    {update.createdBy.fullname}
-                    <div className="board-update flex align-center">
-                      <Board />
-                      {`${board.title} > ${group.title} > ${item.title}`}
+                  <div className="post-title flex">
+                    <img src={update.createdBy.img} alt="user-img" />
+                    <div className="username-wrapper">
+                      {update.createdBy.fullname}
+                      <div className="board-update flex align-center">
+                        <Board />
+                        <span className="hover btn">{board.title}</span>
+                        {'>'}
+                        <span className="hover btn">{group.title}</span>
+                        {'>'}
+                        <span className="hover btn">{item.title}</span>
+                      </div>
+                    </div>
+                    <div className="post-top-right-wrapper flex fs14">
+                      <div className="time flex auto-center">
+                        <Time />
+                        <ReactTimeAgo
+                          date={update.createdAt}
+                          locale="en-US"
+                          timeStyle="mini"
+                        />
+                      </div>
+                      <div className="options btn flex auto-center br4">
+                        <FaCaretDown />
+                      </div>
                     </div>
                   </div>
                 </div>

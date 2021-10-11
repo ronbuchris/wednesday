@@ -1,4 +1,5 @@
 import { makeId } from '../services/util.service'
+import { createActivity } from './board.service'
 
 export const itemService = {
     getGroupItemsCount,
@@ -121,6 +122,7 @@ function getDateData(board) {
     })
     return dateCounter
 }
+
 function getPersonItem(board) {
     const memberCounter = {}
     board.groups.forEach(group => {
@@ -158,6 +160,7 @@ function getNumbers(board) {
     return numbers
 
 }
+
 function getGroupItemsCount(board) {
     const itemsCounter = {}
     board.groups.forEach(group => {
@@ -197,6 +200,7 @@ function remove(workspace, group, itemId, board) {
     group.items.splice(itemIdx, 1)
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
     workspace.boards.splice(boardIdx, 1, board)
+    createActivity('Removed Item', board)
     const returnedWorkspace = { ...workspace }
     return returnedWorkspace
 }
@@ -231,10 +235,12 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
     if (Duplicate || item.id) {
         const itemToCopy = JSON.parse(JSON.stringify(item))
         const newItem = Duplicate ? duplicateItem(itemToCopy) : item
+        Duplicate ? createActivity('Duplicated Item', board) : createActivity('Updated Item', board)
         Duplicate ? group.items.splice(itemIdx + 1, 0, newItem)
             : group.items.splice(itemIdx, 1, item)
     } else {
         const newItem = createItem(item, user, board)
+        createActivity('Added Item', board)
         addToTop ? group.items.unshift(newItem) : group.items.push(newItem)
     }
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
@@ -260,7 +266,6 @@ function duplicateItems(workspace, board, itemsIds) {
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
-
 
 export function createItem(title, user, board) {
     const cmpOrder = board.cmpsOrder ? board.cmpsOrder : gCmpsOrder
