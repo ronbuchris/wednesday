@@ -62,8 +62,7 @@ function _PersonMenu({
       <div className="members-list  flex column">
         {users.map((user) => {
           const isExcluded = checkMember(user._id);
-          if (isExcluded) return <div key={user._id}></div>;
-          {
+          if (isExcluded) return <div key={user._id}></div>
             return (
               <div
                 className="wrapper"
@@ -84,7 +83,6 @@ function _PersonMenu({
                 </div>
               </div>
             );
-          }
         })}
         <div
           className="invite br4 flex align-center"

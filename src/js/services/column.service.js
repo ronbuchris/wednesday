@@ -1,19 +1,6 @@
 import { makeId } from '../services/util.service'
 import { createLabel } from './label.service'
 
-
-
-function save(column, workspace, board) {
-    if (column?.id) {
-
-    } else {
-        const newColumn = createColumn(column);
-        board.columns.push(newColumn);
-    }
-
-    return { ...workspace }
-}
-
 export function createColumn(column) {
     switch (column) {
         case 'status':

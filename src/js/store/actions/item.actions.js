@@ -170,10 +170,11 @@ export function onSort(board, sortStore) {
 export function removeItem(workspace, groupOrBoard, itemId, board) {
     return async (dispatch) => {
         try {
+            var newWorkspace
             if (typeof itemId === 'string') {
-                var newWorkspace = itemService.remove(workspace, groupOrBoard, itemId, board)
+                newWorkspace = itemService.remove(workspace, groupOrBoard, itemId, board)
             } else {
-                var newWorkspace = itemService.removeSelected(workspace, groupOrBoard, itemId)
+                newWorkspace = itemService.removeSelected(workspace, groupOrBoard, itemId)
                 dispatch({
                     type: 'TOGGLE_SELECT',
                     selectedItems: []
