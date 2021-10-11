@@ -26,7 +26,7 @@ function _MainHeader({ onLogin, loadWorkspaces, loadUsers, history }) {
   };
 
   return (
-    <header className="main-header main-container">
+    <header className="main-header align-center main-container">
       <div className="header-content flex space-between align-center">
         <div className="left flex">
           <NavLink exact to="/">

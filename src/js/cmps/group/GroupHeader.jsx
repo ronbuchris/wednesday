@@ -81,7 +81,7 @@ export class _GroupHeader extends React.Component {
         <div
           onMouseEnter={() => this.onHover(true, group.id)}
           onMouseLeave={() => this.onHover(false, group.id)}
-          className="group-title fs18 flex align-center fs18"
+          className="group-title flex align-center fs18"
           style={{ color: group.style.color }}
           contentEditable="true"
           suppressContentEditableWarning={true}

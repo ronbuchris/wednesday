@@ -216,7 +216,7 @@ export function ItemColumn({
                 setFocus(true);
               }}
             >
-              {typeof column.number === 'number' && (
+              {!isFocus && typeof column.number === 'number' && (
                 <span className="unit">
                   {board.columns[findIdx('number')].unit}
                 </span>

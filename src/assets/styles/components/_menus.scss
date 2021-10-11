@@ -810,7 +810,7 @@
             }
 
             .activity-member {
-              flex: 1 0 0;
+              flex: 0.8 0 0;
               gap: 8px;
 
               img {
@@ -822,6 +822,27 @@
 
             .activity-activity {
               flex: 1.5 0 0;
+              gap: 15px;
+            }
+
+            .activity-info {
+              height: 100%;
+              flex: 1 1 auto;
+
+              .from {
+                color: #fff;
+                width: 70px;
+                height: 40px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+
+              .to {
+                color: #fff;
+                width: 70px;
+                height: 40px;
+              }
             }
           }
         }

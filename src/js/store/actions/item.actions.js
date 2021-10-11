@@ -167,11 +167,11 @@ export function onSort(board, sortStore) {
     }
 }
 
-export function removeItem(workspace, groupOrBoard, itemId,board) {
+export function removeItem(workspace, groupOrBoard, itemId, board) {
     return async (dispatch) => {
         try {
             if (typeof itemId === 'string') {
-                var newWorkspace = itemService.remove(workspace, groupOrBoard, itemId,board)
+                var newWorkspace = itemService.remove(workspace, groupOrBoard, itemId, board)
             } else {
                 var newWorkspace = itemService.removeSelected(workspace, groupOrBoard, itemId)
                 dispatch({
