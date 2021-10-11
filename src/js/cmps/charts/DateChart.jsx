@@ -1,7 +1,6 @@
 import { Bar } from 'react-chartjs-2';
 
 export function DateChart({ dateCounter}) {
-    const rand = () => Math.round(Math.random() * 20 - 10);
     const values = Object.values(dateCounter)
     const data = {
         labels: Object.keys(dateCounter),

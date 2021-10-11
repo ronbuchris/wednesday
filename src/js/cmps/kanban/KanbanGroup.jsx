@@ -35,7 +35,7 @@ export class KanbanGroup extends Component {
   };
 
   render() {
-    const { provided, group, onAddItem, board, snapshot } = this.props;
+    const { provided, group, onAddItem, board } = this.props;
     const { itemTitle, isFocused } = this.state;
 
     return (

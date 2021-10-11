@@ -67,7 +67,6 @@ export function createBoard(user, users, title) {
                 members: []
             },
             createColumn('status'),
-            ,
             {
                 id: makeId(),
                 type: "date",

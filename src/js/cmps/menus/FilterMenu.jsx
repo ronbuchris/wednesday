@@ -1,4 +1,3 @@
-import fi from 'date-fns/esm/locale/fi/index.js';
 import { connect } from 'react-redux';
 import { filterGroups } from '../../store/actions/group.actions';
 import { getPersonItem } from '../../store/actions/item.actions';

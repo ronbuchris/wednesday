@@ -10,22 +10,20 @@ import Item from 'monday-ui-react-core/dist/icons/Item';
 import Person from 'monday-ui-react-core/dist/icons/Person';
 import Activity from 'monday-ui-react-core/dist/icons/Activity';
 import Update from 'monday-ui-react-core/dist/icons/Update';
-import { DateChart } from '../charts/DateChart';
 import { PieChart } from '../charts/PieChart';
 import { GroupItemsCount } from '../charts/GroupItemsCount';
 
 class _DashboardView extends React.Component {
   async componentDidMount() {
-    const { board, loadStatuses, getPersonItem, getDateData, getGroupItemsCount, getNumbers} = this.props;
+    const { board, loadStatuses, getPersonItem, getGroupItemsCount, getNumbers} = this.props;
     loadStatuses(board);
     getPersonItem(board);
     getGroupItemsCount(board);
     getNumbers(board)
-    // getDateData(board)
   }
 
   render() {
-    const { statuses, personsCount, board, dateCounter, groupItemsCount, numbers } = this.props;
+    const { statuses, personsCount, board, groupItemsCount, numbers } = this.props;
     if (!statuses.length) return <div><Loader/></div>;
     const numbersSum = Object.values(statuses[0]);
     var sum = 0
