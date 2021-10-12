@@ -24,6 +24,17 @@ class _ItemDetails extends Component {
     document.title = `${board.title} - ${this.props.item.title}`;
   }
 
+
+  async componentDidUpdate(prevProps, prevState) {
+    const { loadBoard, match, workspace, board } = this.props;
+    const { boardId } = match.params;
+    this.loadItem()
+    if (prevProps.match.params.boardId !== boardId) {
+      await loadBoard(workspace, boardId);
+      document.title = `${board.title} - ${this.props.item.title}`;
+    }
+  }
+
   onCloseItem = () => {
     const { boardId } = this.props.match.params;
     this.props.history.push(`/board/${boardId}`);
