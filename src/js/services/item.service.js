@@ -169,15 +169,19 @@ function getGroupItemsCount(board) {
     return itemsCounter
 }
 
-function onPost(update, user, item, groups, workspace) {
+function onPost(update, user, item, board, workspace) {
     const newUpdate = createUpdate(update, user)
     item.updates.unshift(newUpdate)
-    const group = groups.find(group => {
+    const group = board.groups.find(group => {
         return group.items.find(gItem => gItem.id === item.id)
     })
     const itemIdx = group.items.findIndex(gItem => gItem.id === item.id)
     const newItem = { ...item }
     group.items.splice(itemIdx, 1, newItem)
+    const groupIdx = board.groups.findIndex(gGroup => gGroup.id === group.id)
+    board.groups.splice(groupIdx ,1 ,group)
+    const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
+    workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
     return newWorkspace
 }
@@ -246,7 +250,6 @@ function save(item, group, workspace, user, addToTop, board, Duplicate) {
     const boardIdx = workspace.boards.findIndex(gBoard => gBoard._id === board._id)
     workspace.boards.splice(boardIdx, 1, board)
     const newWorkspace = { ...workspace };
-    console.log(`newWorkspace`, newWorkspace)
     return newWorkspace
 }
 
