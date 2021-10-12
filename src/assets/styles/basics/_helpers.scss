@@ -29,6 +29,11 @@
   }
 }
 
+.tox-tinymce {
+  border-radius: 8px !important;
+  border-color: $primary-color !important;
+}
+
 // Font Sizes
 .fs12 {
   font-size: rem(12px);

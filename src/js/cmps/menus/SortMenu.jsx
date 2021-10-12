@@ -30,7 +30,7 @@ function _SortMenu({ onSort, board, sortStore, toggleMenu, toggleMenus }) {
           <div className="clear-filter btn br4" onClick={resetSort}>
             Reset sort
           </div>
-          <div className="sort-btn br4 " onClick={onSetSort}>
+          <div className="sort-btn br4 btn" onClick={onSetSort}>
             Sort
           </div>
         </div>
