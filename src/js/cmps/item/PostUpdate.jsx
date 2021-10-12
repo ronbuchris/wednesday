@@ -1,83 +1,101 @@
 import { Component } from 'react';
-import { Editor } from '@tinymce/tinymce-react'; 
+import { Editor } from '@tinymce/tinymce-react';
 // import FroalaEditor from 'react-froala-wysiwyg';
 
 export class PostUpdate extends Component {
- state = {
-      update: '',
-    };
-
+  state = {
+    update: '',
+    toggleEditor: false,
+  };
 
   handleModelChange = (e) => {
     this.setState({
-      update: e.target.getContent()
-    })
+      update: e.target.getContent(),
+    });
   };
   onPost = () => {
     this.props.onPost(this.state.update);
-    this.setState({ update: '' });
+    this.setState((prevState) => ({ ...prevState, update: '' }));
   };
-  
+  toggleEditor = (value) => {
+    this.setState((prevState) => ({ ...prevState, toggleEditor: value }));
+  };
+
   render() {
     return (
       <div>
         <div>
-        <Editor
-          apiKey="8oty9fy177hya366jthfhnnfan4vpydo8mqzzb04z3c5sapy"
-          initialValue=""
-          init={{
-            max_height: 145,
-            resize: false,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link image',
-              'charmap print preview anchor help',
-              'searchreplace visualblocks code',
-              'insertdatetime media table paste wordcount'
-            ],
-            toolbar:
-              'undo redo | formatselect | bold italic | \
+          {this.state.toggleEditor ? (
+            <Editor
+              apiKey="8oty9fy177hya366jthfhnnfan4vpydo8mqzzb04z3c5sapy"
+              initialValue=""
+              init={{
+                max_height: 145,
+                resize: false,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image',
+                  'charmap print preview anchor help',
+                  'searchreplace visualblocks code',
+                  'insertdatetime media table paste wordcount',
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic | \
             alignleft aligncenter alignright | \
-            bullist numlist outdent indent | help'
-          }}
-          onChange={this.handleModelChange} />
-        </div>
-        <div className="side-panel-actions flex align-center space-between btn">
-          <div className="left-side-actions flex">
-            <div className="add-files">Add files</div>
-            <div className="gif">GIF</div>
-            <div className="emoji">Emoji</div>
-            <div className="mention">Mention</div>
-          </div>
-          <div
-            className="update-btn br4"
-            onClick={(ev) => {
-              ev.preventDefault();
-              this.onPost();
-            }}
+            bullist numlist outdent indent | help',
+              }}
+              onChange={this.handleModelChange}
+            />
+          ) : (
+            <div
+              className="update-input btn"
+              onClick={() => this.toggleEditor(true)}
             >
-            Update
-          </div>
+              Write an update...
+            </div>
+          )}
         </div>
+        {this.state.toggleEditor && (
+          <div className="side-panel-actions flex align-center space-between">
+            <div className="left-side-actions flex">
+              <div className="add-files">Add files</div>
+              <div className="gif">GIF</div>
+              <div className="emoji">Emoji</div>
+              <div className="mention">Mention</div>
+            </div>
+            <div
+              className="update-btn br4"
+              onClick={(ev) => {
+                ev.preventDefault();
+                this.onPost();
+                this.toggleEditor(false);
+              }}
+            >
+              Update
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-{/* <FroalaEditor
+{
+  /* <FroalaEditor
   model={this.state.model}
   onModelChange={this.handleModelChange}
-/> */}
+/> */
+}
 // export class PostUpdate extends Component {
-  //   state = {
-    //     update: {
-      //       txt: '',
-      //     },
-      //   };
-      //   handleChange = (ev) => {
-        //     ev.preventDefault();
-        //     const field = ev.target.name;
-        //     if (!field) return;
+//   state = {
+//     update: {
+//       txt: '',
+//     },
+//   };
+//   handleChange = (ev) => {
+//     ev.preventDefault();
+//     const field = ev.target.name;
+//     if (!field) return;
 //     const value = ev.target.value;
 //     this.setState((prevState) => ({
 //       update: { ...prevState.update, [field]: value },
