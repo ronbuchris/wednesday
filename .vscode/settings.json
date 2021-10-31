@@ -1,5 +1,6 @@
 {
     "workbench.colorCustomizations": {
+<<<<<<< HEAD
         "activityBar.activeBackground": "#b4c2e9",
         "activityBar.activeBorder": "#cc5273",
         "activityBar.background": "#b4c2e9",
@@ -22,4 +23,28 @@
         "statusBarItem.remoteForeground": "#15202b"
     },
     "peacock.color": "#8ca2de"
+=======
+        "activityBar.activeBackground": "#b78d94",
+        "activityBar.activeBorder": "#dae6d8",
+        "activityBar.background": "#b78d94",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#dae6d8",
+        "activityBarBadge.foreground": "#15202b",
+        "editorGroup.border": "#b78d94",
+        "panel.border": "#b78d94",
+        "sash.hoverBorder": "#b78d94",
+        "sideBar.border": "#b78d94",
+        "statusBar.background": "#a36e77",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#b78d94",
+        "statusBarItem.remoteBackground": "#a36e77",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#a36e77",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#a36e7799",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#a36e77"
+>>>>>>> backend
 }
