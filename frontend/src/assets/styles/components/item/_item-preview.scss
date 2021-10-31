@@ -1,0 +1,217 @@
+.item-column {
+  height: 100%;
+}
+
+.member-col {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid $ui-grey-color;
+  background-color: $clr6;
+
+  &:hover {
+    .add-member {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .add-member {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    background-color: $primary-color;
+
+    svg {
+      width: 13px;
+      height: 13px;
+      path {
+        fill: #fff;
+      }
+    }
+  }
+
+  .profile-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid $wolf-color;
+    margin: 0 -4px;
+    background-color: #fff;
+  }
+}
+
+.status-col {
+  font-size: rem(12px);
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: $clr7;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.number-col {
+  position: relative;
+  border-bottom: 1px solid $ui-grey-color;
+  background-color: $clr6;
+  padding: 5px;
+  color: $text-column-color;
+
+  &:hover {
+    .number-field {
+      outline: 1px dashed $wolf-color;
+    }
+    .clear-number {
+      display: flex !important;
+    }
+    .no-number {
+      display: flex !important;
+    }
+  }
+
+  .number-field {
+    position: relative;
+    outline: none;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+
+    span {
+      font-size: rem(14px);
+    }
+
+    .clear-number {
+      z-index: 5;
+      display: none;
+      top: 50%;
+      right: 8px;
+      position: absolute;
+      transform: translateY(-50%);
+      font-size: 12px;
+      border-radius: 50%;
+
+      svg {
+        color: #c4c4c4;
+        height: 15px;
+        width: 15px;
+      }
+
+      &:hover {
+        svg {
+          color: $btn-column-color;
+        }
+      }
+    }
+
+    .no-number {
+      height: 100%;
+      display: none;
+      gap: 5px;
+
+      .add-number {
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background-color: $primary-color;
+
+        .plus {
+          width: 11px;
+          height: 11px;
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    &:focus {
+      background-color: #fff;
+      outline: 1px dashed $primary-color;
+
+      .number-col {
+        background-color: $clr5 !important;
+      }
+      .clear-number {
+        display: none !important;
+      }
+      .no-number {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.add-update-btn-wrapper {
+  position: relative;
+  height: 100%;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  .add-update-btn {
+    color: $wolf-color;
+    width: 24px;
+    height: 24px;
+    transition: color 0.05s;
+  }
+
+  .updates {
+    color: $primary-color;
+    width: 24px;
+    height: 24px;
+  }
+
+  .updates-count {
+    position: absolute;
+    background-color: $primary-color;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2px 4px;
+    top: 18px;
+    left: 13px;
+    line-height: 9px;
+    font-size: rem(10px);
+  }
+}
+
+.fold {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-width: 0;
+  border-style: solid;
+  background: inherit;
+  filter: brightness(115%);
+  display: block;
+  border-color: transparent #fff transparent #fff;
+  -webkit-transition: border-width 0.3s ease-in-out;
+  -moz-transition: border-width 0.3s ease-in-out;
+  -ms-transition: border-width 0.3s ease-in-out;
+  -o-transition: border-width 0.3s ease-in-out;
+  transition: border-width 0.3s ease-in-out;
+}
+
+.status {
+  color: #fff;
+  position: relative;
+  &.fill {
+    &:hover {
+      .fold {
+        border-width: 0px 13px 13px 0px;
+      }
+    }
+  }
+}

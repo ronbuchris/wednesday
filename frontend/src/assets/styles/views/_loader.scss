@@ -1,0 +1,59 @@
+.loader-wrapper {
+  height: 100vh;
+  width: 100vw;
+
+  .loader {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ff3d57;
+    animation: cl10 1.5s infinite linear;
+  }
+}
+@keyframes cl10 {
+  0% {
+    box-shadow: 0 -30px #ffcb00, calc(30px * 0.707) calc(-30px * 0.707) #00d647,
+      30px 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00,
+      0 0 #00d647;
+  }
+  12.5% {
+    box-shadow: 0 0 #ffcb00, calc(30px * 0.707) calc(-30px * 0.707) #00d647,
+      30px 0 #ffcb00, calc(30px * 0.707) calc(30px * 0.707) #00d647, 0 0 #ffcb00,
+      0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647;
+  }
+  25% {
+    box-shadow: 0 0 #ffcb00, 0 0 #00d647, 30px 0 #ffcb00,
+      calc(30px * 0.707) calc(30px * 0.707) #00d647, 0 30px #ffcb00, 0 0 #00d647,
+      0 0 #ffcb00, 0 0 #00d647;
+  }
+  37.5% {
+    box-shadow: 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00,
+      calc(30px * 0.707) calc(30px * 0.707) #00d647, 0 30px #ffcb00,
+      calc(-30px * 0.707) calc(30px * 0.707) #00d647, 0 0 #ffcb00, 0 0 #00d647;
+  }
+  50% {
+    box-shadow: 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647,
+      0 30px #ffcb00, calc(-30px * 0.707) calc(30px * 0.707) #00d647,
+      -30px 0 #ffcb00, 0 0 #00d647;
+  }
+  62.5% {
+    box-shadow: 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00,
+      calc(-30px * 0.707) calc(30px * 0.707) #00d647, -30px 0 #ffcb00,
+      calc(-30px * 0.707) calc(-30px * 0.707) #00d647;
+  }
+  75% {
+    box-shadow: 0 -30px #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647,
+      0 0 #ffcb00, 0 0 #00d647, -30px 0 #ffcb00,
+      calc(-30px * 0.707) calc(-30px * 0.707) #00d647;
+  }
+  87.5% {
+    box-shadow: 0 -30px #ffcb00, calc(30px * 0.707) calc(-30px * 0.707) #00d647,
+      0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00,
+      calc(-30px * 0.707) calc(-30px * 0.707) #00d647;
+  }
+  100% {
+    box-shadow: 0 -30px #ffcb00, calc(30px * 0.707) calc(-30px * 0.707) #00d647,
+      30px 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00, 0 0 #00d647, 0 0 #ffcb00,
+      0 0 #00d647;
+  }
+}

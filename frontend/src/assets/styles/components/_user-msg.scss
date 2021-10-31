@@ -1,0 +1,34 @@
+.user-msg {
+  position: fixed;
+  z-index: 20;
+  padding: 8px;
+  height: 48px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 10px;
+  border-radius: 4px;
+  background-color: #258750;
+  color: $clr7;
+  font-size: rem(14px);
+
+  .undo-btn {
+    border: 1px solid #fff;
+    padding: 4px 8px;
+    &:hover {
+      background-color: #1f7344;
+    }
+  }
+
+  .reset-btn {
+    padding: 5px;
+    width: 33px;
+
+    &:hover {
+      background-color: #1f7344;
+    }
+    svg {
+      color: #fff;
+    }
+  }
+}

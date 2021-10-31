@@ -1,0 +1,198 @@
+//Boarder-radius
+.br4 {
+  border-radius: 4px;
+}
+.br8 {
+  border-radius: 8px;
+}
+
+//btn
+
+.btn {
+  cursor: pointer;
+}
+
+.focused {
+  border: 1px solid $primary-color;
+}
+
+.drag-btn {
+  color: $wolf-color;
+  position: absolute;
+  cursor: move !important;
+  align-items: center;
+  left: 3px;
+  display: none;
+
+  svg {
+    height: 18px;
+  }
+}
+
+.tox-tinymce {
+  border-radius: 8px !important;
+  border-color: $primary-color !important;
+}
+
+// Font Sizes
+.fs12 {
+  font-size: rem(12px);
+}
+.fs14 {
+  font-size: rem(14px);
+}
+.fs18 {
+  font-size: rem(18px);
+}
+.fs20 {
+  font-size: rem(20px);
+}
+.fs24 {
+  font-size: rem(24px);
+}
+.fs28 {
+  font-size: rem(28px);
+}
+.fs30 {
+  font-size: rem(30px);
+}
+
+// List
+.clean-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  & > li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+//Divider
+.divider {
+  height: 1px;
+  border-bottom: 1px solid $ui-grey-color;
+  width: 100%;
+}
+
+//Text Ellipsis
+.text-cmp {
+  // width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-wrap {
+  overflow: hidden;
+}
+
+// flex helpers
+
+.flex {
+  display: flex;
+
+  > *.full {
+    flex: 1;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-end {
+    justify-content: end;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
+  &.space-between {
+    justify-content: space-between;
+  }
+
+  &.space-around {
+    justify-content: space-around;
+  }
+
+  &.space-evenly {
+    justify-content: space-evenly;
+  }
+
+  &.auto-center {
+    justify-content: center;
+    align-items: center;
+  }
+}
+.disabled-link {
+  pointer-events: none;
+}
+
+.header-btn {
+  height: 32px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $ui-grey-color;
+  }
+}
+// Title
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
+  .tooltiptext {
+    position: absolute;
+    visibility: hidden;
+    background-color: $mud-color;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 6px;
+    text-align: center;
+    z-index: 1;
+    width: 170px;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    &::after {
+      position: absolute;
+      content: ' ';
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+  }
+}
+
+// Media helpers
+
+.square-ratio {
+  @include aspect-ratio(1, 1);
+}
+.video-ratio {
+  @include aspect-ratio(16, 9);
+}
+.portrait-ratio {
+  @include aspect-ratio(9, 16);
+}

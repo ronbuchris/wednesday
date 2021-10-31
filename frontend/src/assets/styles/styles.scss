@@ -1,0 +1,39 @@
+// Setup
+@import 'setup/variables.scss';
+@import 'setup/functions.scss';
+@import 'setup/mixins.scss';
+@import 'setup/typography.scss';
+
+// Basics
+@import 'basics/helpers.scss';
+@import 'basics/layout.scss';
+@import 'basics/base.scss';
+@import 'basics/buttons.scss';
+
+// Components
+@import 'components/main-header.scss';
+@import 'components/sidebar-header.scss';
+@import 'components/workspace-nav.scss';
+@import 'components/menus.scss';
+@import 'components/user-msg.scss';
+
+// Components/Board
+@import 'components/board/board-actions.scss';
+@import 'components/board/board-details.scss';
+@import 'components/board/board-header.scss';
+@import 'components/board/board-list.scss';
+@import 'components/board/board-preview.scss';
+
+// Components/Group
+@import 'components/group/group-preview.scss';
+@import 'components/group/group-header.scss';
+
+// Components/Item
+@import 'components/item/item-details.scss';
+@import 'components/item/item-list.scss';
+@import 'components/item/item-preview.scss';
+
+//Views
+@import 'views/loader.scss';
+@import 'views/home-page.scss';
+@import 'views/main-app.scss';

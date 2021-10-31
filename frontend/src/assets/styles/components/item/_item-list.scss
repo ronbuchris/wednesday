@@ -1,0 +1,198 @@
+.item-list {
+  min-width: 740px;
+
+  .item-preview-container {
+    padding-left: 30px;
+
+    &:hover {
+      .item-preview,
+      .member-col,
+      .date-border,
+      .date,
+      .number-col,
+      .item-title {
+        background-color: $ui-grey-color !important;
+      }
+
+      .item-menu-arrow {
+        display: flex;
+      }
+    }
+  }
+  .item-preview {
+    margin-bottom: 1px;
+    height: 36px;
+    position: relative;
+    font-size: rem(13px);
+
+    .item-menu-arrow {
+      display: none;
+      position: absolute;
+      width: 30px;
+      left: -30px;
+      height: 100%;
+
+      .item-menu-button {
+        width: 18px;
+        height: 18px;
+        background-color: $ui-grey-color;
+        font-size: rem(15px);
+      }
+    }
+
+    .item-column-list {
+      .date {
+        cursor: text;
+        position: relative;
+        border-bottom: 1px solid $ui-grey-color;
+
+        .date-border {
+          padding: 5px;
+          height: 100%;
+          background-color: $clr6;
+
+          &:hover {
+            .date-col {
+              outline: 1px dashed $wolf-color;
+            }
+
+            .clear-date {
+              display: flex !important;
+            }
+          }
+
+          .date-col {
+            color: $text-column-color;
+
+            .red {
+              color: $negative-color;
+              position: absolute;
+              left: 10px;
+              font-size: rem(16px);
+            }
+
+            .clear-date {
+              display: none;
+              top: 50%;
+              right: 8px;
+              position: absolute;
+              transform: translateY(-50%);
+              font-size: rem(12px);
+              border-radius: 50%;
+
+              svg {
+                color: #c4c4c4;
+                height: 15px;
+                width: 15px;
+              }
+
+              &:hover {
+                svg {
+                  color: $btn-column-color;
+                }
+              }
+            }
+          }
+        }
+      }
+      > *:last-child {
+        .date-menu {
+          right: 113%;
+        }
+      }
+    }
+
+    .item-title {
+      display: flex;
+      align-items: center;
+      padding: 0 10px 0 0;
+      flex: 1;
+      border-bottom: 1px solid $ui-grey-color;
+      cursor: pointer;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      min-width: 180px;
+      background-color: rgba(253, 253, 250, 0.95);
+      @include for-narrow-layout {
+        @media (min-width: $mobile-breakpoint) {
+          background-color: $clr6;
+        }
+      }
+
+      &:hover {
+        .item-title-text {
+          color: $primary-color;
+        }
+        .edit-title-btn {
+          display: block;
+
+          &:hover {
+            .item-title-text {
+              border: 1px solid $wolf-color;
+            }
+          }
+        }
+      }
+
+      .title {
+        width: 84%;
+        height: 100%;
+
+        .item-title-text {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+      .add-update-btn {
+        &:hover {
+          color: $primary-color;
+        }
+      }
+
+      .edit-title-btn {
+        display: none;
+        color: $clr3;
+        background: transparent;
+        height: 24px;
+        flex: initial;
+        margin-left: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+        line-height: 22px;
+        padding-top: 2px;
+
+        &:hover {
+          background-color: $clr6;
+
+          .item-title-text {
+            border: 2px solid $primary-color;
+          }
+        }
+        &.focus {
+          display: none !important;
+        }
+      }
+
+      .item-title-text {
+        outline: none;
+        border: 1px solid transparent;
+        margin-left: 10px;
+
+        &.focus {
+          width: 100%;
+          background-color: #fff;
+          border: 1px dashed $wolf-color;
+        }
+        // &:focus {
+        //   flex: 1;
+        // }
+      }
+    }
+  }
+}
+
+.add-update-btn-wrapper {
+  position: absolute;
+  right: 10px;
+}

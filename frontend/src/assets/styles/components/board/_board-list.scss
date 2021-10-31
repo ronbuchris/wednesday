@@ -1,0 +1,7 @@
+.board-list {
+  padding-top: 16px;
+
+  .selected {
+    background-color: $primary-selected-color !important;
+  }
+}

@@ -1,0 +1,118 @@
+.main-header {
+  margin: 0 auto;
+  height: 72px;
+  padding-left: 32px;
+  padding-right: 32px;
+  font-family: sofia;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
+  box-shadow: 0px 18px 30px #00000006;
+
+  .header-content {
+    height: 100%;
+  }
+
+  .left {
+    .nav-btn {
+      display: none;
+      font-family: sofia;
+      padding: 0 16px;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+
+      @include for-wide-layout {
+        @media (min-width: $normal-breakpoint) {
+          display: block;
+        }
+      }
+      span {
+        font-family: sofia;
+        margin-right: 8px;
+      }
+      svg {
+        width: 10px;
+      }
+    }
+  }
+
+  .right {
+    display: none;
+
+    @include for-wide-layout {
+      @media (min-width: $normal-breakpoint) {
+        display: flex;
+      }
+    }
+
+    .started {
+      color: $clr7;
+      background-color: $login-color;
+      border-radius: 40px;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 32px;
+      transition: 0.3s ease all;
+      &:hover {
+        filter: brightness(85%);
+      }
+    }
+  }
+
+  .logo-home {
+    width: 160px;
+    margin-right: 16px;
+  }
+
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin-bottom: 5px;
+      position: relative;
+      background-color: #333;
+      border-radius: 6px;
+      z-index: 1;
+      transform-origin: 0 0;
+      transition: 0.4s;
+    }
+    &:hover span:nth-child(2) {
+      transform: translateX(10px);
+    }
+    &.is-active span:nth-child(1) {
+      transform: translate(0px, -2px) rotate(45deg);
+    }
+
+    &.is-active span:nth-child(3) {
+      transform: translate(-3px, 3px) rotate(-45deg);
+    }
+    &.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(15px);
+    }
+  }
+  @include for-wide-layout {
+    @media (min-width: $normal-breakpoint) {
+      .hamburger {
+        display: none;
+      }
+      .main-header {
+        display: flex;
+      }
+    }
+  }
+}
