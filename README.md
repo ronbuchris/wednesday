@@ -1,3 +1,3 @@
 # wednesday
 
-[View Demo](wednesday-app.herokuapp.com)
+[View Demo](http://wednesday-app.herokuapp.com)
